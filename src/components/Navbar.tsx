@@ -6,30 +6,14 @@ import { useCart } from "@/context/CartContext";
 import { AUTH_EVENT, getSession, isAdmin, signOut, type Session } from "@/lib/auth";
 import { useContent } from "@/lib/useContent";
 import { listPublishedNavPages, onPagesChange, type CustomPage } from "@/lib/admin/customPages";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
-
-const ABOUT_LINKS = [
-  { label: "About Us",      href: "/about",           desc: "The full story — all in one place" },
-  { label: "Our Story",     href: "/our-story",       desc: "How Odo came to be" },
-  { label: "Our Philosophy", href: "/our-philosophy", desc: "The Luv & Ker way" },
-  { label: "Ingredients",   href: "/ingredients",     desc: "What goes inside" },
-  { label: "Sustainability", href: "/sustainability",  desc: "Our commitment to the planet" },
-  { label: "Lab Tests",     href: "/lab-tests",       desc: "Third-party verified results" },
-  { label: "FAQ",           href: "/faq",             desc: "Your questions answered" },
-];
-
-const SHOP_LINKS = [
-  { label: "All Products",           href: "/products",                  desc: "Browse the full collection" },
-  { label: "Odo · For Her",          href: "/products?range=odo",        desc: "Heritage skincare for women" },
-  { label: "Nkrabea · For Him",      href: "/products?range=nkrabea",    desc: "Strength rituals for men" },
-  { label: "Felicia's Black Soap",    href: "/products/black-soap",       desc: "World renowned. One formula." },
-  { label: "Buying for a Friend",    href: "/products?tab=gift-cards",   desc: "Gift cards for any range" },
-];
 
 const TOP_LINKS = [
-  { label: "Reviews",        href: "/reviews" },
+  { label: "Shop",           href: "/products" },
+  { label: "About",          href: "/about" },
+  { label: "Customer Stories", href: "/reviews" },
+  { label: "Portal",         href: "/aqua" },
   { label: "Blog",           href: "/blog" },
-  { label: "Support Us", href: "/support-us" },
+  { label: "Support Us",     href: "/support-us" },
 ];
 
 export default function Navbar() {
@@ -39,16 +23,10 @@ export default function Navbar() {
   const subtitle  = useContent("navbar.subtitle",  "Odo by Felicia");
   const [scrolled,        setScrolled]        = useState(false);
   const [menuOpen,        setMenuOpen]        = useState(false);
-  const [aboutOpen,       setAboutOpen]       = useState(false);
-  const [shopOpen,        setShopOpen]        = useState(false);
   const [profileOpen,     setProfileOpen]     = useState(false);
-  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
-  const [mobileShopOpen,  setMobileShopOpen]  = useState(false);
   const [session,         setSession]         = useState<Session | null>(null);
   const [hydrated,        setHydrated]        = useState(false);
   const [navPages,        setNavPages]        = useState<CustomPage[]>([]);
-  const aboutRef   = useRef<HTMLDivElement>(null);
-  const shopRef    = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -76,8 +54,6 @@ export default function Navbar() {
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (aboutRef.current   && !aboutRef.current.contains(e.target as Node))   setAboutOpen(false);
-      if (shopRef.current    && !shopRef.current.contains(e.target as Node))    setShopOpen(false);
       if (profileRef.current && !profileRef.current.contains(e.target as Node)) setProfileOpen(false);
     };
     document.addEventListener("mousedown", handler);
@@ -118,57 +94,6 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-5 lg:gap-7 xl:gap-9 2xl:gap-11">
-
-            {/* Shop dropdown */}
-            <div ref={shopRef} className="relative">
-              <button
-                onClick={() => { setShopOpen(v => !v); setAboutOpen(false); }}
-                className="flex items-center gap-1.5 text-sm 2xl:text-base tracking-wide transition-colors duration-200 text-brand-purple-dark/80 hover:text-brand-purple-dark"
-              >
-                Shop
-                <Chevron open={shopOpen} />
-              </button>
-              {shopOpen && (
-                <Dropdown>
-                  {SHOP_LINKS.map(link => (
-                    <DropdownItem
-                      key={link.label}
-                      href={link.href}
-                      label={link.label}
-                      desc={link.desc}
-                      colour={link.label.includes("Nkrabea") ? "text-brand-amber" : link.label.includes("Odo ·") ? "text-brand-orange" : link.label.includes("Black Soap") ? "text-brand-purple-dark/80" : "text-brand-purple-dark"}
-                      onClose={() => setShopOpen(false)}
-                    />
-                  ))}
-                </Dropdown>
-              )}
-            </div>
-
-            {/* About dropdown */}
-            <div ref={aboutRef} className="relative">
-              <button
-                onClick={() => { setAboutOpen(v => !v); setShopOpen(false); }}
-                className="flex items-center gap-1.5 text-sm 2xl:text-base tracking-wide transition-colors duration-200 text-brand-purple-dark/80 hover:text-brand-purple-dark"
-              >
-                About
-                <Chevron open={aboutOpen} />
-              </button>
-              {aboutOpen && (
-                <Dropdown>
-                  {ABOUT_LINKS.map(link => (
-                    <DropdownItem
-                      key={link.label}
-                      href={link.href}
-                      label={link.label}
-                      desc={link.desc}
-                      colour={link.label === "About Us" ? "text-brand-purple-light" : "text-brand-purple-dark"}
-                      onClose={() => setAboutOpen(false)}
-                    />
-                  ))}
-                </Dropdown>
-              )}
-            </div>
-
             {/* Flat links */}
             {TOP_LINKS.map(link => (
               <Link
@@ -196,11 +121,10 @@ export default function Navbar() {
 
           {/* Right actions */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <ThemeSwitcher />
             {hydrated && session ? (
               <div ref={profileRef} className="relative hidden sm:block">
                 <button
-                  onClick={() => { setProfileOpen(v => !v); setAboutOpen(false); setShopOpen(false); }}
+                  onClick={() => setProfileOpen(v => !v)}
                   aria-label="Account menu"
                   className="flex items-center gap-2 pl-1 pr-3 py-1 rounded-full border border-pink-200 hover:border-white/25 transition-colors"
                 >
@@ -262,37 +186,6 @@ export default function Navbar() {
         {/* Mobile menu */}
         {menuOpen && (
           <div className="md:hidden bg-pink-50/50 border-t border-pink-200/50 px-4 sm:px-6 py-5 flex flex-col gap-1 max-h-[70vh] overflow-y-auto">
-
-            {/* Shop accordion */}
-            <MobileAccordion label="Shop" open={mobileShopOpen} onToggle={() => setMobileShopOpen(v => !v)}>
-              {SHOP_LINKS.map(link => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className={`text-sm tracking-wide py-2.5 ${
-                    link.label.includes("Nkrabea") ? "text-brand-amber" : link.label.includes("Odo ·") ? "text-brand-orange" : link.label.includes("Gift Cards") ? "text-brand-purple-light" : link.label.includes("Accessories") || link.label.includes("Clothing") ? "text-brand-amber/90" : "text-brand-purple-dark/80 hover:text-brand-purple-dark"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </MobileAccordion>
-
-            {/* About accordion */}
-            <MobileAccordion label="About" open={mobileAboutOpen} onToggle={() => setMobileAboutOpen(v => !v)}>
-              {ABOUT_LINKS.map(link => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="text-brand-purple-dark/80 hover:text-brand-purple-dark text-sm tracking-wide py-2.5"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </MobileAccordion>
-
             {TOP_LINKS.map(link => (
               <Link
                 key={link.label}
@@ -431,46 +324,6 @@ function Chevron({ open }: { open: boolean }) {
       className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
       <polyline points="6 9 12 15 18 9" />
     </svg>
-  );
-}
-
-function Dropdown({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-white border border-pink-200 rounded-2xl shadow-2xl shadow-black/60 overflow-hidden z-50">
-      <div className="p-2">{children}</div>
-    </div>
-  );
-}
-
-function DropdownItem({ href, label, desc, colour, onClose }: {
-  href: string; label: string; desc: string; colour: string; onClose: () => void;
-}) {
-  return (
-    <Link href={href} onClick={onClose} className="flex flex-col px-4 py-3 rounded-xl hover:bg-white/5 transition-colors group">
-      <span className={`text-sm font-medium transition-colors ${colour}`}>{label}</span>
-      <span className="text-[11px] text-brand-purple-dark/80 mt-0.5">{desc}</span>
-    </Link>
-  );
-}
-
-function MobileAccordion({ label, open, onToggle, children }: {
-  label: string; open: boolean; onToggle: () => void; children: React.ReactNode;
-}) {
-  return (
-    <>
-      <button
-        onClick={onToggle}
-        className="flex items-center justify-between w-full text-brand-purple-dark/80 hover:text-brand-purple-dark text-sm tracking-wide py-3 px-1"
-      >
-        {label}
-        <Chevron open={open} />
-      </button>
-      {open && (
-        <div className="flex flex-col ml-3 border-l border-pink-200 pl-4 mb-2">
-          {children}
-        </div>
-      )}
-    </>
   );
 }
 
