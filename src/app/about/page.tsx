@@ -168,8 +168,7 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Felicia grew up watching her grandmother hand-press shea butter and cold-process black soap in a small
-                  kitchen in Accra. When she moved to the UK, she could not find a soap that matched the integrity of
-                  what she grew up with. So she made her own.
+                  kitchen. When she moved to the UK, she saw a gap: people were settling for mass-produced skincare filled with synthetics, completely disconnected from nature. She didn't create Odo for herself; she created it for those who demand more. For people who aspire to true transformation and the freedom to choose what goes on their skin.
                 </p>
                 <p>
                   Today, every Odo bar is still made in small batches in Accra. Every ingredient is sourced direct from

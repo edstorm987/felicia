@@ -20,7 +20,7 @@ const STORIES: Story[] = [
     title: "Why Felicia made this",
     runtime: "3 min",
     hook: "The soap the market ignored — until now.",
-    body: "Every ingredient in mass skincare is chosen for shelf life and margin, not for your skin. Felicia saw what was being left out: centuries of Ghanaian ancestral wisdom, genuinely clean ingredients, real results. She couldn't find what she needed anywhere — so she made it. Six ingredients. Nothing hidden. The best bar in the market, hiding in plain sight.",
+    body: "Every ingredient in mass skincare is chosen for shelf life and margin, not for your skin. Felicia didn't create Odo for herself — she created it for you. For those who demand genuinely clean ingredients and real results without compromise. It's for people who aspire to a true transformation and the freedom to choose what goes on their skin, rooted in centuries of Ghanaian ancestral wisdom. Six ingredients. Nothing hidden. The best bar in the market, hiding in plain sight.",
     gradient: "from-amber-900/80 via-stone-900/90 to-black",
   },
   {
