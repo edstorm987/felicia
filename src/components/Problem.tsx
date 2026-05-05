@@ -27,39 +27,8 @@ export default function Problem() {
   return (
     <section
       id="our-philosophy"
-      className="relative w-full py-20 sm:py-24 lg:py-32 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(135deg, #fdf4ff 0%, #fae8ff 20%, #f3e8ff 40%, #ede9fe 60%, #e0e7ff 80%, #e0f2fe 100%)",
-      }}
+      className="relative w-full py-20 sm:py-24 lg:py-32 overflow-hidden bg-white"
     >
-      {/* Soft radial glows for depth */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-      >
-        <div
-          className="absolute top-0 left-0 w-[55%] h-[55%] rounded-full opacity-30"
-          style={{
-            background:
-              "radial-gradient(ellipse, rgba(255,255,255,0.18) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute bottom-0 right-0 w-[45%] h-[50%] rounded-full opacity-20"
-          style={{
-            background:
-              "radial-gradient(ellipse, rgba(255,255,255,0.25) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] rounded-full opacity-10"
-          style={{
-            background:
-              "radial-gradient(ellipse, rgba(255,255,255,0.4) 0%, transparent 70%)",
-          }}
-        />
-      </div>
 
       <div className="relative z-10 w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
 
