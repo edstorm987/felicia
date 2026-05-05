@@ -218,49 +218,59 @@ export default function Hero() {
               Nature&apos;s own gift: 6 ingredients you can actually name.
             </p>
             <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-10 max-w-sm">
-              Hand crafted and infused with care. The ritual your body has been craving for.
+              Hand crafted and infused with care. The ritual your skin has been craving for.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-              <a
-                href="#interest-form"
-                className="inline-flex items-center justify-center gap-2.5
-                  px-9 py-4 rounded-full bg-brand-orange hover:bg-brand-orange-light
-                  transition-all duration-200 text-white font-semibold tracking-wide text-sm
-                  shadow-2xl shadow-brand-orange/30 hover:-translate-y-0.5 hover:shadow-brand-orange/40"
-              >
-                Will this work for me?
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
+            <div className="flex flex-col gap-4 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <a
+                  href="#interest-form"
+                  className="inline-flex items-center justify-center gap-2.5
+                    px-9 py-4 rounded-full bg-brand-orange hover:bg-brand-orange-light
+                    transition-all duration-200 text-white font-semibold tracking-wide text-sm
+                    shadow-2xl shadow-brand-orange/30 hover:-translate-y-0.5 hover:shadow-brand-orange/40"
+                >
+                  Will this work for me?
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+                <button
+                  onClick={() => { setActiveStory("origin"); setModalOpen(true); }}
+                  className="inline-flex items-center justify-center gap-2
+                    px-8 py-4 rounded-full border border-gray-200 text-gray-600
+                    hover:border-brand-orange/30 hover:text-brand-orange
+                    transition-all duration-200 text-sm tracking-wide"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-brand-orange">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  Watch the story
+                </button>
+              </div>
+              <a href="/products" className="inline-flex items-center gap-2 text-sm text-brand-orange font-semibold hover:text-brand-orange-dark transition-colors self-center sm:self-start ml-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                10% introductory offer available
               </a>
-              <button
-                onClick={() => { setActiveStory("origin"); setModalOpen(true); }}
-                className="inline-flex items-center justify-center gap-2
-                  px-8 py-4 rounded-full border border-gray-200 text-gray-600
-                  hover:border-brand-orange/30 hover:text-brand-orange
-                  transition-all duration-200 text-sm tracking-wide"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-brand-orange">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-                Watch the story
-              </button>
             </div>
 
-            {/* Trust strip */}
-            <div className="flex flex-wrap items-center gap-6 mt-12 pt-8 border-t border-gray-100">
-              {[
-                { icon: "🌿", label: "100% Natural" },
-                { icon: "🇬🇭", label: "Made in Ghana" },
-                { icon: "✦",  label: "Zero synthetics" },
-              ].map(({ icon, label }) => (
-                <div key={label} className="flex items-center gap-2">
-                  <span className="text-base">{icon}</span>
-                  <span className="text-xs font-medium text-gray-600 tracking-wide">{label}</span>
-                </div>
-              ))}
+            {/* Packaging strip */}
+            <div className="flex flex-col gap-4 mt-10 pt-8 border-t border-gray-100">
+              <p className="text-xs text-gray-400 uppercase tracking-widest font-semibold">Comes in 3 packaging types</p>
+              <div className="flex flex-wrap items-center gap-6">
+                {[
+                  { icon: "🧼", label: "Classic Bar" },
+                  { icon: "🧴", label: "Pump Bottle" },
+                  { icon: "🏺", label: "Whipped Jar" },
+                  { icon: "📦", label: "Bundle Box" },
+                ].map(({ icon, label }) => (
+                  <a href="/products" key={label} className="flex items-center gap-2 hover:opacity-75 transition-opacity cursor-pointer group">
+                    <span className="text-lg grayscale group-hover:grayscale-0 transition-all">{icon}</span>
+                    <span className="text-xs font-medium text-gray-500 group-hover:text-brand-orange transition-colors tracking-wide">{label}</span>
+                  </a>
+                ))}
+              </div>
             </div>
 
           </div>
