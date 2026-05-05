@@ -215,8 +215,7 @@ export default function Hero() {
 
             {/* Sub-hook */}
             <p className="text-brand-purple-dark/80 text-base sm:text-lg xl:text-xl leading-relaxed mb-3 max-w-md">
-              Felicia&apos;s Ghanaian black soap. Six ingredients you can
-              actually name — nothing synthetic, nothing hidden.
+              Nature&apos;s own gift: 6 ingredients you can actually name.
             </p>
             <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-10 max-w-sm">
               Handcrafted in Accra. The ritual your skin has been asking for.
@@ -231,7 +230,7 @@ export default function Hero() {
                   transition-all duration-200 text-white font-semibold tracking-wide text-sm
                   shadow-2xl shadow-brand-orange/30 hover:-translate-y-0.5 hover:shadow-brand-orange/40"
               >
-                Get the free skin guide
+                Will this work for me?
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
