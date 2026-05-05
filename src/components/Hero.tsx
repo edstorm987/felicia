@@ -218,7 +218,7 @@ export default function Hero() {
               Nature&apos;s own gift: 6 ingredients you can actually name.
             </p>
             <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-10 max-w-sm">
-              Handcrafted in Accra. The ritual your skin has been asking for.
+              Hand crafted and infused with care. The ritual your body has been craving for.
             </p>
 
             {/* CTAs */}
