@@ -16,7 +16,7 @@ export default function InterestForm() {
   }
 
   return (
-    <section id="interest-form" className="w-full py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-orange-50 via-amber-50/50 to-rose-50">
+    <section id="interest-form" className="w-full py-20 sm:py-24 lg:py-32 bg-white">
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
 
         {/* Header */}

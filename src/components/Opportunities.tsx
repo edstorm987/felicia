@@ -68,7 +68,7 @@ export default function Opportunities() {
             What&apos;s in it for you
           </span>
           <h2 className="font-display font-bold text-brand-purple-dark text-3xl sm:text-4xl xl:text-5xl mb-4 max-w-2xl">
-            Why women are choosing{" "}
+            Why people are choosing{" "}
             <span style={{
               background: "linear-gradient(135deg, #E8621A 0%, #F2A23C 100%)",
               WebkitBackgroundClip: "text",
@@ -108,7 +108,7 @@ export default function Opportunities() {
           <div className="inline-block bg-white rounded-3xl shadow-sm border border-gray-100 px-8 py-8 sm:px-12">
             <p className="font-display text-xl sm:text-2xl text-brand-purple-dark leading-relaxed mb-4">
               &ldquo;I made this soap because I couldn&apos;t find anything clean enough for my own
-              skin. Now I want every woman to have access to the same thing.&rdquo;
+              skin. Now I want everyone to have access to the same thing.&rdquo;
             </p>
             <p className="text-brand-orange font-semibold text-sm tracking-wide">— Felicia</p>
           </div>
