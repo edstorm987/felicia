@@ -5,7 +5,6 @@ import { CartProvider } from "@/context/CartContext";
 import PurpleSideScroller from "@/components/PurpleSideScroller";
 import SiteHead from "@/components/SiteHead";
 import PreviewBar from "@/components/PreviewBar";
-import ThemeInjector from "@/components/ThemeInjector";
 import ABTestRunner from "@/components/ABTestRunner";
 import ImpersonationBar from "@/components/ImpersonationBar";
 import ForcePasswordChange from "@/components/ForcePasswordChange";
@@ -79,7 +78,6 @@ export default function RootLayout({
           <PortalEditOverlay />
           <ImpersonationBar />
           <ForcePasswordChange />
-          <ThemeInjector />
           <ABTestRunner />
           <PreviewBar />
           <SiteHead />

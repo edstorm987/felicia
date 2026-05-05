@@ -23,7 +23,6 @@ import {
   isPathAllowed, onInstalledPluginsChange, refreshInstalledPlugins,
   getPluginSidebarContributions,
 } from "@/lib/admin/installedPlugins";
-import AdminThemeInjector from "@/components/AdminThemeInjector";
 import AdminModeSwitcher from "@/components/AdminModeSwitcher";
 import CommandPalette from "@/components/admin/CommandPalette";
 import SiteSwitcher from "@/components/admin/SiteSwitcher";
@@ -249,7 +248,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <div data-admin-panel className="min-h-screen bg-pink-50 text-brand-purple-dark flex">
-      <AdminThemeInjector />
       {/* Sidebar */}
       <aside data-admin-sidebar className="hidden md:flex w-60 lg:w-64 shrink-0 flex-col bg-pink-50/50 border-r border-pink-200/50">
         <Link href="/" className="px-6 py-6 border-b border-pink-200/50 flex items-center gap-3">

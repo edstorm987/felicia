@@ -69,7 +69,7 @@ export default function VideoModal({ open, activeId, onClose, onSelect }: Props)
       <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
 
       {/* Modal */}
-      <div className="relative z-10 w-full max-w-5xl bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+      <div className="relative z-10 w-full max-w-7xl bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
 
         {/* Top bar */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 flex-shrink-0">
@@ -79,7 +79,7 @@ export default function VideoModal({ open, activeId, onClose, onSelect }: Props)
               <button
                 key={s.id}
                 onClick={() => onSelect(s.id)}
-                className={`px-4 py-2 rounded-lg text-sm font-semibold tracking-wide transition-all duration-200 ${
+                className={`px-5 py-2.5 rounded-lg text-sm font-semibold tracking-wide transition-all duration-200 ${
                   activeId === s.id
                     ? "bg-white text-brand-purple-dark shadow-sm"
                     : "text-gray-500 hover:text-brand-purple-dark/80"
@@ -93,10 +93,10 @@ export default function VideoModal({ open, activeId, onClose, onSelect }: Props)
           {/* Close */}
           <button
             onClick={onClose}
-            className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+            className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
             aria-label="Close"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M18 6 6 18M6 6l12 12" />
             </svg>
           </button>
@@ -106,36 +106,36 @@ export default function VideoModal({ open, activeId, onClose, onSelect }: Props)
         <div className="flex flex-col lg:flex-row overflow-y-auto flex-1">
 
           {/* Video panel */}
-          <div className="lg:w-[58%] flex-shrink-0">
-            <div className={`relative aspect-video bg-gradient-to-br ${active.gradient} flex flex-col items-center justify-center group cursor-pointer`}>
+          <div className="lg:w-[65%] flex-shrink-0 bg-black">
+            <div className={`relative w-full h-full min-h-[50vh] lg:min-h-0 bg-gradient-to-br ${active.gradient} flex flex-col items-center justify-center group cursor-pointer`}>
               {/* Cinematic rings */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-72 h-72 rounded-full border border-pink-200/50" />
-                <div className="absolute w-48 h-48 rounded-full border border-pink-200/50" />
+                <div className="w-96 h-96 rounded-full border border-pink-200/40" />
+                <div className="absolute w-64 h-64 rounded-full border border-pink-200/40" />
               </div>
 
               {/* Play button */}
-              <div className="flex flex-col items-center gap-4 relative z-10">
-                <div className="w-20 h-20 rounded-full bg-white/95 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="#E8621A" className="ml-1">
+              <div className="flex flex-col items-center gap-6 relative z-10">
+                <div className="w-24 h-24 rounded-full bg-white/95 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="#E8621A" className="ml-1.5">
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>
                 <div className="text-center">
-                  <p className="text-white font-semibold text-base">{active.title}</p>
-                  <p className="text-white/50 text-sm mt-1">{active.runtime} · Coming soon</p>
+                  <p className="text-white font-semibold text-lg sm:text-xl tracking-wide">{active.title}</p>
+                  <p className="text-white/60 text-sm mt-2 tracking-widest uppercase">{active.runtime} · Coming soon</p>
                 </div>
               </div>
 
               {/* Story tag */}
-              <div className="absolute top-4 left-4 bg-white/80 backdrop-blur-sm rounded-full px-3 py-1">
-                <span className="text-white/70 text-[10px] tracking-widest uppercase">{active.tag}</span>
+              <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-sm rounded-full px-4 py-1.5 shadow-lg">
+                <span className="text-brand-purple-dark text-[10px] font-bold tracking-widest uppercase">{active.tag}</span>
               </div>
             </div>
           </div>
 
           {/* Story copy panel */}
-          <div className="lg:w-[42%] flex-shrink-0 flex flex-col justify-center px-7 py-8 sm:px-8 sm:py-10">
+          <div className="lg:w-[35%] flex-shrink-0 flex flex-col justify-center px-8 py-10 sm:px-12 sm:py-14 bg-white border-l border-gray-100">
 
             {/* Tag */}
             <span className="inline-block text-[10px] font-bold tracking-[0.28em] uppercase text-brand-orange-dark mb-4">

@@ -113,22 +113,7 @@ function AccountContent() {
 // Logged-out landing — body replaced with a google.com iframe placeholder
 // while the real portal login surface is built out. Nav + footer remain.
 function LoginScreen({ onLogin: _onLogin }: { onLogin: (s: Session) => void }) {
-  return (
-    <>
-      <Navbar />
-      <main className="w-full pt-24 pb-12 min-h-screen bg-pink-50">
-        <div className="mx-auto w-full max-w-6xl px-6">
-          <iframe
-            src="https://www.google.com/webhp?igu=1"
-            title="Login"
-            className="block h-[80vh] w-full rounded-2xl border border-pink-200 bg-white"
-            loading="lazy"
-          />
-        </div>
-      </main>
-      <Footer />
-    </>
-  );
+  return <AuthForm onLogin={_onLogin} />;
 }
 
 // ── Auth form ────────────────────────────────────────────────────────────────
@@ -216,18 +201,7 @@ function AuthForm({ onLogin }: { onLogin: (s: Session) => void }) {
         </div>
       )}
 
-      {/* Google button */}
-      {cfg.enableGoogle && (
-        <button
-          type="button"
-          onClick={handleGoogle}
-          disabled={busy !== null}
-          className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl border border-pink-200 bg-white hover:bg-white/[0.04] disabled:opacity-50 text-sm font-medium text-brand-purple-dark transition-colors"
-        >
-          <GoogleIcon />
-          {busy === "google" ? "Connecting…" : isSignIn ? "Continue with Google" : "Sign up with Google"}
-        </button>
-      )}
+
 
       {/* Divider */}
       <div className="flex items-center gap-3 my-6">
