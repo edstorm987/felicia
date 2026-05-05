@@ -167,14 +167,14 @@ export default function AdminProductEditPage() {
         </div>
         <div className="flex items-center gap-2">
           {hasOverride && (
-            <button onClick={handleReset} className="text-xs px-3 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30">
+            <button onClick={handleReset} className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300">
               Reset to original
             </button>
           )}
           <Link href={`/admin/products/${product.slug}/variants`} className="text-xs px-3 py-2 rounded-lg border border-brand-orange/40 bg-brand-orange/10 text-brand-orange/90 hover:bg-brand-orange/20">
             Variants →
           </Link>
-          <Link href={`/products/${product.slug}`} target="_blank" className="text-xs px-3 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30">
+          <Link href={`/products/${product.slug}`} target="_blank" className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300">
             View on site →
           </Link>
         </div>
@@ -216,7 +216,7 @@ export default function AdminProductEditPage() {
               </Field>
             </div>
             <label className={`mt-4 flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
-              onSale ? "bg-brand-orange/10 border-brand-orange/30" : "border-pink-200 hover:border-white/20"
+              onSale ? "bg-brand-orange/10 border-brand-orange/30" : "border-pink-200 hover:border-pink-300"
             } ${!salePrice ? "opacity-50 cursor-not-allowed" : ""}`}>
               <input
                 type="checkbox"
@@ -255,7 +255,7 @@ export default function AdminProductEditPage() {
               className="input mb-3"
             />
             <div className="flex items-center gap-3">
-              <label className="text-xs px-3 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:border-white/30 cursor-pointer">
+              <label className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:border-pink-300 cursor-pointer">
                 Upload file
                 <input
                   type="file"
@@ -307,7 +307,7 @@ export default function AdminProductEditPage() {
               </div>
             )}
             {linkedItem && (
-              <div className="mt-4 p-4 rounded-xl bg-black/30 border border-white/8 space-y-4">
+              <div className="mt-4 p-4 rounded-xl bg-white/80 border border-pink-200/50 space-y-4">
                 {!linkedItem.unlimited ? (
                   <>
                     <div className="grid grid-cols-4 gap-3">
@@ -332,16 +332,16 @@ export default function AdminProductEditPage() {
                           min={0}
                           value={linkedItem.lowAt}
                           onChange={e => handleStockFieldUpdate({ lowAt: Math.max(0, parseInt(e.target.value || "0", 10)) })}
-                          className="font-display text-2xl text-brand-purple-dark bg-transparent border-b border-white/15 w-full focus:outline-none focus:border-brand-orange/50 py-0.5"
+                          className="font-display text-2xl text-brand-purple-dark bg-transparent border-b border-pink-200 w-full focus:outline-none focus:border-brand-orange/50 py-0.5"
                         />
                       </div>
                     </div>
                     <div className="flex items-center gap-2 flex-wrap">
-                      <button onClick={() => handleStockAdjust(-10)} className="text-xs px-2.5 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark">−10</button>
-                      <button onClick={() => handleStockAdjust(-1)}  className="text-xs px-2.5 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark">−1</button>
+                      <button onClick={() => handleStockAdjust(-10)} className="text-xs px-2.5 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark">−10</button>
+                      <button onClick={() => handleStockAdjust(-1)}  className="text-xs px-2.5 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark">−1</button>
                       <span className="text-xs text-brand-purple-dark/80 px-1">Adjust stock</span>
-                      <button onClick={() => handleStockAdjust(1)}   className="text-xs px-2.5 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark">+1</button>
-                      <button onClick={() => handleStockAdjust(10)}  className="text-xs px-2.5 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark">+10</button>
+                      <button onClick={() => handleStockAdjust(1)}   className="text-xs px-2.5 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark">+1</button>
+                      <button onClick={() => handleStockAdjust(10)}  className="text-xs px-2.5 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark">+10</button>
                       <input
                         type="number"
                         placeholder="Set"
@@ -354,7 +354,7 @@ export default function AdminProductEditPage() {
                             }
                           }
                         }}
-                        className="ml-auto w-20 text-xs px-2 py-1.5 rounded-lg border border-white/15 bg-black/30 text-brand-purple-dark focus:outline-none focus:border-brand-orange/40"
+                        className="ml-auto w-20 text-xs px-2 py-1.5 rounded-lg border border-pink-200 bg-white/80 text-brand-purple-dark focus:outline-none focus:border-brand-orange/40"
                       />
                     </div>
                   </>
@@ -364,7 +364,7 @@ export default function AdminProductEditPage() {
                     <p className="text-sm text-brand-purple-dark/80 mt-1">Unlimited stock — never sold out</p>
                   </div>
                 )}
-                <label className="flex items-center gap-3 p-3 rounded-lg border border-pink-200 hover:border-white/20 cursor-pointer">
+                <label className="flex items-center gap-3 p-3 rounded-lg border border-pink-200 hover:border-pink-300 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={!!linkedItem.unlimited}
@@ -379,7 +379,7 @@ export default function AdminProductEditPage() {
               </div>
             )}
             <label className={`mt-4 flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
-              showLowStock ? "bg-brand-orange/10 border-brand-orange/30" : "border-pink-200 hover:border-white/20"
+              showLowStock ? "bg-brand-orange/10 border-brand-orange/30" : "border-pink-200 hover:border-pink-300"
             } ${!linkedItem ? "opacity-50 cursor-not-allowed" : ""}`}>
               <input
                 type="checkbox"
@@ -409,7 +409,7 @@ export default function AdminProductEditPage() {
                 maxLength={30}
               />
             </Field>
-            <label className="mt-4 flex items-center gap-3 p-3 rounded-lg border border-pink-200 hover:border-white/20 cursor-pointer">
+            <label className="mt-4 flex items-center gap-3 p-3 rounded-lg border border-pink-200 hover:border-pink-300 cursor-pointer">
               <input
                 type="checkbox"
                 checked={archived}
@@ -437,7 +437,7 @@ export default function AdminProductEditPage() {
         {/* Live preview */}
         <aside className="lg:sticky lg:top-6 h-fit">
           <p className="text-[10px] tracking-[0.22em] uppercase text-brand-purple-dark/80 mb-3">Storefront preview</p>
-          <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+          <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
             <div className="relative aspect-[4/3] bg-gradient-to-br from-brand-purple-muted via-brand-black-card to-brand-purple-dark flex items-center justify-center">
               {image ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -501,7 +501,7 @@ export default function AdminProductEditPage() {
 
 function Section({ title, hint, children }: { title: string; hint?: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6">
+    <section className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6">
       <div className="mb-4">
         <h2 className="text-sm tracking-wide text-brand-purple-dark/80">{title}</h2>
         {hint && <p className="text-[11px] text-brand-purple-dark/80 mt-0.5">{hint}</p>}

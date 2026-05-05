@@ -62,7 +62,7 @@ function Inner() {
       {loading ? (
         <PageSpinner wrap={false} />
       ) : entries.length === 0 ? (
-        <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-6 text-center">
+        <div className="rounded-2xl border border-pink-200/50 bg-white/[0.02] p-6 text-center">
           <p className="text-[13px] text-brand-purple-dark/80">No automation runs yet.</p>
           <p className="text-[12px] text-brand-purple-dark/80 mt-2">
             Activate a rule from <Link href="/admin/automation" className="text-cyan-300 hover:text-cyan-200">/admin/automation</Link>{" "}

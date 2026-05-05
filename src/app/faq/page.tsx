@@ -61,7 +61,7 @@ export default function Page() {
               {group.items.map(f => (
                 <details
                   key={f.id}
-                  className="group p-5 sm:p-6 rounded-xl bg-white border border-pink-200/50 hover:border-white/15 transition-colors"
+                  className="group p-5 sm:p-6 rounded-xl bg-white border border-pink-200/50 hover:border-pink-200 transition-colors"
                 >
                   <summary className="cursor-pointer font-display text-base sm:text-lg text-brand-purple-dark font-semibold flex items-center justify-between gap-4 list-none">
                     <span>{f.question}</span>

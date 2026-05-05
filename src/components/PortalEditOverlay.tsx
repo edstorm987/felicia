@@ -682,11 +682,11 @@ function Banner({
       </span>
       <span className="opacity-50 hidden md:inline">·</span>
       <span className="hidden md:inline opacity-70 text-[11px]">
-        Click any highlighted region · <kbd className="px-1 rounded bg-black/20">Esc</kbd> closes · <kbd className="px-1 rounded bg-black/20">⌘E</kbd> toggles
+        Click any highlighted region · <kbd className="px-1 rounded bg-white/80">Esc</kbd> closes · <kbd className="px-1 rounded bg-white/80">⌘E</kbd> toggles
       </span>
       <button
         onClick={onExit}
-        className="ml-2 text-[11px] px-2.5 py-1 rounded-md bg-black/25 hover:bg-black/40 font-semibold uppercase tracking-wide"
+        className="ml-2 text-[11px] px-2.5 py-1 rounded-md bg-white/80 hover:bg-white/80 font-semibold uppercase tracking-wide"
       >
         Exit
       </button>
@@ -769,7 +769,7 @@ function Popover({
               if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); void handleSave(); }
             }}
             rows={state.type === "html" ? 6 : 4}
-            className={`w-full px-3 py-2 rounded-md bg-pink-50 border border-white/15 focus:border-brand-orange focus:outline-none text-sm text-brand-purple-dark placeholder:text-brand-purple-dark/80 ${state.type === "html" ? "font-mono text-xs" : ""}`}
+            className={`w-full px-3 py-2 rounded-md bg-pink-50 border border-pink-200 focus:border-brand-orange focus:outline-none text-sm text-brand-purple-dark placeholder:text-brand-purple-dark/80 ${state.type === "html" ? "font-mono text-xs" : ""}`}
           />
         ) : (
           <input
@@ -780,7 +780,7 @@ function Popover({
             onKeyDown={e => {
               if (e.key === "Enter") { e.preventDefault(); void handleSave(); }
             }}
-            className={`w-full px-3 py-2 rounded-md bg-pink-50 border border-white/15 focus:border-brand-orange focus:outline-none text-sm text-brand-purple-dark placeholder:text-brand-purple-dark/80 ${isUrl ? "font-mono text-xs" : ""}`}
+            className={`w-full px-3 py-2 rounded-md bg-pink-50 border border-pink-200 focus:border-brand-orange focus:outline-none text-sm text-brand-purple-dark placeholder:text-brand-purple-dark/80 ${isUrl ? "font-mono text-xs" : ""}`}
           />
         )}
 

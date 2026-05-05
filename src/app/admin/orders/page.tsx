@@ -120,7 +120,7 @@ function AdminOrdersPageInner() {
 
       {/* Range presets */}
       <div className="flex flex-wrap gap-2 items-center">
-        <div className="flex flex-wrap gap-1 p-1 rounded-xl bg-white border border-white/8">
+        <div className="flex flex-wrap gap-1 p-1 rounded-xl bg-white border border-pink-200/50">
           {RANGE_PRESETS.map(p => (
             <button
               key={p.id}
@@ -152,7 +152,7 @@ function AdminOrdersPageInner() {
 
       {/* Filters + search */}
       <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-        <div className="flex flex-wrap gap-1 p-1 rounded-xl bg-white border border-white/8 w-fit">
+        <div className="flex flex-wrap gap-1 p-1 rounded-xl bg-white border border-pink-200/50 w-fit">
           {FILTERS.map(f => (
             <button
               key={f.id}
@@ -184,7 +184,7 @@ function AdminOrdersPageInner() {
       </div>
 
       {/* Table */}
-      <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+      <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
         <div className="hidden md:grid grid-cols-[110px_1fr_120px_120px_110px_100px] gap-4 px-5 py-3 text-[10px] tracking-[0.22em] uppercase text-brand-purple-dark/80 border-b border-pink-200/50">
           <span>Order</span>
           <span>Customer</span>
@@ -239,7 +239,7 @@ function AdminOrdersPageInner() {
 
 function Kpi({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl border border-white/8 bg-white p-4">
+    <div className="rounded-xl border border-pink-200/50 bg-white p-4">
       <p className="text-[10px] tracking-[0.22em] uppercase text-brand-purple-dark/80 mb-1.5">{label}</p>
       <p className="font-display text-xl text-brand-purple-dark truncate">{value}</p>
     </div>

@@ -96,7 +96,7 @@ function AdminReviewsPageInner() {
       {/* List */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filtered.map(r => (
-          <div key={r.id} className={`rounded-2xl border bg-white p-5 ${r.hidden ? "opacity-50 border-pink-200/50" : "border-white/8"}`}>
+          <div key={r.id} className={`rounded-2xl border bg-white p-5 ${r.hidden ? "opacity-50 border-pink-200/50" : "border-pink-200/50"}`}>
             <div className="flex items-start justify-between gap-3 mb-2">
               <div className="min-w-0">
                 <p className="text-sm font-semibold text-brand-purple-dark">{r.name}</p>
@@ -115,8 +115,8 @@ function AdminReviewsPageInner() {
                 {r.hidden && <span className="ml-2 text-brand-purple-dark/80">· hidden</span>}
               </span>
               <div className="flex gap-1 shrink-0">
-                <button onClick={() => setEditing({ ...r })} className="text-xs px-2.5 py-1 rounded border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark">Edit</button>
-                <button onClick={() => handleDelete(r.id)} className="text-xs px-2.5 py-1 rounded border border-white/15 text-brand-purple-dark/80 hover:text-brand-orange">Delete</button>
+                <button onClick={() => setEditing({ ...r })} className="text-xs px-2.5 py-1 rounded border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark">Edit</button>
+                <button onClick={() => handleDelete(r.id)} className="text-xs px-2.5 py-1 rounded border border-pink-200 text-brand-purple-dark/80 hover:text-brand-orange">Delete</button>
               </div>
             </div>
           </div>
@@ -130,8 +130,8 @@ function AdminReviewsPageInner() {
 
       {/* Editor modal */}
       {editing && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-          <div className="w-full max-w-lg bg-white border border-white/15 rounded-2xl p-6 space-y-4 my-8">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-white/80 backdrop-blur-sm overflow-y-auto">
+          <div className="w-full max-w-lg bg-white border border-pink-200 rounded-2xl p-6 space-y-4 my-8">
             <h3 className="font-display text-xl text-brand-purple-dark">{reviews.find(r => r.id === editing.id) ? "Edit review" : "New review"}</h3>
 
             <Field label="Product *">
@@ -199,7 +199,7 @@ function AdminReviewsPageInner() {
             </Field>
 
             <div className="grid grid-cols-2 gap-3">
-              <label className="flex items-center gap-2 p-3 rounded-lg border border-pink-200 cursor-pointer hover:border-white/20">
+              <label className="flex items-center gap-2 p-3 rounded-lg border border-pink-200 cursor-pointer hover:border-pink-300">
                 <input
                   type="checkbox"
                   checked={!!editing.featured}
@@ -208,7 +208,7 @@ function AdminReviewsPageInner() {
                 />
                 <span className="text-sm text-brand-purple-dark">Featured</span>
               </label>
-              <label className="flex items-center gap-2 p-3 rounded-lg border border-pink-200 cursor-pointer hover:border-white/20">
+              <label className="flex items-center gap-2 p-3 rounded-lg border border-pink-200 cursor-pointer hover:border-pink-300">
                 <input
                   type="checkbox"
                   checked={!!editing.hidden}

@@ -182,7 +182,7 @@ export default function CustomerDetailPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 p-1 bg-white border border-white/8 rounded-xl w-fit">
+      <div className="flex gap-1 p-1 bg-white border border-pink-200/50 rounded-xl w-fit">
         {([
           { id: "orders", label: `Orders (${customer.allOrders.length})` },
           { id: "flags",  label: "Feature flags" },
@@ -204,7 +204,7 @@ export default function CustomerDetailPage() {
 
       {/* Orders tab */}
       {tab === "orders" && (
-        <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+        <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
           <div className="hidden md:grid grid-cols-[1fr_140px_100px_110px_160px] gap-3 px-5 py-3 text-[10px] tracking-[0.22em] uppercase text-brand-purple-dark/80 border-b border-pink-200/50">
             <span>Order</span>
             <span>Date</span>
@@ -229,7 +229,7 @@ export default function CustomerDetailPage() {
 
       {/* Feature flags tab */}
       {tab === "flags" && (
-        <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+        <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
           <div className="px-5 py-4 border-b border-pink-200/50">
             <p className="text-sm text-brand-purple-dark/80 leading-relaxed">
               Per-user overrides take priority over global flag settings.
@@ -273,7 +273,7 @@ export default function CustomerDetailPage() {
 
       {/* Notes tab */}
       {tab === "notes" && (
-        <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+        <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
           <div className="flex items-center justify-between px-5 py-4 border-b border-pink-200/50">
             <p className="text-sm font-medium text-brand-purple-dark">Internal notes</p>
             {notesSaved && <span className="text-[11px] text-brand-amber">Saved</span>}

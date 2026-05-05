@@ -36,7 +36,7 @@ export default function OrgSwitcher() {
     <div className="relative">
       <button
         onClick={() => setOpen(o => !o)}
-        className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white/[0.03] border border-white/8 hover:border-white/15 transition-colors text-left"
+        className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white/[0.03] border border-pink-200/50 hover:border-pink-200 transition-colors text-left"
       >
         <span className="w-7 h-7 rounded-lg bg-brand-amber/15 border border-brand-amber/25 flex items-center justify-center shrink-0 overflow-hidden">
           {active.logoUrl ? (

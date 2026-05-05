@@ -54,7 +54,7 @@ export default function SiteSwitcher() {
     <div className="relative" data-site-switcher>
       <button
         onClick={() => setOpen(o => !o)}
-        className="w-full flex items-center justify-between gap-2 px-3 py-2 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] border border-white/8 transition-colors"
+        className="w-full flex items-center justify-between gap-2 px-3 py-2 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] border border-pink-200/50 transition-colors"
         aria-label="Switch site"
       >
         <span className="flex items-center gap-2 min-w-0">
@@ -98,7 +98,7 @@ export default function SiteSwitcher() {
           <Link
             href="/admin/sites"
             onClick={() => setOpen(false)}
-            className="block w-full px-3 py-2 text-[11px] text-brand-purple-dark/80 hover:text-brand-purple-dark border-t border-white/8 bg-white/[0.02]"
+            className="block w-full px-3 py-2 text-[11px] text-brand-purple-dark/80 hover:text-brand-purple-dark border-t border-pink-200/50 bg-white/[0.02]"
           >
             Manage sites →
           </Link>

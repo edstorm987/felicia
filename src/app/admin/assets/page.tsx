@@ -95,7 +95,7 @@ export default function AssetsPage() {
         onDragOver={e => { e.preventDefault(); setDrag(true); }}
         onDragLeave={() => setDrag(false)}
         onDrop={e => { e.preventDefault(); setDrag(false); if (e.dataTransfer.files) void handleFiles(e.dataTransfer.files); }}
-        className={`rounded-2xl border-2 border-dashed transition-colors py-10 text-center ${drag ? "border-brand-orange bg-brand-orange/10" : "border-pink-200 hover:border-white/30"}`}
+        className={`rounded-2xl border-2 border-dashed transition-colors py-10 text-center ${drag ? "border-brand-orange bg-brand-orange/10" : "border-pink-200 hover:border-pink-300"}`}
       >
         <p className="text-[13px] text-brand-purple-dark/80">
           Drop files here or <button onClick={() => fileInput.current?.click()} className="text-brand-orange hover:underline">browse</button>

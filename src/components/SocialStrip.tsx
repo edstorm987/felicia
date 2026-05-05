@@ -183,7 +183,7 @@ function PostTile({ tile }: { tile: IgPost }) {
       <div className={`flex-1 bg-gradient-to-br ${tile.bg} relative`}>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_40%,rgba(255,180,50,0.12),transparent_70%)]" />
         {/* ODO watermark */}
-        <div className="absolute bottom-3 right-3 bg-black/40 backdrop-blur-sm rounded-lg px-2 py-1">
+        <div className="absolute bottom-3 right-3 bg-white/80 backdrop-blur-sm rounded-lg px-2 py-1">
           <p className="text-[9px] font-bold text-white/80 tracking-widest">ODO</p>
         </div>
       </div>
@@ -212,7 +212,7 @@ function ReelTile({ tile }: { tile: IgReel }) {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,rgba(120,80,200,0.2),transparent_60%)]" />
       {/* Top bar */}
       <div className="relative z-10 px-3 pt-3 flex items-center gap-2 shrink-0">
-        <div className="flex items-center gap-1.5 bg-black/50 rounded-full px-2 py-1">
+        <div className="flex items-center gap-1.5 bg-white/80 rounded-full px-2 py-1">
           <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
             <rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 2v20M17 2v20M2 7h20M2 17h20"/>
           </svg>
@@ -372,7 +372,7 @@ function TikTokTile({ tile }: { tile: TikTok }) {
 
 function ReviewTile({ tile }: { tile: StarCard }) {
   return (
-    <div className="h-full rounded-2xl bg-white border border-white/8 shadow-2xl shadow-black/70 flex flex-col p-5">
+    <div className="h-full rounded-2xl bg-white border border-pink-200/50 shadow-2xl shadow-black/70 flex flex-col p-5">
       {/* Stars */}
       <div className="flex gap-1 mb-3">
         {Array.from({ length: tile.stars }).map((_, i) => (
@@ -384,7 +384,7 @@ function ReviewTile({ tile }: { tile: StarCard }) {
         &ldquo;{tile.quote}&rdquo;
       </p>
       {/* Divider */}
-      <div className="border-t border-white/8 mt-4 pt-3 flex items-center gap-2.5">
+      <div className="border-t border-pink-200/50 mt-4 pt-3 flex items-center gap-2.5">
         <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-orange to-brand-purple flex items-center justify-center shrink-0">
           <span className="text-[10px] font-bold text-white">{tile.name[0]}</span>
         </div>

@@ -115,7 +115,7 @@ export default function EditorFunnelStage({ funnel, onChange, onDeleted }: Props
   const statusColor =
     draft.status === "active" ? "bg-emerald-500/15 text-emerald-200 border-emerald-400/30"
     : draft.status === "paused" ? "bg-amber-500/15 text-amber-200 border-amber-400/30"
-    : "bg-white/5 text-brand-purple-dark/80 border-white/15";
+    : "bg-white/5 text-brand-purple-dark/80 border-pink-200";
 
   return (
     <div className="w-full max-w-4xl mx-auto py-6 space-y-6">

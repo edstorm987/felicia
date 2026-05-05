@@ -323,7 +323,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><line x1="16.5" y1="16.5" x2="21" y2="21" /></svg>
               Quick search
             </span>
-            <kbd className="text-[10px] border border-white/15 rounded px-1.5 py-0.5 font-mono">⌘K</kbd>
+            <kbd className="text-[10px] border border-pink-200 rounded px-1.5 py-0.5 font-mono">⌘K</kbd>
           </button>
         </div>
 
@@ -424,7 +424,7 @@ function TopLevelView({
           <button
             key={panel.id}
             onClick={() => onPick(panel.id)}
-            className="w-full flex items-center gap-3 px-3 py-3 rounded-xl border border-white/8 bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-orange/30 transition-colors text-left group"
+            className="w-full flex items-center gap-3 px-3 py-3 rounded-xl border border-pink-200/50 bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-orange/30 transition-colors text-left group"
           >
             <span className="text-2xl shrink-0">{panel.icon}</span>
             <span className="flex-1 min-w-0">

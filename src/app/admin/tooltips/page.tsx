@@ -108,7 +108,7 @@ export default function AdminTooltipsPage() {
           placeholder="Search tooltips, locations or text…"
           className="bg-white border border-pink-200 rounded-lg px-3 py-2 text-sm text-brand-purple-dark placeholder:text-brand-purple-dark/80 focus:outline-none focus:border-brand-orange/40 w-full sm:w-72"
         />
-        <div className="flex gap-1 p-1 bg-white border border-white/8 rounded-lg">
+        <div className="flex gap-1 p-1 bg-white border border-pink-200/50 rounded-lg">
           {(["all", "edited", "default"] as const).map(f => (
             <button
               key={f}
@@ -129,7 +129,7 @@ export default function AdminTooltipsPage() {
           .filter(([id, def]) => def.category === cat && visible(id, def));
         if (items.length === 0) return null;
         return (
-          <div key={cat} className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+          <div key={cat} className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
             <div className="px-5 py-3 border-b border-pink-200/50 bg-pink-50/50/40">
               <h2 className="text-xs tracking-[0.22em] uppercase text-brand-purple-dark/80">{cat}</h2>
             </div>

@@ -113,14 +113,14 @@ function RestoreInner() {
       {loading ? (
         <PageSpinner wrap={false} />
       ) : backups.length === 0 ? (
-        <section className="rounded-2xl border border-white/8 bg-white p-8 text-center">
+        <section className="rounded-2xl border border-pink-200/50 bg-white p-8 text-center">
           <p className="text-[13px] text-brand-purple-dark/80">No snapshots available</p>
           <p className="text-[12px] text-brand-purple-dark/80 mt-2">
             Take one first from <Link href="/admin/backups" className="text-cyan-300/80 hover:text-cyan-200 underline">/admin/backups</Link>.
           </p>
         </section>
       ) : (
-        <section className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6 space-y-4">
+        <section className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6 space-y-4">
           <label className="block">
             <span className="text-[11px] uppercase tracking-[0.18em] text-brand-purple-dark/80">Snapshot</span>
             <select
@@ -139,7 +139,7 @@ function RestoreInner() {
 
           {target && (
             <>
-              <div className="rounded-lg border border-white/8 bg-black/30 p-3 text-[12px] text-brand-purple-dark/80 space-y-1">
+              <div className="rounded-lg border border-pink-200/50 bg-white/80 p-3 text-[12px] text-brand-purple-dark/80 space-y-1">
                 <div><span className="text-brand-purple-dark/80">Created:</span> {new Date(target.createdAt).toLocaleString()}</div>
                 <div><span className="text-brand-purple-dark/80">Size:</span> {fmtSize(target.sizeBytes)}</div>
                 <div><span className="text-brand-purple-dark/80">Kind:</span> {target.kind}</div>

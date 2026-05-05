@@ -60,7 +60,7 @@ function DonationsPageInner() {
         <div className="flex items-center gap-2 flex-wrap">
           <Link
             href="/admin/donations/donors"
-            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-white/15 hover:border-white/30 px-3 py-1.5 transition-colors"
+            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-pink-200 hover:border-pink-300 px-3 py-1.5 transition-colors"
           >
             Donors
           </Link>

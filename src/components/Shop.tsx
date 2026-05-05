@@ -56,7 +56,7 @@ export default function Shop() {
           {/* Nkrabea — For Him */}
           <Link
             href="/products?range=nkrabea"
-            className="group relative flex flex-col justify-end p-8 rounded-3xl overflow-hidden min-h-[320px] sm:min-h-[380px] border border-white/8 bg-gradient-to-br from-brand-black-card via-brand-black-card to-brand-purple-muted/40 hover:border-brand-amber/30 transition-all duration-300"
+            className="group relative flex flex-col justify-end p-8 rounded-3xl overflow-hidden min-h-[320px] sm:min-h-[380px] border border-pink-200/50 bg-gradient-to-br from-brand-black-card via-brand-black-card to-brand-purple-muted/40 hover:border-brand-amber/30 transition-all duration-300"
           >
             {/* Decorative rings */}
             <div className="absolute top-6 right-6 w-32 h-32 rounded-full border border-brand-amber/10 pointer-events-none" />

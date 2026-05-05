@@ -98,7 +98,7 @@ function Body({
       </header>
 
       {children ?? (
-        <section className="rounded-2xl border border-white/8 bg-white p-6 sm:p-8 text-center">
+        <section className="rounded-2xl border border-pink-200/50 bg-white p-6 sm:p-8 text-center">
           <p className="text-[13px] text-brand-purple-dark/80">
             {emptyTitle ?? "Nothing here yet."}
           </p>

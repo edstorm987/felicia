@@ -137,7 +137,7 @@ function SwatchPicker({
               style={{ background: value.hexColor ?? "#888" }}
             >
               {value.available === false && (
-                <span className="absolute inset-0 flex items-center justify-center text-[10px] text-white/70 bg-black/50 rounded-full">×</span>
+                <span className="absolute inset-0 flex items-center justify-center text-[10px] text-white/70 bg-white/80 rounded-full">×</span>
               )}
             </button>
           );
@@ -248,7 +248,7 @@ function ImagePicker({ option, selectedValueId, onPick }: { option: ProductOptio
             onClick={() => onPick(value.id)}
             disabled={value.available === false}
             title={value.label}
-            className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-colors disabled:opacity-30 ${active ? "border-brand-orange" : "border-pink-200 hover:border-white/30"}`}
+            className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-colors disabled:opacity-30 ${active ? "border-brand-orange" : "border-pink-200 hover:border-pink-300"}`}
           >
             {value.image
               /* eslint-disable-next-line @next/next/no-img-element */

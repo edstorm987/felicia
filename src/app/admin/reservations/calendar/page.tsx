@@ -256,7 +256,7 @@ function BookingDetailPanel({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+    <div className="fixed inset-0 z-40 flex items-end sm:items-center justify-center p-4 bg-white/80 backdrop-blur-sm" onClick={onClose}>
       <div onClick={e => e.stopPropagation()} className="w-full max-w-md rounded-2xl border border-cyan-400/20 bg-[#0a0e1a] p-5 space-y-3">
         <header className="flex items-center justify-between">
           <p className="text-[10px] tracking-[0.32em] uppercase text-cyan-400">Booking</p>

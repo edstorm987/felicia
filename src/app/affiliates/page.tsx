@@ -70,7 +70,7 @@ function DefaultAffiliatesLanding() {
         </Link>
         <Link
           href="/account?mode=signup"
-          className="text-sm px-5 py-3 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+          className="text-sm px-5 py-3 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
         >
           Become an affiliate
         </Link>

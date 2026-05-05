@@ -30,7 +30,7 @@ export default function AdminSubscriptionsPage() {
 
       <BillingPortalCard />
 
-      <section className="rounded-2xl border border-white/8 bg-white p-6 sm:p-8 space-y-3">
+      <section className="rounded-2xl border border-pink-200/50 bg-white p-6 sm:p-8 space-y-3">
         <h2 className="text-[10px] tracking-[0.28em] uppercase text-brand-purple-dark/80">Get started</h2>
         <ol className="text-[13px] text-brand-purple-dark/80 list-decimal list-inside space-y-2">
           <li>Configure your plans on <Link href="/admin/subscriptions/plans" className="text-cyan-300 hover:text-cyan-200 underline">/admin/subscriptions/plans</Link>.</li>
@@ -77,7 +77,7 @@ function BillingPortalCard() {
   }
 
   return (
-    <section className="rounded-2xl border border-white/8 bg-white p-6 sm:p-8 space-y-3">
+    <section className="rounded-2xl border border-pink-200/50 bg-white p-6 sm:p-8 space-y-3">
       <h2 className="text-[10px] tracking-[0.28em] uppercase text-brand-purple-dark/80">Stripe billing portal</h2>
       <p className="text-[12px] text-brand-purple-dark/80 max-w-prose">
         Mint a one-shot Stripe Customer Portal URL for a subscriber. They can change plans, swap card, cancel — without you rebuilding any of it.
@@ -110,7 +110,7 @@ function BillingPortalCard() {
 
 function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
-    <article className="rounded-2xl border border-white/8 bg-white px-4 py-4">
+    <article className="rounded-2xl border border-pink-200/50 bg-white px-4 py-4">
       <p className="font-display text-2xl text-brand-purple-dark tabular-nums">{value}</p>
       <p className="text-[11px] tracking-wide text-brand-purple-dark/80 mt-0.5">{label}</p>
       {hint && <p className="text-[10px] text-brand-purple-dark/80 mt-1">{hint}</p>}

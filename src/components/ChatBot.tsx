@@ -420,7 +420,7 @@ export default function ChatBot() {
                       <button onClick={escalateToTicket} className="px-3 py-1.5 text-xs rounded-full border border-brand-amber/40 text-brand-amber hover:bg-brand-amber/10">Open ticket</button>
                     )}
                     {m.cta && (
-                      <Link href={m.cta.href} className="px-3 py-1.5 text-xs rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30">{m.cta.label}</Link>
+                      <Link href={m.cta.href} className="px-3 py-1.5 text-xs rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300">{m.cta.label}</Link>
                     )}
                   </div>
                 )}

@@ -66,7 +66,7 @@ export default function VideoModal({ open, activeId, onClose, onSelect }: Props)
       onClick={(e) => e.target === backdropRef.current && onClose()}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
 
       {/* Modal */}
       <div className="relative z-10 w-full max-w-5xl bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
@@ -128,7 +128,7 @@ export default function VideoModal({ open, activeId, onClose, onSelect }: Props)
               </div>
 
               {/* Story tag */}
-              <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1">
+              <div className="absolute top-4 left-4 bg-white/80 backdrop-blur-sm rounded-full px-3 py-1">
                 <span className="text-white/70 text-[10px] tracking-widest uppercase">{active.tag}</span>
               </div>
             </div>

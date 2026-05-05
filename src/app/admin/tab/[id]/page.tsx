@@ -34,7 +34,7 @@ export default function CustomTabPage() {
   return (
     <div className="flex flex-col h-screen md:h-[100vh] -mt-14 md:mt-0">
       {/* Header */}
-      <div className="flex items-center justify-between gap-4 px-6 py-3 border-b border-white/8 shrink-0 bg-pink-50/50 mt-14 md:mt-0">
+      <div className="flex items-center justify-between gap-4 px-6 py-3 border-b border-pink-200/50 shrink-0 bg-pink-50/50 mt-14 md:mt-0">
         <div className="flex items-center gap-3 min-w-0">
           <span className="text-xl">{tab.icon}</span>
           <div className="min-w-0">

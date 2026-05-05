@@ -37,7 +37,7 @@ function AdminCustomersPageInner() {
         />
       </div>
 
-      <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+      <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
         <div className="hidden md:grid grid-cols-[1fr_1fr_90px_110px_140px] gap-4 px-5 py-3 text-[10px] tracking-[0.22em] uppercase text-brand-purple-dark/80 border-b border-pink-200/50">
           <span>Name</span>
           <span>Email</span>

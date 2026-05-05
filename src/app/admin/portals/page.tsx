@@ -281,7 +281,7 @@ function AdminPortalsInner() {
       </header>
 
       {/* Role tabs */}
-      <nav aria-label="Portal type" className="border-b border-white/8 overflow-x-auto no-scrollbar">
+      <nav aria-label="Portal type" className="border-b border-pink-200/50 overflow-x-auto no-scrollbar">
         <ul className="flex items-center gap-0.5 min-w-max">
           {ROLES.map(r => {
             const active = r.id === role;
@@ -313,7 +313,7 @@ function AdminPortalsInner() {
       </nav>
 
       {/* Header for active role */}
-      <section className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6 flex flex-col sm:flex-row gap-4 sm:items-end sm:justify-between">
+      <section className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6 flex flex-col sm:flex-row gap-4 sm:items-end sm:justify-between">
         <div>
           <p className="text-[10px] tracking-[0.32em] uppercase text-cyan-400 mb-1">{meta.eyebrow}</p>
           <h2 className="font-display text-xl text-brand-purple-dark">{meta.label}</h2>
@@ -333,7 +333,7 @@ function AdminPortalsInner() {
               type="button"
               onClick={handleClearActive}
               disabled={busy}
-              className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 disabled:opacity-40"
+              className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 disabled:opacity-40"
             >
               Clear active
             </button>
@@ -345,7 +345,7 @@ function AdminPortalsInner() {
       {loading ? (
         <p className="text-[12px] text-brand-purple-dark/80">Loading variants…</p>
       ) : variants.length === 0 ? (
-        <section className="rounded-2xl border border-white/8 bg-white p-8 text-center">
+        <section className="rounded-2xl border border-pink-200/50 bg-white p-8 text-center">
           <p className="text-[13px] text-brand-purple-dark/80">No {meta.label.toLowerCase()} variants yet for {activeSite?.name ?? "this site"}.</p>
           <p className="text-[12px] text-brand-purple-dark/80 mt-2 max-w-md mx-auto leading-relaxed">
             Click <strong className="text-brand-purple-dark">+ New variant</strong> to design one in the visual editor. You can keep multiple variants and switch between them with one click.
@@ -359,7 +359,7 @@ function AdminPortalsInner() {
               className={`rounded-xl border p-4 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 ${
                 v.isActivePortal
                   ? "border-cyan-400/30 bg-cyan-500/[0.04]"
-                  : "border-white/8 bg-white/[0.02]"
+                  : "border-pink-200/50 bg-white/[0.02]"
               }`}
             >
               <div className="min-w-0 flex-1">
@@ -401,7 +401,7 @@ function AdminPortalsInner() {
                   href={`/admin/portals/preview/${v.id}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[11px] px-3 py-1.5 rounded-md border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+                  className="text-[11px] px-3 py-1.5 rounded-md border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
                   title="Render this variant exactly as a customer would see it, without activating it"
                 >
                   Preview ↗
@@ -416,7 +416,7 @@ function AdminPortalsInner() {
                   type="button"
                   onClick={() => void handleDuplicate(v)}
                   disabled={busy}
-                  className="text-[11px] px-3 py-1.5 rounded-md border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 disabled:opacity-40"
+                  className="text-[11px] px-3 py-1.5 rounded-md border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 disabled:opacity-40"
                   title="Duplicate variant"
                 >
                   Duplicate

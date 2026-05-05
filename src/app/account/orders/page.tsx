@@ -69,7 +69,7 @@ function DefaultOrdersList() {
       </header>
 
       {orders.length === 0 ? (
-        <section className="rounded-2xl border border-white/8 bg-white/[0.02] p-10 text-center">
+        <section className="rounded-2xl border border-pink-200/50 bg-white/[0.02] p-10 text-center">
           <p className="text-brand-purple-dark/80">No orders yet.</p>
           <Link
             href="/shop"
@@ -84,7 +84,7 @@ function DefaultOrdersList() {
             <li key={o.id}>
               <Link
                 href={`/account/orders/${o.id}`}
-                className="block rounded-xl border border-white/8 bg-white/[0.02] p-4 hover:bg-white/[0.04] transition-colors"
+                className="block rounded-xl border border-pink-200/50 bg-white/[0.02] p-4 hover:bg-white/[0.04] transition-colors"
               >
                 <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0">

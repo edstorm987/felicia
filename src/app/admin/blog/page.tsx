@@ -66,12 +66,12 @@ function AdminBlogIndexInner() {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="rounded-2xl border border-white/8 bg-white px-6 py-10 text-center">
+        <div className="rounded-2xl border border-pink-200/50 bg-white px-6 py-10 text-center">
           <p className="text-brand-purple-dark/80 text-sm">No posts yet.</p>
           <button onClick={newPost} className="mt-4 text-xs px-4 py-2 rounded-lg bg-brand-orange text-white font-semibold">Write your first post</button>
         </div>
       ) : (
-        <div className="rounded-2xl border border-white/8 bg-white overflow-hidden divide-y divide-white/5">
+        <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden divide-y divide-white/5">
           {filtered.map(p => (
             <div key={p.id} className="flex items-center gap-4 px-5 py-4 hover:bg-white/[0.02] transition-colors">
               <Link href={`/admin/blog/${p.id}`} className="flex-1 min-w-0">

@@ -79,7 +79,7 @@ function TestModal({ test, pages, onClose }: {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm p-4 overflow-y-auto">
       <form onSubmit={submit} className="w-full max-w-2xl bg-pink-50/50 border border-pink-200 rounded-2xl my-6 overflow-hidden">
         <div className="p-5 border-b border-pink-200/50 flex items-center justify-between">
           <h2 className="font-display text-xl text-brand-purple-dark">{isNew ? "New split test" : "Edit split test"}</h2>
@@ -123,7 +123,7 @@ function TestModal({ test, pages, onClose }: {
             </div>
             <div className="space-y-3">
               {variants.map((v, i) => (
-                <div key={v.id} className="rounded-xl border border-white/8 p-3 space-y-2">
+                <div key={v.id} className="rounded-xl border border-pink-200/50 p-3 space-y-2">
                   <div className="grid grid-cols-[1fr_1fr_auto_auto] gap-2 items-end">
                     <F label={i === 0 ? "Variant name" : undefined}>
                       <input value={v.name} onChange={(e) => patchVariant(v.id, { name: e.target.value })} className={INPUT} />
@@ -219,7 +219,7 @@ export default function AdminSplitTestPage() {
           }, test.variants[0]);
 
           return (
-            <div key={test.id} className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+            <div key={test.id} className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
               <div className="flex flex-wrap items-center gap-3 px-5 py-4 border-b border-pink-200/50">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">

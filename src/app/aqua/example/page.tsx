@@ -142,7 +142,7 @@ export default function ExamplePortalPage() {
               <button
                 onClick={seed}
                 disabled={busy === "seed"}
-                className="px-4 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:bg-white/5 text-[13px] font-semibold disabled:opacity-50"
+                className="px-4 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:bg-white/5 text-[13px] font-semibold disabled:opacity-50"
               >
                 {busy === "seed" ? "Seeding…" : data?.pages.length ? "Re-seed missing pages" : "Seed example data"}
               </button>

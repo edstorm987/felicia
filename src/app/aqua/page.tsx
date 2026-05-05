@@ -122,7 +122,7 @@ export default function AquaDashboard() {
             <Link href="/aqua/example" className="px-4 py-2 rounded-lg bg-cyan-500 text-white text-[13px] font-semibold hover:opacity-90">
               Open example portal →
             </Link>
-            <Link href="/aqua/new" className="px-4 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:bg-white/5 text-[13px] font-semibold">
+            <Link href="/aqua/new" className="px-4 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:bg-white/5 text-[13px] font-semibold">
               + Create real portal
             </Link>
           </div>
@@ -189,7 +189,7 @@ export default function AquaDashboard() {
                   </Link>
                   <Link
                     href={`/aqua/${encodeURIComponent(org.id)}/configure`}
-                    className="flex-1 text-center px-3 py-1.5 rounded-lg border border-white/15 text-[11px] text-brand-purple-dark/80 hover:text-brand-purple-dark hover:bg-white/5"
+                    className="flex-1 text-center px-3 py-1.5 rounded-lg border border-pink-200 text-[11px] text-brand-purple-dark/80 hover:text-brand-purple-dark hover:bg-white/5"
                   >
                     Configure
                   </Link>
@@ -235,7 +235,7 @@ function SummaryCard({
     accent === "amber"   ? "text-amber-300"   :
     accent === "red"     ? "text-red-300"     : "text-brand-purple-dark";
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] p-4">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] p-4">
       <p className="text-[10px] tracking-wider uppercase text-brand-purple-dark/80 mb-1.5">{label}</p>
       <p className={`font-display text-2xl tabular-nums ${colour}`}>{value}</p>
     </div>

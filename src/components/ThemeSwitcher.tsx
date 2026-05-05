@@ -56,7 +56,7 @@ export default function ThemeSwitcher() {
 
       {open && (
         <div className="absolute right-0 top-10 z-50 bg-white border border-pink-200 rounded-xl shadow-2xl overflow-hidden min-w-[170px]">
-          <div className="px-3 py-2 border-b border-white/8">
+          <div className="px-3 py-2 border-b border-pink-200/50">
             <p className="text-[10px] tracking-[0.2em] uppercase text-brand-purple-dark/80">Theme</p>
           </div>
           <div className="py-1">

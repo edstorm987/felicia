@@ -69,7 +69,7 @@ export default function AdminOrgsPage() {
 
       <div className="space-y-2">
         {orgs.map(o => (
-          <div key={o.id} className={`rounded-2xl border overflow-hidden ${o.id === activeId ? "border-brand-amber/40 bg-brand-amber/5" : "border-white/8 bg-white"}`}>
+          <div key={o.id} className={`rounded-2xl border overflow-hidden ${o.id === activeId ? "border-brand-amber/40 bg-brand-amber/5" : "border-pink-200/50 bg-white"}`}>
             <button onClick={() => setEditing(editing === o.id ? null : o.id)} className="w-full px-5 py-4 flex items-center gap-4 text-left hover:bg-white/[0.02]">
               <div className="w-10 h-10 rounded-xl bg-brand-amber/15 border border-brand-amber/25 flex items-center justify-center shrink-0 overflow-hidden">
                 {o.logoUrl ? (
@@ -96,7 +96,7 @@ export default function AdminOrgsPage() {
             </button>
 
             {editing === o.id && (
-              <div className="border-t border-pink-200/50 p-5 space-y-4 bg-black/10">
+              <div className="border-t border-pink-200/50 p-5 space-y-4 bg-white/80">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <input value={o.name} onChange={e => updateOrg(o.id, { name: e.target.value })} placeholder="Name" className={INPUT} />
                   <input value={o.ownerEmail ?? ""} onChange={e => updateOrg(o.id, { ownerEmail: e.target.value })} placeholder="Owner email" className={INPUT + " font-mono text-xs"} />

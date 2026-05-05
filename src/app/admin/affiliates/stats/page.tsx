@@ -148,7 +148,7 @@ function StatsPageInner() {
             </div>
 
             {sorted.length === 0 ? (
-              <div className="rounded-2xl border border-white/8 bg-white p-6 text-center">
+              <div className="rounded-2xl border border-pink-200/50 bg-white p-6 text-center">
                 <p className="text-[13px] text-brand-purple-dark/80">No affiliates yet</p>
                 <p className="text-[12px] text-brand-purple-dark/80 mt-2">
                   Once you approve some on <Link href="/admin/affiliates" className="text-cyan-300/80 hover:text-cyan-200">/admin/affiliates →</Link>{" "}
@@ -156,7 +156,7 @@ function StatsPageInner() {
                 </p>
               </div>
             ) : (
-              <ul className="rounded-2xl border border-white/8 bg-white divide-y divide-white/5 overflow-hidden">
+              <ul className="rounded-2xl border border-pink-200/50 bg-white divide-y divide-white/5 overflow-hidden">
                 {sorted.map((r, idx) => {
                   const owed = r.totalEarned - r.totalPaid;
                   return (
@@ -198,7 +198,7 @@ function StatsPageInner() {
 
 function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
-    <div className="rounded-xl border border-white/8 bg-white p-4">
+    <div className="rounded-xl border border-pink-200/50 bg-white p-4">
       <p className="text-[10px] tracking-[0.22em] uppercase text-brand-purple-dark/80">{label}</p>
       <p className="font-display text-2xl text-brand-purple-dark mt-1 tabular-nums">{value}</p>
       {hint && <p className="text-[10px] text-brand-purple-dark/80 mt-1">{hint}</p>}

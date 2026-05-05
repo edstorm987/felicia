@@ -95,7 +95,7 @@ export default function VSLSection() {
             )}
 
             {/* Coming soon label */}
-            <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1">
+            <div className="absolute top-4 left-4 bg-white/80 backdrop-blur-sm rounded-full px-3 py-1">
               <span className="text-white/70 text-[10px] tracking-widest uppercase">Video coming soon</span>
             </div>
           </div>

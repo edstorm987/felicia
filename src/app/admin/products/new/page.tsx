@@ -66,7 +66,7 @@ export default function AdminNewProductPage() {
         </div>
       )}
 
-      <div className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6 space-y-4">
+      <div className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6 space-y-4">
 
         <Field label="Product name *">
           <input

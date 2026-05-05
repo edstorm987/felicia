@@ -68,7 +68,7 @@ export default function HelpIndexPage() {
       />
 
       {entries.length === 0 ? (
-        <section className="rounded-2xl border border-white/8 bg-white p-8 text-center">
+        <section className="rounded-2xl border border-pink-200/50 bg-white p-8 text-center">
           <p className="text-[13px] text-brand-purple-dark/80">No matches</p>
           <p className="text-[12px] text-brand-purple-dark/80 mt-2">
             Try a broader term, or clear the search to see everything.
@@ -79,7 +79,7 @@ export default function HelpIndexPage() {
           {entries.map(({ route, doc }) => (
             <li
               key={route}
-              className="rounded-2xl border border-white/8 bg-white p-5 hover:border-white/15 transition-colors"
+              className="rounded-2xl border border-pink-200/50 bg-white p-5 hover:border-pink-200 transition-colors"
             >
               <Link href={route} className="block">
                 <div className="flex items-baseline justify-between gap-3 mb-1 flex-wrap">

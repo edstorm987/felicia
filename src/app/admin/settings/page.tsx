@@ -193,7 +193,7 @@ export default function AdminSettingsPage() {
         )}
       </section>
 
-      <section className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6 space-y-2">
+      <section className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6 space-y-2">
         <h2 className="font-display text-lg text-brand-purple-dark">Where to look</h2>
         <ul className="text-[12px] text-brand-purple-dark/80 leading-relaxed space-y-1">
           <li>· <Link href="/admin/portal-settings" className="text-cyan-300/80 hover:text-cyan-200">Portal settings</Link> — GitHub creds, default branch, database backend.</li>
@@ -218,7 +218,7 @@ function IntegrationCard({
 }) {
   const tone = STATUS_TONE[info.status];
   return (
-    <article className="rounded-xl border border-white/8 bg-white p-4 flex flex-col gap-2">
+    <article className="rounded-xl border border-pink-200/50 bg-white p-4 flex flex-col gap-2">
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
           <h3 className="text-[14px] font-semibold text-brand-purple-dark">{title}</h3>

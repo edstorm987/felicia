@@ -82,7 +82,7 @@ export default function SupportUsPage() {
 
 function Card({ title, body, cta, href }: { title: string; body: string; cta: string; href: string }) {
   return (
-    <div className="rounded-2xl border border-white/8 bg-white p-6 flex flex-col">
+    <div className="rounded-2xl border border-pink-200/50 bg-white p-6 flex flex-col">
       <h3 className="font-display font-bold text-brand-purple-dark text-xl mb-2">{title}</h3>
       <p className="text-brand-purple-dark/80 text-sm leading-relaxed flex-1">{body}</p>
       <Link href={href} className="mt-5 text-brand-amber text-sm font-medium">

@@ -216,7 +216,7 @@ function AdminCompliancePageInner() {
       </div>
 
       {/* Compliance dashboard */}
-      <div className="rounded-2xl border border-white/8 bg-white/[0.02] overflow-hidden">
+      <div className="rounded-2xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
         <div className="px-5 py-3 border-b border-pink-200/50 bg-white/[0.02] flex items-center gap-3">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-purple-dark/80">Live checks</p>
           <Tip text="Computed against the current settings + active backend. Failing checks indicate the chosen mode isn't actually being met right now; warnings are non-blocking but worth a look." />
@@ -243,7 +243,7 @@ function AdminCompliancePageInner() {
                   <button
                     onClick={() => acknowledge(c.id)}
                     disabled={busy}
-                    className="text-[10px] px-2 py-1 rounded-md border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+                    className="text-[10px] px-2 py-1 rounded-md border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
                     title="Suppress this warning until something changes"
                   >
                     Acknowledge

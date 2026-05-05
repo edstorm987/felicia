@@ -33,7 +33,7 @@ export default function AdminTabs({
   return (
     <nav
       aria-label={ariaLabel ?? "Section"}
-      className="border-b border-white/8 overflow-x-auto no-scrollbar"
+      className="border-b border-pink-200/50 overflow-x-auto no-scrollbar"
     >
       <ul className="flex items-center gap-0.5 min-w-max">
         {tabs.map((tab) => {

@@ -79,7 +79,7 @@ export default function TicketDetail() {
             className={`p-4 rounded-2xl border ${
               m.internal ? "border-brand-amber/25 bg-brand-amber/5" :
               m.author === "team" ? "border-brand-orange/20 bg-brand-orange/5" :
-              "border-white/8 bg-white"
+              "border-pink-200/50 bg-white"
             }`}
           >
             <div className="flex items-center justify-between text-[11px] text-brand-purple-dark/80 mb-2">
@@ -95,7 +95,7 @@ export default function TicketDetail() {
       </div>
 
       {/* Reply */}
-      <div className="rounded-2xl border border-white/8 bg-white p-4 space-y-3">
+      <div className="rounded-2xl border border-pink-200/50 bg-white p-4 space-y-3">
         <textarea
           value={reply}
           onChange={e => setReply(e.target.value)}

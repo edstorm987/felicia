@@ -123,7 +123,7 @@ export default function BillingPage() {
 
       {/* Invoices */}
       <section className="rounded-2xl border border-pink-200 bg-white/[0.02]">
-        <div className="px-4 py-3 border-b border-white/8 flex items-center justify-between">
+        <div className="px-4 py-3 border-b border-pink-200/50 flex items-center justify-between">
           <p className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80">Invoices ({invoices.length})</p>
           <details className="relative">
             <summary className="text-[11px] text-brand-purple-dark/80 hover:text-brand-orange cursor-pointer list-none">+ Add manual invoice</summary>

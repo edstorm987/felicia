@@ -135,7 +135,7 @@ export default function AdminOverviewPage() {
       </div>
 
       {/* Revenue chart */}
-      <section className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6">
+      <section className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6">
         <h2 className="text-sm tracking-wide text-brand-purple-dark/80 mb-4">Daily revenue</h2>
         <div className="flex items-end gap-1 h-32">
           {stats.revenueByDay.map(d => (
@@ -158,7 +158,7 @@ export default function AdminOverviewPage() {
 
       {/* Two columns: recent orders + top products */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
-        <section className="lg:col-span-2 rounded-2xl border border-white/8 bg-white p-5 sm:p-6">
+        <section className="lg:col-span-2 rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm tracking-wide text-brand-purple-dark/80">Recent orders</h2>
             <Link href="/admin/orders" className="text-xs text-brand-purple-dark/80 hover:text-brand-purple-dark">View all →</Link>
@@ -193,7 +193,7 @@ export default function AdminOverviewPage() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6">
+        <section className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6">
           <h2 className="text-sm tracking-wide text-brand-purple-dark/80 mb-4">Top products</h2>
           <div className="space-y-3">
             {stats.topProducts.length === 0 && <p className="text-sm text-brand-purple-dark/80">No sales yet.</p>}
@@ -213,7 +213,7 @@ export default function AdminOverviewPage() {
       </div>
 
       {/* Source breakdown */}
-      <section className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6">
+      <section className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-sm tracking-wide text-brand-purple-dark/80">Where orders came from (30d)</h2>
           <Link href="/admin/marketing" className="text-xs text-brand-purple-dark/80 hover:text-brand-purple-dark">Manage →</Link>
@@ -260,7 +260,7 @@ function OnboardingStep({ num, title, hint, href }: { num: number; title: string
 function Kpi({ label, value, accent, small }: { label: string; value: string; accent?: "amber" | "orange"; small?: boolean }) {
   const colour = accent === "amber" ? "text-brand-amber" : accent === "orange" ? "text-brand-orange" : "text-brand-purple-dark";
   return (
-    <div className="rounded-xl border border-white/8 bg-white p-4">
+    <div className="rounded-xl border border-pink-200/50 bg-white p-4">
       <p className="text-[10px] tracking-[0.22em] uppercase text-brand-purple-dark/80 mb-1.5">{label}</p>
       <p className={`font-display ${small ? "text-base" : "text-xl sm:text-2xl"} ${colour} truncate`}>{value}</p>
     </div>
@@ -279,24 +279,24 @@ function DashboardSkeleton() {
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="rounded-xl border border-white/8 bg-white p-4 animate-pulse">
+          <div key={i} className="rounded-xl border border-pink-200/50 bg-white p-4 animate-pulse">
             <div className="h-2.5 w-16 rounded bg-white/5 mb-2" />
             <div className="h-7 w-20 rounded bg-white/5" />
           </div>
         ))}
       </div>
-      <div className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6 animate-pulse">
+      <div className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6 animate-pulse">
         <div className="h-3 w-28 rounded bg-white/5 mb-4" />
         <div className="h-32 rounded bg-white/[0.03]" />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
-        <div className="lg:col-span-2 rounded-2xl border border-white/8 bg-white p-5 sm:p-6 animate-pulse space-y-2">
+        <div className="lg:col-span-2 rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6 animate-pulse space-y-2">
           <div className="h-3 w-32 rounded bg-white/5 mb-4" />
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="h-10 rounded bg-white/[0.03]" />
           ))}
         </div>
-        <div className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6 animate-pulse space-y-2">
+        <div className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6 animate-pulse space-y-2">
           <div className="h-3 w-24 rounded bg-white/5 mb-4" />
           {Array.from({ length: 5 }).map((_, i) => (
             <div key={i} className="h-9 rounded bg-white/[0.03]" />

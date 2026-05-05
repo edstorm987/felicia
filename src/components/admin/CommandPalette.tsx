@@ -257,7 +257,7 @@ export default function CommandPalette({ open, onClose }: { open: boolean; onClo
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-start justify-center pt-24 px-4 bg-black/70 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] flex items-start justify-center pt-24 px-4 bg-white/80 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
@@ -265,7 +265,7 @@ export default function CommandPalette({ open, onClose }: { open: boolean; onClo
         className="w-full max-w-2xl bg-pink-50/50 border border-pink-200 rounded-2xl shadow-2xl overflow-hidden"
       >
         {/* Input */}
-        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-white/8">
+        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-pink-200/50">
           <span className="text-brand-purple-dark/80 text-lg">⌘</span>
           <input
             ref={inputRef}
@@ -275,7 +275,7 @@ export default function CommandPalette({ open, onClose }: { open: boolean; onClo
             placeholder="Type a command, jump to a page, search customers/orders/products…"
             className="flex-1 bg-transparent text-brand-purple-dark placeholder:text-brand-purple-dark/80 focus:outline-none text-sm"
           />
-          <kbd className="text-[10px] text-brand-purple-dark/80 border border-white/15 rounded px-1.5 py-0.5">esc</kbd>
+          <kbd className="text-[10px] text-brand-purple-dark/80 border border-pink-200 rounded px-1.5 py-0.5">esc</kbd>
         </div>
 
         {/* Results */}
@@ -308,7 +308,7 @@ export default function CommandPalette({ open, onClose }: { open: boolean; onClo
                       <span className="text-[11px] text-brand-purple-dark/80 truncate ml-2">{item.hint}</span>
                     )}
                     {isActive && (
-                      <kbd className="ml-auto text-[10px] text-brand-purple-dark/80 border border-white/15 rounded px-1.5 py-0.5 shrink-0">↵</kbd>
+                      <kbd className="ml-auto text-[10px] text-brand-purple-dark/80 border border-pink-200 rounded px-1.5 py-0.5 shrink-0">↵</kbd>
                     )}
                   </button>
                 );
@@ -318,11 +318,11 @@ export default function CommandPalette({ open, onClose }: { open: boolean; onClo
         </div>
 
         {/* Footer */}
-        <div className="px-4 py-2 border-t border-white/8 text-[11px] text-brand-purple-dark/80 flex items-center justify-between">
+        <div className="px-4 py-2 border-t border-pink-200/50 text-[11px] text-brand-purple-dark/80 flex items-center justify-between">
           <span>{filtered.length} result{filtered.length === 1 ? "" : "s"}</span>
           <span className="flex gap-3">
-            <span><kbd className="border border-white/15 rounded px-1">↑↓</kbd> navigate</span>
-            <span><kbd className="border border-white/15 rounded px-1">↵</kbd> select</span>
+            <span><kbd className="border border-pink-200 rounded px-1">↑↓</kbd> navigate</span>
+            <span><kbd className="border border-pink-200 rounded px-1">↵</kbd> select</span>
           </span>
         </div>
       </div>

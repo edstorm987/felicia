@@ -124,13 +124,13 @@ export default function Page() {
               </a>
               <a
                 href="#panels"
-                className="px-6 py-3 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-sm font-medium transition-colors"
+                className="px-6 py-3 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-sm font-medium transition-colors"
               >
                 What we test for
               </a>
               <a
                 href="#labs"
-                className="px-6 py-3 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-sm font-medium transition-colors"
+                className="px-6 py-3 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-sm font-medium transition-colors"
               >
                 Our labs
               </a>
@@ -180,7 +180,7 @@ export default function Page() {
                   <p className="text-[11px] tracking-[0.28em] uppercase text-brand-amber mb-3">{p.eyebrow}</p>
                   <h3 className="font-display text-xl xl:text-2xl font-semibold text-brand-purple-dark mb-3">{p.title}</h3>
                   <p className="text-sm sm:text-base text-brand-purple-dark/80 leading-relaxed mb-6 flex-1">{p.body}</p>
-                  <div className="pt-5 border-t border-white/8">
+                  <div className="pt-5 border-t border-pink-200/50">
                     <p className="font-display text-2xl xl:text-3xl font-bold text-brand-amber mb-1">{p.metric}</p>
                     <p className="text-xs text-brand-purple-dark/80">{p.metricLabel}</p>
                   </div>
@@ -321,7 +321,7 @@ export default function Page() {
               </a>
               <Link
                 href="/the-problem"
-                className="px-7 py-3.5 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-sm font-medium transition-colors"
+                className="px-7 py-3.5 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-sm font-medium transition-colors"
               >
                 Read the research
               </Link>

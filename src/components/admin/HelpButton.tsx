@@ -60,7 +60,7 @@ export default function HelpButton() {
 
       {open && (
         <div
-          className="fixed inset-0 z-40 flex justify-end bg-black/30 backdrop-blur-sm"
+          className="fixed inset-0 z-40 flex justify-end bg-white/80 backdrop-blur-sm"
           onClick={() => setOpen(false)}
           role="dialog"
           aria-modal="true"
@@ -70,7 +70,7 @@ export default function HelpButton() {
             onClick={e => e.stopPropagation()}
             className="w-full sm:w-[26rem] max-w-full h-full bg-pink-50/50 border-l border-pink-200 overflow-y-auto"
           >
-            <div className="sticky top-0 flex items-center justify-between gap-3 px-5 py-3 bg-pink-50/50 border-b border-white/8">
+            <div className="sticky top-0 flex items-center justify-between gap-3 px-5 py-3 bg-pink-50/50 border-b border-pink-200/50">
               <div>
                 <p className="text-[9px] tracking-[0.32em] uppercase text-brand-amber">Help</p>
                 <h2 className="text-[14px] font-display text-brand-purple-dark">{doc?.title ?? "This page"}</h2>
@@ -115,11 +115,11 @@ export default function HelpButton() {
                 <FallbackHelp pathname={pathname} />
               )}
 
-              <hr className="border-white/8" />
+              <hr className="border-pink-200/50" />
 
               <AskAqua currentRoute={pathname} />
 
-              <hr className="border-white/8" />
+              <hr className="border-pink-200/50" />
 
               <section className="space-y-2">
                 <h3 className="text-[11px] uppercase tracking-[0.22em] text-brand-purple-dark/80">Need more?</h3>

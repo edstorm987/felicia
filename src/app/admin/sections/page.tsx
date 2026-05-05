@@ -99,7 +99,7 @@ export default function AdminSectionsPage() {
                   : isOver
                   ? "border-brand-orange/60 bg-brand-orange/5 scale-[1.01]"
                   : s.visible
-                  ? "border-white/8 bg-white/[0.02] hover:border-white/15"
+                  ? "border-pink-200/50 bg-white/[0.02] hover:border-pink-200"
                   : "border-pink-200/50 bg-white/[0.01] opacity-60"
               }`}
             >
@@ -156,7 +156,7 @@ export default function AdminSectionsPage() {
         })}
       </div>
 
-      <div className="rounded-xl border border-white/8 p-4 text-xs text-brand-purple-dark/80 space-y-1.5">
+      <div className="rounded-xl border border-pink-200/50 p-4 text-xs text-brand-purple-dark/80 space-y-1.5">
         <p className="font-medium text-brand-purple-dark/80">How it works</p>
         <p>• Drag sections up or down to change their order on the homepage.</p>
         <p>• Toggle the switch on the right to show or hide a section entirely.</p>

@@ -81,7 +81,7 @@ function AdminWebsitePageInner() {
             className={`text-xs px-3 py-2 rounded-lg border transition-colors ${
               previewOn
                 ? "border-brand-amber/40 bg-brand-amber/15 text-brand-amber"
-                : "border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+                : "border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
             }`}
           >
             {previewOn ? "Preview ON" : "Preview drafts"}
@@ -147,7 +147,7 @@ function AdminWebsitePageInner() {
       {/* Pages list */}
       <div>
         <h2 className="text-xs tracking-[0.22em] uppercase text-brand-purple-dark/80 mb-3">Editable pages</h2>
-        <div className="rounded-2xl border border-white/8 bg-white overflow-hidden divide-y divide-white/5">
+        <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden divide-y divide-white/5">
           {PAGE_SCHEMAS.map(schema => {
             const { edits, drafts } = statsForPage(schema.id);
             const fullSchema = getSchema(schema.id)!;
@@ -199,7 +199,7 @@ function AdminWebsitePageInner() {
       {pages.length > 0 && (
         <div>
           <h2 className="text-xs tracking-[0.22em] uppercase text-brand-purple-dark/80 mb-3">Custom pages</h2>
-          <div className="rounded-2xl border border-white/8 bg-white overflow-hidden divide-y divide-white/5">
+          <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden divide-y divide-white/5">
             {pages.map(p => (
               <Link
                 key={p.id}
@@ -227,7 +227,7 @@ function AdminWebsitePageInner() {
 
 function Stat({ label, value, accent = false }: { label: string; value: string; accent?: boolean }) {
   return (
-    <div className={`rounded-2xl border px-5 py-4 ${accent ? "border-brand-amber/30 bg-brand-amber/10" : "border-white/8 bg-white"}`}>
+    <div className={`rounded-2xl border px-5 py-4 ${accent ? "border-brand-amber/30 bg-brand-amber/10" : "border-pink-200/50 bg-white"}`}>
       <p className="text-[10px] tracking-[0.22em] uppercase text-brand-purple-dark/80 mb-1">{label}</p>
       <p className={`font-display text-2xl font-bold ${accent ? "text-brand-amber" : "text-brand-purple-dark"}`}>{value}</p>
     </div>

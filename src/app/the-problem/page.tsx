@@ -168,7 +168,7 @@ export default function Page() {
               </a>
               <a
                 href="#sources"
-                className="px-6 py-3 rounded-full border border-pink-200 hover:border-white/30 text-brand-purple-dark/80 hover:text-brand-purple-dark transition-colors text-sm font-medium"
+                className="px-6 py-3 rounded-full border border-pink-200 hover:border-pink-300 text-brand-purple-dark/80 hover:text-brand-purple-dark transition-colors text-sm font-medium"
               >
                 Jump to sources
               </a>

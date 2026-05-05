@@ -67,7 +67,7 @@ function AdminProductsPageInner() {
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-        <div className="flex flex-wrap gap-1 p-1 rounded-xl bg-white border border-white/8 w-fit">
+        <div className="flex flex-wrap gap-1 p-1 rounded-xl bg-white border border-pink-200/50 w-fit">
           {["all", ...collections.map(c => c.slug)].map(r => (
             <button
               key={r}
@@ -97,8 +97,8 @@ function AdminProductsPageInner() {
               key={p.slug}
               className={`rounded-2xl border bg-white overflow-hidden transition-colors ${
                 p.archived ? "border-pink-200/50 opacity-50" :
-                (p as Product & { hidden?: boolean }).hidden ? "border-dashed border-white/15 opacity-70" :
-                "border-white/8 hover:border-white/15"
+                (p as Product & { hidden?: boolean }).hidden ? "border-dashed border-pink-200 opacity-70" :
+                "border-pink-200/50 hover:border-pink-200"
               }`}
             >
               <Link href={`/admin/products/${p.slug}`} className="block">
@@ -150,7 +150,7 @@ function AdminProductsPageInner() {
                     className={`text-[10px] tracking-widest uppercase px-2.5 py-1.5 rounded transition-colors ${
                       p.onSale
                         ? "bg-brand-orange/20 border border-brand-orange/40 text-brand-orange"
-                        : "border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+                        : "border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
                     }`}
                   >
                     {p.onSale ? "On sale" : "Put on sale"}
@@ -159,7 +159,7 @@ function AdminProductsPageInner() {
                 <div className="flex gap-2">
                   <Link
                     href={`/admin/products/${p.slug}`}
-                    className="flex-1 block text-center py-2 rounded-lg border border-pink-200 text-xs text-brand-purple-dark/80 hover:border-white/30 hover:text-brand-purple-dark transition-colors"
+                    className="flex-1 block text-center py-2 rounded-lg border border-pink-200 text-xs text-brand-purple-dark/80 hover:border-pink-300 hover:text-brand-purple-dark transition-colors"
                   >
                     Edit details →
                   </Link>
@@ -169,7 +169,7 @@ function AdminProductsPageInner() {
                     className={`px-2.5 py-2 rounded-lg border text-xs transition-colors ${
                       (p as Product & { hidden?: boolean }).hidden
                         ? "border-brand-amber/40 text-brand-amber hover:border-brand-amber/70"
-                        : "border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark/80 hover:border-white/30"
+                        : "border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark/80 hover:border-pink-300"
                     }`}
                   >
                     {(p as Product & { hidden?: boolean }).hidden ? "👁" : "🫥"}

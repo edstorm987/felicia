@@ -87,7 +87,7 @@ export default function PortalVariantPreviewPage() {
             <p className="text-brand-purple-dark/80 text-sm">Variant not found.</p>
             <Link
               href="/admin/portals"
-              className="inline-block text-xs px-3 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+              className="inline-block text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
             >
               Back to portals
             </Link>

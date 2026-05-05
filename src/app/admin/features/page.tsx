@@ -85,7 +85,7 @@ export default function AdminFeaturesPage() {
       </div>
 
       {/* Flags list */}
-      <div className="rounded-2xl border border-white/8 bg-white overflow-hidden divide-y divide-white/5">
+      <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden divide-y divide-white/5">
         {visible.length === 0 && (
           <div className="px-6 py-10 text-center text-brand-purple-dark/80 text-sm">No flags in this category.</div>
         )}
@@ -175,7 +175,7 @@ export default function AdminFeaturesPage() {
       {/* Summary */}
       <div className="grid grid-cols-3 gap-3">
         {(["on", "off", "rollout"] as FlagStatus[]).map(s => (
-          <div key={s} className="rounded-xl border border-white/8 bg-white px-4 py-3 text-center">
+          <div key={s} className="rounded-xl border border-pink-200/50 bg-white px-4 py-3 text-center">
             <p className={`text-2xl font-display font-bold ${s === "on" ? "text-green-400" : s === "rollout" ? "text-brand-amber" : "text-brand-purple-dark/80"}`}>
               {flags.filter(f => f.status === s).length}
             </p>
@@ -208,9 +208,9 @@ function EditModal({ flag, onClose }: { flag: FeatureFlag; onClose: () => void }
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm p-4">
       <div className="w-full max-w-md bg-pink-50/50 border border-pink-200 rounded-2xl overflow-hidden">
-        <div className="px-5 py-4 border-b border-white/8 flex items-center justify-between">
+        <div className="px-5 py-4 border-b border-pink-200/50 flex items-center justify-between">
           <h3 className="font-display text-lg text-brand-purple-dark">Edit flag</h3>
           <button onClick={onClose} className="text-brand-purple-dark/80 hover:text-brand-purple-dark">✕</button>
         </div>
@@ -275,7 +275,7 @@ function EditModal({ flag, onClose }: { flag: FeatureFlag; onClose: () => void }
             </div>
           )}
         </div>
-        <div className="px-5 py-4 border-t border-white/8 flex justify-end gap-2">
+        <div className="px-5 py-4 border-t border-pink-200/50 flex justify-end gap-2">
           <button onClick={onClose} className="text-sm px-4 py-2 text-brand-purple-dark/80 hover:text-brand-purple-dark">Cancel</button>
           <button onClick={save} className="text-sm px-5 py-2 bg-brand-orange text-white rounded-xl font-semibold">Save</button>
         </div>

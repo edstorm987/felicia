@@ -772,7 +772,7 @@ function PublishModal({
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-white/80 backdrop-blur-sm"
       onClick={phase === "running" ? undefined : onClose}
     >
       <div onClick={e => e.stopPropagation()} className="w-full max-w-md rounded-2xl border border-cyan-400/20 bg-[#0a0e1a] p-5 space-y-4">
@@ -1220,7 +1220,7 @@ function PageSettingsModal({
                 rows={5}
                 spellCheck={false}
                 placeholder={"h1 { letter-spacing: -0.02em; }\n.cta { background: var(--brand-amber); }"}
-                className="mt-1 w-full bg-black/40 border border-pink-200 rounded-md px-3 py-2 text-[11px] font-mono text-brand-purple-dark placeholder:text-brand-purple-dark/80 focus:outline-none focus:border-cyan-400/40"
+                className="mt-1 w-full bg-white/80 border border-pink-200 rounded-md px-3 py-2 text-[11px] font-mono text-brand-purple-dark placeholder:text-brand-purple-dark/80 focus:outline-none focus:border-cyan-400/40"
               />
               <span className="block text-[10px] text-brand-purple-dark/80 mt-1">
                 Scoped to this page&rsquo;s subtree — rules don&rsquo;t leak globally. Theme tokens (e.g. <code>var(--brand-amber)</code>) are available.
@@ -1261,7 +1261,7 @@ function ModalShell({
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-white/80 backdrop-blur-sm" onClick={onClose}>
       <div
         onClick={e => e.stopPropagation()}
         className={`w-full ${wide ? "max-w-xl" : "max-w-md"} rounded-2xl border border-cyan-400/20 bg-[#0a0e1a] p-5 space-y-4`}

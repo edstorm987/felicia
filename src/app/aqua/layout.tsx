@@ -16,7 +16,7 @@ export default function AquaLayout({ children }: { children: React.ReactNode }) 
   const pathname = usePathname() ?? "";
   return (
     <div className="min-h-screen bg-pink-50 text-brand-purple-dark font-body antialiased">
-      <header className="px-6 py-4 border-b border-white/8 flex items-center gap-4">
+      <header className="px-6 py-4 border-b border-pink-200/50 flex items-center gap-4">
         <Link href="/aqua" className="flex items-center gap-2 group">
           <span
             className="w-8 h-8 rounded-xl"
@@ -31,13 +31,13 @@ export default function AquaLayout({ children }: { children: React.ReactNode }) 
         <span className="ml-auto" />
         <Link
           href="/aqua/support"
-          className={`text-[12px] px-3 py-1.5 rounded-lg border transition-colors ${pathname.startsWith("/aqua/support") ? "border-cyan-500/50 bg-cyan-500/10 text-cyan-400" : "border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:bg-white/5"}`}
+          className={`text-[12px] px-3 py-1.5 rounded-lg border transition-colors ${pathname.startsWith("/aqua/support") ? "border-cyan-500/50 bg-cyan-500/10 text-cyan-400" : "border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:bg-white/5"}`}
         >
           Support
         </Link>
         <Link
           href="/aqua/example"
-          className={`text-[12px] px-3 py-1.5 rounded-lg border transition-colors ${pathname.startsWith("/aqua/example") ? "border-brand-amber/50 bg-brand-amber/10 text-brand-amber" : "border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:bg-white/5"}`}
+          className={`text-[12px] px-3 py-1.5 rounded-lg border transition-colors ${pathname.startsWith("/aqua/example") ? "border-brand-amber/50 bg-brand-amber/10 text-brand-amber" : "border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:bg-white/5"}`}
         >
           Example portal
         </Link>

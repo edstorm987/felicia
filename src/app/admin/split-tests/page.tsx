@@ -111,7 +111,7 @@ function SplitTestsPageInner() {
                 <span className="font-semibold text-brand-purple-dark truncate flex-1">{g.name}</span>
                 <span className="text-[11px] text-brand-purple-dark/80 font-mono">{totalExp.toLocaleString()} exposures · {(overallRate).toFixed(2)}%</span>
               </summary>
-              <div className="p-4 border-t border-white/8 space-y-3">
+              <div className="p-4 border-t border-pink-200/50 space-y-3">
                 <div className="grid sm:grid-cols-2 gap-3">
                   <Field label="Name"><input defaultValue={g.name} onBlur={e => e.target.value !== g.name && patchGroup(g.id, { name: e.target.value })} className={INPUT} /></Field>
                   <Field label="Goal event">
@@ -141,7 +141,7 @@ function SplitTestsPageInner() {
                 </div>
 
                 {/* Results table */}
-                <div className="rounded-lg border border-white/8 bg-black/20 overflow-hidden">
+                <div className="rounded-lg border border-pink-200/50 bg-white/80 overflow-hidden">
                   <p className="px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-brand-purple-dark/80 border-b border-pink-200/50">Results</p>
                   {groupResults.length === 0 ? (
                     <p className="p-3 text-[11px] text-brand-purple-dark/80">No exposures yet — set status to running + visit the page.</p>

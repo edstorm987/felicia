@@ -193,7 +193,7 @@ function MembersPageInner() {
             type="button"
             onClick={exportCsv}
             disabled={filtered.length === 0}
-            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-white/15 hover:border-white/30 px-3 py-1.5 disabled:opacity-40 transition-colors"
+            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-pink-200 hover:border-pink-300 px-3 py-1.5 disabled:opacity-40 transition-colors"
           >
             Export CSV
           </button>
@@ -229,25 +229,25 @@ function MembersPageInner() {
       {loading ? (
         <PageSpinner wrap={false} />
       ) : members.length === 0 ? (
-        <section className="rounded-2xl border border-white/8 bg-white p-8 text-center">
+        <section className="rounded-2xl border border-pink-200/50 bg-white p-8 text-center">
           <p className="text-[13px] text-brand-purple-dark/80">No members yet</p>
           <p className="text-[12px] text-brand-purple-dark/80 mt-2 max-w-sm mx-auto leading-relaxed">
             When someone signs up via the storefront they'll appear here. Members from forms / e-commerce orders are auto-imported.
           </p>
           <Link
             href="/admin/memberships/tiers"
-            className="inline-block mt-4 text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-white/15 px-3 py-1.5"
+            className="inline-block mt-4 text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-pink-200 px-3 py-1.5"
           >
             Configure tiers →
           </Link>
         </section>
       ) : filtered.length === 0 ? (
-        <section className="rounded-2xl border border-white/8 bg-white p-8 text-center">
+        <section className="rounded-2xl border border-pink-200/50 bg-white p-8 text-center">
           <p className="text-[13px] text-brand-purple-dark/80">No matches</p>
           <p className="text-[12px] text-brand-purple-dark/80 mt-2">Try clearing the filters above.</p>
         </section>
       ) : (
-        <ul className="rounded-2xl border border-white/8 bg-white divide-y divide-white/5 overflow-hidden">
+        <ul className="rounded-2xl border border-pink-200/50 bg-white divide-y divide-white/5 overflow-hidden">
           {filtered.map(m => (
             <li key={m.id} className="px-4 py-3 flex flex-wrap items-center gap-3">
               <div className="flex-1 min-w-[12rem]">

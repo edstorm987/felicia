@@ -65,7 +65,7 @@ function ColorRow({
           type="color"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-8 h-8 rounded-lg border border-white/20 cursor-pointer bg-transparent"
+          className="w-8 h-8 rounded-lg border border-pink-300 cursor-pointer bg-transparent"
         />
         <input
           type="text"
@@ -199,7 +199,7 @@ function BackgroundEditor({
   const preview = computeBackground(value);
 
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden mb-3">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden mb-3">
       <div className="flex items-center gap-3 px-4 py-3 border-b border-pink-200/50">
         <div
           className="w-8 h-8 rounded-lg shrink-0 border border-pink-200"
@@ -437,14 +437,14 @@ export default function AdminThemePage() {
           {hasDraft && (
             <button
               onClick={handleDiscard}
-              className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 transition-colors"
+              className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 transition-colors"
             >
               Discard
             </button>
           )}
           <button
             onClick={handleReset}
-            className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 transition-colors"
+            className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 transition-colors"
           >
             Reset defaults
           </button>
@@ -471,7 +471,7 @@ export default function AdminThemePage() {
       )}
 
       {/* Tabs */}
-      <div className="flex gap-1 border-b border-white/8 overflow-x-auto no-scrollbar">
+      <div className="flex gap-1 border-b border-pink-200/50 overflow-x-auto no-scrollbar">
         {TABS.map((t) => (
           <button
             key={t.id}
@@ -516,13 +516,13 @@ export default function AdminThemePage() {
           </Section>
 
           {/* Live palette preview */}
-          <div className="rounded-xl border border-white/8 p-4">
+          <div className="rounded-xl border border-pink-200/50 p-4">
             <p className="text-xs text-brand-purple-dark/80 uppercase tracking-widest mb-3">Palette preview</p>
             <div className="flex flex-wrap gap-2">
               {Object.entries(theme.colors).map(([k, v]) => (
                 <div key={k} className="flex flex-col items-center gap-1">
                   <div
-                    className="w-9 h-9 rounded-lg border border-white/15"
+                    className="w-9 h-9 rounded-lg border border-pink-200"
                     style={{ background: v }}
                     title={k}
                   />
@@ -651,7 +651,7 @@ export default function AdminThemePage() {
           </Section>
 
           {/* Font preview */}
-          <div className="rounded-xl border border-white/8 p-5 space-y-3">
+          <div className="rounded-xl border border-pink-200/50 p-5 space-y-3">
             <p className="text-xs text-brand-purple-dark/80 uppercase tracking-widest mb-1">Preview</p>
             <p
               style={{
@@ -935,7 +935,7 @@ export default function AdminThemePage() {
             </p>
           </Section>
 
-          <div className="rounded-xl border border-white/8 p-4 text-xs text-brand-purple-dark/80 space-y-1">
+          <div className="rounded-xl border border-pink-200/50 p-4 text-xs text-brand-purple-dark/80 space-y-1">
             <p className="font-medium text-brand-purple-dark/80">Note on accessibility</p>
             <p>Users with &ldquo;prefers reduced motion&rdquo; set in their OS have marquees disabled automatically regardless of this setting.</p>
           </div>
@@ -945,7 +945,7 @@ export default function AdminThemePage() {
       {/* ── VARIANTS / MODES ──────────────────────────────────────────────── */}
       {tab === "variants" && (
         <div className="space-y-6">
-          <div className="rounded-xl border border-white/8 bg-white/[0.02] p-4 text-sm text-brand-purple-dark/80 leading-relaxed">
+          <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] p-4 text-sm text-brand-purple-dark/80 leading-relaxed">
             Theme variants let visitors switch between visual modes (e.g. dark, light, earth) using the palette icon in the navbar.
             The &ldquo;Default&rdquo; variant is shown to new visitors. Built-in variants cannot be edited but can be cloned.
           </div>
@@ -1033,7 +1033,7 @@ export default function AdminThemePage() {
             </div>
           </Section>
 
-          <div className="rounded-xl border border-white/8 p-4 text-xs text-brand-purple-dark/80 space-y-1">
+          <div className="rounded-xl border border-pink-200/50 p-4 text-xs text-brand-purple-dark/80 space-y-1">
             <p className="font-medium text-brand-purple-dark/80">How it works</p>
             <p>The base theme (all other tabs) is the canvas. Each variant overrides specific colours, backgrounds, and highlights on top of it. Visitors&apos; choices are saved to their browser — they persist across visits.</p>
           </div>
@@ -1051,7 +1051,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
       <div className="px-4 py-3 border-b border-pink-200/50 bg-white/[0.02]">
         <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-brand-purple-dark/80">
           {title}

@@ -240,7 +240,7 @@ export default function BlogEditor() {
       </div>
 
       {/* Schedule panel */}
-      <details className="rounded-2xl border border-white/8 bg-white overflow-hidden group" open={post.status === "scheduled"}>
+      <details className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden group" open={post.status === "scheduled"}>
         <summary className="cursor-pointer px-5 py-3 border-b border-pink-200/50 bg-pink-50/50/40 text-xs tracking-[0.22em] uppercase text-brand-purple-dark/80 list-none flex items-center justify-between">
           Schedule
           {post.status === "scheduled" && post.scheduledFor && (
@@ -284,7 +284,7 @@ export default function BlogEditor() {
       </details>
 
       {/* SEO panel */}
-      <details className="rounded-2xl border border-white/8 bg-white overflow-hidden group" open={false}>
+      <details className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden group" open={false}>
         <summary className="cursor-pointer px-5 py-3 border-b border-pink-200/50 bg-pink-50/50/40 text-xs tracking-[0.22em] uppercase text-brand-purple-dark/80 list-none flex items-center justify-between">
           SEO &amp; sharing
           <span className="text-brand-purple-dark/80 group-open:rotate-90 transition-transform">›</span>
@@ -331,7 +331,7 @@ export default function BlogEditor() {
       </details>
 
       {/* Action footer */}
-      <div className="sticky bottom-0 -mx-6 sm:-mx-8 lg:-mx-10 px-6 sm:px-8 lg:px-10 py-4 bg-pink-50/50/95 backdrop-blur border-t border-white/8 flex flex-wrap items-center justify-between gap-3">
+      <div className="sticky bottom-0 -mx-6 sm:-mx-8 lg:-mx-10 px-6 sm:px-8 lg:px-10 py-4 bg-pink-50/50/95 backdrop-blur border-t border-pink-200/50 flex flex-wrap items-center justify-between gap-3">
         <button onClick={remove} className="text-xs text-brand-purple-dark/80 hover:text-brand-orange">Delete post</button>
         <div className="flex items-center gap-2 flex-wrap">
           {post.status === "scheduled" && post.scheduledFor && (
@@ -340,9 +340,9 @@ export default function BlogEditor() {
             </span>
           )}
           <Link href={`/blog/${post.slug}`} target="_blank" className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark">Preview →</Link>
-          <button onClick={draft} className="text-xs px-4 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark">Save draft</button>
+          <button onClick={draft} className="text-xs px-4 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark">Save draft</button>
           {post.status === "published" ? (
-            <button onClick={unpublish} className="text-xs px-4 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark">Unpublish</button>
+            <button onClick={unpublish} className="text-xs px-4 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark">Unpublish</button>
           ) : (
             <button onClick={publish} className="text-xs px-5 py-2 rounded-lg bg-brand-orange hover:bg-brand-orange-light text-white font-semibold">Publish now</button>
           )}
@@ -437,7 +437,7 @@ function CoverImageEditor({ post, onChange }: { post: BlogPost; onChange: (src: 
         </div>
       </div>
       {picking && (
-        <div className="rounded-lg border border-white/8 bg-pink-50 p-3 max-h-72 overflow-y-auto">
+        <div className="rounded-lg border border-pink-200/50 bg-pink-50 p-3 max-h-72 overflow-y-auto">
           {media.length === 0 ? (
             <p className="text-[11px] text-brand-purple-dark/80 text-center py-4">Library empty.</p>
           ) : (

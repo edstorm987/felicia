@@ -48,7 +48,7 @@ export default function Tip({
         type="button"
         onClick={(e) => { e.preventDefault(); e.stopPropagation(); setOpen(v => !v); }}
         aria-label="More information"
-        className={`${dim} inline-flex items-center justify-center rounded-full border border-white/20 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-brand-cream/40 cursor-help shrink-0 transition-colors`}
+        className={`${dim} inline-flex items-center justify-center rounded-full border border-pink-300 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-brand-cream/40 cursor-help shrink-0 transition-colors`}
       >
         ?
       </button>

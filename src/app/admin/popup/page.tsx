@@ -78,7 +78,7 @@ export default function AdminPopupPage() {
       </div>
 
       {/* Master toggle */}
-      <div className="flex items-center justify-between gap-4 px-5 py-4 rounded-2xl border border-white/8 bg-white">
+      <div className="flex items-center justify-between gap-4 px-5 py-4 rounded-2xl border border-pink-200/50 bg-white">
         <div>
           <p className="text-sm font-medium text-brand-purple-dark">Popup enabled</p>
           <p className="text-xs text-brand-purple-dark/80 mt-0.5">Turn the storefront popup off entirely without losing your settings.</p>
@@ -187,7 +187,7 @@ export default function AdminPopupPage() {
         {/* Live preview column */}
         <div className="space-y-3 lg:sticky lg:top-6 lg:self-start">
           <p className="text-xs tracking-[0.22em] uppercase text-brand-purple-dark/80 px-1">Live preview</p>
-          <div className="rounded-2xl border border-white/8 bg-black/40 p-4 overflow-hidden">
+          <div className="rounded-2xl border border-pink-200/50 bg-white/80 p-4 overflow-hidden">
             <div className="rounded-2xl bg-white border border-brand-purple/20 p-6 text-center relative overflow-hidden">
               <div className="absolute top-0 inset-x-0 h-1" style={{ background: `linear-gradient(to right, ${cfg.accentColor}, #ffb84d, #b478e0)` }} />
               <p className="text-[9px] tracking-[0.3em] uppercase mb-2" style={{ color: cfg.accentColor }}>{cfg.eyebrow}</p>
@@ -216,7 +216,7 @@ export default function AdminPopupPage() {
 
 function Card({ title, tip, children }: { title: string; tip?: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+    <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
       <div className="px-5 py-3 border-b border-pink-200/50 bg-pink-50/50/40 flex items-center gap-2">
         <h2 className="text-xs tracking-[0.22em] uppercase text-brand-purple-dark/80">{title}</h2>
         {tip && <Tip text={tip} />}

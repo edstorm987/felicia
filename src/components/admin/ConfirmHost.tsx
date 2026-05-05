@@ -82,7 +82,7 @@ export default function ConfirmHost() {
 
   return (
     <div
-      className="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-white/80 backdrop-blur-sm"
       onClick={cancel}
     >
       <div

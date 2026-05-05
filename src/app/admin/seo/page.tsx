@@ -133,7 +133,7 @@ function SeoDashboardInner() {
 
       {/* Pages SEO health */}
       <section className="rounded-2xl border border-pink-200 bg-white/[0.02]">
-        <div className="px-4 py-3 border-b border-white/8 flex items-center justify-between">
+        <div className="px-4 py-3 border-b border-pink-200/50 flex items-center justify-between">
           <p className="text-[11px] tracking-[0.18em] uppercase text-brand-purple-dark/80">Pages ({pages.length})</p>
         </div>
         {pages.length === 0 ? (
@@ -188,7 +188,7 @@ function SeoDashboardInner() {
 
       {/* Broken-link scanner */}
       <section className="rounded-2xl border border-pink-200 bg-white/[0.02]">
-        <div className="px-4 py-3 border-b border-white/8 flex items-center justify-between">
+        <div className="px-4 py-3 border-b border-pink-200/50 flex items-center justify-between">
           <p className="text-[11px] tracking-[0.18em] uppercase text-brand-purple-dark/80">Broken links</p>
           <button
             onClick={scanLinks}
@@ -231,7 +231,7 @@ function SeoDashboardInner() {
 
       {/* Sitelinks / Site navigation JSON-LD */}
       <section className="rounded-2xl border border-pink-200 bg-white/[0.02]">
-        <div className="px-4 py-3 border-b border-white/8 flex items-center justify-between">
+        <div className="px-4 py-3 border-b border-pink-200/50 flex items-center justify-between">
           <p className="text-[11px] tracking-[0.18em] uppercase text-brand-purple-dark/80">Sitelinks (Google sub-page indents)</p>
           <button onClick={saveSiteNav} className="px-3 py-1.5 rounded-lg bg-brand-orange text-white text-[11px] font-semibold hover:opacity-90">Save</button>
         </div>
@@ -244,7 +244,7 @@ function SeoDashboardInner() {
             onChange={e => setSiteNavJson(e.target.value)}
             spellCheck={false}
             rows={10}
-            className="w-full bg-black/40 border border-pink-200 rounded-lg p-2 text-[11px] text-brand-purple-dark font-mono leading-relaxed focus:outline-none focus:border-brand-orange/50"
+            className="w-full bg-white/80 border border-pink-200 rounded-lg p-2 text-[11px] text-brand-purple-dark font-mono leading-relaxed focus:outline-none focus:border-brand-orange/50"
           />
           <p className="text-[10px] text-brand-purple-dark/80">
             Injected as <code className="font-mono">&lt;script type=&quot;application/ld+json&quot;&gt;</code> on every page via the site&apos;s custom head.
@@ -255,14 +255,14 @@ function SeoDashboardInner() {
       {/* Live sitemap.xml + robots.txt preview */}
       <div className="grid lg:grid-cols-2 gap-3">
         <section className="rounded-2xl border border-pink-200 bg-white/[0.02] overflow-hidden">
-          <div className="px-3 py-2 border-b border-white/8 flex items-center justify-between">
+          <div className="px-3 py-2 border-b border-pink-200/50 flex items-center justify-between">
             <p className="text-[11px] tracking-[0.18em] uppercase text-brand-purple-dark/80">/sitemap.xml</p>
             <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" className="text-[11px] text-brand-orange hover:underline">Open ↗</a>
           </div>
           <pre className="p-3 text-[10px] font-mono text-brand-purple-dark/80 overflow-auto max-h-80">{sitemap}</pre>
         </section>
         <section className="rounded-2xl border border-pink-200 bg-white/[0.02] overflow-hidden">
-          <div className="px-3 py-2 border-b border-white/8 flex items-center justify-between">
+          <div className="px-3 py-2 border-b border-pink-200/50 flex items-center justify-between">
             <p className="text-[11px] tracking-[0.18em] uppercase text-brand-purple-dark/80">/robots.txt</p>
             <a href="/robots.txt" target="_blank" rel="noopener noreferrer" className="text-[11px] text-brand-orange hover:underline">Open ↗</a>
           </div>

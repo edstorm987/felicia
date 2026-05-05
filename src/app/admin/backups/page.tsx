@@ -131,7 +131,7 @@ function BackupsPageInner() {
         <div className="flex items-center gap-2 flex-wrap">
           <Link
             href="/admin/backups/restore"
-            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-white/15 hover:border-white/30 px-3 py-1.5 transition-colors"
+            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-pink-200 hover:border-pink-300 px-3 py-1.5 transition-colors"
           >
             Restore
           </Link>
@@ -155,7 +155,7 @@ function BackupsPageInner() {
       {loading ? (
         <PageSpinner wrap={false} />
       ) : backups.length === 0 ? (
-        <section className="rounded-2xl border border-white/8 bg-white p-8 text-center">
+        <section className="rounded-2xl border border-pink-200/50 bg-white p-8 text-center">
           <p className="text-[13px] text-brand-purple-dark/80">No backups yet</p>
           <p className="text-[12px] text-brand-purple-dark/80 mt-2 max-w-md mx-auto leading-relaxed">
             Click <strong>Backup now</strong> to take a snapshot. Wire your platform&rsquo;s cron at{" "}
@@ -163,7 +163,7 @@ function BackupsPageInner() {
           </p>
         </section>
       ) : (
-        <ul className="rounded-2xl border border-white/8 bg-white divide-y divide-white/5 overflow-hidden">
+        <ul className="rounded-2xl border border-pink-200/50 bg-white divide-y divide-white/5 overflow-hidden">
           {backups.map(b => (
             <li key={b.id} className="px-4 py-3 flex flex-wrap items-center gap-3">
               <div className="flex-1 min-w-[12rem]">
@@ -186,13 +186,13 @@ function BackupsPageInner() {
               <button
                 type="button"
                 onClick={() => downloadBackup(b)}
-                className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-white/15 hover:border-white/30 px-3 py-1.5 transition-colors"
+                className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-pink-200 hover:border-pink-300 px-3 py-1.5 transition-colors"
               >
                 Download
               </button>
               <Link
                 href={`/admin/backups/restore?id=${encodeURIComponent(b.id)}`}
-                className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-white/15 hover:border-white/30 px-3 py-1.5 transition-colors"
+                className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-pink-200 hover:border-pink-300 px-3 py-1.5 transition-colors"
               >
                 Restore
               </Link>
@@ -213,7 +213,7 @@ function BackupsPageInner() {
 
 function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
-    <div className="rounded-xl border border-white/8 bg-white p-4">
+    <div className="rounded-xl border border-pink-200/50 bg-white p-4">
       <p className="text-[10px] tracking-[0.22em] uppercase text-brand-purple-dark/80">{label}</p>
       <p className="font-display text-2xl text-brand-purple-dark mt-1 tabular-nums">{value}</p>
       {hint && <p className="text-[10px] text-brand-purple-dark/80 mt-1">{hint}</p>}

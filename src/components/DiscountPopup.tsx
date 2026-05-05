@@ -73,7 +73,7 @@ export default function DiscountPopup() {
 
   return (
     <>
-      <div className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-[100] bg-white/80 backdrop-blur-sm flex items-center justify-center p-4">
         <div className="relative w-full max-w-md bg-white border border-brand-purple/20 rounded-3xl overflow-hidden shadow-2xl animate-[float_4s_ease-in-out_infinite]">
           <div className="absolute top-0 inset-x-0 h-1" style={{ background: `linear-gradient(to right, ${accent}, #ffb84d, #b478e0)` }} />
           <div className="absolute -top-32 -right-32 w-64 h-64 bg-brand-purple/20 blur-[80px] rounded-full pointer-events-none" />
@@ -83,7 +83,7 @@ export default function DiscountPopup() {
             onClick={() => setIsOpen(false)}
             aria-label="Close"
             type="button"
-            className="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm flex items-center justify-center text-brand-purple-dark/80 hover:text-brand-purple-dark transition-colors"
+            className="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-white/80 hover:bg-white/80 backdrop-blur-sm flex items-center justify-center text-brand-purple-dark/80 hover:text-brand-purple-dark transition-colors"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 6L6 18M6 6l12 12" />
@@ -137,7 +137,7 @@ export default function DiscountPopup() {
                   required
                 />
                 <label className="flex items-start gap-3 text-left cursor-pointer group">
-                  <div className="relative flex items-center justify-center w-5 h-5 mt-0.5 rounded border border-white/20 bg-pink-50 group-hover:border-white/40 transition-colors shrink-0">
+                  <div className="relative flex items-center justify-center w-5 h-5 mt-0.5 rounded border border-pink-300 bg-pink-50 group-hover:border-white/40 transition-colors shrink-0">
                     <input
                       type="checkbox"
                       checked={agreed}

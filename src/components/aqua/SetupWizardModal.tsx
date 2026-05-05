@@ -95,7 +95,7 @@ export default function SetupWizardModal({ plugin, onCancel, onComplete }: Props
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-white/80 backdrop-blur-sm">
       <div className="w-full max-w-lg rounded-2xl border border-cyan-400/20 bg-[#0a0e1a] shadow-2xl overflow-hidden">
         <header className="px-5 py-4 border-b border-pink-200/50 flex items-center justify-between">
           <div>

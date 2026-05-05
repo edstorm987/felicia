@@ -156,7 +156,7 @@ export default function BlogPostPage() {
               <h2 className="font-display text-2xl sm:text-3xl text-brand-purple-dark mb-6">More like this</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {related.map(p => (
-                  <Link key={p.id} href={`/blog/${p.slug}`} className="block rounded-2xl border border-white/8 bg-white hover:border-white/16 p-5 transition-colors">
+                  <Link key={p.id} href={`/blog/${p.slug}`} className="block rounded-2xl border border-pink-200/50 bg-white hover:border-white/16 p-5 transition-colors">
                     <p className="text-[10px] tracking-[0.2em] uppercase text-brand-purple-dark/80 mb-2">{p.category}</p>
                     <h3 className="font-display text-brand-purple-dark font-semibold leading-snug mb-2">{p.title}</h3>
                     <p className="text-xs text-brand-purple-dark/80 line-clamp-2">{p.excerpt}</p>

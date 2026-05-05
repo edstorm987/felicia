@@ -106,7 +106,7 @@ function Stat({ label, value, tone }: { label: string; value: string; tone: "goo
     : tone === "warn" ? "text-red-400 bg-red-500/10 border-red-500/20"
     : tone === "amber"? "text-brand-amber bg-brand-amber/10 border-brand-amber/25"
     : tone === "cyan" ? "text-cyan-400 bg-cyan-500/10 border-cyan-500/25"
-    : "text-brand-purple-dark/80 bg-white/[0.02] border-white/8";
+    : "text-brand-purple-dark/80 bg-white/[0.02] border-pink-200/50";
   return (
     <div className={`rounded-2xl border p-4 ${cls}`}>
       <p className="text-[10px] uppercase tracking-[0.18em] opacity-70 mb-1">{label}</p>

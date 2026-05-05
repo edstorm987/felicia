@@ -164,7 +164,7 @@ export default function PortalEmbedLoginPage() {
               </div>
               <button
                 onClick={handleSignOut}
-                className="w-full px-3 py-2.5 rounded-xl border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-sm"
+                className="w-full px-3 py-2.5 rounded-xl border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-sm"
               >
                 Sign out
               </button>
@@ -178,7 +178,7 @@ export default function PortalEmbedLoginPage() {
                 placeholder="you@example.com"
                 autoComplete="email"
                 required
-                className="w-full bg-white/5 border border-pink-200 rounded-xl px-3 py-2.5 text-sm text-brand-purple-dark placeholder:text-brand-purple-dark/80 focus:outline-none focus:border-white/30"
+                className="w-full bg-white/5 border border-pink-200 rounded-xl px-3 py-2.5 text-sm text-brand-purple-dark placeholder:text-brand-purple-dark/80 focus:outline-none focus:border-pink-300"
                 style={{ outlineColor: brand }}
               />
               <input
@@ -188,7 +188,7 @@ export default function PortalEmbedLoginPage() {
                 placeholder="Password"
                 autoComplete="current-password"
                 required
-                className="w-full bg-white/5 border border-pink-200 rounded-xl px-3 py-2.5 text-sm text-brand-purple-dark placeholder:text-brand-purple-dark/80 focus:outline-none focus:border-white/30"
+                className="w-full bg-white/5 border border-pink-200 rounded-xl px-3 py-2.5 text-sm text-brand-purple-dark placeholder:text-brand-purple-dark/80 focus:outline-none focus:border-pink-300"
               />
               {error && <p className="text-[11px] text-red-400">{error}</p>}
               <button

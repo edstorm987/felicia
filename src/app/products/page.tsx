@@ -130,7 +130,7 @@ function ShopContent() {
 
             {/* Tab bar — dynamic from collections */}
             <div className="overflow-x-auto pb-1 mb-12 sm:mb-14">
-              <div className="flex gap-1 p-1 bg-white border border-white/8 rounded-2xl w-full min-w-max sm:min-w-0">
+              <div className="flex gap-1 p-1 bg-white border border-pink-200/50 rounded-2xl w-full min-w-max sm:min-w-0">
                 <button
                   onClick={() => setActiveTab("all")}
                   className={`flex flex-col flex-1 items-start px-4 py-3 rounded-xl transition-all duration-200 text-left min-w-0 ${
@@ -183,7 +183,7 @@ function ShopContent() {
                     className={`px-4 py-1.5 rounded-full text-xs font-medium border transition-all ${
                       allSelector === opt.id
                         ? "border-brand-purple/60 bg-brand-purple/20 text-brand-purple-light"
-                        : "border-pink-200 text-brand-purple-dark/80 hover:border-white/20 hover:text-brand-purple-dark/80"
+                        : "border-pink-200 text-brand-purple-dark/80 hover:border-pink-300 hover:text-brand-purple-dark/80"
                     }`}
                   >
                     {opt.label}
@@ -302,7 +302,7 @@ function RangeHeader({ name, tagline, colour, description, count }: {
   name: string; tagline: string; colour: string; description: string; count: number;
 }) {
   return (
-    <div className="mb-10 pb-10 border-b border-white/8">
+    <div className="mb-10 pb-10 border-b border-pink-200/50">
       <div className="flex items-baseline gap-3 mb-3">
         <h2 className={`font-display font-bold text-3xl sm:text-4xl ${colour}`}>{name}</h2>
         {tagline && <span className="text-sm tracking-[0.2em] uppercase text-brand-purple-dark/80">{tagline}</span>}

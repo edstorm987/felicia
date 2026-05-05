@@ -56,7 +56,7 @@ export default function AdminOrderDetailPage() {
         <Link
           href={`/admin/orders/${order.id}/receipt`}
           target="_blank"
-          className="text-xs px-3 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+          className="text-xs px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
         >
           Receipt / Invoice →
         </Link>
@@ -79,7 +79,7 @@ export default function AdminOrderDetailPage() {
               className={`text-[10px] tracking-widest uppercase px-3 py-1.5 rounded border transition-colors ${
                 order.status === s
                   ? "bg-brand-orange/20 border-brand-orange/40 text-brand-purple-dark"
-                  : "border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+                  : "border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
               }`}
             >
               {s}
@@ -90,7 +90,7 @@ export default function AdminOrderDetailPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Items */}
-        <section className="lg:col-span-2 rounded-2xl border border-white/8 bg-white p-5 sm:p-6">
+        <section className="lg:col-span-2 rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6">
           <h2 className="text-sm tracking-wide text-brand-purple-dark/80 mb-4">Items</h2>
           <div className="space-y-3">
             {order.items.map((it, i) => (
@@ -116,7 +116,7 @@ export default function AdminOrderDetailPage() {
         {/* Right column */}
         <div className="space-y-4 sm:space-y-6">
           {/* Customer */}
-          <section className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6">
+          <section className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6">
             <div className="flex items-center justify-between mb-3 gap-2">
               <h2 className="text-sm tracking-wide text-brand-purple-dark/80">Customer</h2>
               {order.customerEmail && (
@@ -142,7 +142,7 @@ export default function AdminOrderDetailPage() {
           </section>
 
           {/* Shipping label */}
-          <section className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6">
+          <section className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6">
             <h2 className="text-sm tracking-wide text-brand-purple-dark/80 mb-3">Shipping label</h2>
             {order.tracking ? (
               <div className="space-y-3">
@@ -154,7 +154,7 @@ export default function AdminOrderDetailPage() {
                 {order.tracking.labelUrl && (
                   <button
                     onClick={() => order.tracking?.labelUrl && printLabel(order.tracking.labelUrl)}
-                    className="w-full py-2.5 rounded-lg border border-pink-200 hover:border-white/30 text-xs text-brand-purple-dark transition-colors"
+                    className="w-full py-2.5 rounded-lg border border-pink-200 hover:border-pink-300 text-xs text-brand-purple-dark transition-colors"
                   >
                     Reprint label
                   </button>
@@ -188,7 +188,7 @@ export default function AdminOrderDetailPage() {
           {(order.source || order.discountCode || order.affiliateId) && <AttributionCard order={order} />}
 
           {/* Payment */}
-          <section className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6">
+          <section className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6">
             <h2 className="text-sm tracking-wide text-brand-purple-dark/80 mb-3">Payment</h2>
             {order.paymentIntent ? (
               <p className="text-xs text-brand-purple-dark/80 break-all font-mono">{order.paymentIntent}</p>
@@ -215,7 +215,7 @@ function AttributionCard({ order }: { order: Order }) {
   const sourceLabel = order.source ? (listAllSources().find(s => s.id === order.source)?.label ?? order.source) : null;
   const aff = order.affiliateId ? getAffiliate(order.affiliateId) : undefined;
   return (
-    <section className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6">
+    <section className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6">
       <h2 className="text-sm tracking-wide text-brand-purple-dark/80 mb-3">Attribution</h2>
       <div className="space-y-2 text-xs">
         {sourceLabel && (

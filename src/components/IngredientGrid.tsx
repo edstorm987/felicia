@@ -41,7 +41,7 @@ export default function IngredientGrid({ limit, showViewAll }: { limit?: number;
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/30 to-transparent" />
-                <span className="absolute top-3 left-3 text-[10px] tracking-wide text-brand-purple-dark/80 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                <span className="absolute top-3 left-3 text-[10px] tracking-wide text-brand-purple-dark/80 bg-white/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
                   {ing.origin}
                 </span>
               </div>
@@ -92,7 +92,7 @@ function IngredientModal({
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/75 backdrop-blur-sm"
+        className="absolute inset-0 bg-white/80 backdrop-blur-sm"
         onClick={onClose}
       />
 
@@ -112,7 +112,7 @@ function IngredientModal({
           <button
             onClick={onClose}
             aria-label="Close"
-            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm hover:bg-black/70 text-white flex items-center justify-center transition-colors"
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white/80 text-white flex items-center justify-center transition-colors"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 6L6 18M6 6l12 12" />

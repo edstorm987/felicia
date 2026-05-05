@@ -89,7 +89,7 @@ export default function BlogPage() {
                   {featured.tags && featured.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mb-5">
                       {featured.tags.slice(0, 4).map(t => (
-                        <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-brand-purple-dark/80 border border-white/8">
+                        <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-brand-purple-dark/80 border border-pink-200/50">
                           #{t}
                         </span>
                       ))}
@@ -111,7 +111,7 @@ export default function BlogPage() {
                   <Link
                     key={post.id}
                     href={`/blog/${post.slug}`}
-                    className="group flex flex-col rounded-2xl border border-white/8 bg-white hover:border-white/16 transition-all duration-300 overflow-hidden"
+                    className="group flex flex-col rounded-2xl border border-pink-200/50 bg-white hover:border-white/16 transition-all duration-300 overflow-hidden"
                   >
                     {post.coverImage && (
                       /* eslint-disable-next-line @next/next/no-img-element */
@@ -130,7 +130,7 @@ export default function BlogPage() {
                       {post.tags && post.tags.length > 0 && (
                         <div className="flex flex-wrap gap-1.5">
                           {post.tags.slice(0, 3).map(t => (
-                            <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-brand-purple-dark/80 border border-white/8">
+                            <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-brand-purple-dark/80 border border-pink-200/50">
                               #{t}
                             </span>
                           ))}

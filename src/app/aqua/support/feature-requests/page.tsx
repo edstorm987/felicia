@@ -137,7 +137,7 @@ export default function FeatureRequestsPage() {
               </div>
             </div>
             {openId === item.id && (
-              <div className="border-t border-white/8 p-4 space-y-2">
+              <div className="border-t border-pink-200/50 p-4 space-y-2">
                 {(item.comments ?? []).map(c => (
                   <div key={c.id} className={`rounded-lg p-2 ${c.isAgency ? "bg-cyan-500/5 border border-cyan-500/15" : "bg-white/[0.02] border border-pink-200/50"}`}>
                     <p className="text-[10px] text-brand-purple-dark/80">

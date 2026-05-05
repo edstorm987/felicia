@@ -91,7 +91,7 @@ export default function ResourcesPage() {
         </p>
         <div className="flex gap-2">
           <Link href="/aqua/support/feature-requests" className="px-3 py-2 rounded-lg bg-cyan-500 text-white text-[12px] font-semibold hover:opacity-90">+ New request</Link>
-          <Link href="/aqua/support/book-meeting" className="px-3 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:bg-white/5 text-[12px] font-semibold">Book a meeting</Link>
+          <Link href="/aqua/support/book-meeting" className="px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:bg-white/5 text-[12px] font-semibold">Book a meeting</Link>
         </div>
       </section>
     </main>

@@ -113,9 +113,9 @@ export default function CartPage() {
                     <div className="flex flex-col items-end gap-2">
                       <button onClick={() => removeItem(item.id)} className="text-brand-purple-dark/80 hover:text-brand-orange">Remove</button>
                       <div className="flex items-center gap-2">
-                        <button onClick={() => updateQty(item.id, item.quantity - 1)} className="w-7 h-7 rounded border border-white/15">−</button>
+                        <button onClick={() => updateQty(item.id, item.quantity - 1)} className="w-7 h-7 rounded border border-pink-200">−</button>
                         <span className="text-brand-purple-dark">{item.quantity}</span>
-                        <button onClick={() => updateQty(item.id, item.quantity + 1)} className="w-7 h-7 rounded border border-white/15">+</button>
+                        <button onClick={() => updateQty(item.id, item.quantity + 1)} className="w-7 h-7 rounded border border-pink-200">+</button>
                       </div>
                     </div>
                   </div>
@@ -163,7 +163,7 @@ export default function CartPage() {
                 <div className="flex justify-between text-brand-purple-dark"><span>Total</span><span className="font-display text-xl">£{total.toFixed(2)}</span></div>
 
                 {/* Where did you hear about us? */}
-                <div className="pt-3 border-t border-white/8">
+                <div className="pt-3 border-t border-pink-200/50">
                   <label className="text-[10px] tracking-[0.22em] uppercase text-brand-purple-dark/80 mb-1.5 block">
                     Where did you hear about us?
                   </label>

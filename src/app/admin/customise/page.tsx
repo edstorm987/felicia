@@ -124,7 +124,7 @@ function AdminCustomisePageInner() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 border-b border-white/8 overflow-x-auto no-scrollbar">
+      <div className="flex gap-1 border-b border-pink-200/50 overflow-x-auto no-scrollbar">
         {TABS.map(t => (
           <button
             key={t.id}
@@ -262,11 +262,11 @@ function AdminCustomisePageInner() {
           </Card>
 
           {tabs.length === 0 ? (
-            <div className="rounded-2xl border border-white/8 bg-white px-6 py-10 text-center">
+            <div className="rounded-2xl border border-pink-200/50 bg-white px-6 py-10 text-center">
               <p className="text-brand-purple-dark/80 text-sm">No custom tabs yet. Add one above.</p>
             </div>
           ) : (
-            <div className="rounded-2xl border border-white/8 bg-white divide-y divide-white/5 overflow-hidden">
+            <div className="rounded-2xl border border-pink-200/50 bg-white divide-y divide-white/5 overflow-hidden">
               {tabs.map((t, i) => (
                 <CustomTabRow
                   key={t.id}
@@ -400,7 +400,7 @@ function AdminCustomisePageInner() {
                 href={branding.githubRepoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/15 text-brand-purple-dark hover:border-brand-orange hover:text-brand-orange text-sm transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-pink-200 text-brand-purple-dark hover:border-brand-orange hover:text-brand-orange text-sm transition-colors"
               >
                 <span>🔗</span> View repo ↗
               </a>
@@ -450,7 +450,7 @@ function CustomTabRow({ tab, isFirst, isLast }: { tab: CustomTab; isFirst: boole
           </label>
           <div className="flex gap-2 pt-1">
             <button onClick={save} className="text-xs px-3 py-1.5 rounded-lg bg-brand-orange text-white font-semibold">Save</button>
-            <button onClick={() => { setDraft(tab); setEditing(false); }} className="text-xs px-3 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80">Cancel</button>
+            <button onClick={() => { setDraft(tab); setEditing(false); }} className="text-xs px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80">Cancel</button>
           </div>
         </div>
       ) : (
@@ -484,7 +484,7 @@ const INPUT = "w-full bg-white/5 border border-pink-200 rounded-xl px-3 py-2.5 t
 
 function Card({ title, tip, children }: { title: string; tip?: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
       <div className="px-4 py-3 border-b border-pink-200/50 bg-white/[0.02] flex items-center gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">{title}</p>
         {tip && <Tip text={tip} />}
@@ -514,7 +514,7 @@ function ColorRow({ label, value, onChange, tip }: { label: string; value: strin
         {tip && <Tip text={tip} />}
       </span>
       <div className="flex items-center gap-2">
-        <input type="color" value={value} onChange={e => onChange(e.target.value)} className="w-8 h-8 rounded-lg border border-white/20 cursor-pointer bg-transparent" />
+        <input type="color" value={value} onChange={e => onChange(e.target.value)} className="w-8 h-8 rounded-lg border border-pink-300 cursor-pointer bg-transparent" />
         <input type="text" value={value} onChange={e => onChange(e.target.value)} className="w-24 text-xs bg-white/5 border border-pink-200 rounded-lg px-2 py-1.5 text-brand-purple-dark font-mono focus:outline-none focus:border-brand-orange/50" />
       </div>
     </div>
@@ -597,7 +597,7 @@ function SidebarEditor({
           />
         ))}
         {layout.panels.length === 0 && (
-          <div className="rounded-2xl border border-white/8 bg-white px-6 py-10 text-center">
+          <div className="rounded-2xl border border-pink-200/50 bg-white px-6 py-10 text-center">
             <p className="text-brand-purple-dark/80 text-sm mb-3">No panels yet — your sidebar will be empty.</p>
             <button
               onClick={() => onChange(DEFAULT_LAYOUT)}
@@ -722,13 +722,13 @@ function PanelEditor({
         </div>
 
         <div className="flex flex-wrap gap-2 pt-1">
-          <button onClick={addLink} className="text-[11px] px-3 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30">
+          <button onClick={addLink} className="text-[11px] px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300">
             + Link
           </button>
           <button
             onClick={addGroup}
             disabled={!canAddFolder}
-            className="text-[11px] px-3 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="text-[11px] px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 disabled:opacity-30 disabled:cursor-not-allowed"
           >
             + Folder
           </button>

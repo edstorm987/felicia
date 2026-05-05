@@ -93,7 +93,7 @@ export default function AssetPicker({ value, onChange, placeholder }: AssetPicke
                   key={asset.id}
                   type="button"
                   onClick={() => { onChange(asset.dataUrl); setOpen(false); }}
-                  className={`aspect-square rounded overflow-hidden border-2 transition-colors ${value === asset.dataUrl ? "border-brand-orange" : "border-pink-200 hover:border-white/30"}`}
+                  className={`aspect-square rounded overflow-hidden border-2 transition-colors ${value === asset.dataUrl ? "border-brand-orange" : "border-pink-200 hover:border-pink-300"}`}
                   title={asset.filename}
                 >
                   {asset.contentType.startsWith("image/")

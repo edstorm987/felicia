@@ -42,7 +42,7 @@ export default function AdminFaqPage() {
       </div>
 
       {groups.length === 0 ? (
-        <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-8 text-center">
+        <div className="rounded-2xl border border-pink-200/50 bg-white/[0.02] p-8 text-center">
           <p className="text-[13px] text-brand-purple-dark/80">No FAQ sections yet.</p>
           <p className="text-[12px] text-brand-purple-dark/80 mt-2 max-w-sm mx-auto">
             FAQ sections show up on your storefront&apos;s <code className="font-mono text-brand-purple-dark/80">/faq</code> page. Group questions by topic (Shipping, Returns, etc.).
@@ -70,7 +70,7 @@ function GroupEditor({ group, canUp, canDown }: { group: FaqGroup; canUp: boolea
   useEffect(() => setHeading(group.heading), [group.heading]);
 
   return (
-    <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+    <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
       <div className="flex items-center gap-2 px-5 py-3 border-b border-pink-200/50 bg-pink-50/50/40">
         <label className="flex-1 sr-only" htmlFor={`faq-group-${group.id}`}>Section heading</label>
         <input

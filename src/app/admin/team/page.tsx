@@ -79,7 +79,7 @@ function InviteModal({ roles, onClose }: { roles: Role[]; onClose: () => void })
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm p-4"
       onClick={busy ? undefined : onClose}
     >
       <form
@@ -158,7 +158,7 @@ function RoleEditor({ role, onSave, onDelete, onCancel }: {
 
   return (
     <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm p-4 flex items-start justify-center"
+      className="fixed inset-0 z-50 overflow-y-auto bg-white/80 backdrop-blur-sm p-4 flex items-start justify-center"
       onClick={onCancel}
     >
       <div
@@ -213,10 +213,10 @@ function RoleEditor({ role, onSave, onDelete, onCancel }: {
             {role.isSystem && (
               <p className="text-xs text-brand-purple-dark/80 mb-3">System roles cannot be edited. Clone this role to customise it.</p>
             )}
-            <div className="overflow-x-auto rounded-xl border border-white/8">
+            <div className="overflow-x-auto rounded-xl border border-pink-200/50">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-white/8 bg-white/[0.02]">
+                  <tr className="border-b border-pink-200/50 bg-white/[0.02]">
                     <th className="text-left px-4 py-2.5 text-brand-purple-dark/80 font-medium text-xs">Resource</th>
                     {ALL_ACTIONS.map((a) => (
                       <th key={a.action} className="text-center px-3 py-2.5 text-brand-purple-dark/80 font-medium text-xs">{a.label}</th>
@@ -244,7 +244,7 @@ function RoleEditor({ role, onSave, onDelete, onCancel }: {
                                     className={`w-5 h-5 rounded border mx-auto block transition-colors ${
                                       checked
                                         ? "border-brand-orange bg-brand-orange"
-                                        : "border-white/20 bg-transparent"
+                                        : "border-pink-300 bg-transparent"
                                     } ${role.isSystem ? "opacity-60 cursor-default" : "hover:border-brand-orange/70 cursor-pointer"}`}
                                   >
                                     {checked && <span className="block text-white text-[11px] leading-5">✓</span>}
@@ -335,7 +335,7 @@ function CreateUserModal({ onClose }: { onClose: () => void }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm p-4"
       onClick={busy ? undefined : onClose}
     >
       <div
@@ -512,7 +512,7 @@ export default function AdminTeamPage() {
       )}
 
       {/* Tabs */}
-      <div className="flex gap-1 border-b border-white/8 overflow-x-auto no-scrollbar">
+      <div className="flex gap-1 border-b border-pink-200/50 overflow-x-auto no-scrollbar">
         {([
           { id: "users",   label: `Users (${users.length})` },
           { id: "members", label: `Team (${members.length})` },
@@ -533,7 +533,7 @@ export default function AdminTeamPage() {
       {/* Users tab */}
       {tab === "users" && (
         <div className="space-y-3">
-          <div className="rounded-xl border border-white/8 p-4 bg-brand-amber/5 text-xs text-brand-purple-dark/80 space-y-1">
+          <div className="rounded-xl border border-pink-200/50 p-4 bg-brand-amber/5 text-xs text-brand-purple-dark/80 space-y-1">
             <p className="font-medium text-brand-purple-dark/80">Two ways to act on a user&apos;s behalf</p>
             <p>
               <strong className="text-brand-purple-dark/80">Edit profile</strong> opens the customer record — change fields directly,
@@ -556,7 +556,7 @@ export default function AdminTeamPage() {
           )}
 
           {users.map((u) => (
-            <div key={u.email} className="flex items-center gap-3 px-4 py-3.5 rounded-xl bg-white/[0.02] border border-white/8 hover:border-white/15">
+            <div key={u.email} className="flex items-center gap-3 px-4 py-3.5 rounded-xl bg-white/[0.02] border border-pink-200/50 hover:border-pink-200">
               {/* Avatar */}
               <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold text-white shrink-0 ${u.role === "admin" ? "bg-brand-orange" : "bg-brand-purple"}`}>
                 {u.name.charAt(0).toUpperCase()}
@@ -587,7 +587,7 @@ export default function AdminTeamPage() {
               <div className="flex gap-2 items-center shrink-0">
                 <Link
                   href={`/admin/customers/${encodeURIComponent(u.email)}`}
-                  className="text-xs px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 font-medium transition-colors"
+                  className="text-xs px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 font-medium transition-colors"
                   title="Edit / configure this user — every change is logged to the activity feed"
                 >
                   Edit profile
@@ -633,7 +633,7 @@ export default function AdminTeamPage() {
           {members.map((m) => {
             const role = roleFor(m.roleId);
             return (
-              <div key={m.id} className="flex items-center gap-4 px-4 py-3.5 rounded-xl bg-white/[0.02] border border-white/8 hover:border-white/15">
+              <div key={m.id} className="flex items-center gap-4 px-4 py-3.5 rounded-xl bg-white/[0.02] border border-pink-200/50 hover:border-pink-200">
                 <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold text-white shrink-0"
                   style={{ background: role?.color ?? "#555" }}>
                   {m.name.charAt(0).toUpperCase()}
@@ -653,7 +653,7 @@ export default function AdminTeamPage() {
                 <div className="flex items-center gap-1.5">
                   <Link
                     href={`/admin/customers/${encodeURIComponent(m.email)}`}
-                    className="text-xs px-2.5 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 font-medium transition-colors"
+                    className="text-xs px-2.5 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 font-medium transition-colors"
                     title="Edit / configure this member's record"
                   >
                     Edit
@@ -690,7 +690,7 @@ export default function AdminTeamPage() {
                     </div>
                   ) : (
                     <>
-                      <button onClick={() => setEditMember(m.id)} className="text-xs px-2.5 py-1 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30">Edit</button>
+                      <button onClick={() => setEditMember(m.id)} className="text-xs px-2.5 py-1 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300">Edit</button>
                       <button onClick={async () => { if (await confirm({ title: `Remove ${m.name}?`, message: "They lose access to this admin panel.", danger: true, confirmLabel: "Remove" })) removeTeamMember(m.id); }} className="text-xs px-2.5 py-1 rounded-lg border border-red-500/20 text-red-400/60 hover:text-red-400 hover:border-red-500/40">Remove</button>
                     </>
                   )}
@@ -708,7 +708,7 @@ export default function AdminTeamPage() {
             <button
               key={r.id}
               onClick={() => setEditRole(r)}
-              className="text-left p-4 rounded-xl border border-white/8 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.04] transition-colors group"
+              className="text-left p-4 rounded-xl border border-pink-200/50 bg-white/[0.02] hover:border-pink-300 hover:bg-white/[0.04] transition-colors group"
             >
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-8 h-8 rounded-lg" style={{ background: r.color + "33", border: `1.5px solid ${r.color}55` }}>

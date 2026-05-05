@@ -417,8 +417,8 @@ function CookieBanner() {
   // Decline button visually equal (filled neutral background) so neither
   // CTA nudges the user — this is the GDPR-correct pattern.
   const acceptStyle = brandColor ? { backgroundColor: brandColor, color: "white" } : undefined;
-  const declineStrictCls = "flex-1 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/15 text-brand-purple-dark text-xs font-semibold border border-white/20";
-  const declineLooseCls = "flex-1 px-3 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark text-xs";
+  const declineStrictCls = "flex-1 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/15 text-brand-purple-dark text-xs font-semibold border border-pink-300";
+  const declineLooseCls = "flex-1 px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark text-xs";
 
   return (
     <>

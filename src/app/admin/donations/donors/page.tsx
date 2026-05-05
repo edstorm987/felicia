@@ -192,7 +192,7 @@ function DonorsPageInner() {
             type="button"
             onClick={exportCsv}
             disabled={filtered.length === 0}
-            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-white/15 hover:border-white/30 px-3 py-1.5 disabled:opacity-40 transition-colors"
+            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-pink-200 hover:border-pink-300 px-3 py-1.5 disabled:opacity-40 transition-colors"
           >
             Export CSV
           </button>
@@ -229,19 +229,19 @@ function DonorsPageInner() {
       {loading ? (
         <PageSpinner wrap={false} />
       ) : allDonors.length === 0 ? (
-        <section className="rounded-2xl border border-white/8 bg-white p-8 text-center">
+        <section className="rounded-2xl border border-pink-200/50 bg-white p-8 text-center">
           <p className="text-[13px] text-brand-purple-dark/80">No donors yet</p>
           <p className="text-[12px] text-brand-purple-dark/80 mt-2 max-w-sm mx-auto leading-relaxed">
             Once people donate via the storefront&rsquo;s Donation block they&rsquo;ll appear here, with opt-in display preferences and Gift Aid status.
           </p>
         </section>
       ) : filtered.length === 0 ? (
-        <section className="rounded-2xl border border-white/8 bg-white p-8 text-center">
+        <section className="rounded-2xl border border-pink-200/50 bg-white p-8 text-center">
           <p className="text-[13px] text-brand-purple-dark/80">No matches</p>
           <p className="text-[12px] text-brand-purple-dark/80 mt-2">Try clearing the filters above.</p>
         </section>
       ) : (
-        <ul className="rounded-2xl border border-white/8 bg-white divide-y divide-white/5 overflow-hidden">
+        <ul className="rounded-2xl border border-pink-200/50 bg-white divide-y divide-white/5 overflow-hidden">
           {filtered.map(d => (
             <li key={d.email} className="px-4 py-3 flex flex-wrap items-center gap-3">
               <div className="flex-1 min-w-[12rem]">
@@ -291,7 +291,7 @@ function DonorsPageInner() {
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl border border-white/8 bg-white p-4">
+    <div className="rounded-xl border border-pink-200/50 bg-white p-4">
       <p className="text-[10px] tracking-[0.22em] uppercase text-brand-purple-dark/80">{label}</p>
       <p className="font-display text-2xl text-brand-purple-dark mt-1 tabular-nums">{value}</p>
     </div>

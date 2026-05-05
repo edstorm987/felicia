@@ -84,13 +84,13 @@ function AffiliatesPageInner() {
         <div className="flex items-center gap-2 flex-wrap">
           <Link
             href="/admin/affiliates/stats"
-            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-white/15 hover:border-white/30 px-3 py-1.5 transition-colors"
+            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-pink-200 hover:border-pink-300 px-3 py-1.5 transition-colors"
           >
             Stats
           </Link>
           <Link
             href="/admin/affiliates/payouts"
-            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-white/15 hover:border-white/30 px-3 py-1.5 transition-colors"
+            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-pink-200 hover:border-pink-300 px-3 py-1.5 transition-colors"
           >
             Payouts
           </Link>
@@ -104,7 +104,7 @@ function AffiliatesPageInner() {
       )}
 
       {list.length === 0 && (
-        <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-6 text-center">
+        <div className="rounded-2xl border border-pink-200/50 bg-white/[0.02] p-6 text-center">
           <p className="text-[13px] text-brand-purple-dark/80">No affiliates yet.</p>
           <p className="text-[12px] text-brand-purple-dark/80 mt-2">
             Share the public apply link from <code className="font-mono text-brand-purple-dark/80">/affiliates</code> on your site or have them sign up via the storefront.

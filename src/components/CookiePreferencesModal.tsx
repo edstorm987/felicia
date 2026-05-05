@@ -204,10 +204,10 @@ export default function CookiePreferencesModal({ onClose, initialTab = "cookies"
   ];
 
   return (
-    <div className="fixed inset-0 z-[400] flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm p-0 sm:p-4">
+    <div className="fixed inset-0 z-[400] flex items-end sm:items-center justify-center bg-white/80 backdrop-blur-sm p-0 sm:p-4">
       <div className="w-full sm:max-w-lg bg-pink-50/50 border border-pink-200 rounded-t-2xl sm:rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-white/8 shrink-0">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-pink-200/50 shrink-0">
           <div className="flex items-center gap-3 min-w-0">
             <h2 className="font-display text-lg text-brand-purple-dark truncate">Privacy &amp; Data</h2>
             <ComplianceModePill mode={mode} />
@@ -216,7 +216,7 @@ export default function CookiePreferencesModal({ onClose, initialTab = "cookies"
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-white/8 shrink-0">
+        <div className="flex border-b border-pink-200/50 shrink-0">
           {(["cookies", "data"] as const).map(t => (
             <button
               key={t}
@@ -246,7 +246,7 @@ export default function CookiePreferencesModal({ onClose, initialTab = "cookies"
               )}
 
               {/* Necessary — always on */}
-              <div className="rounded-xl border border-white/8 p-4">
+              <div className="rounded-xl border border-pink-200/50 p-4">
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="text-sm font-semibold text-brand-purple-dark">Strictly necessary</p>
@@ -270,7 +270,7 @@ export default function CookiePreferencesModal({ onClose, initialTab = "cookies"
                   : prefs.functional;
                 const disabled = cat.alwaysOn === true;
                 return (
-                  <div key={cat.key} className="rounded-xl border border-white/8 p-4">
+                  <div key={cat.key} className="rounded-xl border border-pink-200/50 p-4">
                     <div className="flex items-start gap-3">
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-semibold text-brand-purple-dark flex items-center gap-1.5">
@@ -321,7 +321,7 @@ export default function CookiePreferencesModal({ onClose, initialTab = "cookies"
               </p>
 
               {/* Download */}
-              <div className="rounded-xl border border-white/8 p-4 space-y-2">
+              <div className="rounded-xl border border-pink-200/50 p-4 space-y-2">
                 <p className="text-sm font-semibold text-brand-purple-dark">Download my data</p>
                 <p className="text-xs text-brand-purple-dark/80 leading-relaxed">
                   Download a JSON file containing your profile, cart, orders, and preference data stored in this browser.
@@ -355,7 +355,7 @@ export default function CookiePreferencesModal({ onClose, initialTab = "cookies"
                     </button>
                     <button
                       onClick={() => setDeleteConfirm(false)}
-                      className="text-xs px-4 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80"
+                      className="text-xs px-4 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80"
                     >
                       Cancel
                     </button>
@@ -370,7 +370,7 @@ export default function CookiePreferencesModal({ onClose, initialTab = "cookies"
                 )}
               </div>
 
-              <div className="rounded-xl border border-white/8 p-4">
+              <div className="rounded-xl border border-pink-200/50 p-4">
                 <p className="text-sm font-semibold text-brand-purple-dark mb-1">Data we hold</p>
                 <ul className="space-y-1 text-xs text-brand-purple-dark/80">
                   <li>• Session / login state (email, name, role)</li>
@@ -389,17 +389,17 @@ export default function CookiePreferencesModal({ onClose, initialTab = "cookies"
 
         {/* Footer actions */}
         {tab === "cookies" && (
-          <div className="px-5 py-4 border-t border-white/8 flex flex-wrap gap-2 justify-between shrink-0">
+          <div className="px-5 py-4 border-t border-pink-200/50 flex flex-wrap gap-2 justify-between shrink-0">
             <div className="flex gap-2">
               <button
                 onClick={handleDeclineAll}
-                className="text-xs px-3 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark"
+                className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark"
               >
                 Decline all
               </button>
               <button
                 onClick={handleAcceptAll}
-                className="text-xs px-3 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark"
+                className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark"
               >
                 {strict ? "Accept" : "Accept all"}
               </button>

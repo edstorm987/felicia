@@ -196,7 +196,7 @@ export default function AdminActivityPage() {
       {grouped.map(group => (
         <div key={group.date} className="space-y-2">
           <p className="text-[11px] tracking-[0.22em] uppercase text-brand-purple-dark/80 px-1">{group.date}</p>
-          <div className="rounded-2xl border border-white/8 bg-white overflow-hidden divide-y divide-white/5">
+          <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden divide-y divide-white/5">
             {group.items.map(e => (
               <div key={e.id} className="flex items-start gap-3 px-5 py-3.5 hover:bg-white/[0.02]">
                 <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider shrink-0 mt-0.5 ${CATEGORY_COLOURS[e.category]}`}>

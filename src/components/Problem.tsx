@@ -66,7 +66,7 @@ export default function Problem() {
             <div
               key={title}
               className="flex flex-col items-center text-center p-7 xl:p-8 rounded-2xl
-                bg-white/60 backdrop-blur-sm border border-white/80
+                bg-white/60 backdrop-blur-sm border border-pink-200/500
                 hover:bg-white/80 hover:border-white
                 transition-all duration-300 shadow-lg"
             >

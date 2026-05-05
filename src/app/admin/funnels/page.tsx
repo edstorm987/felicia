@@ -77,7 +77,7 @@ function FunnelModal({ funnel, onClose }: { funnel: Partial<Funnel> | null; onCl
   }
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm p-4 flex items-start justify-center">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-white/80 backdrop-blur-sm p-4 flex items-start justify-center">
       <form onSubmit={submit} className="w-full max-w-2xl bg-pink-50/50 border border-pink-200 rounded-2xl my-6 overflow-hidden">
         <div className="p-5 border-b border-pink-200/50 flex items-center justify-between">
           <h2 className="font-display text-xl text-brand-purple-dark">{isNew ? "New funnel" : "Edit funnel"}</h2>
@@ -195,7 +195,7 @@ function AdminFunnelsPageInner() {
           const totalReached = funnel.steps[0]?.reached ?? 0;
 
           return (
-            <div key={funnel.id} className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+            <div key={funnel.id} className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
               <div className="flex flex-wrap items-center gap-3 px-5 py-4 border-b border-pink-200/50">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">

@@ -144,7 +144,7 @@ function AdminMediaPageInner() {
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {filtered.map(item => (
-            <div key={item.id} className="rounded-2xl border border-white/8 bg-white overflow-hidden group">
+            <div key={item.id} className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden group">
               <div className="relative aspect-square bg-pink-50">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img

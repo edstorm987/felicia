@@ -181,7 +181,7 @@ function SiteTestPageInner() {
       {/* History */}
       {history.length > 0 && (
         <section className="rounded-2xl border border-pink-200 bg-white/[0.02]">
-          <div className="px-4 py-3 border-b border-white/8">
+          <div className="px-4 py-3 border-b border-pink-200/50">
             <p className="text-[11px] tracking-[0.18em] uppercase text-brand-purple-dark/80">History ({history.length})</p>
           </div>
           <ul className="divide-y divide-white/5">
@@ -216,7 +216,7 @@ function ReportView({ report, onReformat, llmAvailable }: { report: SiteAuditRep
   return (
     <article className="rounded-2xl border border-pink-200 bg-white/[0.02] overflow-hidden">
       {/* Scores strip */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 border-b border-white/8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 border-b border-pink-200/50">
         {cats.map(cat => {
           const key = cat === "best-practices" ? "bestPractices" : cat;
           const score = (report.scores as Record<string, number | undefined>)[key];
@@ -225,7 +225,7 @@ function ReportView({ report, onReformat, llmAvailable }: { report: SiteAuditRep
             : score >= 50 ? "text-brand-amber"
             : "text-red-400";
           return (
-            <div key={cat} className="px-4 py-3 border-r border-white/8 last:border-r-0">
+            <div key={cat} className="px-4 py-3 border-r border-pink-200/50 last:border-r-0">
               <p className="text-[10px] uppercase tracking-[0.18em] text-brand-purple-dark/80">{CAT_LABEL[cat]}</p>
               <p className={`font-display text-3xl ${tone}`}>{score ?? "—"}</p>
             </div>
@@ -234,7 +234,7 @@ function ReportView({ report, onReformat, llmAvailable }: { report: SiteAuditRep
       </div>
 
       {/* Core Web Vitals */}
-      <div className="px-4 py-3 border-b border-white/8 grid grid-cols-2 sm:grid-cols-4 gap-3 text-[11px]">
+      <div className="px-4 py-3 border-b border-pink-200/50 grid grid-cols-2 sm:grid-cols-4 gap-3 text-[11px]">
         <Vital label="LCP"  value={report.metrics.lcp} unit="ms" goodMax={2500} okMax={4000} />
         <Vital label="CLS"  value={report.metrics.cls} unit=""    goodMax={0.1}   okMax={0.25} digits={2} />
         <Vital label="TBT"  value={report.metrics.tbt} unit="ms" goodMax={200}   okMax={600} />
@@ -243,7 +243,7 @@ function ReportView({ report, onReformat, llmAvailable }: { report: SiteAuditRep
 
       {/* LLM-formatted report (when available) */}
       {report.llmReportMarkdown ? (
-        <div className="px-4 py-4 border-b border-white/8">
+        <div className="px-4 py-4 border-b border-pink-200/50">
           <div className="flex items-center justify-between mb-3">
             <p className="text-[11px] tracking-[0.18em] uppercase text-cyan-400">No-BS report (Claude {report.llmModel ?? "sonnet-4-6"})</p>
             <button onClick={() => onReformat(report.id)} className="text-[11px] text-brand-purple-dark/80 hover:text-brand-orange">Regenerate</button>
@@ -251,12 +251,12 @@ function ReportView({ report, onReformat, llmAvailable }: { report: SiteAuditRep
           <pre className="text-[12px] text-brand-purple-dark/80 whitespace-pre-wrap font-sans leading-relaxed">{report.llmReportMarkdown}</pre>
         </div>
       ) : llmAvailable && report.status === "succeeded" ? (
-        <div className="px-4 py-3 border-b border-white/8 flex items-center gap-3">
+        <div className="px-4 py-3 border-b border-pink-200/50 flex items-center gap-3">
           <span className="text-[11px] text-brand-purple-dark/80">Claude formatter is configured but no report yet.</span>
           <button onClick={() => onReformat(report.id)} className="text-[11px] px-2.5 py-1 rounded-lg bg-cyan-500/15 text-cyan-400 hover:bg-cyan-500/25">Format now</button>
         </div>
       ) : (
-        <div className="px-4 py-3 border-b border-white/8 text-[11px] text-brand-purple-dark/80">
+        <div className="px-4 py-3 border-b border-pink-200/50 text-[11px] text-brand-purple-dark/80">
           Add an Anthropic key in <Link href="/admin/portal-settings" className="text-brand-orange hover:underline">/admin/portal-settings</Link> to get a Claude-formatted report on every audit.
         </div>
       )}
@@ -268,7 +268,7 @@ function ReportView({ report, onReformat, llmAvailable }: { report: SiteAuditRep
           const findings = report.findings.filter(f => f.category === cat);
           if (findings.length === 0) return null;
           return (
-            <details key={cat} className="rounded-lg border border-white/8 bg-white/[0.02]" open={cat === "performance"}>
+            <details key={cat} className="rounded-lg border border-pink-200/50 bg-white/[0.02]" open={cat === "performance"}>
               <summary className="cursor-pointer px-3 py-2 text-[12px] font-semibold text-brand-purple-dark">
                 {CAT_LABEL[cat]} <span className="text-brand-purple-dark/80 font-normal">({findings.length})</span>
               </summary>

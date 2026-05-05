@@ -69,7 +69,7 @@ export default function GiftCardPurchaseForm({ product }: { product: Product }) 
             </button>
             <Link
               href="/redeem"
-              className="px-5 py-2.5 rounded-xl text-sm font-medium border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 transition-colors"
+              className="px-5 py-2.5 rounded-xl text-sm font-medium border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 transition-colors"
             >
               Check balance
             </Link>

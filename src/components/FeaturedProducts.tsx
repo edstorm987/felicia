@@ -73,7 +73,7 @@ export default function FeaturedProducts() {
             return (
               <div
                 key={product.slug}
-                className={`relative flex flex-col rounded-3xl overflow-hidden border border-white/8 bg-gradient-to-br ${visual.gradient} hover:border-white/16 transition-all duration-300 group`}
+                className={`relative flex flex-col rounded-3xl overflow-hidden border border-pink-200/50 bg-gradient-to-br ${visual.gradient} hover:border-white/16 transition-all duration-300 group`}
               >
                 {/* Badge */}
                 {product.badge && (
@@ -118,7 +118,7 @@ export default function FeaturedProducts() {
                   </ul>
 
                   {/* Price + actions */}
-                  <div className="flex items-center justify-between pt-2 border-t border-white/8">
+                  <div className="flex items-center justify-between pt-2 border-t border-pink-200/50">
                     <div>
                       {product.salePrice ? (
                         <div className="flex items-baseline gap-2">

@@ -194,7 +194,7 @@ export default function ProductVariantsPage() {
       <div className="space-y-3">
         {options.map(option => (
           <div key={option.id} className="rounded-2xl border border-pink-200 bg-white/[0.02]">
-            <div className="px-4 py-3 border-b border-white/8 flex items-center gap-3">
+            <div className="px-4 py-3 border-b border-pink-200/50 flex items-center gap-3">
               <input
                 value={option.name}
                 onChange={e => patchOption(option.id, { name: e.target.value, id: slugify(e.target.value) || option.id })}
@@ -303,7 +303,7 @@ export default function ProductVariantsPage() {
       {/* Variant matrix */}
       {options.length > 0 && (
         <section className="rounded-2xl border border-pink-200 bg-white/[0.02]">
-          <div className="px-4 py-3 border-b border-white/8 flex items-center justify-between">
+          <div className="px-4 py-3 border-b border-pink-200/50 flex items-center justify-between">
             <p className="text-[11px] tracking-[0.18em] uppercase text-brand-purple-dark/80">Variants</p>
             <button onClick={generateMatrix} disabled={!isCustom} className="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-[11px] disabled:opacity-30">
               Generate matrix from options ({options.reduce((acc, o) => acc * Math.max(1, o.values.length), 1)})

@@ -33,7 +33,7 @@ export default function MarketingPage() {
         </p>
       </div>
 
-      <div className="flex gap-1 p-1 rounded-xl bg-white border border-white/8 w-fit">
+      <div className="flex gap-1 p-1 rounded-xl bg-white border border-pink-200/50 w-fit">
         {([
           { id: "sources",    label: "Order sources" },
           { id: "discounts",  label: "Discount codes" },
@@ -81,7 +81,7 @@ function SourcesTab({ orders }: { orders: Order[] }) {
 
   return (
     <div className="space-y-5">
-      <section className="rounded-2xl border border-white/8 bg-white p-5">
+      <section className="rounded-2xl border border-pink-200/50 bg-white p-5">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-sm tracking-wide text-brand-purple-dark/80">Source attribution</h2>
           <button onClick={() => setShowForm(true)} className="text-xs px-3 py-1.5 rounded-lg bg-brand-orange/20 text-brand-orange hover:bg-brand-orange/30">+ Add source</button>
@@ -96,7 +96,7 @@ function SourcesTab({ orders }: { orders: Order[] }) {
         {sources.length === 0 && <p className="text-sm text-brand-purple-dark/80 mt-4">No sources yet.</p>}
       </section>
 
-      <section className="rounded-2xl border border-white/8 bg-white p-5">
+      <section className="rounded-2xl border border-pink-200/50 bg-white p-5">
         <h2 className="text-sm tracking-wide text-brand-purple-dark/80 mb-3">Tracking-link builder</h2>
         <p className="text-xs text-brand-purple-dark/80 mb-3">
           Append <span className="font-mono text-brand-amber">?src=&lt;slug&gt;</span> to any campaign URL. Customers who land via that link are attributed to the matching source — first-touch, persists through checkout.
@@ -115,7 +115,7 @@ function SourceCard({ src, count, revenue }: { src: OrderSource; count: number; 
   const [editing, setEditing] = useState(false);
   if (editing) return <SourceForm initial={src} onClose={() => setEditing(false)} />;
   return (
-    <div className={`p-4 rounded-xl border ${src.archived ? "bg-white/[0.02] border-pink-200/50" : "bg-pink-50 border-white/8"}`}>
+    <div className={`p-4 rounded-xl border ${src.archived ? "bg-white/[0.02] border-pink-200/50" : "bg-pink-50 border-pink-200/50"}`}>
       <div className="flex items-start justify-between gap-3 mb-2">
         <div className="min-w-0">
           <p className="text-sm text-brand-purple-dark truncate">{src.label}</p>
@@ -231,7 +231,7 @@ function DiscountRow({ d, stats }: { d: DiscountCode; stats: { count: number; re
   const expired = d.expiresAt && d.expiresAt < Date.now();
   const usedUp = d.usageLimit && d.uses >= d.usageLimit;
   return (
-    <div className={`p-4 rounded-xl border ${d.archived || expired || usedUp ? "bg-white/[0.02] border-pink-200/50" : "bg-white border-white/8"}`}>
+    <div className={`p-4 rounded-xl border ${d.archived || expired || usedUp ? "bg-white/[0.02] border-pink-200/50" : "bg-white border-pink-200/50"}`}>
       <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto_auto_auto] gap-3 md:items-center">
         <div className="min-w-0">
           <p className="font-mono text-brand-amber text-sm">{d.code}</p>
@@ -357,7 +357,7 @@ function AffiliateCard({ a, stats }: { a: Affiliate; stats: { count: number; rev
   if (editing) return <AffiliateForm initial={a} onClose={() => setEditing(false)} />;
   const owed = Math.max(0, a.earnedTotal - a.paidTotal);
   return (
-    <div className={`p-5 rounded-xl border ${a.archived ? "bg-white/[0.02] border-pink-200/50" : "bg-white border-white/8"}`}>
+    <div className={`p-5 rounded-xl border ${a.archived ? "bg-white/[0.02] border-pink-200/50" : "bg-white border-pink-200/50"}`}>
       <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
         <div>
           <p className="text-sm text-brand-purple-dark">{a.name} {a.archived && <span className="text-[10px] text-brand-purple-dark/80 ml-2">archived</span>}</p>

@@ -86,7 +86,7 @@ export default function PageEditor() {
             className={`text-xs px-3 py-2 rounded-lg border transition-colors ${
               previewOn
                 ? "border-brand-amber/40 bg-brand-amber/15 text-brand-amber"
-                : "border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+                : "border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
             }`}
           >
             {previewOn ? "Preview ON" : "Preview drafts"}
@@ -155,7 +155,7 @@ function SeoScoreCard({ pageId }: { pageId: string }) {
   const top = result.suggestions.slice(0, 3);
 
   return (
-    <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+    <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
       <div className="px-5 py-3 border-b border-pink-200/50 bg-pink-50/50/40 flex items-center justify-between">
         <h2 className="text-xs tracking-[0.22em] uppercase text-brand-purple-dark/80">SEO score</h2>
         <span className="text-[10px] text-brand-purple-dark/80">{result.passed} / {result.total} checks pass</span>
@@ -196,7 +196,7 @@ function gradePalette(g: SeoGrade): { fg: string; bg: string; border: string } {
 
 function SectionEditor({ section }: { section: PageSchema["sections"][number]; pageSchema: PageSchema }) {
   return (
-    <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+    <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
       <div className="px-5 py-3 border-b border-pink-200/50 bg-pink-50/50/40">
         <h2 className="text-xs tracking-[0.22em] uppercase text-brand-purple-dark/80">{section.label}</h2>
       </div>
@@ -404,7 +404,7 @@ function ImageFieldEditor({
       </div>
 
       {picking && (
-        <div className="rounded-lg border border-white/8 bg-pink-50 p-3 max-h-72 overflow-y-auto">
+        <div className="rounded-lg border border-pink-200/50 bg-pink-50 p-3 max-h-72 overflow-y-auto">
           {media.length === 0 ? (
             <p className="text-[11px] text-brand-purple-dark/80 text-center py-4">
               Library is empty. <Link href="/admin/website/media" className="text-brand-orange underline">Open library →</Link>

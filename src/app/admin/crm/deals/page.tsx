@@ -77,7 +77,7 @@ function Inner() {
           <button
             key={s}
             onClick={() => setFilter(filter === s ? "all" : s)}
-            className={`rounded-xl border p-3 text-left transition-colors ${filter === s ? "border-cyan-400/40 bg-cyan-500/10" : "border-white/8 bg-white/[0.02] hover:bg-white/[0.04]"}`}
+            className={`rounded-xl border p-3 text-left transition-colors ${filter === s ? "border-cyan-400/40 bg-cyan-500/10" : "border-pink-200/50 bg-white/[0.02] hover:bg-white/[0.04]"}`}
           >
             <p className="text-[10px] tracking-wider uppercase text-brand-purple-dark/80 mb-1">{s}</p>
             <p className="font-display text-xl tabular-nums text-brand-purple-dark">{totals[s].count}</p>

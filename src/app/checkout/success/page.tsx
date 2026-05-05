@@ -56,7 +56,7 @@ function SuccessContent() {
             <Link href="/account?tab=orders" className="px-6 py-3 rounded-xl bg-brand-orange text-white text-sm font-semibold">
               View order
             </Link>
-            <Link href="/products" className="px-6 py-3 rounded-xl border border-white/15 text-brand-purple-dark/80 text-sm">
+            <Link href="/products" className="px-6 py-3 rounded-xl border border-pink-200 text-brand-purple-dark/80 text-sm">
               Keep browsing
             </Link>
           </div>

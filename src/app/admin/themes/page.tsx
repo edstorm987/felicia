@@ -146,7 +146,7 @@ function ThemesPageInner() {
               {theme.appearance && <span className="text-[10px] uppercase tracking-wider text-brand-purple-dark/80">{theme.appearance}</span>}
               <span className="ml-auto text-[10px] font-mono text-brand-purple-dark/80">{theme.id}</span>
             </summary>
-            <div className="p-4 border-t border-white/8 space-y-3">
+            <div className="p-4 border-t border-pink-200/50 space-y-3">
               <div className="grid grid-cols-2 gap-2">
                 <label className="block">
                   <span className="block text-[10px] tracking-[0.18em] uppercase text-brand-purple-dark/80 mb-1">Name</span>

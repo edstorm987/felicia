@@ -198,7 +198,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                     className={`aspect-square rounded-xl border overflow-hidden transition-all ${
                       activeImage === i
                         ? "border-brand-orange/60"
-                        : "border-pink-200/50 hover:border-white/20"
+                        : "border-pink-200/50 hover:border-pink-300"
                     } bg-gradient-to-br from-brand-purple-muted/60 via-brand-black-card to-brand-purple-dark/60 flex items-center justify-center`}
                   >
                     <span className="font-display text-brand-purple-dark/80 text-xs tracking-widest">0{i + 1}</span>

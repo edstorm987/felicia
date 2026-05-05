@@ -16,9 +16,9 @@ export default function AdminLivechatPage() {
       eyebrow="Visitor messaging"
       title="Live chat"
       description="Reply to visitors who open the chat widget on your storefront. Threads persist so returning visitors see history."
-      actions={<Link href="/admin/livechat/canned" className="text-xs px-3 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30">Canned replies →</Link>}
+      actions={<Link href="/admin/livechat/canned" className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300">Canned replies →</Link>}
     >
-      <section className="rounded-2xl border border-white/8 bg-white p-6 sm:p-8">
+      <section className="rounded-2xl border border-pink-200/50 bg-white p-6 sm:p-8">
         <h2 className="text-[10px] tracking-[0.28em] uppercase text-brand-purple-dark/80 mb-3">Inbox</h2>
         <p className="text-[12px] text-brand-purple-dark/80">No active conversations. Visitors who open the widget on your storefront will appear here.</p>
         <p className="text-[11px] text-brand-purple-dark/80 mt-3">

@@ -391,7 +391,7 @@ function AdminPortalSettingsInner() {
 
 function Card({ title, tip, children, id }: { title: string; tip?: string; children: React.ReactNode; id?: string }) {
   return (
-    <div id={id} className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden scroll-mt-6">
+    <div id={id} className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden scroll-mt-6">
       <div className="px-4 py-3 border-b border-pink-200/50 bg-white/[0.02] flex items-center gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">{title}</p>
         {tip && <Tip text={tip} />}
@@ -446,7 +446,7 @@ function SensitiveField({
           <button
             type="button"
             onClick={() => { setEditing(true); setDraft(""); }}
-            className="text-[11px] px-3 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+            className="text-[11px] px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
           >
             Edit
           </button>
@@ -788,7 +788,7 @@ function SetupChecklist({ settings, backendInfo, setupSite, setupMode }: {
             </div>
             <button
               onClick={() => scrollTo(it.scrollTo)}
-              className="text-[11px] px-3 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 shrink-0"
+              className="text-[11px] px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 shrink-0"
             >
               {it.done ? "Edit" : "Set up"}
             </button>
@@ -843,7 +843,7 @@ function InjectPortalTag({ siteId, githubReady }: { siteId: string; githubReady:
   }
 
   return (
-    <div className="rounded-lg border border-white/8 bg-pink-50/40 px-3 py-2.5 space-y-1.5">
+    <div className="rounded-lg border border-pink-200/50 bg-pink-50/40 px-3 py-2.5 space-y-1.5">
       <div className="flex items-center gap-2 flex-wrap">
         <p className="text-xs font-medium text-brand-purple-dark">Inject Portal tag</p>
         <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/5 text-brand-purple-dark/80 border border-pink-200">PR</span>
@@ -880,13 +880,13 @@ function InjectPortalTag({ siteId, githubReady }: { siteId: string; githubReady:
 function AiConvertButton({ siteId, setupMode }: { siteId: string; setupMode: "existing" | "new" }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="rounded-lg border border-white/8 bg-pink-50/40 px-3 py-2.5 space-y-1.5">
+    <div className="rounded-lg border border-pink-200/50 bg-pink-50/40 px-3 py-2.5 space-y-1.5">
       <div className="flex items-center gap-2 flex-wrap">
         <p className="text-xs font-medium text-brand-purple-dark">Convert to portal-friendly</p>
         <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/5 text-brand-purple-dark/80 border border-pink-200">AI prompt</span>
         <button
           onClick={() => setOpen(true)}
-          className="ml-auto text-[11px] px-3 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+          className="ml-auto text-[11px] px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
         >
           Open prompt
         </button>
@@ -918,12 +918,12 @@ function AiConvertModal({ siteId, setupMode, onClose }: { siteId: string; setupM
   }
 
   return (
-    <div className="fixed inset-0 z-[300] bg-black/70 flex items-center justify-center p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-[300] bg-white/80 flex items-center justify-center p-4" onClick={onClose}>
       <div
         className="bg-pink-50/50 border border-pink-200 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col"
         onClick={e => e.stopPropagation()}
       >
-        <div className="px-5 py-3 border-b border-white/8 flex items-center gap-3">
+        <div className="px-5 py-3 border-b border-pink-200/50 flex items-center gap-3">
           <p className="text-sm font-semibold text-brand-purple-dark">
             {setupMode === "existing" ? "Convert existing website to portal-friendly" : "Scaffold a new portal-friendly website"}
           </p>
@@ -971,7 +971,7 @@ function AiConvertModal({ siteId, setupMode, onClose }: { siteId: string; setupM
                 {copied ? "Copied" : "Copy prompt"}
               </button>
             </div>
-            <pre className="text-[11px] font-mono bg-pink-50 border border-white/8 rounded-lg p-3 overflow-x-auto text-brand-purple-dark/80 whitespace-pre-wrap max-h-72 overflow-y-auto">
+            <pre className="text-[11px] font-mono bg-pink-50 border border-pink-200/50 rounded-lg p-3 overflow-x-auto text-brand-purple-dark/80 whitespace-pre-wrap max-h-72 overflow-y-auto">
 {prompt}
             </pre>
           </div>
@@ -1099,7 +1099,7 @@ function IframeLoginSnippet({ siteId }: { siteId: string }) {
   }
 
   return (
-    <div className="rounded-lg border border-white/8 bg-pink-50/40 px-3 py-2.5 space-y-2">
+    <div className="rounded-lg border border-pink-200/50 bg-pink-50/40 px-3 py-2.5 space-y-2">
       <div className="flex items-center gap-2 flex-wrap">
         <p className="text-xs font-medium text-brand-purple-dark">Embed portal sign-in</p>
         <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/5 text-brand-purple-dark/80 border border-pink-200">chatbot-style widget</span>
@@ -1130,7 +1130,7 @@ function IframeLoginSnippet({ siteId }: { siteId: string }) {
         ))}
       </div>
 
-      <pre className="text-[11px] font-mono bg-pink-50 border border-white/8 rounded-lg p-3 overflow-x-auto text-brand-purple-dark/80 whitespace-pre max-h-48 overflow-y-auto">
+      <pre className="text-[11px] font-mono bg-pink-50 border border-pink-200/50 rounded-lg p-3 overflow-x-auto text-brand-purple-dark/80 whitespace-pre max-h-48 overflow-y-auto">
 {snippet}
       </pre>
 
@@ -1242,7 +1242,7 @@ function MigrationBanner({
 
           {/* Fallback: copy SQL */}
           <div className="relative">
-            <pre className="text-[11px] font-mono bg-pink-50 border border-white/8 rounded-lg p-3 pr-20 overflow-x-auto text-brand-purple-dark/80 whitespace-pre">
+            <pre className="text-[11px] font-mono bg-pink-50 border border-pink-200/50 rounded-lg p-3 pr-20 overflow-x-auto text-brand-purple-dark/80 whitespace-pre">
 {backendInfo.migrationSql}
             </pre>
             <button
@@ -1308,12 +1308,12 @@ function AiPromptModal({ migrationSql, onClose }: {
   }
 
   return (
-    <div className="fixed inset-0 z-[300] bg-black/70 flex items-center justify-center p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-[300] bg-white/80 flex items-center justify-center p-4" onClick={onClose}>
       <div
         className="bg-pink-50/50 border border-pink-200 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col"
         onClick={e => e.stopPropagation()}
       >
-        <div className="px-5 py-3 border-b border-white/8 flex items-center gap-3">
+        <div className="px-5 py-3 border-b border-pink-200/50 flex items-center gap-3">
           <p className="text-sm font-semibold text-brand-purple-dark">Generate migration for your database</p>
           <button onClick={onClose} className="ml-auto text-brand-purple-dark/80 hover:text-brand-purple-dark text-lg leading-none">×</button>
         </div>
@@ -1347,12 +1347,12 @@ function AiPromptModal({ migrationSql, onClose }: {
                 {copied ? "Copied" : "Copy prompt"}
               </button>
             </div>
-            <pre className="text-[11px] font-mono bg-pink-50 border border-white/8 rounded-lg p-3 overflow-x-auto text-brand-purple-dark/80 whitespace-pre-wrap max-h-72 overflow-y-auto">
+            <pre className="text-[11px] font-mono bg-pink-50 border border-pink-200/50 rounded-lg p-3 overflow-x-auto text-brand-purple-dark/80 whitespace-pre-wrap max-h-72 overflow-y-auto">
 {prompt}
             </pre>
           </div>
 
-          <div className="rounded-lg border border-white/8 bg-white/[0.02] px-3 py-2.5 text-[11px] text-brand-purple-dark/80 leading-relaxed">
+          <div className="rounded-lg border border-pink-200/50 bg-white/[0.02] px-3 py-2.5 text-[11px] text-brand-purple-dark/80 leading-relaxed">
             <p className="font-medium text-brand-purple-dark/80 mb-1">What you&apos;ll get back</p>
             <ul className="space-y-1 list-disc list-inside">
               <li>A migration SQL adapted to your engine&apos;s JSON / JSONB / TEXT type for the blob</li>
@@ -1775,7 +1775,7 @@ function CopyableEnvBlock({ label, content }: { label: string; content: string }
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
-      <pre className="text-[11px] font-mono bg-pink-50 border border-white/8 rounded-lg p-3 overflow-x-auto text-brand-purple-dark/80 whitespace-pre">
+      <pre className="text-[11px] font-mono bg-pink-50 border border-pink-200/50 rounded-lg p-3 overflow-x-auto text-brand-purple-dark/80 whitespace-pre">
 {content}
       </pre>
     </div>

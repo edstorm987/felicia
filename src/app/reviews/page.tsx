@@ -110,7 +110,7 @@ export default function ReviewsPage() {
                       className={`px-4 py-1.5 rounded-full text-xs sm:text-sm border transition-all duration-200 ${
                         productFilter === p
                           ? "bg-brand-orange border-brand-orange text-white"
-                          : "bg-transparent border-white/15 text-brand-purple-dark/80 hover:border-brand-orange/50 hover:text-brand-purple-dark"
+                          : "bg-transparent border-pink-200 text-brand-purple-dark/80 hover:border-brand-orange/50 hover:text-brand-purple-dark"
                       }`}
                     >
                       {p}
@@ -128,7 +128,7 @@ export default function ReviewsPage() {
                     className={`px-4 py-1.5 rounded-full text-xs sm:text-sm border transition-all duration-200 ${
                       starFilter === null
                         ? "bg-brand-amber border-brand-amber text-brand-purple-dark"
-                        : "bg-transparent border-white/15 text-brand-purple-dark/80 hover:border-brand-amber/50 hover:text-brand-purple-dark"
+                        : "bg-transparent border-pink-200 text-brand-purple-dark/80 hover:border-brand-amber/50 hover:text-brand-purple-dark"
                     }`}
                   >
                     All
@@ -140,7 +140,7 @@ export default function ReviewsPage() {
                       className={`px-4 py-1.5 rounded-full text-xs sm:text-sm border transition-all duration-200 ${
                         starFilter === s
                           ? "bg-brand-amber border-brand-amber text-brand-purple-dark"
-                          : "bg-transparent border-white/15 text-brand-purple-dark/80 hover:border-brand-amber/50 hover:text-brand-purple-dark"
+                          : "bg-transparent border-pink-200 text-brand-purple-dark/80 hover:border-brand-amber/50 hover:text-brand-purple-dark"
                       }`}
                     >
                       {"★".repeat(s)}
@@ -160,7 +160,7 @@ export default function ReviewsPage() {
                       className={`px-4 py-1.5 rounded-full text-xs sm:text-sm border capitalize transition-all duration-200 ${
                         sortBy === s
                           ? "bg-brand-purple border-brand-purple text-white"
-                          : "bg-transparent border-white/15 text-brand-purple-dark/80 hover:border-brand-purple/50 hover:text-brand-purple-dark"
+                          : "bg-transparent border-pink-200 text-brand-purple-dark/80 hover:border-brand-purple/50 hover:text-brand-purple-dark"
                       }`}
                     >
                       {s}
@@ -204,7 +204,7 @@ export default function ReviewsPage() {
                       &ldquo;{review.quote}&rdquo;
                     </p>
                     {/* Author */}
-                    <div className="flex items-center gap-3 pt-5 border-t border-white/8">
+                    <div className="flex items-center gap-3 pt-5 border-t border-pink-200/50">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-orange to-brand-purple flex items-center justify-center text-sm font-bold text-white shrink-0">
                         {review.name[0]}
                       </div>

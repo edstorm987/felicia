@@ -191,7 +191,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 function Code({ children }: { children: string }) {
   return (
-    <pre className="rounded-lg bg-black/40 border border-pink-200/50 p-4 overflow-x-auto text-[11px] font-mono text-brand-purple-dark/80 leading-relaxed">
+    <pre className="rounded-lg bg-white/80 border border-pink-200/50 p-4 overflow-x-auto text-[11px] font-mono text-brand-purple-dark/80 leading-relaxed">
       {children}
     </pre>
   );

@@ -70,7 +70,7 @@ function AdminShippingPageInner() {
 
       <div className="space-y-4">
         {cfg.zones.map(z => (
-          <div key={z.id} className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+          <div key={z.id} className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
             <div className="px-5 py-3 border-b border-pink-200/50 bg-pink-50/50/40 flex flex-wrap items-center gap-3">
               <input
                 value={z.name}
@@ -126,7 +126,7 @@ function AdminShippingPageInner() {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+    <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
       <div className="px-5 py-3 border-b border-pink-200/50 bg-pink-50/50/40">
         <h2 className="text-xs tracking-[0.22em] uppercase text-brand-purple-dark/80">{title}</h2>
       </div>

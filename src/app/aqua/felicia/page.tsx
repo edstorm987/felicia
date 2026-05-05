@@ -161,7 +161,7 @@ export default function FeliciaPortalPage() {
         <p className="text-[12px] text-brand-purple-dark/80 leading-relaxed mb-3">
           When you split Felicia&apos;s site into its own repo, drop this on any of her routes:
         </p>
-        <pre className="rounded-lg bg-black/40 border border-pink-200/50 p-3 text-[11px] font-mono text-brand-purple-dark/80 overflow-x-auto">
+        <pre className="rounded-lg bg-white/80 border border-pink-200/50 p-3 text-[11px] font-mono text-brand-purple-dark/80 overflow-x-auto">
 {`import EmbeddedPortal from "@/components/EmbeddedPortal";
 
 export default function AdminGate() {

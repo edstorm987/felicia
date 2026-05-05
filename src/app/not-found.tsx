@@ -63,7 +63,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/our-story"
-            className="px-6 py-3 rounded-full border border-pink-200 text-brand-purple-dark/80 text-sm hover:border-white/20 hover:text-brand-purple-dark/80 transition-colors"
+            className="px-6 py-3 rounded-full border border-pink-200 text-brand-purple-dark/80 text-sm hover:border-pink-300 hover:text-brand-purple-dark/80 transition-colors"
           >
             Our story
           </Link>

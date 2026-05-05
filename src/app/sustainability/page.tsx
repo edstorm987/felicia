@@ -244,7 +244,7 @@ export default function Page() {
               </Link>
               <Link
                 href="/ingredients"
-                className="px-7 py-3.5 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-sm font-medium transition-colors"
+                className="px-7 py-3.5 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-sm font-medium transition-colors"
               >
                 Browse ingredients
               </Link>

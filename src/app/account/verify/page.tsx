@@ -79,7 +79,7 @@ function VerifyContent() {
               </p>
               <Link
                 href="/account"
-                className="inline-block px-6 py-3 rounded-xl border border-white/15 text-brand-purple-dark hover:bg-white/[0.04] text-sm font-medium transition-colors"
+                className="inline-block px-6 py-3 rounded-xl border border-pink-200 text-brand-purple-dark hover:bg-white/[0.04] text-sm font-medium transition-colors"
               >
                 Back to log in
               </Link>

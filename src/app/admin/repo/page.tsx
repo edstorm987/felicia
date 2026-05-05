@@ -135,7 +135,7 @@ function RepoBrowserInner() {
       <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-4">
         {/* Tree */}
         <aside className="rounded-2xl border border-pink-200 bg-white/[0.02] overflow-hidden h-[70vh] flex flex-col">
-          <div className="px-3 py-2 border-b border-white/8 text-[11px] font-mono flex items-center gap-1 flex-wrap">
+          <div className="px-3 py-2 border-b border-pink-200/50 text-[11px] font-mono flex items-center gap-1 flex-wrap">
             <button onClick={() => loadTree("")} className={`hover:text-brand-orange ${path ? "text-brand-purple-dark/80" : "text-brand-purple-dark"}`}>
               /
             </button>
@@ -172,7 +172,7 @@ function RepoBrowserInner() {
         <main className="rounded-2xl border border-pink-200 bg-white/[0.02] overflow-hidden h-[70vh] flex flex-col">
           {openFile ? (
             <>
-              <div className="px-3 py-2 border-b border-white/8 flex items-center gap-2">
+              <div className="px-3 py-2 border-b border-pink-200/50 flex items-center gap-2">
                 <p className="text-[11px] font-mono text-brand-purple-dark/80 truncate flex-1">{openFile.path}</p>
                 <input
                   type="text"
@@ -193,7 +193,7 @@ function RepoBrowserInner() {
                 value={edited}
                 onChange={e => setEdited(e.target.value)}
                 spellCheck={false}
-                className="flex-1 bg-black/40 p-3 text-[12px] font-mono leading-relaxed text-brand-purple-dark resize-none focus:outline-none"
+                className="flex-1 bg-white/80 p-3 text-[12px] font-mono leading-relaxed text-brand-purple-dark resize-none focus:outline-none"
               />
             </>
           ) : (

@@ -414,7 +414,7 @@ export default function AdminSitesPage() {
           {sites.length > 1 && (
             <button
               onClick={() => (allOpen ? collapseAll() : expandAll())}
-              className="text-[11px] px-3 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+              className="text-[11px] px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
               title={allOpen ? "Collapse every site row" : "Expand every site row"}
             >
               {allOpen ? "Collapse all" : "Expand all"}
@@ -642,7 +642,7 @@ function SiteRow({ site, isActive, isOpen, variants, heartbeat, now, portalOrigi
   }
 
   return (
-    <div className={`rounded-2xl border overflow-hidden ${isActive ? "border-brand-orange/40 bg-brand-orange/5" : "border-white/8 bg-white"}`}>
+    <div className={`rounded-2xl border overflow-hidden ${isActive ? "border-brand-orange/40 bg-brand-orange/5" : "border-pink-200/50 bg-white"}`}>
       {/* Header row */}
       <div className="w-full px-5 py-4 flex items-center gap-3 hover:bg-white/[0.02]">
         <button
@@ -729,7 +729,7 @@ function SiteRow({ site, isActive, isOpen, variants, heartbeat, now, portalOrigi
 
       {/* Editor */}
       {isOpen && (
-        <div className="border-t border-pink-200/50 p-5 space-y-5 bg-black/10">
+        <div className="border-t border-pink-200/50 p-5 space-y-5 bg-white/80">
           {/* Identity grid — name, tagline, status. Logo + favicon get
               richer widgets below; theme is its own tile picker too. */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -767,7 +767,7 @@ function SiteRow({ site, isActive, isOpen, variants, heartbeat, now, portalOrigi
           </Field>
 
           {/* Site UX toggles (X-1) — cursor + smooth scroll. Off by default. */}
-          <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+          <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
             <div className="px-4 py-2.5 border-b border-pink-200/50 flex items-center gap-2">
               <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">UX touches</p>
               <Tip text="Optional global flourishes — applied site-wide on every page." />
@@ -818,7 +818,7 @@ function SiteRow({ site, isActive, isOpen, variants, heartbeat, now, portalOrigi
           {/* Custom head/body code per site (P-3) — for tracking pixels,
               custom CSS/JS, third-party widgets, etc. Injected by SiteHead
               into every page on this tenant. */}
-          <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+          <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
             <div className="px-4 py-2.5 border-b border-pink-200/50 flex items-center gap-2">
               <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">Custom code</p>
               <Tip text="Injected on every page of this site. Use for analytics tags, custom CSS, third-party widgets — without touching the codebase." />
@@ -848,7 +848,7 @@ function SiteRow({ site, isActive, isOpen, variants, heartbeat, now, portalOrigi
           </div>
 
           {/* Domains */}
-          <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+          <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
             <div className="px-4 py-2.5 border-b border-pink-200/50 flex items-center gap-2">
               <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">Domains</p>
               <Tip text="Every domain that should serve this site. Visitors are routed by hostname (www and non-www are treated identically). The primary domain is used for absolute URLs." />
@@ -991,7 +991,7 @@ function LogoUploader({ site }: { site: Site }) {
   }
 
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
       <div className="px-4 py-2.5 border-b border-pink-200/50 flex items-center gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">Logo</p>
         <Tip text="Used in the navbar and email receipts. Paste a URL or drag-and-drop an image — dropped files are stored inline as a data URI so you can preview without uploading anywhere." />
@@ -1004,7 +1004,7 @@ function LogoUploader({ site }: { site: Site }) {
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
           className={`relative w-full sm:w-48 h-28 rounded-lg border-2 border-dashed flex flex-col items-center justify-center cursor-pointer transition-colors shrink-0 ${
-            dragOver ? "border-brand-orange bg-brand-orange/10" : "border-white/15 hover:border-white/25 bg-pink-50/40"
+            dragOver ? "border-brand-orange bg-brand-orange/10" : "border-pink-200 hover:border-white/25 bg-pink-50/40"
           }`}
           title="Click to pick a file or drag-and-drop here"
         >
@@ -1046,7 +1046,7 @@ function LogoUploader({ site }: { site: Site }) {
             {url && (
               <button
                 onClick={() => updateSite(site.id, { logoUrl: "" })}
-                className="px-2 py-1 rounded-md border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+                className="px-2 py-1 rounded-md border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
               >
                 Clear
               </button>
@@ -1094,7 +1094,7 @@ function FaviconUploader({ site }: { site: Site }) {
     || url.startsWith("/");
 
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
       <div className="px-4 py-2.5 border-b border-pink-200/50 flex items-center gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">Favicon</p>
         <Tip text="Browser tab icon. PNG or .ico, ideally 32×32 or 64×64 (browsers downscale). Use the 'Use logo as favicon' shortcut to copy the logo URL across in one click." />
@@ -1134,7 +1134,7 @@ function FaviconUploader({ site }: { site: Site }) {
                 updateSite(site.id, { faviconUrl: site.logoUrl });
               }}
               disabled={!site.logoUrl}
-              className="px-2 py-1 rounded-md border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 disabled:opacity-40"
+              className="px-2 py-1 rounded-md border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 disabled:opacity-40"
               title={site.logoUrl ? "Copies the logo URL into the favicon slot" : "Set a logo first"}
             >
               Use logo as favicon
@@ -1142,7 +1142,7 @@ function FaviconUploader({ site }: { site: Site }) {
             {url && (
               <button
                 onClick={() => updateSite(site.id, { faviconUrl: "" })}
-                className="px-2 py-1 rounded-md border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+                className="px-2 py-1 rounded-md border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
               >
                 Clear
               </button>
@@ -1200,7 +1200,7 @@ function variantSwatch(v: ThemeVariant): readonly [string, string, string] {
 function ThemeVariantPicker({ site, variants }: { site: Site; variants: ThemeVariant[] }) {
   const activeId = site.themeVariantId ?? "dark";
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
       <div className="px-4 py-2.5 border-b border-pink-200/50 flex items-center gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">Theme variant</p>
         <Tip text="Pick which visual variant this site renders by default. Variants are managed under Theme → Variants and apply across the entire storefront. The selected card has a coloured ring." />
@@ -1293,7 +1293,7 @@ function DomainRow({ domain, isPrimary, cache, onResolved, onMakePrimary, onRemo
         <button
           onClick={check}
           disabled={busy}
-          className="text-[11px] px-2 py-1 rounded-md border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 disabled:opacity-40"
+          className="text-[11px] px-2 py-1 rounded-md border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 disabled:opacity-40"
           title="Resolve this domain via Google's public DNS (no API key, no auth)"
         >
           {busy ? "Checking…" : fresh ? "Re-check" : "Check DNS"}
@@ -1409,7 +1409,7 @@ function PortalSnippet({ site, portalOrigin, heartbeat, now, state }: {
   }
 
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
       <div className="px-4 py-2.5 border-b border-pink-200/50 flex items-center gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">Portal connection</p>
         <Tip text="Drop this single tag into the <head> of your site. It pings the portal so you see a live connection here, and is the same loader that will carry tracking modules and content overrides in the next phases — you only paste it once." />
@@ -1421,7 +1421,7 @@ function PortalSnippet({ site, portalOrigin, heartbeat, now, state }: {
           Once the page loads, the dot above flips to <span className="text-green-400 font-semibold">Live</span>.
         </p>
         <div className="relative">
-          <pre className="text-[11px] font-mono bg-pink-50 border border-white/8 rounded-lg p-3 pr-20 overflow-x-auto text-brand-purple-dark/80">
+          <pre className="text-[11px] font-mono bg-pink-50 border border-pink-200/50 rounded-lg p-3 pr-20 overflow-x-auto text-brand-purple-dark/80">
 {snippet}
           </pre>
           <button
@@ -1581,7 +1581,7 @@ function TrackingBlock({ siteId }: { siteId: string }) {
   const enabledCount = trackers.filter(t => t.enabled && t.value).length;
 
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
       <div className="px-4 py-2.5 border-b border-pink-200/50 flex items-center gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">Tracking & analytics</p>
         <Tip text="Configure GA4, GTM, Meta Pixel, TikTok, Hotjar, Clarity and Plausible once here. The portal tag fetches this config and injects only what's enabled, gated by consent for marketing/analytics. Replaces every per-pixel snippet with a single managed config." />
@@ -1673,7 +1673,7 @@ function TrackerRow({ tracker, onPatch, onDelete }: {
 }) {
   const meta = PROVIDER_BY_ID[tracker.provider];
   return (
-    <div className="rounded-lg border border-white/8 bg-pink-50/40 p-3 space-y-2">
+    <div className="rounded-lg border border-pink-200/50 bg-pink-50/40 p-3 space-y-2">
       <div className="flex flex-wrap items-center gap-2">
         <button
           onClick={() => onPatch({ enabled: !tracker.enabled })}
@@ -1804,7 +1804,7 @@ function EmbedsBlock({ siteId }: { siteId: string }) {
   const enabledCount = list.filter(e => e.enabled && e.value).length;
 
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
       <div className="px-4 py-2.5 border-b border-pink-200/50 flex items-center gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">Embeds</p>
         <Tip text='Drop &lt;PortalEmbed id="support-chat" siteId="..."/&gt; into your React tree wherever you want a chatbot, calendar, video player, or custom HTML widget. Configure the underlying provider here and you can swap Crisp for Intercom (or change a Calendly URL) without touching the host site code.' />
@@ -1880,7 +1880,7 @@ function EmbedRow({ embed, onPatch, onDelete }: {
 }) {
   const meta = EMBED_PROVIDER_BY_ID[embed.provider];
   return (
-    <div className="rounded-lg border border-white/8 bg-pink-50/40 p-3 space-y-2">
+    <div className="rounded-lg border border-pink-200/50 bg-pink-50/40 p-3 space-y-2">
       <div className="flex flex-wrap items-center gap-2">
         <button
           onClick={() => onPatch({ enabled: !embed.enabled })}
@@ -2095,7 +2095,7 @@ function WorkflowBar({ siteId, state, dirty, saving, onApplied }: {
   }
 
   return (
-    <div className="rounded-lg border border-white/8 bg-pink-50/40 p-3 space-y-2">
+    <div className="rounded-lg border border-pink-200/50 bg-pink-50/40 p-3 space-y-2">
       <div className="flex flex-wrap items-center gap-2">
         <span className="text-[10px] uppercase tracking-wider text-brand-purple-dark/80">Workflow</span>
         <span
@@ -2116,7 +2116,7 @@ function WorkflowBar({ siteId, state, dirty, saving, onApplied }: {
           <button
             onClick={handlePreview}
             disabled={!!busy}
-            className="text-[11px] px-3 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 disabled:opacity-40"
+            className="text-[11px] px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 disabled:opacity-40"
             title="Copies a ?portal_preview=draft&pt=… query string. Paste it onto any URL of the host site to preview the draft."
           >
             {busy === "preview" ? "Generating…" : "Preview link"}
@@ -2124,7 +2124,7 @@ function WorkflowBar({ siteId, state, dirty, saving, onApplied }: {
           <button
             onClick={handleDiscard}
             disabled={!canDiscard}
-            className="text-[11px] px-3 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-red-400 hover:border-red-400/40 disabled:opacity-30"
+            className="text-[11px] px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-red-400 hover:border-red-400/40 disabled:opacity-30"
           >
             {busy === "discard" ? "Discarding…" : "Discard"}
           </button>
@@ -2199,7 +2199,7 @@ function WorkflowBar({ siteId, state, dirty, saving, onApplied }: {
                     <button
                       onClick={() => handleRevert(snap.id, label)}
                       disabled={!!busy}
-                      className="text-[10px] px-2 py-0.5 rounded border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 disabled:opacity-40"
+                      className="text-[10px] px-2 py-0.5 rounded border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 disabled:opacity-40"
                     >
                       Revert
                     </button>
@@ -2248,7 +2248,7 @@ function ContentOverridesBlock({ siteId }: { siteId: string }) {
   // longer than a frame or two.
   if (schema === undefined) {
     return (
-      <div className="rounded-xl border border-white/8 bg-white/[0.02] px-4 py-3 text-[11px] text-brand-purple-dark/80">
+      <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] px-4 py-3 text-[11px] text-brand-purple-dark/80">
         Loading content editor…
       </div>
     );
@@ -2349,7 +2349,7 @@ function FlatContentOverridesBlock({ siteId }: { siteId: string }) {
     : [];
 
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
       <div className="px-4 py-2.5 border-b border-pink-200/50 flex items-center gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">Content overrides</p>
         <Tip text='Mark editable regions on your site with data-portal-edit="hero.headline" (and optionally data-portal-type="text|html|image-src|href"). The loader scans every page and auto-discovers keys, then applies whatever value you set here. Changes propagate within ~15 seconds.' />
@@ -2431,7 +2431,7 @@ function FlatContentOverridesBlock({ siteId }: { siteId: string }) {
         ) : (
           <button
             onClick={() => setAdding(true)}
-            className="text-[11px] px-3 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30"
+            className="text-[11px] px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300"
           >
             + Add key manually
           </button>
@@ -2462,7 +2462,7 @@ function OverrideRow({ keyName, type, value, publishedValue, discovered, hasOver
     : "manually added";
   const isModified = value !== (publishedValue ?? "");
   return (
-    <div className={`rounded-lg border bg-pink-50/40 p-3 space-y-2 ${isModified ? "border-brand-amber/35" : "border-white/8"}`}>
+    <div className={`rounded-lg border bg-pink-50/40 p-3 space-y-2 ${isModified ? "border-brand-amber/35" : "border-pink-200/50"}`}>
       <div className="flex flex-wrap items-center gap-2">
         <code className="font-mono text-xs text-brand-purple-dark bg-white/5 px-2 py-1 rounded border border-pink-200 flex-1 min-w-0 truncate" title={keyName}>
           {keyName}
@@ -2591,7 +2591,7 @@ function SchemaGroupedOverrides({ siteId, schema }: {
   }
 
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
       <div className="px-4 py-2.5 border-b border-pink-200/50 flex items-center gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">Content</p>
         <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-brand-orange/15 text-brand-orange font-semibold uppercase tracking-wider">Manifest</span>
@@ -2646,7 +2646,7 @@ function SchemaSectionCard({ section, fields, draft, published, onChange }: {
   onChange: (flatKey: string, value: string, type: OverrideType) => void;
 }) {
   return (
-    <div className="rounded-lg border border-white/8 bg-pink-50/30 overflow-hidden">
+    <div className="rounded-lg border border-pink-200/50 bg-pink-50/30 overflow-hidden">
       <div className="px-3 py-2 border-b border-pink-200/50 bg-white/[0.02]">
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-purple-dark/80">{section}</p>
       </div>
@@ -2710,7 +2710,7 @@ function SchemaFieldRow({ flatKey, field, override, publishedValue, onChange, on
         {isDifferent && (
           <button
             onClick={onReset}
-            className="text-[11px] px-2 py-1 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 shrink-0"
+            className="text-[11px] px-2 py-1 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 shrink-0"
             title={`Reset to default: ${field.default}`}
           >
             Reset
@@ -2831,7 +2831,7 @@ function DiscoveryInbox({ onConfirm }: {
                 <button
                   onClick={() => act(d.host, "rerun")}
                   disabled={busy === d.host}
-                  className="text-[11px] px-3 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 disabled:opacity-40"
+                  className="text-[11px] px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 disabled:opacity-40"
                 >
                   {busy === d.host ? "…" : "Re-probe"}
                 </button>
@@ -2839,7 +2839,7 @@ function DiscoveryInbox({ onConfirm }: {
               <button
                 onClick={() => act(d.host, "dismiss")}
                 disabled={busy === d.host}
-                className="text-[11px] px-3 py-1.5 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 disabled:opacity-40"
+                className="text-[11px] px-3 py-1.5 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 disabled:opacity-40"
               >
                 Dismiss
               </button>
@@ -2924,7 +2924,7 @@ function EmbedAppearanceBlock({ siteId }: { siteId: string }) {
   const brand = t.brandColor || "#FF6B35";
 
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
       <div className="px-4 py-2.5 border-b border-pink-200/50 flex items-center gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">Embed appearance</p>
         <Tip text="Customises the per-site portal sign-in widget — the floating button on host pages and the iframe sign-in card. Same theme drives /portal/embed.js and /embed/login. Saves cloud-side so changes propagate to every host within ~30s." />
@@ -2945,7 +2945,7 @@ function EmbedAppearanceBlock({ siteId }: { siteId: string }) {
                 type="color"
                 value={brand}
                 onChange={e => patch({ brandColor: e.target.value })}
-                className="w-9 h-9 rounded-lg border border-white/15 cursor-pointer bg-transparent shrink-0"
+                className="w-9 h-9 rounded-lg border border-pink-200 cursor-pointer bg-transparent shrink-0"
               />
               <input
                 type="text"
@@ -2996,7 +2996,7 @@ function EmbedAppearanceBlock({ siteId }: { siteId: string }) {
         </div>
 
         {/* Admin-access button */}
-        <div className="rounded-lg border border-white/8 bg-pink-50/40 p-3 space-y-2">
+        <div className="rounded-lg border border-pink-200/50 bg-pink-50/40 p-3 space-y-2">
           <div className="flex items-start gap-3">
             <button
               onClick={() => patch({ showAdminLink: !t.showAdminLink })}
@@ -3124,7 +3124,7 @@ function ChatbotBlock({ siteId }: { siteId: string }) {
   const isBuiltIn = c.provider === "portal-builtin" || c.provider === "custom-gpt";
 
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] overflow-hidden">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] overflow-hidden">
       <div className="px-4 py-2.5 border-b border-pink-200/50 flex items-center gap-2">
         <p className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-purple-dark/80">Chatbot</p>
         <Tip text="Per-site chatbot config. The storefront's built-in bot (FAQ + order tracking) is the default; switch to custom GPT-style to supply your own welcome message + system prompt, or pick a 3rd-party provider (configure that in Embeds above)." />
@@ -3138,7 +3138,7 @@ function ChatbotBlock({ siteId }: { siteId: string }) {
       </div>
       <div className="p-4 space-y-3">
         {/* Enabled toggle */}
-        <div className="rounded-lg border border-white/8 bg-pink-50/40 p-3 flex items-start gap-3">
+        <div className="rounded-lg border border-pink-200/50 bg-pink-50/40 p-3 flex items-start gap-3">
           <button
             onClick={() => patch({ enabled: !c.enabled })}
             className={`mt-0.5 w-9 h-5 rounded-full flex items-center px-0.5 transition-colors shrink-0 ${
@@ -3170,11 +3170,11 @@ function ChatbotBlock({ siteId }: { siteId: string }) {
                   className={`text-left rounded-lg border px-3 py-2.5 transition-colors ${
                     selected
                       ? "border-brand-orange/60 bg-brand-orange/10"
-                      : "border-pink-200 bg-pink-50/30 hover:border-white/20"
+                      : "border-pink-200 bg-pink-50/30 hover:border-pink-300"
                   } ${opt.thirdParty ? "opacity-80" : ""}`}
                 >
                   <div className="flex items-center gap-2">
-                    <span className={`w-3 h-3 rounded-full border ${selected ? "bg-brand-orange border-brand-orange" : "border-white/30"} shrink-0`} />
+                    <span className={`w-3 h-3 rounded-full border ${selected ? "bg-brand-orange border-brand-orange" : "border-pink-300"} shrink-0`} />
                     <span className="text-xs font-semibold text-brand-purple-dark">{opt.label}</span>
                     {opt.thirdParty && (
                       <span className="ml-auto text-[9px] uppercase tracking-wider text-brand-amber/80">3rd party</span>
@@ -3231,7 +3231,7 @@ function ChatbotBlock({ siteId }: { siteId: string }) {
                 type="color"
                 value={accent}
                 onChange={e => patch({ accentColor: e.target.value })}
-                className="w-9 h-9 rounded-lg border border-white/15 cursor-pointer bg-transparent shrink-0"
+                className="w-9 h-9 rounded-lg border border-pink-200 cursor-pointer bg-transparent shrink-0"
               />
               <input
                 type="text"

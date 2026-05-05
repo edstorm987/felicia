@@ -132,7 +132,7 @@ export default function AboutPage() {
                 <a
                   key={s.id}
                   href={`#${s.id}`}
-                  className="px-4 py-2 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-xs sm:text-sm tracking-wide transition-colors"
+                  className="px-4 py-2 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-xs sm:text-sm tracking-wide transition-colors"
                 >
                   {s.label}
                 </a>
@@ -190,7 +190,7 @@ export default function AboutPage() {
                   </Link>
                   <Link
                     href="/products"
-                    className="px-5 py-2.5 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-sm font-medium transition-colors"
+                    className="px-5 py-2.5 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-sm font-medium transition-colors"
                   >
                     Shop the range
                   </Link>
@@ -488,7 +488,7 @@ export default function AboutPage() {
               </Link>
               <Link
                 href="/our-philosophy"
-                className="px-6 py-3 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-sm font-medium transition-colors"
+                className="px-6 py-3 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-sm font-medium transition-colors"
               >
                 Our full philosophy →
               </Link>
@@ -521,7 +521,7 @@ export default function AboutPage() {
               </Link>
               <Link
                 href="/ingredients"
-                className="px-7 py-3.5 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-sm font-medium transition-colors"
+                className="px-7 py-3.5 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-sm font-medium transition-colors"
               >
                 Browse ingredients
               </Link>

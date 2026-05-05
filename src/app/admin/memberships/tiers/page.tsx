@@ -188,7 +188,7 @@ function MembershipTiersPageInner() {
           <button
             type="button"
             onClick={addTier}
-            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-white/15 hover:border-white/30 px-3 py-1.5 transition-colors"
+            className="text-[11px] uppercase tracking-[0.2em] text-brand-purple-dark/80 hover:text-brand-purple-dark rounded-lg border border-pink-200 hover:border-pink-300 px-3 py-1.5 transition-colors"
           >
             + Add tier
           </button>
@@ -206,7 +206,7 @@ function MembershipTiersPageInner() {
       {loading ? (
         <PageSpinner wrap={false} />
       ) : draft.length === 0 ? (
-        <section className="rounded-2xl border border-white/8 bg-white p-8 text-center">
+        <section className="rounded-2xl border border-pink-200/50 bg-white p-8 text-center">
           <p className="text-[13px] text-brand-purple-dark/80">No tiers yet</p>
           <p className="text-[12px] text-brand-purple-dark/80 mt-2 max-w-sm mx-auto leading-relaxed">
             Add at least one tier so visitors have something to join. A free tier is a good first step.
@@ -259,20 +259,20 @@ function TierCard({ tier, index, total, onChange, onDelete, onMove }: TierCardPr
   const benefitsText = tier.benefits.join("\n");
 
   return (
-    <li className="rounded-2xl border border-white/8 bg-white p-5 space-y-4">
+    <li className="rounded-2xl border border-pink-200/50 bg-white p-5 space-y-4">
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0 space-y-1">
           <input
             value={tier.name}
             onChange={e => onChange({ name: e.target.value })}
             placeholder="Tier name"
-            className="w-full bg-transparent text-brand-purple-dark font-display text-xl focus:outline-none focus:border-brand-orange/50 border-b border-transparent hover:border-pink-200 focus:border-white/20 pb-1"
+            className="w-full bg-transparent text-brand-purple-dark font-display text-xl focus:outline-none focus:border-brand-orange/50 border-b border-transparent hover:border-pink-200 focus:border-pink-300 pb-1"
           />
           <input
             value={tier.description ?? ""}
             onChange={e => onChange({ description: e.target.value })}
             placeholder="Short description (optional)"
-            className="w-full bg-transparent text-brand-purple-dark/80 text-sm focus:outline-none border-b border-transparent hover:border-pink-200 focus:border-white/20 pb-1"
+            className="w-full bg-transparent text-brand-purple-dark/80 text-sm focus:outline-none border-b border-transparent hover:border-pink-200 focus:border-pink-300 pb-1"
           />
         </div>
         <div className="flex items-center gap-1 shrink-0">

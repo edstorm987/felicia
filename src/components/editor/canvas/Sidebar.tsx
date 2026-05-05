@@ -38,10 +38,10 @@ export default function Sidebar({ blocks, selectedId, onSelect, onAddTopLevel }:
         aria-label={open ? "Close blocks panel" : "Open blocks panel"}
       >{open ? "×" : "▦"}</button>
 
-      <aside className={`shrink-0 flex flex-col border-r border-white/8 bg-pink-50/50
+      <aside className={`shrink-0 flex flex-col border-r border-pink-200/50 bg-pink-50/50
         ${open ? "fixed inset-y-0 left-0 z-30 w-72" : "hidden"}
         md:relative md:flex md:w-72`}>
-      <div className="flex border-b border-white/8">
+      <div className="flex border-b border-pink-200/50">
         <button
           onClick={() => setTab("library")}
           className={`flex-1 py-2 text-[11px] font-semibold tracking-[0.18em] uppercase ${tab === "library" ? "text-brand-orange border-b-2 border-brand-orange" : "text-brand-purple-dark/80 hover:text-brand-purple-dark"}`}
@@ -87,7 +87,7 @@ function BlockLibrary({ onAdd }: { onAdd: (type: BlockDefinition["type"]) => voi
                     e.dataTransfer.effectAllowed = "copy";
                   }}
                   onClick={() => onAdd(d.type)}
-                  className="flex flex-col items-center gap-1 px-2 py-2.5 rounded-lg border border-white/8 bg-white/[0.02] hover:bg-white/[0.06] hover:border-brand-orange/40 transition-colors text-center cursor-grab active:cursor-grabbing touch-none"
+                  className="flex flex-col items-center gap-1 px-2 py-2.5 rounded-lg border border-pink-200/50 bg-white/[0.02] hover:bg-white/[0.06] hover:border-brand-orange/40 transition-colors text-center cursor-grab active:cursor-grabbing touch-none"
                 >
                   <span className="text-base leading-none">{d.icon}</span>
                   <span className="text-[10px] text-brand-purple-dark/80 leading-tight">{d.label}</span>

@@ -59,7 +59,7 @@ export default function CustomPageEditor() {
           <span className={`text-[11px] px-2 py-0.5 rounded-full font-bold ${page.status === "published" ? "bg-green-400/20 text-green-300" : "bg-white/10 text-brand-purple-dark/80"}`}>{page.status}</span>
           <button
             onClick={() => togglePageHidden(page.id)}
-            className="text-[11px] px-2.5 py-0.5 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark"
+            className="text-[11px] px-2.5 py-0.5 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark"
           >
             {page.hidden ? "👁 Show" : "🫥 Hide"}
           </button>
@@ -110,7 +110,7 @@ export default function CustomPageEditor() {
       </div>
 
       {/* Add block */}
-      <div className="rounded-xl border border-dashed border-white/15 p-3">
+      <div className="rounded-xl border border-dashed border-pink-200 p-3">
         <p className="text-[11px] tracking-widest uppercase text-brand-purple-dark/80 mb-2">Add block</p>
         <div className="flex flex-wrap gap-1.5">
           {BLOCK_TYPES.map(b => (
@@ -126,7 +126,7 @@ export default function CustomPageEditor() {
       </div>
 
       {/* SEO */}
-      <details className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+      <details className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
         <summary className="cursor-pointer px-5 py-3 border-b border-pink-200/50 bg-pink-50/50/40 text-xs tracking-[0.22em] uppercase text-brand-purple-dark/80 list-none">SEO &amp; sharing</summary>
         <div className="p-5 space-y-3 text-sm">
           <Field label="Title">
@@ -160,12 +160,12 @@ export default function CustomPageEditor() {
       </details>
 
       {/* Footer */}
-      <div className="sticky bottom-0 -mx-6 sm:-mx-8 lg:-mx-10 px-6 sm:px-8 lg:px-10 py-4 bg-pink-50/50/95 backdrop-blur border-t border-white/8 flex items-center justify-between gap-3">
+      <div className="sticky bottom-0 -mx-6 sm:-mx-8 lg:-mx-10 px-6 sm:px-8 lg:px-10 py-4 bg-pink-50/50/95 backdrop-blur border-t border-pink-200/50 flex items-center justify-between gap-3">
         <button onClick={remove} className="text-xs text-brand-purple-dark/80 hover:text-brand-orange">Delete page</button>
         <div className="flex items-center gap-2">
           <Link href={`/p/${page.slug}`} target="_blank" className="text-xs px-3 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark">Preview →</Link>
           {page.status === "published"
-            ? <button onClick={() => unpublishPage(page.id)} className="text-xs px-4 py-2 rounded-lg border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark">Unpublish</button>
+            ? <button onClick={() => unpublishPage(page.id)} className="text-xs px-4 py-2 rounded-lg border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark">Unpublish</button>
             : <button onClick={() => publishPage(page.id)} className="text-xs px-5 py-2 rounded-lg bg-brand-orange hover:bg-brand-orange-light text-white font-semibold">Publish</button>
           }
         </div>
@@ -186,7 +186,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 function BlockEditor({ pageId, block, canUp, canDown }: { pageId: string; block: Block; canUp: boolean; canDown: boolean }) {
   const update = (patch: Partial<Block>) => updateBlock(pageId, block.id, patch);
   return (
-    <div className="rounded-xl border border-white/8 bg-white overflow-hidden">
+    <div className="rounded-xl border border-pink-200/50 bg-white overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2 border-b border-pink-200/50 bg-pink-50/50/40">
         <span className="text-[11px] tracking-[0.22em] uppercase text-brand-purple-dark/80">{block.type}</span>
         <div className="flex items-center gap-1 text-[11px]">

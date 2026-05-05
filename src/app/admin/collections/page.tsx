@@ -60,7 +60,7 @@ function AdminCollectionsPageInner() {
       </div>
 
       {/* Built-in */}
-      <section className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6">
+      <section className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6">
         <h2 className="text-xs tracking-[0.22em] uppercase text-brand-purple-dark/80 mb-4">Built-in collections</h2>
         <div className="space-y-2">
           {[
@@ -80,7 +80,7 @@ function AdminCollectionsPageInner() {
       </section>
 
       {/* Custom */}
-      <section className="rounded-2xl border border-white/8 bg-white p-5 sm:p-6">
+      <section className="rounded-2xl border border-pink-200/50 bg-white p-5 sm:p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xs tracking-[0.22em] uppercase text-brand-purple-dark/80">Custom collections</h2>
           <button
@@ -97,7 +97,7 @@ function AdminCollectionsPageInner() {
 
         <div className="space-y-2">
           {collections.filter(c => !BUILT_IN.includes(c.slug)).map(col => (
-            <div key={col.slug} className={`flex items-center justify-between gap-3 px-4 py-3 rounded-xl border ${col.archived ? "border-pink-200/50 opacity-50" : "border-white/8 bg-white/3"}`}>
+            <div key={col.slug} className={`flex items-center justify-between gap-3 px-4 py-3 rounded-xl border ${col.archived ? "border-pink-200/50 opacity-50" : "border-pink-200/50 bg-white/3"}`}>
               <div className="flex-1 min-w-0">
                 <p className="text-sm text-brand-purple-dark">{col.label}</p>
                 <p className="text-[11px] text-brand-purple-dark/80">{col.sub || "—"}</p>
@@ -106,13 +106,13 @@ function AdminCollectionsPageInner() {
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   onClick={() => startEdit(col)}
-                  className="text-xs px-2.5 py-1 rounded border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark"
+                  className="text-xs px-2.5 py-1 rounded border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => handleDelete(col.slug)}
-                  className="text-xs px-2.5 py-1 rounded border border-white/15 text-brand-purple-dark/80 hover:text-brand-orange"
+                  className="text-xs px-2.5 py-1 rounded border border-pink-200 text-brand-purple-dark/80 hover:text-brand-orange"
                 >
                   Delete
                 </button>
@@ -124,8 +124,8 @@ function AdminCollectionsPageInner() {
 
       {/* Edit / new form */}
       {editing && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-md bg-white border border-white/15 rounded-2xl p-6 space-y-4">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-white/80 backdrop-blur-sm">
+          <div className="w-full max-w-md bg-white border border-pink-200 rounded-2xl p-6 space-y-4">
             <h3 className="font-display text-xl text-brand-purple-dark">{isNew ? "New collection" : "Edit collection"}</h3>
 
             <label className="block">
@@ -134,7 +134,7 @@ function AdminCollectionsPageInner() {
                 value={editing.label}
                 onChange={e => setEditing({ ...editing, label: e.target.value })}
                 placeholder="e.g. Gift Sets"
-                className="w-full bg-black/40 border border-pink-200 rounded-lg px-3 py-2.5 text-sm text-brand-purple-dark focus:outline-none focus:border-brand-orange/40 placeholder:text-brand-purple-dark/80"
+                className="w-full bg-white/80 border border-pink-200 rounded-lg px-3 py-2.5 text-sm text-brand-purple-dark focus:outline-none focus:border-brand-orange/40 placeholder:text-brand-purple-dark/80"
               />
             </label>
 
@@ -145,7 +145,7 @@ function AdminCollectionsPageInner() {
                 readOnly={!isNew}
                 onChange={e => isNew && setEditing({ ...editing, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-") })}
                 placeholder="gift-sets"
-                className={`w-full bg-black/40 border border-pink-200 rounded-lg px-3 py-2.5 text-sm text-brand-purple-dark focus:outline-none focus:border-brand-orange/40 placeholder:text-brand-purple-dark/80 ${!isNew ? "opacity-50 cursor-not-allowed" : ""}`}
+                className={`w-full bg-white/80 border border-pink-200 rounded-lg px-3 py-2.5 text-sm text-brand-purple-dark focus:outline-none focus:border-brand-orange/40 placeholder:text-brand-purple-dark/80 ${!isNew ? "opacity-50 cursor-not-allowed" : ""}`}
               />
             </label>
 
@@ -155,11 +155,11 @@ function AdminCollectionsPageInner() {
                 value={editing.sub}
                 onChange={e => setEditing({ ...editing, sub: e.target.value })}
                 placeholder="e.g. Curated ritual bundles"
-                className="w-full bg-black/40 border border-pink-200 rounded-lg px-3 py-2.5 text-sm text-brand-purple-dark focus:outline-none focus:border-brand-orange/40 placeholder:text-brand-purple-dark/80"
+                className="w-full bg-white/80 border border-pink-200 rounded-lg px-3 py-2.5 text-sm text-brand-purple-dark focus:outline-none focus:border-brand-orange/40 placeholder:text-brand-purple-dark/80"
               />
             </label>
 
-            <label className="flex items-center gap-3 p-3 rounded-lg border border-pink-200 cursor-pointer hover:border-white/20">
+            <label className="flex items-center gap-3 p-3 rounded-lg border border-pink-200 cursor-pointer hover:border-pink-300">
               <input
                 type="checkbox"
                 checked={!!editing.archived}

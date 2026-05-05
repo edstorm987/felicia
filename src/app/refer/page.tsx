@@ -129,7 +129,7 @@ export default function ReferPage() {
                       href={`https://wa.me/?text=${encodeURIComponent(shareText)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-xs transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-xs transition-colors"
                     >
                       Share on WhatsApp
                     </a>
@@ -137,7 +137,7 @@ export default function ReferPage() {
                       href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-xs transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-xs transition-colors"
                     >
                       Share on X
                     </a>

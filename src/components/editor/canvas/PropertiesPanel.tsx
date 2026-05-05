@@ -26,7 +26,7 @@ export default function PropertiesPanel({ block, onPatch, onDuplicate, onRemove 
 
   if (!block) {
     return (
-      <aside className="w-72 shrink-0 border-l border-white/8 bg-pink-50/50 p-4 text-[12px] text-brand-purple-dark/80 leading-relaxed hidden lg:block">
+      <aside className="w-72 shrink-0 border-l border-pink-200/50 bg-pink-50/50 p-4 text-[12px] text-brand-purple-dark/80 leading-relaxed hidden lg:block">
         Select a block on the canvas to edit its properties + styles.
       </aside>
     );
@@ -51,12 +51,12 @@ export default function PropertiesPanel({ block, onPatch, onDuplicate, onRemove 
   }
 
   return (
-    <aside className="lg:w-72 lg:shrink-0 lg:border-l lg:border-white/8 lg:relative lg:flex lg:flex-col fixed lg:static bottom-0 left-0 right-0 max-h-[55vh] lg:max-h-none border-t lg:border-t-0 border-white/8 bg-pink-50/50 flex flex-col z-30 overflow-y-auto">
-      <div className="px-3 pt-3 pb-2 border-b border-white/8">
+    <aside className="lg:w-72 lg:shrink-0 lg:border-l lg:border-pink-200/50 lg:relative lg:flex lg:flex-col fixed lg:static bottom-0 left-0 right-0 max-h-[55vh] lg:max-h-none border-t lg:border-t-0 border-pink-200/50 bg-pink-50/50 flex flex-col z-30 overflow-y-auto">
+      <div className="px-3 pt-3 pb-2 border-b border-pink-200/50">
         <p className="text-[10px] tracking-[0.2em] uppercase text-brand-purple-dark/80">{def?.icon} {def?.label ?? block.type}</p>
         <p className="text-[10px] font-mono text-brand-purple-dark/80 mt-0.5">{block.id}</p>
       </div>
-      <div className="flex border-b border-white/8">
+      <div className="flex border-b border-pink-200/50">
         <button onClick={() => setTab("props")}  className={tabClass(tab === "props")}>Props</button>
         <button onClick={() => setTab("styles")} className={tabClass(tab === "styles")}>Styles</button>
         <button onClick={() => setTab("a11y")}   className={tabClass(tab === "a11y")}>A11y</button>
@@ -76,7 +76,7 @@ export default function PropertiesPanel({ block, onPatch, onDuplicate, onRemove 
         {tab === "split" && <SplitTestEditor block={block} onPatch={onPatch} fields={def?.fields ?? []} />}
         {tab === "code" && <BlockCodeEditor block={block} onPatch={onPatch} />}
       </div>
-      <div className="p-3 border-t border-white/8 flex gap-2">
+      <div className="p-3 border-t border-pink-200/50 flex gap-2">
         <button onClick={onDuplicate} className="flex-1 py-1.5 px-2 rounded-lg border border-pink-200 hover:bg-white/5 text-[11px] text-brand-purple-dark/80 hover:text-brand-purple-dark">Duplicate</button>
         <button onClick={onRemove} className="flex-1 py-1.5 px-2 rounded-lg border border-red-500/20 text-red-400/80 hover:bg-red-500/10 hover:text-red-400 text-[11px]">Delete</button>
       </div>
@@ -169,14 +169,14 @@ function SplitTestEditor({ block, onPatch, fields }: { block: Block; onPatch: (p
         const variants = variantsByGroup[group.id] ?? [];
         return (
           <div key={group.id} className="rounded-lg border border-pink-200 bg-white/[0.03] overflow-hidden">
-            <div className="px-3 py-2 border-b border-white/8 flex items-center gap-2">
+            <div className="px-3 py-2 border-b border-pink-200/50 flex items-center gap-2">
               <p className="text-[11px] font-semibold text-brand-purple-dark truncate flex-1">{group.name}</p>
               <span className={`text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded-full ${splitTestStatusTone(group.status)}`}>{group.status}</span>
               <button onClick={() => removeFromGroup(group.id)} className="text-[10px] text-brand-purple-dark/80 hover:text-red-400">Remove</button>
             </div>
             <div className="p-2 space-y-1.5">
               {/* Control row — read-only (just the base block) */}
-              <div className="rounded border border-pink-200/50 bg-black/30 p-2 text-[10px] text-brand-purple-dark/80">
+              <div className="rounded border border-pink-200/50 bg-white/80 p-2 text-[10px] text-brand-purple-dark/80">
                 <p className="font-mono">A — control (current props)</p>
               </div>
               {variants.map(v => (
@@ -335,7 +335,7 @@ function BlockCodeEditor({ block, onPatch }: { block: Block; onPatch: (patch: Pa
         onChange={e => setText(e.target.value)}
         onBlur={commit}
         spellCheck={false}
-        className="w-full h-80 bg-black/40 border border-pink-200 rounded-lg p-2 text-[11px] text-brand-purple-dark font-mono leading-relaxed focus:outline-none focus:border-brand-orange/50"
+        className="w-full h-80 bg-white/80 border border-pink-200 rounded-lg p-2 text-[11px] text-brand-purple-dark font-mono leading-relaxed focus:outline-none focus:border-brand-orange/50"
       />
       {error && <p className="text-[11px] text-red-400">JSON: {error}</p>}
       <div className="flex items-center justify-between text-[10px] text-brand-purple-dark/80">

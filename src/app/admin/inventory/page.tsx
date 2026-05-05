@@ -66,7 +66,7 @@ function AdminInventoryPageInner() {
         Set a custom low-stock threshold per SKU (the &quot;Low at&quot; column). Toggle <span className="text-brand-amber">Unlimited</span> for digital goods, gift cards or made-to-order items so they never go sold-out.
       </div>
 
-      <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+      <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
         <div className="hidden md:grid grid-cols-[1fr_140px_80px_80px_80px_80px_100px_140px] gap-3 px-5 py-3 text-[10px] tracking-[0.22em] uppercase text-brand-purple-dark/80 border-b border-pink-200/50">
           <span>Product</span>
           <span>SKU</span>
@@ -103,7 +103,7 @@ function AdminInventoryPageInner() {
                     value={i.lowAt}
                     disabled={i.unlimited}
                     onChange={e => setLowAt(i.sku, parseInt(e.target.value || "0", 10))}
-                    className="md:text-right text-sm text-brand-purple-dark bg-transparent border-b border-white/15 focus:outline-none focus:border-brand-orange/50 w-16 md:w-full disabled:opacity-30"
+                    className="md:text-right text-sm text-brand-purple-dark bg-transparent border-b border-pink-200 focus:outline-none focus:border-brand-orange/50 w-16 md:w-full disabled:opacity-30"
                   />
                   <label className="flex md:justify-center items-center gap-2 cursor-pointer">
                     <input
@@ -115,9 +115,9 @@ function AdminInventoryPageInner() {
                     <span className="md:hidden text-xs text-brand-purple-dark/80">Unlimited</span>
                   </label>
                   <div className="flex items-center md:justify-end gap-1">
-                    <button onClick={() => bump(i.sku, -1)} disabled={i.unlimited} className="w-8 h-8 rounded border border-pink-200 text-brand-purple-dark/80 hover:border-white/30 disabled:opacity-30">−</button>
-                    <button onClick={() => bump(i.sku, +1)} disabled={i.unlimited} className="w-8 h-8 rounded border border-pink-200 text-brand-purple-dark/80 hover:border-white/30 disabled:opacity-30">+</button>
-                    <button onClick={() => bump(i.sku, +10)} disabled={i.unlimited} className="px-2 h-8 rounded border border-pink-200 text-[11px] text-brand-purple-dark/80 hover:border-white/30 disabled:opacity-30">+10</button>
+                    <button onClick={() => bump(i.sku, -1)} disabled={i.unlimited} className="w-8 h-8 rounded border border-pink-200 text-brand-purple-dark/80 hover:border-pink-300 disabled:opacity-30">−</button>
+                    <button onClick={() => bump(i.sku, +1)} disabled={i.unlimited} className="w-8 h-8 rounded border border-pink-200 text-brand-purple-dark/80 hover:border-pink-300 disabled:opacity-30">+</button>
+                    <button onClick={() => bump(i.sku, +10)} disabled={i.unlimited} className="px-2 h-8 rounded border border-pink-200 text-[11px] text-brand-purple-dark/80 hover:border-pink-300 disabled:opacity-30">+10</button>
                   </div>
                 </div>
               </div>

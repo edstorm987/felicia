@@ -334,7 +334,7 @@ export default function EditorPage() {
     <div className="fixed inset-0 flex flex-col bg-pink-50">
       <TouchDndProvider />
       {/* Top bar */}
-      <header className="h-12 shrink-0 flex items-center gap-2 px-3 border-b border-white/8 bg-pink-50/50">
+      <header className="h-12 shrink-0 flex items-center gap-2 px-3 border-b border-pink-200/50 bg-pink-50/50">
         <button onClick={() => router.push(`/admin/sites/${siteId}/pages`)} className="text-[12px] text-brand-purple-dark/80 hover:text-brand-purple-dark">← Pages</button>
         <span className="mx-1 text-brand-purple-dark/80">/</span>
         <input
@@ -548,7 +548,7 @@ function TextRow({ block, onPatch, onPatchStyles }: { block: Block; onPatch: (id
   if (!meta) return null;
 
   return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] p-3">
+    <div className="rounded-xl border border-pink-200/50 bg-white/[0.02] p-3">
       <div className="flex items-baseline justify-between gap-2 mb-1.5">
         <p className="text-[10px] uppercase tracking-[0.18em] text-brand-purple-dark/80">{meta.label}</p>
         <p className="text-[10px] text-brand-purple-dark/80 font-mono">{block.type}</p>
@@ -668,7 +668,7 @@ function SeoPanel({ page, onPageMutate }: { page: EditorPage; onPageMutate: (pat
   }
   const inputClass = "w-full bg-white/5 border border-pink-200 rounded-lg px-2.5 py-1.5 text-[12px] text-brand-purple-dark placeholder:text-brand-purple-dark/80 focus:outline-none focus:border-brand-orange/50";
   return (
-    <div className="rounded-2xl border border-white/8 bg-pink-50/50 p-3 space-y-3">
+    <div className="rounded-2xl border border-pink-200/50 bg-pink-50/50 p-3 space-y-3">
       <p className="text-[10px] tracking-[0.18em] uppercase text-brand-purple-dark/80">SEO + meta</p>
       <label className="block">
         <span className="block text-[10px] uppercase tracking-[0.18em] text-brand-purple-dark/80 mb-1">Title (overrides page title)</span>
@@ -782,8 +782,8 @@ function CodeView({
   return (
     <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-3 gap-3 p-3 overflow-y-auto bg-pink-50">
       {/* Block tree */}
-      <div className="lg:col-span-2 flex flex-col rounded-2xl border border-white/8 bg-pink-50/50 overflow-hidden">
-        <div className="px-3 py-2 border-b border-white/8 flex items-center justify-between">
+      <div className="lg:col-span-2 flex flex-col rounded-2xl border border-pink-200/50 bg-pink-50/50 overflow-hidden">
+        <div className="px-3 py-2 border-b border-pink-200/50 flex items-center justify-between">
           <p className="text-[10px] tracking-[0.18em] uppercase text-brand-purple-dark/80">Page block tree (JSON)</p>
           {treeError && <span className="text-[10px] text-red-400">{treeError}</span>}
         </div>
@@ -794,7 +794,7 @@ function CodeView({
           spellCheck={false}
           className="flex-1 bg-transparent p-3 text-[11px] font-mono leading-relaxed text-brand-purple-dark resize-none focus:outline-none"
         />
-        <div className="px-3 py-2 border-t border-white/8 flex items-center justify-between text-[10px] text-brand-purple-dark/80">
+        <div className="px-3 py-2 border-t border-pink-200/50 flex items-center justify-between text-[10px] text-brand-purple-dark/80">
           <span>Saves on blur. Use this to hand-wire what the visual editor can&apos;t express.</span>
           <button onClick={commitTree} className="px-2 py-1 rounded bg-brand-orange/20 text-brand-orange hover:bg-brand-orange/30">Apply</button>
         </div>
@@ -817,7 +817,7 @@ function CodeView({
           onChange={v => onPageMutate({ customFoot: v })}
           height="h-48"
         />
-        <div className="rounded-2xl border border-white/8 bg-pink-50/50 p-3 text-[11px] text-brand-purple-dark/80 leading-relaxed">
+        <div className="rounded-2xl border border-pink-200/50 bg-pink-50/50 p-3 text-[11px] text-brand-purple-dark/80 leading-relaxed">
           <p className="font-semibold text-brand-purple-dark/80 mb-1">Tip — clean output</p>
           <p>The host site renders only the resting block tree via <code className="font-mono text-brand-purple-dark/80">&lt;PortalPageRenderer /&gt;</code>. None of the editor chrome (selection rings, drag handles, properties panel) ships to visitors — just the blocks plus this code.</p>
         </div>
@@ -830,8 +830,8 @@ function CodePane({ label, help, value, onChange, height }: { label: string; hel
   const [text, setText] = useState(value);
   useEffect(() => { setText(value); }, [value]);
   return (
-    <div className="rounded-2xl border border-white/8 bg-pink-50/50 overflow-hidden flex flex-col">
-      <div className="px-3 py-2 border-b border-white/8">
+    <div className="rounded-2xl border border-pink-200/50 bg-pink-50/50 overflow-hidden flex flex-col">
+      <div className="px-3 py-2 border-b border-pink-200/50">
         <p className="text-[10px] tracking-[0.18em] uppercase text-brand-purple-dark/80">{label}</p>
         <p className="text-[10px] text-brand-purple-dark/80 mt-0.5">{help}</p>
       </div>

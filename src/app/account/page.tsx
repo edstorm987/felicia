@@ -193,7 +193,7 @@ function AuthForm({ onLogin }: { onLogin: (s: Session) => void }) {
 
       {/* Social proof */}
       {cfg.showSocialProof && cfg.socialProofText && (
-        <p className="text-xs text-brand-purple-dark/80 bg-white/4 border border-white/8 rounded-lg px-4 py-2.5 mb-6 text-center">
+        <p className="text-xs text-brand-purple-dark/80 bg-white/4 border border-pink-200/50 rounded-lg px-4 py-2.5 mb-6 text-center">
           ⭐ {cfg.socialProofText}
         </p>
       )}
@@ -222,7 +222,7 @@ function AuthForm({ onLogin }: { onLogin: (s: Session) => void }) {
           type="button"
           onClick={handleGoogle}
           disabled={busy !== null}
-          className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl border border-white/15 bg-white hover:bg-white/[0.04] disabled:opacity-50 text-sm font-medium text-brand-purple-dark transition-colors"
+          className="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl border border-pink-200 bg-white hover:bg-white/[0.04] disabled:opacity-50 text-sm font-medium text-brand-purple-dark transition-colors"
         >
           <GoogleIcon />
           {busy === "google" ? "Connecting…" : isSignIn ? "Continue with Google" : "Sign up with Google"}
@@ -278,7 +278,7 @@ function AuthForm({ onLogin }: { onLogin: (s: Session) => void }) {
 
       {/* Footer links */}
       {cfg.footerLinks.length > 0 && (
-        <div className="flex flex-wrap gap-4 justify-center mt-4 pt-4 border-t border-white/8">
+        <div className="flex flex-wrap gap-4 justify-center mt-4 pt-4 border-t border-pink-200/50">
           {cfg.footerLinks.map(l => (
             <Link key={l.href} href={l.href} className="text-xs text-brand-purple-dark/80 hover:text-brand-purple-dark transition-colors">
               {l.label}
@@ -287,7 +287,7 @@ function AuthForm({ onLogin }: { onLogin: (s: Session) => void }) {
         </div>
       )}
 
-      <div className="mt-6 pt-6 border-t border-white/8">
+      <div className="mt-6 pt-6 border-t border-pink-200/50">
         <Link
           href="/admin"
           className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border text-sm font-medium transition-all"
@@ -427,7 +427,7 @@ function Dashboard({ user, initialTab, onLogout, onRefresh }: {
             </div>
 
             {/* Tab bar */}
-            <div className="flex gap-1 mt-8 p-1 bg-white border border-white/8 rounded-xl w-fit">
+            <div className="flex gap-1 mt-8 p-1 bg-white border border-pink-200/50 rounded-xl w-fit">
               {([
                 { id: "orders",    label: "Orders" },
                 { id: "affiliate", label: "Affiliate Dashboard" },
@@ -676,20 +676,20 @@ function AffiliateTab({ user }: { user: User }) {
           <a
             href={`https://wa.me/?text=${encodeURIComponent(shareText)}`}
             target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-xs transition-colors"
+            className="flex items-center gap-2 px-4 py-2 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-xs transition-colors"
           >
             Share on WhatsApp
           </a>
           <a
             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`}
             target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-xs transition-colors"
+            className="flex items-center gap-2 px-4 py-2 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-xs transition-colors"
           >
             Share on X
           </a>
           <a
             href={`mailto:?subject=You need to try this&body=${encodeURIComponent(shareText)}`}
-            className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-white/30 text-xs transition-colors"
+            className="flex items-center gap-2 px-4 py-2 rounded-full border border-pink-200 text-brand-purple-dark/80 hover:text-brand-purple-dark hover:border-pink-300 text-xs transition-colors"
           >
             Share by Email
           </a>
@@ -749,7 +749,7 @@ function PrivacyTab() {
   return (
     <div className="space-y-6">
       {/* Cookie preferences */}
-      <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+      <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
         <div className="px-6 py-4 border-b border-pink-200/50">
           <h3 className="font-display text-lg text-brand-purple-dark">Cookie preferences</h3>
           <p className="text-sm text-brand-purple-dark/80 mt-1">Control which cookies are active on your account.</p>
@@ -762,7 +762,7 @@ function PrivacyTab() {
               { key: "analytics", label: "Analytics", desc: "Usage patterns to improve the site." },
               { key: "marketing", label: "Marketing", desc: "Personalised ads on social platforms." },
             ].map(cat => (
-              <div key={cat.key} className="rounded-xl border border-white/8 p-3">
+              <div key={cat.key} className="rounded-xl border border-pink-200/50 p-3">
                 <p className="font-medium text-brand-purple-dark text-xs mb-0.5">{cat.label}</p>
                 <p className="text-[11px] text-brand-purple-dark/80 leading-relaxed">{cat.desc}</p>
               </div>
@@ -780,7 +780,7 @@ function PrivacyTab() {
       </div>
 
       {/* Data rights */}
-      <div className="rounded-2xl border border-white/8 bg-white overflow-hidden">
+      <div className="rounded-2xl border border-pink-200/50 bg-white overflow-hidden">
         <div className="px-6 py-4 border-b border-pink-200/50">
           <h3 className="font-display text-lg text-brand-purple-dark">Your data rights (GDPR)</h3>
           <p className="text-sm text-brand-purple-dark/80 mt-1">Download or delete data we hold about you in this browser.</p>
@@ -808,7 +808,7 @@ function PrivacyTab() {
       </div>
 
       {/* Contact */}
-      <div className="rounded-2xl border border-white/8 bg-white px-6 py-5">
+      <div className="rounded-2xl border border-pink-200/50 bg-white px-6 py-5">
         <p className="text-sm font-medium text-brand-purple-dark mb-1">Questions about your data?</p>
         <p className="text-sm text-brand-purple-dark/80 leading-relaxed">
           Email <a href="mailto:privacy@luvandker.com" className="text-brand-orange hover:underline">privacy@luvandker.com</a> — we respond within 72 hours.
