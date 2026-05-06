@@ -3,23 +3,23 @@
 const ISSUES = [
   {
     icon: "⚗️",
-    title: "Hormone disruptors",
-    body: "Parabens, phthalates, and synthetic fragrances mimic hormones in your body — quietly undermining the balance that keeps you clear, calm, and energised.",
+    title: "Unnecessary complexity",
+    body: "The modern industry has normalized complex synthetic formulas. But many artificial additives—like parabens and phthalates—can disrupt the delicate balance your skin naturally maintains.",
   },
   {
     icon: "🧪",
-    title: "Stripping your barrier",
-    body: "SLS and artificial preservatives don't just clean — they strip the skin barrier that protects you, leaving it more vulnerable with every wash.",
+    title: "Harsh cleansing agents",
+    body: "Common foaming agents like SLS are incredibly effective at removing dirt, but they also strip the essential lipid barrier that protects your skin from the world.",
   },
   {
     icon: "🏭",
-    title: "Engineered for profit",
-    body: "Mass-market soaps are formulated for shelf life and margin. Every ingredient is chosen for cost — not for what it actually does to your body.",
+    title: "Prioritizing shelf life",
+    body: "When products are manufactured for global distribution, ingredients are often chosen to extend shelf life for years, rather than to maximize the immediate benefit to your skin.",
   },
   {
     icon: "🚫",
-    title: "Hidden by design",
-    body: "\"Fragrance\" can legally conceal hundreds of undisclosed chemicals. It's not an oversight — it's a deliberate loophole that keeps you in the dark.",
+    title: "The 'fragrance' label",
+    body: "Current regulations allow hundreds of undisclosed chemical compounds to be listed simply as 'fragrance'. We believe you have a right to know exactly what you are absorbing.",
   },
 ];
 
@@ -35,11 +35,11 @@ export default function Problem() {
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-14 sm:mb-16">
           <span className="inline-block text-xs font-semibold tracking-[0.28em] uppercase text-purple-600 mb-4">
-            The problem
+            The industry standard
           </span>
           <h2 className="font-display font-bold text-brand-purple-dark leading-[1.05] mb-6
             text-3xl sm:text-4xl xl:text-5xl max-w-2xl mx-auto drop-shadow-sm">
-            They called it{" "}
+            Rethinking what we call{" "}
             <span
               className="italic"
               style={{
@@ -50,13 +50,10 @@ export default function Problem() {
               }}
             >
               care.
-            </span>{" "}
-            It wasn&apos;t.
+            </span>
           </h2>
           <p className="text-brand-purple-dark/80 text-base sm:text-lg max-w-2xl leading-relaxed">
-            Mass-market brands have spent decades loading our skin with sulphates, phthalates,
-            and synthetic chemicals hidden behind the word &ldquo;fragrance.&rdquo; Your skin
-            deserves better than that.
+            For decades, the standard for daily care has been defined by mass production—relying on artificial preservatives, stripping agents, and undisclosed fragrances to keep costs low and shelf lives long.
           </p>
         </div>
 
