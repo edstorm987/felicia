@@ -1,5 +1,7 @@
 "use client";
 
+import { useScrollReveal, revealStyle, staggerStyle } from "@/hooks/useScrollReveal";
+
 const OPPORTUNITIES = [
   {
     icon: "🌿",
@@ -58,12 +60,16 @@ const OPPORTUNITIES = [
 ];
 
 export default function Opportunities() {
+  const header = useScrollReveal(0.2);
+  const cards = useScrollReveal(0.1);
+  const quote = useScrollReveal(0.2);
+
   return (
     <section id="opportunities" className="w-full py-20 sm:py-24 lg:py-32 bg-white">
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
 
         {/* Header */}
-        <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
+        <div ref={header.ref} style={revealStyle(header.visible)} className="flex flex-col items-center text-center mb-12 sm:mb-16">
           <span className="inline-block text-xs font-semibold tracking-[0.28em] uppercase text-brand-orange mb-4">
             What&apos;s in it for you
           </span>
@@ -83,11 +89,12 @@ export default function Opportunities() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-6 mb-12">
-          {OPPORTUNITIES.map(({ icon, label, title, body, color, border, accent }) => (
+        <div ref={cards.ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-6 mb-12">
+          {OPPORTUNITIES.map(({ icon, label, title, body, color, border, accent }, i) => (
             <div
               key={title}
-              className={`flex flex-col p-6 xl:p-7 rounded-2xl bg-gradient-to-br ${color} border ${border} hover:shadow-md transition-all duration-300`}
+              style={staggerStyle(cards.visible, i)}
+              className={`flex flex-col p-6 xl:p-7 rounded-2xl bg-gradient-to-br ${color} border ${border} hover:shadow-md transition-shadow duration-300`}
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-xl border border-gray-100">
@@ -104,7 +111,7 @@ export default function Opportunities() {
         </div>
 
         {/* Pull quote */}
-        <div className="max-w-3xl mx-auto text-center">
+        <div ref={quote.ref} style={revealStyle(quote.visible, 200)} className="max-w-3xl mx-auto text-center">
           <div className="inline-block bg-white rounded-3xl shadow-sm border border-gray-100 px-8 py-8 sm:px-12">
             <p className="font-display text-xl sm:text-2xl text-brand-purple-dark leading-relaxed mb-4">
               &ldquo;I made this soap because I couldn&apos;t find anything clean enough for my own

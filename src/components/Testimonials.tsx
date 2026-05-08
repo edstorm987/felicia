@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useScrollReveal, revealStyle } from "@/hooks/useScrollReveal";
 import { REVIEWS, type Review } from "@/lib/reviews";
 import { getGlobalReviews, onReviewsChange } from "@/lib/admin/reviews";
 import { useContent } from "@/lib/useContent";
@@ -183,12 +184,16 @@ export default function Testimonials() {
 
   const allReviews = [...REVIEWS, ...extraReviews];
 
+  const headerReveal = useScrollReveal(0.2);
+  const statsReveal = useScrollReveal(0.15);
+  const reviewsReveal = useScrollReveal(0.1);
+
   return (
-    <section id="testimonials" className="w-full py-20 sm:py-24 lg:py-32 2xl:py-40 bg-white overflow-hidden">
+    <section id="testimonials" className="w-full py-20 sm:py-24 lg:py-32 2xl:py-40 bg-white overflow-hidden scroll-mt-24 lg:scroll-mt-32">
       <div className="w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
 
         {/* Header */}
-        <div className="flex flex-col items-center text-center mb-10 sm:mb-12">
+        <div ref={headerReveal.ref} style={revealStyle(headerReveal.visible)} className="flex flex-col items-center text-center mb-10 sm:mb-12">
           <div className="flex items-center gap-3 mb-5">
             <div className="adinkra-line w-8 sm:w-10" />
             <span className="text-xs tracking-[0.28em] uppercase text-brand-purple-light">{eyebrow}</span>
@@ -204,7 +209,7 @@ export default function Testimonials() {
         </div>
 
         {/* Trust strip */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded-2xl bg-gray-200 mb-14 sm:mb-16">
+        <div ref={statsReveal.ref} style={revealStyle(statsReveal.visible, 150)} className="grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded-2xl bg-gray-200 mb-14 sm:mb-16">
           {[
             { big: stat1Big, small: stat1Small },
             { big: stat2Big, small: stat2Small },
@@ -221,7 +226,7 @@ export default function Testimonials() {
         </div>
 
         {/* Verified review cards — two auto-scrolling rows in opposite directions */}
-        <div className="flex flex-col items-center text-center mb-8 sm:mb-10">
+        <div ref={reviewsReveal.ref} style={revealStyle(reviewsReveal.visible, 200)} className="flex flex-col items-center text-center mb-8 sm:mb-10">
           <span className="text-xs tracking-[0.28em] uppercase text-brand-orange mb-3">Verified reviews</span>
           <h3 className="font-display font-bold text-brand-purple-dark text-2xl sm:text-3xl xl:text-4xl">
             Felt by those who know

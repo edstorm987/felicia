@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useScrollReveal, revealStyle, staggerStyle } from "@/hooks/useScrollReveal";
 
 const INGREDIENTS = [
   { name: "Plantain ash", region: "Ashanti Region", benefit: "Natural alkali — deep cleanses without stripping" },
@@ -21,6 +22,11 @@ const TAGS = [
 ];
 
 export default function Solution() {
+  const imageReveal = useScrollReveal(0.15);
+  const copyReveal = useScrollReveal(0.15);
+  const ingredientsHeader = useScrollReveal(0.2);
+  const ingredientsGrid = useScrollReveal(0.1);
+
   return (
     <section id="solution" className="w-full py-20 sm:py-24 lg:py-32 bg-white">
       <div className="w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
@@ -29,7 +35,7 @@ export default function Solution() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
 
           {/* Image panel */}
-          <div className="relative flex items-center justify-center order-last lg:order-first">
+          <div ref={imageReveal.ref} style={revealStyle(imageReveal.visible)} className="relative flex items-center justify-center order-last lg:order-first">
             <div className="relative w-full max-w-md aspect-square">
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-brand-amber/15 via-brand-orange/8 to-brand-cream" />
               <div className="relative z-10 w-full h-full p-8">
@@ -52,7 +58,7 @@ export default function Solution() {
           </div>
 
           {/* Copy */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+          <div ref={copyReveal.ref} style={revealStyle(copyReveal.visible, 150)} className="flex flex-col items-center lg:items-start text-center lg:text-left">
             <span className="inline-block text-xs font-semibold tracking-[0.28em] uppercase text-brand-orange-dark mb-4">
               The answer
             </span>
@@ -78,9 +84,10 @@ export default function Solution() {
 
             {/* Tags */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-2.5">
-              {TAGS.map((tag) => (
+              {TAGS.map((tag, i) => (
                 <span
                   key={tag}
+                  style={staggerStyle(copyReveal.visible, i, 300)}
                   className="px-4 py-1.5 rounded-full text-xs font-medium tracking-wide border border-brand-orange/25 text-brand-orange-dark bg-brand-orange/5"
                 >
                   {tag}
@@ -91,7 +98,7 @@ export default function Solution() {
         </div>
 
         {/* Ingredients grid */}
-        <div className="flex flex-col items-center text-center mb-8">
+        <div ref={ingredientsHeader.ref} style={revealStyle(ingredientsHeader.visible)} className="flex flex-col items-center text-center mb-8">
           <h3 className="font-display font-bold text-brand-purple-dark mb-2 text-2xl sm:text-3xl">
             Every ingredient has a name, a region, a story
           </h3>
@@ -100,11 +107,12 @@ export default function Solution() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {INGREDIENTS.map(({ name, region, benefit }) => (
+        <div ref={ingredientsGrid.ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {INGREDIENTS.map(({ name, region, benefit }, i) => (
             <div
               key={name}
-              className="flex items-start gap-4 p-5 rounded-2xl bg-gray-50 border border-gray-100 hover:border-brand-orange/20 hover:bg-orange-50/20 transition-all duration-200"
+              style={staggerStyle(ingredientsGrid.visible, i)}
+              className="flex items-start gap-4 p-5 rounded-2xl bg-gray-50 border border-gray-100 hover:border-brand-orange/20 hover:bg-orange-50/20 transition-shadow duration-200"
             >
               <div className="w-10 h-10 rounded-xl bg-brand-orange/10 flex items-center justify-center flex-shrink-0">
                 <span className="text-brand-orange-dark text-lg">✦</span>

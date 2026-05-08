@@ -2,21 +2,19 @@
 
 import Link from "next/link";
 import { useContent } from "@/lib/useContent";
+import { useScrollReveal, revealStyle } from "@/hooks/useScrollReveal";
 
-const COLLECTION_LINKS = [
-  { label: "Shop For Her · Odo",     href: "/products?range=odo",       colour: "text-brand-orange" },
-  { label: "For Him · Nkrabea",      href: "/products?range=nkrabea",   colour: "text-brand-amber" },
-  { label: "Black Soap",             href: "/products/black-soap",      colour: "text-brand-purple-dark/80" },
-  { label: "Buying for a Friend",    href: "/products?tab=gift-cards",  colour: "text-brand-purple-light" },
-  { label: "Shop All",               href: "/products",                 colour: "text-brand-purple-dark/80" },
+const EXPLORE_LINKS = [
+  { label: "Shop",             href: "/#buy",             colour: "text-brand-orange" },
+  { label: "About",            href: "/our-story",        colour: "text-brand-purple-dark/80" },
+  { label: "Customer Stories", href: "/#testimonials",    colour: "text-brand-purple-dark/80" },
+  { label: "Blog",             href: "/blog",             colour: "text-brand-purple-dark/80" },
+  { label: "Support Us",       href: "/#support-us",      colour: "text-brand-purple-dark/80" },
 ];
 
-const COMPANY_LINKS = [
-  { label: "Our Story", href: "/our-story" },
-  { label: "Ingredients", href: "/ingredients" },
-  { label: "Sustainability", href: "/sustainability" },
-  { label: "Lab Testing", href: "/lab-tests" },
-  { label: "Contact", href: "/contact" },
+const ACCOUNT_LINKS = [
+  { label: "Portal Login", href: "/aqua/felicia" },
+  { label: "Shopping Cart", href: "/cart" },
 ];
 
 const SUPPORT_LINKS = [
@@ -61,9 +59,10 @@ const SOCIAL_LINKS = [
 export default function Footer() {
   const tagline     = useContent("footer.tagline",     "Odo by Felicia");
   const description = useContent("footer.description", "Pure. Sacred. Alive. Ghanaian heritage skincare for those who demand honesty from everything they put on their skin.");
+  const footerReveal = useScrollReveal(0.1);
   return (
     <footer className="w-full bg-white border-t border-gray-100">
-      <div className="w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 py-14 sm:py-16 lg:py-20">
+      <div ref={footerReveal.ref} style={revealStyle(footerReveal.visible)} className="w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 py-14 sm:py-16 lg:py-20">
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 xl:gap-14 mb-14 sm:mb-16">
 
@@ -78,11 +77,11 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Shop */}
+          {/* Explore */}
           <div>
-            <h4 className="text-xs tracking-[0.25em] uppercase text-gray-500 mb-5">Shop</h4>
+            <h4 className="text-xs tracking-[0.25em] uppercase text-gray-500 mb-5">Explore</h4>
             <ul className="space-y-3">
-              {COLLECTION_LINKS.map(({ label, href, colour }) => (
+              {EXPLORE_LINKS.map(({ label, href, colour }) => (
                 <li key={label}>
                   <Link href={href} className={`text-sm xl:text-base font-medium hover:opacity-80 transition-opacity ${colour}`}>
                     {label}
@@ -92,11 +91,11 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Account */}
           <div>
-            <h4 className="text-xs tracking-[0.25em] uppercase text-gray-500 mb-5">Company</h4>
+            <h4 className="text-xs tracking-[0.25em] uppercase text-gray-500 mb-5">Account</h4>
             <ul className="space-y-3">
-              {COMPANY_LINKS.map(({ label, href }) => (
+              {ACCOUNT_LINKS.map(({ label, href }) => (
                 <li key={label}>
                   <Link href={href} className="text-sm xl:text-base text-gray-600 hover:text-brand-purple-dark transition-colors">
                     {label}

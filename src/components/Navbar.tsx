@@ -8,12 +8,11 @@ import { useContent } from "@/lib/useContent";
 import { listPublishedNavPages, onPagesChange, type CustomPage } from "@/lib/admin/customPages";
 
 const TOP_LINKS = [
-  { label: "Shop",           href: "/products" },
-  { label: "About",          href: "/about" },
-  { label: "Customer Stories", href: "/reviews" },
-  { label: "Portal",         href: "/aqua" },
-  { label: "Blog",           href: "/blog" },
-  { label: "Support Us",     href: "/support-us" },
+  { label: "Shop",             href: "/#buy" },
+  { label: "About",            href: "/our-story" },
+  { label: "Customer Stories", href: "/#testimonials" },
+  { label: "Blog",             href: "/blog" },
+  { label: "Support Us",       href: "/#support-us" },
 ];
 
 export default function Navbar() {
@@ -147,7 +146,7 @@ export default function Navbar() {
               </div>
             ) : (
               <Link
-                href="/account"
+                href="/aqua/felicia"
                 aria-label="Account"
                 className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm tracking-wide transition-colors text-gray-600 hover:text-brand-purple-dark"
               >
@@ -252,7 +251,7 @@ export default function Navbar() {
               </div>
             ) : (
               <Link
-                href="/account"
+                href="/aqua/felicia"
                 onClick={() => setMenuOpen(false)}
                 className="text-brand-purple-dark/80 hover:text-brand-purple-dark text-sm tracking-wide py-3 px-1 flex items-center gap-2"
               >

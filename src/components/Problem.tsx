@@ -1,29 +1,39 @@
 "use client";
 
-const ISSUES = [
+import { useScrollReveal, revealStyle, staggerStyle } from "@/hooks/useScrollReveal";
+
+const CARDS = [
   {
+    type: "truth",
     icon: "⚗️",
-    title: "Unnecessary complexity",
-    body: "The modern industry has normalized complex synthetic formulas. But many artificial additives—like parabens and phthalates—can disrupt the delicate balance your skin naturally maintains.",
+    title: "Hidden complexity",
+    body: "Many everyday formulas rely on artificial additives—like parabens and phthalates—that can quietly disrupt the hormonal balance your body works hard to maintain. You deserve to know what you're absorbing.",
   },
   {
-    icon: "🧪",
-    title: "Harsh cleansing agents",
-    body: "Common foaming agents like SLS are incredibly effective at removing dirt, but they also strip the essential lipid barrier that protects your skin from the world.",
+    type: "truth",
+    icon: "🏷️",
+    title: "The 'fragrance' loophole",
+    body: "A single word on a label can legally hide hundreds of undisclosed compounds. This isn't an attack on any brand—it's a structural gap in regulation we think every consumer should understand.",
   },
   {
-    icon: "🏭",
-    title: "Prioritizing shelf life",
-    body: "When products are manufactured for global distribution, ingredients are often chosen to extend shelf life for years, rather than to maximize the immediate benefit to your skin.",
+    type: "align",
+    icon: "🌱",
+    title: "The industry is shifting",
+    body: "More brands than ever are reformulating towards transparency, shorter ingredient lists, and traceable sourcing. We celebrate that. Real change happens when an entire industry raises its standards together.",
   },
   {
-    icon: "🚫",
-    title: "The 'fragrance' label",
-    body: "Current regulations allow hundreds of undisclosed chemical compounds to be listed simply as 'fragrance'. We believe you have a right to know exactly what you are absorbing.",
+    type: "align",
+    icon: "✨",
+    title: "We choose alignment, not war",
+    body: "We're not here to shame what came before us. We're here to show what's possible when ancient wisdom, clean science, and radical honesty sit at the same table. A rising tide lifts all skin.",
   },
 ];
 
 export default function Problem() {
+  const header = useScrollReveal(0.2);
+  const cards = useScrollReveal(0.1);
+  const cta = useScrollReveal(0.2);
+
   return (
     <section
       id="our-philosophy"
@@ -33,7 +43,7 @@ export default function Problem() {
       <div className="relative z-10 w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
 
         {/* Header */}
-        <div className="flex flex-col items-center text-center mb-14 sm:mb-16">
+        <div ref={header.ref} style={revealStyle(header.visible)} className="flex flex-col items-center text-center mb-14 sm:mb-16">
           <span className="inline-block text-xs font-semibold tracking-[0.28em] uppercase text-purple-600 mb-4">
             The industry standard
           </span>
@@ -53,31 +63,40 @@ export default function Problem() {
             </span>
           </h2>
           <p className="text-brand-purple-dark/80 text-base sm:text-lg max-w-2xl leading-relaxed">
-            For decades, the standard for daily care has been defined by mass production—relying on artificial preservatives, stripping agents, and undisclosed fragrances to keep costs low and shelf lives long.
+            The industry has taught us to accept complexity we never asked for. But the world is waking up — and so are the brands within it. Here's the truth, and here's why we're optimistic.
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 xl:gap-6 mb-12">
-          {ISSUES.map(({ icon, title, body }) => (
+        <div ref={cards.ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 xl:gap-6 mb-12">
+          {CARDS.map(({ type, icon, title, body }, i) => (
             <div
               key={title}
-              className="flex flex-col items-center text-center p-7 xl:p-8 rounded-2xl
-                bg-white/60 backdrop-blur-sm border border-pink-200/500
-                hover:bg-white/80 hover:border-white
-                transition-all duration-300 shadow-lg"
+              style={staggerStyle(cards.visible, i)}
+              className={`flex flex-col items-center text-center p-7 xl:p-8 rounded-2xl transition-shadow duration-300 shadow-lg ${
+                type === "truth"
+                  ? "bg-white/60 backdrop-blur-sm border border-pink-200/50 hover:bg-white/80 hover:border-white"
+                  : "bg-gradient-to-br from-brand-purple-muted/20 to-pink-50 border border-brand-purple/15 hover:border-brand-purple/30"
+              }`}
             >
               <div className="text-3xl sm:text-4xl mb-4">{icon}</div>
-              <h3 className="font-display text-lg font-semibold text-brand-purple-dark mb-3 drop-shadow-sm">
+              <h3 className={`font-display text-lg font-semibold mb-3 drop-shadow-sm ${
+                type === "truth" ? "text-brand-purple-dark" : "text-brand-purple"
+              }`}>
                 {title}
               </h3>
               <p className="text-sm text-gray-600 leading-relaxed">{body}</p>
+              {type === "align" && (
+                <span className="mt-4 inline-block text-[10px] tracking-[0.2em] uppercase font-semibold text-brand-purple/60 border border-brand-purple/20 rounded-full px-3 py-1">
+                  Our commitment
+                </span>
+              )}
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="flex flex-col items-center text-center">
+        <div ref={cta.ref} style={revealStyle(cta.visible, 200)} className="flex flex-col items-center text-center">
           <p className="text-brand-purple-dark/80 text-sm sm:text-base max-w-xl mb-6 leading-relaxed">
             We research the science behind every ingredient — so you don&apos;t
             have to worry about what&apos;s on your skin.

@@ -1,5 +1,7 @@
 "use client";
 
+import { useScrollReveal, revealStyle, staggerStyle } from "@/hooks/useScrollReveal";
+
 const STEPS = [
   {
     number: "01",
@@ -22,12 +24,16 @@ const STEPS = [
 ];
 
 export default function HowItWorks() {
+  const header = useScrollReveal(0.2);
+  const steps = useScrollReveal(0.1);
+  const cta = useScrollReveal(0.2);
+
   return (
     <section id="how-it-works" className="w-full py-20 sm:py-24 lg:py-32 bg-white">
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
 
         {/* Header */}
-        <div className="flex flex-col items-center text-center mb-14 sm:mb-16">
+        <div ref={header.ref} style={revealStyle(header.visible)} className="flex flex-col items-center text-center mb-14 sm:mb-16">
           <span className="inline-block text-xs font-semibold tracking-[0.28em] uppercase text-brand-orange mb-4">
             The process
           </span>
@@ -40,13 +46,13 @@ export default function HowItWorks() {
         </div>
 
         {/* Steps */}
-        <div className="relative">
+        <div ref={steps.ref} className="relative">
           {/* Connector line — desktop */}
           <div className="hidden lg:block absolute top-12 left-[16.5%] right-[16.5%] h-px bg-gradient-to-r from-brand-orange/20 via-brand-amber/40 to-brand-orange/20" />
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-12">
             {STEPS.map(({ number, icon, title, body }, i) => (
-              <div key={number} className="flex flex-col items-center text-center relative">
+              <div key={number} style={staggerStyle(steps.visible, i, 100)} className="flex flex-col items-center text-center relative">
                 {/* Step circle */}
                 <div className="relative w-24 h-24 mb-6">
                   <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-orange/15 to-brand-amber/10" />
@@ -69,7 +75,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Down arrow to form */}
-        <div className="flex justify-center mt-16">
+        <div ref={cta.ref} style={revealStyle(cta.visible, 300)} className="flex justify-center mt-16">
           <a
             href="#interest-form"
             className="inline-flex flex-col items-center gap-2 text-brand-orange hover:text-brand-orange-light transition-colors group"

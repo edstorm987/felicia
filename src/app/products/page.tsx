@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Suspense, useEffect } from "react";
+import { useState, Suspense, useEffect, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -35,13 +35,11 @@ function ShopContent() {
     };
     const unsub1 = onProductsChange(refresh);
     const unsub2 = onCollectionsChange(refresh);
-    return () => { unsub1(); unsub2(); };
   }, []);
 
-  const activeProducts = products.filter(p => !p.archived);
+  const activeProducts = products.filter(p => !p.archived && !p.hidden);
 
   const allRanges = ["all", ...collections.map(c => c.slug)];
-  const initialTab = allRanges.includes(rangeParam ?? "") ? (rangeParam ?? "all") : "all";
   const [activeTab, setActiveTab] = useState(initialTab);
   const [allSelector, setAllSelector] = useState<string>(
     tabParam === "gift-cards" || tabParam === "clothing" || tabParam === "accessories" ? tabParam : "all"
@@ -248,19 +246,20 @@ function ShopContent() {
             {isBlackSoapView && blackSoap ? (
               <ProductDetail product={blackSoap} />
             ) : activeTab !== "all" || allSelector !== "clothing" ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-6 2xl:gap-8">
-                {visible.map(product => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    isAdded={added === product.id}
-                    onAdd={() => handleAdd(product)}
-                  />
+              <AnimatedGrid>
+                {visible.map((product, i) => (
+                  <AnimatedCard key={product.id} index={i}>
+                    <ProductCard
+                      product={product}
+                      isAdded={added === product.id}
+                      onAdd={() => handleAdd(product)}
+                    />
+                  </AnimatedCard>
                 ))}
                 {visible.length === 0 && (
                   <p className="text-brand-purple-dark/80 col-span-3 text-sm py-8 text-center">No products found.</p>
                 )}
-              </div>
+              </AnimatedGrid>
             ) : null}
 
             {/* Trust strip */}
@@ -295,6 +294,49 @@ function ShopContent() {
       </main>
       <Footer />
     </>
+  );
+}
+
+function AnimatedGrid({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-6 2xl:gap-8">
+      {children}
+    </div>
+  );
+}
+
+function AnimatedCard({ children, index }: { children: React.ReactNode; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="transition-all duration-700 ease-out"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(40px)",
+        transitionDelay: `${(index % 3) * 120}ms`,
+      }}
+    >
+      {children}
+    </div>
   );
 }
 

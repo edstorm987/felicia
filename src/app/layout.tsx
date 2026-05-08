@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
-import PurpleSideScroller from "@/components/PurpleSideScroller";
 import SiteHead from "@/components/SiteHead";
 import PreviewBar from "@/components/PreviewBar";
 import ABTestRunner from "@/components/ABTestRunner";
@@ -16,6 +15,7 @@ import WebVitalsReporter from "@/components/web-vitals-reporter";
 import PortalEditOverlay from "@/components/PortalEditOverlay";
 import ChatBotLazy from "@/components/ChatBotLazy";
 import AnalyticsResolver from "@/components/AnalyticsResolver";
+import LatherTrail from "@/components/LatherTrail";
 
 // Both fonts use `display: "swap"` to avoid FOIT on slow networks, and a
 // system-stack `fallback` so the layout doesn't shift visibly when the
@@ -84,7 +84,7 @@ export default function RootLayout({
           <AnalyticsResolver />
           {children}
           <FeatureGate flag="chatbot"><ChatBotLazy /></FeatureGate>
-          <FeatureGate flag="purple_scroller"><PurpleSideScroller /></FeatureGate>
+          <LatherTrail />
         </CartProvider>
       </body>
     </html>

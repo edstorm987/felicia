@@ -18,7 +18,7 @@ interface DisplayReview {
   body: string;
 }
 
-export default function ProductDetail({ product }: { product: Product }) {
+export default function ProductDetail({ product, compact = false }: { product: Product; compact?: boolean }) {
   const { addItem } = useCart();
   const [format, setFormat] = useState<ProductFormat>(product.formats?.[0] || "bar");
   const [size, setSize] = useState(product.sizes[0]);
@@ -27,6 +27,8 @@ export default function ProductDetail({ product }: { product: Product }) {
   const [activeImage, setActiveImage] = useState(0);
   const [added, setAdded] = useState(false);
   const [readMore, setReadMore] = useState(false);
+  const [buyingForFriend, setBuyingForFriend] = useState(false);
+  const [giftNote, setGiftNote] = useState("");
 
   useEffect(() => {
     const initialFormat = product.formats?.[0] || "bar";
@@ -38,6 +40,8 @@ export default function ProductDetail({ product }: { product: Product }) {
     setActiveImage(0);
     setAdded(false);
     setReadMore(false);
+    setBuyingForFriend(false);
+    setGiftNote("");
   }, [product]);
 
   const activeSizes = product.formatSizes?.[format] ?? product.sizes;
@@ -48,7 +52,7 @@ export default function ProductDetail({ product }: { product: Product }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [format]);
 
-  const displayPrice = size.price;
+  const displayPrice = size.price + (buyingForFriend ? 5 : 0);
 
   const related = PRODUCTS.filter((p) => p.slug !== product.slug);
 
@@ -104,11 +108,12 @@ export default function ProductDetail({ product }: { product: Product }) {
     )?.id;
 
     for (let i = 0; i < qty; i++) {
+      const giftSuffix = buyingForFriend ? ` | Gift Wrapped${giftNote ? ` | Note: ${giftNote}` : ""}` : "";
       addItem({
-        id: `${product.id}-${format}-${size.label}-${fragrance}`,
-        name: `${product.name} — ${getDisplaySize(size.label)}`,
+        id: buyingForFriend ? `${product.id}-${format}-${size.label}-${fragrance}-gift-${Date.now()}-${i}` : `${product.id}-${format}-${size.label}-${fragrance}`,
+        name: buyingForFriend ? `${product.name} — ${getDisplaySize(size.label)} (Gift Wrapped)` : `${product.name} — ${getDisplaySize(size.label)}`,
         price: displayPrice,
-        variant: fragrance,
+        variant: buyingForFriend ? `${fragrance}${giftSuffix}` : fragrance,
         shopifyVariantId,
         stockSku: product.stockSku,
       });
@@ -398,6 +403,37 @@ export default function ProductDetail({ product }: { product: Product }) {
                 </div>
               </div>
 
+              {/* Buying for a Friend */}
+              <div className="mb-6">
+                <label className="flex items-center gap-3 cursor-pointer group">
+                  <div className="relative">
+                    <input 
+                      type="checkbox" 
+                      className="sr-only" 
+                      checked={buyingForFriend}
+                      onChange={(e) => setBuyingForFriend(e.target.checked)}
+                    />
+                    <div className={`w-11 h-6 rounded-full transition-colors ${buyingForFriend ? 'bg-brand-orange' : 'bg-pink-200'}`}>
+                      <div className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform ${buyingForFriend ? 'translate-x-5' : ''}`} />
+                    </div>
+                  </div>
+                  <span className="text-sm font-medium text-brand-purple-dark select-none group-hover:text-brand-orange transition-colors">
+                    Buying for a friend? (+£5 for gift wrap)
+                  </span>
+                </label>
+                {buyingForFriend && (
+                  <div className="mt-4 animate-in slide-in-from-top-2 fade-in duration-200">
+                    <textarea
+                      value={giftNote}
+                      onChange={(e) => setGiftNote(e.target.value)}
+                      placeholder="Add a custom note (optional)"
+                      rows={3}
+                      className="w-full bg-white border border-pink-200 rounded-xl p-3 text-sm text-brand-purple-dark focus:outline-none focus:border-brand-orange/50 resize-none shadow-sm"
+                    />
+                  </div>
+                )}
+              </div>
+
               {/* Quantity + Add */}
               <div className="flex items-stretch gap-3 mb-4">
                 <div className="flex items-center bg-white border border-pink-200 rounded-xl">
@@ -454,8 +490,11 @@ export default function ProductDetail({ product }: { product: Product }) {
         </div>
       </section>
 
-      {/* Description */}
-      <section className="w-full bg-pink-50/50">
+      {/* Extended details — hidden when compact */}
+      {!compact && (
+        <>
+          {/* Description */}
+          <section className="w-full bg-pink-50/50">
         <div className="w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 py-16 sm:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             <div className="lg:col-span-4">
@@ -632,6 +671,8 @@ export default function ProductDetail({ product }: { product: Product }) {
           </div>
         </div>
       </section>
+        </>
+      )}
 
       <DiscountPopup />
     </>
