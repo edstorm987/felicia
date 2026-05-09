@@ -11,7 +11,6 @@ import VSLSection from "@/components/VSLSection";
 import Problem from "@/components/Problem";
 import Solution from "@/components/Solution";
 import HowItWorks from "@/components/HowItWorks";
-import IngredientGrid from "@/components/IngredientGrid";
 import Opportunities from "@/components/Opportunities";
 
 const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true, loading: () => null });
@@ -41,21 +40,7 @@ export default function HomeSections() {
       {/* ── 4. Journey — How it's made ── */}
       <HowItWorks />
 
-      {/* ── 5. Ingredients ── */}
-      <section id="ingredients" className="py-20 lg:py-28 bg-white scroll-mt-24 lg:scroll-mt-32">
-        <div className="max-w-[96rem] mx-auto px-4 sm:px-8 lg:px-10 xl:px-14">
-          <div className="text-center mb-12 sm:mb-16">
-            <p className="text-[10px] tracking-[0.4em] uppercase text-brand-orange/60 mb-4">What goes in</p>
-            <h2 className="font-display font-bold text-brand-purple-dark text-3xl sm:text-4xl lg:text-5xl mb-4 leading-[1.05]" style={{ letterSpacing: "-0.02em" }}>
-              Every ingredient has a name.
-            </h2>
-            <p className="text-brand-purple-dark/55 max-w-md mx-auto text-sm sm:text-base lg:text-lg leading-relaxed">A region. A story. Nothing synthetic, nothing hidden.</p>
-          </div>
-          <IngredientGrid />
-        </div>
-      </section>
-
-      {/* ── 6. What's in it for you ── */}
+      {/* ── 5. What's in it for you ── */}
       <Opportunities />
 
       {/* ── 7. Product ── */}
