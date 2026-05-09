@@ -414,7 +414,7 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
               <path d="M8 5v14l11-7z" />
             </svg>
           </span>
-          <span>Turn on immersive experience</span>
+          <span>Turn back on immersive experience</span>
         </button>
       )}
     </div>

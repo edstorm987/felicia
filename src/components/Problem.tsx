@@ -38,7 +38,7 @@ export default function Problem() {
     <section
       id="our-philosophy"
       className="relative w-full py-20 sm:py-24 lg:py-32 overflow-hidden"
-      style={{ background: "radial-gradient(ellipse at 50% 0%, #0a0618 0%, #07041a 55%, #04020c 100%)" }}
+      style={{ background: "linear-gradient(180deg, #0a0618 0%, #07041a 45%, #04020c 100%)" }}
     >
       {/* ── Starfield ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
