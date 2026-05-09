@@ -388,7 +388,7 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
         // Grass → astral night when static (matches Problem section bg).
         background: live
           ? "linear-gradient(180deg, #c9e8a8 0%, #6c8e4d 22%, #2d1260 50%, #1b1230 80%, #1b1230 100%)"
-          : "linear-gradient(180deg, #c9e8a8 0%, #6c8e4d 22%, #2d1260 48%, #14102b 78%, #14102b 100%)",
+          : "linear-gradient(180deg, #c9e8a8 0%, #6c8e4d 28%, #14102b 70%, #14102b 100%)",
         transition: "height 600ms ease-out, background 600ms ease-out",
         overflow: "visible",
       }}
