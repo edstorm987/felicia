@@ -93,7 +93,7 @@ export default function Solution() {
 
         {/* ── Ingredients grid — pastel bathroom mood ── */}
         <div
-          className="relative overflow-hidden rounded-[28px] px-4 sm:px-8 lg:px-12 xl:px-16 py-10 sm:py-12 lg:py-14"
+          className="relative overflow-hidden rounded-[28px] px-4 sm:px-8 lg:px-12 xl:px-16 py-20 sm:py-24 lg:py-32"
           style={{
             background:
               "linear-gradient(135deg, #e8f4f8 0%, #fde4d4 45%, #f4e6f7 100%)",
