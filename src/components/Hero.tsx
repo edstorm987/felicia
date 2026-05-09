@@ -222,7 +222,7 @@ export default function Hero() {
                 African Black Soap
               </p>
               <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-10 max-w-sm">
-                Hand crafted and infused with care. The ritual your skin has been craving for.
+                <span className="underline decoration-brand-orange/40 decoration-2 underline-offset-4">Hand crafted and infused with care</span>. The ritual your skin has been craving for.
               </p>
 
               {/* Packaging strip */}
