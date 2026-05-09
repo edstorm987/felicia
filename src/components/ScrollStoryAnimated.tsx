@@ -1742,7 +1742,15 @@ function ChapterOpportunities({ p }: { p: number }) {
   Ch5  The Answer + CTA                 0.74 – 0.85
   Ch6  Why People Choose                0.85 – 0.96
 */
-const CHAPTERS=[{s:0,e:0.18},{s:0.18,e:0.26},{s:0.26,e:0.34},{s:0.34,e:0.58},{s:0.58,e:0.74},{s:0.74,e:0.85},{s:0.85,e:0.96}];
+const CHAPTERS=[
+  {s:0.00, e:0.10}, // Ch0  Promise
+  {s:0.10, e:0.20}, // Ch1  Factory
+  {s:0.20, e:0.30}, // Ch2  Earth
+  {s:0.30, e:0.40}, // Ch3  Journey
+  {s:0.40, e:0.50}, // Ch4  Ingredients spiral
+  {s:0.50, e:0.60}, // Ch5  Solution
+  {s:0.60, e:1.00}, // Ch6  Why Choose — extends to end so the last frame holds
+];
 const CH_NAMES=["The Promise","The Problem","The World","The Journey","Ingredients","The Answer","Why Choose Us"];
 
 /* ── 30 scroll-to beats across the 7 chapters ──
@@ -1914,7 +1922,7 @@ export default function ScrollStoryAnimated({ onDiscount, onComplete, onExit }: 
     document.documentElement.style.setProperty("--story-active", String(inStory));
   }, [progress]);
 
-  return (<div ref={ref} style={{ height: "2000vh" }} className="relative w-full">
+  return (<div ref={ref} style={{ height: "5000vh" }} className="relative w-full">
     <style jsx>{`@keyframes grassSway{0%{transform:rotate(-2.5deg)}100%{transform:rotate(2.5deg)}}`}</style>
     {/* Sticky stage — sits below the navbar. Holds an ambient backdrop
         (so the page surrounding the player feels intentional) and centers
