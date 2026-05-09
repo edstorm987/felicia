@@ -384,7 +384,7 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
     <div
       className="relative w-full overflow-hidden flex items-center justify-center"
       style={{
-        height: live ? "6rem" : "48vh",
+        height: live ? "5rem" : "14rem",
         background: "linear-gradient(180deg, #ffffff 0%, #f3ecff 35%, #2d1260 78%, #14102b 100%)",
         transition: "height 600ms ease-out",
       }}
