@@ -342,50 +342,60 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
 
   // Tiny floating toggle pill — sits just under the navbar, top-right.
   // The only piece of always-visible chrome related to animations.
+  // Sticky toggle pill — lives INSIDE the section anchor wrapper as a sticky
+  // child at the top. Pinned just under the navbar while the user is within
+  // the animation section; scrolls out once they leave. Right-aligned via
+  // a full-width flex row so we keep `position: sticky` (which can't combine
+  // with `right: ...` on the sticky element itself in a normal flow context).
   const togglePill = (
-    <button
-      type="button"
-      onClick={() => { if (live) handleDisable(); else void handleAnimate(); }}
-      aria-pressed={live}
-      className="fixed right-4 sm:right-5 z-50 inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-[10px] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:-translate-y-0.5"
-      style={{
-        top: "calc(var(--nav-h) + 0.5rem)",
-        background: "#FFFFFF",
-        color: "#4A1D62",
-        boxShadow: "0 10px 28px -10px rgba(40,18,60,0.25), 0 0 0 1px rgba(40,18,60,0.06)",
-      }}
+    <div
+      className="sticky z-50 flex justify-end pr-4 sm:pr-5 pointer-events-none"
+      style={{ top: "calc(var(--nav-h) + 0.5rem)" }}
     >
-      <span
-        className="inline-flex items-center justify-center w-4 h-4 rounded-full"
-        style={{ background: live ? "#E8621A" : "#9CA3AF" }}
+      <button
+        type="button"
+        onClick={() => { if (live) handleDisable(); else void handleAnimate(); }}
+        aria-pressed={live}
+        className="pointer-events-auto inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-[10px] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:-translate-y-0.5"
+        style={{
+          background: "#FFFFFF",
+          color: "#4A1D62",
+          boxShadow: "0 10px 28px -10px rgba(40,18,60,0.25), 0 0 0 1px rgba(40,18,60,0.06)",
+        }}
       >
-        {live ? (
-          <svg width="7" height="7" viewBox="0 0 24 24" fill="#fff"><rect x="6" y="6" width="12" height="12" rx="1.5" /></svg>
-        ) : (
-          <svg width="7" height="7" viewBox="0 0 24 24" fill="#fff" className="ml-[1px]"><path d="M8 5v14l11-7z" /></svg>
-        )}
-      </span>
-      <span>{live ? "Turn off animation" : "Turn on animation"}</span>
-    </button>
+        <span
+          className="inline-flex items-center justify-center w-4 h-4 rounded-full"
+          style={{ background: live ? "#E8621A" : "#9CA3AF" }}
+        >
+          {live ? (
+            <svg width="7" height="7" viewBox="0 0 24 24" fill="#fff"><rect x="6" y="6" width="12" height="12" rx="1.5" /></svg>
+          ) : (
+            <svg width="7" height="7" viewBox="0 0 24 24" fill="#fff" className="ml-[1px]"><path d="M8 5v14l11-7z" /></svg>
+          )}
+        </span>
+        <span>{live ? "Turn off animation" : "Turn on animation"}</span>
+      </button>
+    </div>
   );
 
   if (useStatic) {
-    return (<>
-      {togglePill}
-      <div ref={sectionRef} data-story-section className="relative w-full" />
-    </>);
+    return (
+      <div ref={sectionRef} data-story-section className="relative w-full">
+        {togglePill}
+      </div>
+    );
   }
   if (!AnimatedComp) return null;
   const Comp = AnimatedComp;
-  return (<>
-    {togglePill}
+  return (
     <div ref={sectionRef} data-story-section className="relative w-full">
+      {togglePill}
       <Comp
         onDiscount={onDiscount}
         onComplete={() => setCompleted(true)}
         onExit={handleDisable}
       />
     </div>
-  </>);
+  );
 }
 
