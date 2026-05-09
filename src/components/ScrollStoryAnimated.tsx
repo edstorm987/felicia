@@ -1725,29 +1725,29 @@ function ChapterSolution({ p, onDiscount }: { p: number; onDiscount: () => void 
 
 function ChapterOpportunities({ p }: { p: number }) {
   return (<div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4 sm:px-8">
-    <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50/30 to-white" />
+    {/* Same warm pastel field used by the static Opportunities section */}
+    <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #fff7ed 0%, #fef3c7 35%, #fde4d4 70%, #f3e8ff 100%)" }} />
+    {/* Subtle bath-tile dot pattern overlay */}
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[0.06]" style={{
+      backgroundImage: "radial-gradient(circle, #6B2D8B 1px, transparent 1.5px)",
+      backgroundSize: "26px 26px",
+    }} />
     <div className="relative z-10 w-full max-w-5xl mx-auto">
       <div className="text-center mb-10 sm:mb-14" style={{opacity:phase(p,0,0.15),transform:`translateY(${(1-phase(p,0,0.15))*30}px)`}}>
-        <div className="flex items-center gap-3 justify-center mb-5"><div className="w-8 h-px bg-brand-orange/25" /><span className="text-[9px] font-semibold tracking-[0.35em] uppercase text-brand-orange/45">What&apos;s in it for you</span><div className="w-8 h-px bg-brand-orange/25" /></div>
+        <div className="flex items-center gap-3 justify-center mb-5"><div className="w-8 h-px bg-brand-orange/25" /><span className="text-[9px] font-semibold tracking-[0.35em] uppercase text-brand-orange">What&apos;s in it for you</span><div className="w-8 h-px bg-brand-orange/25" /></div>
         <h2 className="font-display font-bold text-brand-purple-dark text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-4 max-w-2xl mx-auto leading-[1.05]" style={{letterSpacing:"-0.02em"}}>
           Why people are choosing{" "}<span style={{background:"linear-gradient(135deg, #E8621A 0%, #F2A23C 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>Felicia&apos;s soap</span>
         </h2>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 xl:gap-4 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 xl:gap-4">
         {OPPORTUNITIES.map((o,i)=>{const cp=phase(p,0.1+i*0.05,0.14);return(
           <div key={o.title} style={{opacity:cp,transform:`translateY(${(1-cp)*35}px)`,filter:`blur(${(1-cp)*1}px)`}}>
-            <div className="flex flex-col p-5 sm:p-6 rounded-2xl bg-white/80 border border-gray-100/80 hover:shadow-lg hover:shadow-gray-200/50 transition-all duration-500" style={{backdropFilter:"blur(8px)"}}>
-              <div className="flex items-center gap-3 mb-3"><div className="w-10 h-10 rounded-xl bg-gray-50 shadow-sm flex items-center justify-center text-lg border border-gray-100/80">{o.icon}</div><span className="text-[9px] font-bold tracking-[0.2em] uppercase" style={{color:o.accent}}>{o.title}</span></div>
-              <p className="text-gray-400 text-sm leading-relaxed">{o.body}</p>
+            <div className="flex flex-col p-5 sm:p-6 rounded-2xl bg-white/85 border border-white/70 hover:shadow-lg hover:shadow-gray-200/50 transition-all duration-500" style={{ boxShadow: "0 8px 24px -14px rgba(40,18,60,0.18)" }}>
+              <div className="flex items-center gap-3 mb-3"><div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-lg border border-gray-100/80">{o.icon}</div><span className="text-[9px] font-bold tracking-[0.2em] uppercase" style={{color:o.accent}}>{o.title}</span></div>
+              <p className="text-brand-purple-dark/80 text-sm leading-relaxed">{o.body}</p>
             </div>
           </div>
         );})}
-      </div>
-      <div className="text-center" style={{opacity:phase(p,0.55,0.15),transform:`translateY(${(1-phase(p,0.55,0.15))*20}px)`}}>
-        <div className="inline-block bg-white rounded-3xl shadow-sm border border-gray-100/80 px-8 py-7 sm:px-12" style={{boxShadow:"0 4px 30px -8px rgba(0,0,0,0.05)"}}>
-          <p className="font-display text-lg sm:text-xl text-brand-purple-dark/80 leading-relaxed mb-3">&ldquo;I made this soap because I couldn&apos;t find anything clean enough for my own skin.&rdquo;</p>
-          <p className="text-brand-orange/70 font-semibold text-sm tracking-wide">— Felicia</p>
-        </div>
       </div>
     </div>
   </div>);
