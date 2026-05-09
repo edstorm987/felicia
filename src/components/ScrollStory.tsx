@@ -349,11 +349,10 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
       className="relative w-full transition-colors duration-700 ease-out"
       style={{
         background: live ? "#1a0a2e" : "#efe1ce",
-        paddingTop: live ? "4rem" : "5rem",
-        paddingBottom: live ? "calc(24vh)" : "5rem",
+        paddingTop: live ? "2rem" : "2.5rem",
+        paddingBottom: live ? "calc(12vh)" : "2.5rem",
       }}
     >
-      {/* Subtle ambient orbs only when on, so the bg blends into the player */}
       {live && (
         <>
           <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 30%, rgba(107,45,139,0.35) 0%, transparent 60%)" }} />
@@ -361,28 +360,27 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
         </>
       )}
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="relative max-w-2xl mx-auto px-4 sm:px-6">
         <div
-          className="relative rounded-[36px] px-6 py-12 sm:px-12 sm:py-16 lg:py-20 text-center overflow-hidden transition-all duration-700"
+          className="relative rounded-3xl px-5 py-7 sm:px-8 sm:py-9 text-center overflow-hidden transition-all duration-700"
           style={{
             background: live
               ? "linear-gradient(135deg, rgba(107,45,139,0.22) 0%, rgba(74,29,98,0.30) 100%)"
               : "linear-gradient(135deg, #6B2D8B 0%, #4A1D62 100%)",
             boxShadow: live
-              ? "0 30px 80px -28px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06) inset"
-              : "0 28px 80px -24px rgba(74,29,98,0.55), 0 0 0 1px rgba(255,255,255,0.08) inset",
+              ? "0 18px 40px -16px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06) inset"
+              : "0 16px 40px -16px rgba(74,29,98,0.50), 0 0 0 1px rgba(255,255,255,0.08) inset",
           }}
         >
-          {/* Soft inner glow + flower-tinted highlight ring */}
-          <div className="pointer-events-none absolute inset-0 rounded-[36px]" style={{
+          <div className="pointer-events-none absolute inset-0 rounded-3xl" style={{
             background: "radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.10) 0%, transparent 55%)",
           }} />
-          <div className="pointer-events-none absolute inset-x-10 top-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)" }} />
+          <div className="pointer-events-none absolute inset-x-8 top-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)" }} />
 
-          <p className="relative text-[10px] sm:text-[11px] tracking-[0.45em] uppercase text-white/65 font-semibold mb-4 sm:mb-5">
+          <p className="relative text-[9px] sm:text-[10px] tracking-[0.42em] uppercase text-white/65 font-semibold mb-2 sm:mb-2.5">
             {live ? "Now playing" : "Want the full experience?"}
           </p>
-          <h2 className="relative font-display font-bold text-white text-3xl sm:text-5xl lg:text-6xl xl:text-7xl mb-8 sm:mb-10 leading-[1.04]" style={{ letterSpacing: "-0.02em" }}>
+          <h2 className="relative font-display font-bold text-white text-xl sm:text-2xl lg:text-3xl mb-4 sm:mb-5 leading-[1.05]" style={{ letterSpacing: "-0.02em" }}>
             {live
               ? "Tap to exit"
               : (<>Animate the{" "}<span style={{ background: "linear-gradient(135deg, #fbbf24 0%, #f97316 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>website</span>.</>)}
@@ -392,30 +390,31 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
             type="button"
             onClick={() => { if (live) handleDisable(); else void handleAnimate(); }}
             aria-pressed={live}
-            className="relative group inline-flex items-center gap-3 sm:gap-4 px-10 sm:px-14 py-5 sm:py-6 rounded-full text-lg sm:text-xl font-semibold tracking-tight transition-all duration-300 hover:scale-[1.08] hover:-translate-y-1"
+            className="relative group inline-flex items-center gap-2.5 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full text-sm font-semibold tracking-tight transition-all duration-300 hover:scale-[1.04] hover:-translate-y-0.5"
             style={{
               background: "#FFFFFF",
               color: "#4A1D62",
-              boxShadow: "0 22px 50px -18px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.6) inset",
+              boxShadow: "0 12px 26px -10px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.55) inset",
             }}
           >
             <span>{live ? "Stop the story" : "Start the experience"}</span>
             <span
-              className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full transition-transform duration-300 group-hover:translate-x-1"
+              className="inline-flex items-center justify-center w-6 h-6 rounded-full transition-transform duration-300 group-hover:translate-x-0.5"
               style={{ background: live ? "#E8621A" : "#6B2D8B", color: "#fff" }}
             >
               {live ? (
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="1.5" /></svg>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="1.5" /></svg>
               ) : (
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="ml-[2px]"><path d="M8 5v14l11-7z" /></svg>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" className="ml-[1px]"><path d="M8 5v14l11-7z" /></svg>
               )}
             </span>
           </button>
 
-          {/* Scroll-down hint when on */}
-          <p className="relative mt-6 sm:mt-8 text-[9.5px] tracking-[0.4em] uppercase font-semibold text-white/45 transition-opacity duration-500" style={{ opacity: live ? 1 : 0, height: live ? "auto" : 0 }}>
-            Scroll down to play
-          </p>
+          {live && (
+            <p className="relative mt-3 sm:mt-4 text-[8.5px] tracking-[0.38em] uppercase font-semibold text-white/45">
+              Scroll down to play
+            </p>
+          )}
         </div>
       </div>
     </section>
