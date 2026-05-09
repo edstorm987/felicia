@@ -86,19 +86,6 @@ export default function Problem() {
         }} />
       </div>
 
-      <style jsx>{`
-        @keyframes prTwinkle {
-          0%, 100% { opacity: 0.25; transform: scale(1); }
-          50%      { opacity: 1;    transform: scale(1.3); }
-        }
-        @keyframes prShoot {
-          0%   { transform: translate(0, 0) rotate(-18deg);   opacity: 0; }
-          12%  { opacity: 1; }
-          60%  { opacity: 1; }
-          80%  { opacity: 0; }
-          100% { transform: translate(110vw, 35vh) rotate(-18deg); opacity: 0; }
-        }
-      `}</style>
 
       <div className="relative z-10 w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
 
