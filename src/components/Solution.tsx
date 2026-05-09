@@ -21,6 +21,35 @@ const TAGS = [
   "Cruelty-free",
 ];
 
+/* Tiny ambient bee — used twice in the Solution section, animated via
+   keyframes on the wrapper. */
+function BeeSvg() {
+  return (
+    <svg viewBox="0 0 60 40" width="100%" height="100%">
+      {/* Wings — flap continuously via animation on the group */}
+      <g style={{ transformOrigin: "30px 14px", animation: "solBeeWings 0.18s ease-in-out infinite" }}>
+        <ellipse cx="22" cy="14" rx="9" ry="6" fill="rgba(220,232,245,0.78)" stroke="rgba(80,90,120,0.35)" strokeWidth="0.5" />
+        <ellipse cx="36" cy="14" rx="9" ry="6" fill="rgba(220,232,245,0.78)" stroke="rgba(80,90,120,0.35)" strokeWidth="0.5" />
+      </g>
+      {/* Body — striped */}
+      <ellipse cx="30" cy="24" rx="13" ry="8" fill="#fbbf24" />
+      <rect x="20" y="18" width="3.5" height="13" fill="#1f2937" rx="0.6" />
+      <rect x="27" y="17" width="3.5" height="15" fill="#1f2937" rx="0.6" />
+      <rect x="34" y="18" width="3.5" height="13" fill="#1f2937" rx="0.6" />
+      {/* Head */}
+      <circle cx="44" cy="22" r="5.5" fill="#1f2937" />
+      <circle cx="46" cy="20.4" r="0.9" fill="#fff" />
+      {/* Antennae */}
+      <path d="M44,17 Q47,12 49,12" stroke="#1f2937" strokeWidth="0.7" fill="none" strokeLinecap="round" />
+      <path d="M42,17 Q41,12 39,12" stroke="#1f2937" strokeWidth="0.7" fill="none" strokeLinecap="round" />
+      <circle cx="49.4" cy="11.6" r="0.8" fill="#1f2937" />
+      <circle cx="38.6" cy="11.6" r="0.8" fill="#1f2937" />
+      {/* Stinger */}
+      <path d="M17,24 L13,22 L17,26 Z" fill="#1f2937" />
+    </svg>
+  );
+}
+
 export default function Solution() {
   const imageReveal = useScrollReveal(0.15);
   const copyReveal = useScrollReveal(0.15);
@@ -28,8 +57,133 @@ export default function Solution() {
   const ingredientsGrid = useScrollReveal(0.1);
 
   return (
-    <section id="solution" data-fx-section className="w-full pt-20 sm:pt-24 lg:pt-32 pb-6 sm:pb-8 bg-white">
-      <div className="w-full max-w-[112rem] mx-auto px-3 sm:px-5 lg:px-6 xl:px-8">
+    <section id="solution" data-fx-section className="relative w-full pt-20 sm:pt-24 lg:pt-32 pb-6 sm:pb-8 bg-white overflow-hidden">
+
+      {/* ── Ambient bees + bottom-right flowers — purely decorative,
+            faint background layer that drifts across the upper area
+            (over the placeholder + "The Answer" copy), descends to the
+            flowers, lingers, then exits stage right. ── */}
+      <style jsx>{`
+        @keyframes solBeeFly1 {
+          0%   { left: -6%;  top: 8%;  transform: rotate(8deg)   scaleX(1); }
+          18%  { left: 22%;  top: 4%;  transform: rotate(-6deg)  scaleX(1); }
+          36%  { left: 50%;  top: 12%; transform: rotate(6deg)   scaleX(1); }
+          50%  { left: 70%;  top: 22%; transform: rotate(20deg)  scaleX(1); }
+          /* descend toward bottom-right flower cluster */
+          62%  { left: 82%;  top: 60%; transform: rotate(35deg)  scaleX(1); }
+          /* hover at flowers */
+          70%  { left: 84%;  top: 78%; transform: rotate(8deg)   scaleX(1); }
+          78%  { left: 80%;  top: 82%; transform: rotate(-12deg) scaleX(1); }
+          /* lift off and fly out right */
+          90%  { left: 96%;  top: 70%; transform: rotate(-18deg) scaleX(1); }
+          100% { left: 112%; top: 60%; transform: rotate(-22deg) scaleX(1); }
+        }
+        @keyframes solBeeFly2 {
+          0%   { left: -8%;  top: 14%; transform: rotate(6deg)   scaleX(1); }
+          22%  { left: 18%;  top: 18%; transform: rotate(-4deg)  scaleX(1); }
+          40%  { left: 44%;  top: 8%;  transform: rotate(10deg)  scaleX(1); }
+          54%  { left: 65%;  top: 28%; transform: rotate(22deg)  scaleX(1); }
+          66%  { left: 78%;  top: 64%; transform: rotate(30deg)  scaleX(1); }
+          74%  { left: 86%;  top: 80%; transform: rotate(0deg)   scaleX(1); }
+          82%  { left: 82%;  top: 84%; transform: rotate(-15deg) scaleX(1); }
+          92%  { left: 98%;  top: 72%; transform: rotate(-20deg) scaleX(1); }
+          100% { left: 114%; top: 64%; transform: rotate(-22deg) scaleX(1); }
+        }
+        @keyframes solBeeWings {
+          0%, 100% { transform: scaleY(1); }
+          50%      { transform: scaleY(0.45); }
+        }
+      `}</style>
+
+      {/* Bee 1 */}
+      <div
+        aria-hidden="true"
+        className="hidden sm:block absolute pointer-events-none z-[3]"
+        style={{
+          width: 26,
+          height: 22,
+          opacity: 0.45,
+          filter: "blur(0.3px)",
+          animation: "solBeeFly1 26s ease-in-out infinite",
+        }}
+      >
+        <BeeSvg />
+      </div>
+
+      {/* Bee 2 — staggered start */}
+      <div
+        aria-hidden="true"
+        className="hidden sm:block absolute pointer-events-none z-[3]"
+        style={{
+          width: 22,
+          height: 18,
+          opacity: 0.38,
+          filter: "blur(0.4px)",
+          animation: "solBeeFly2 30s ease-in-out infinite",
+          animationDelay: "-7s",
+        }}
+      >
+        <BeeSvg />
+      </div>
+
+      {/* Bottom-right flower cluster the bees descend onto */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 260 200"
+        className="hidden sm:block absolute right-2 lg:right-6 bottom-2 w-56 lg:w-72 pointer-events-none z-[2] opacity-80"
+      >
+        <defs>
+          <radialGradient id="solFlowerA" cx="50%" cy="40%">
+            <stop offset="0%" stopColor="#fff7ed" />
+            <stop offset="60%" stopColor="#fbcfe8" />
+            <stop offset="100%" stopColor="#db2777" />
+          </radialGradient>
+          <radialGradient id="solFlowerB" cx="50%" cy="40%">
+            <stop offset="0%" stopColor="#fef3c7" />
+            <stop offset="60%" stopColor="#fde68a" />
+            <stop offset="100%" stopColor="#d97706" />
+          </radialGradient>
+          <radialGradient id="solFlowerC" cx="50%" cy="40%">
+            <stop offset="0%" stopColor="#f3e8ff" />
+            <stop offset="60%" stopColor="#d8b4fe" />
+            <stop offset="100%" stopColor="#7c3aed" />
+          </radialGradient>
+        </defs>
+        {/* Stems + leaves */}
+        <path d="M70 195 Q72 150 80 110" stroke="#84cc16" strokeWidth="2" fill="none" strokeLinecap="round" />
+        <path d="M140 198 Q140 160 138 130" stroke="#65a30d" strokeWidth="2.4" fill="none" strokeLinecap="round" />
+        <path d="M200 200 Q200 165 196 140" stroke="#84cc16" strokeWidth="2" fill="none" strokeLinecap="round" />
+        <path d="M76 150 Q66 142 60 148 Q70 152 76 150 Z" fill="#a3e635" />
+        <path d="M140 162 Q152 152 158 160 Q150 168 140 162 Z" fill="#86efac" />
+        <path d="M198 175 Q188 168 182 174 Q192 180 198 175 Z" fill="#a3e635" />
+
+        {/* Flower A — pink */}
+        <g transform="translate(80 100)">
+          {[0, 60, 120, 180, 240, 300].map((a) => (
+            <ellipse key={`fa${a}`} cx="0" cy="-14" rx="7" ry="13" fill="url(#solFlowerA)" transform={`rotate(${a})`} />
+          ))}
+          <circle r="6" fill="#fde68a" />
+          <circle r="3" fill="#f59e0b" />
+        </g>
+        {/* Flower B — yellow (taller, central) */}
+        <g transform="translate(138 120)">
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((a) => (
+            <ellipse key={`fb${a}`} cx="0" cy="-16" rx="6" ry="14" fill="url(#solFlowerB)" transform={`rotate(${a})`} />
+          ))}
+          <circle r="6.5" fill="#92400e" />
+          <circle r="3" fill="#fbbf24" />
+        </g>
+        {/* Flower C — purple */}
+        <g transform="translate(196 130)">
+          {[0, 60, 120, 180, 240, 300].map((a) => (
+            <ellipse key={`fc${a}`} cx="0" cy="-12" rx="6" ry="11" fill="url(#solFlowerC)" transform={`rotate(${a})`} />
+          ))}
+          <circle r="5" fill="#fef3c7" />
+          <circle r="2.5" fill="#f59e0b" />
+        </g>
+      </svg>
+
+      <div className="relative w-full max-w-[112rem] mx-auto px-3 sm:px-5 lg:px-6 xl:px-8">
 
         {/* Two-column: image + copy */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">

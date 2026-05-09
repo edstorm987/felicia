@@ -291,14 +291,94 @@ export default function Hero() {
 
             </div>
 
-            {/* ── RIGHT: product scene placeholder ── */}
+            {/* ── RIGHT: product scene placeholder + flowers + Felicia card ── */}
             <div className="relative flex items-center justify-center order-first lg:order-last">
               <div className="relative w-full max-w-lg aspect-[4/4.5] flex items-center justify-center">
-                <div className="w-full h-full rounded-3xl border-2 border-dashed border-brand-orange/30 bg-brand-orange/[0.03] flex flex-col items-center justify-center gap-2 px-6 text-center">
+
+                {/* Soft warm glow behind the scene */}
+                <div
+                  aria-hidden="true"
+                  className="absolute -inset-8 rounded-[40px] pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(60% 50% at 50% 50%, rgba(232,98,26,0.10) 0%, rgba(245,135,74,0.05) 50%, transparent 80%)",
+                  }}
+                />
+
+                {/* Trailing daffodils — bottom-left cluster */}
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 220 200"
+                  className="absolute -left-6 sm:-left-8 -bottom-6 sm:-bottom-8 w-44 sm:w-52 lg:w-60 pointer-events-none animate-float-slower"
+                  style={{ filter: "drop-shadow(0 12px 22px rgba(40,18,60,0.10))" }}
+                >
+                  <Daffodil x={50}  y={120} scale={0.95} rotate={-12} opacity={0.95} />
+                  <Daffodil x={110} y={140} scale={0.75} rotate={6}   opacity={0.85} />
+                  <Daffodil x={160} y={120} scale={0.6}  rotate={18}  opacity={0.75} />
+                </svg>
+
+                {/* Trailing daffodils — top-right accent */}
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 160 160"
+                  className="absolute -right-4 sm:-right-6 -top-2 sm:-top-4 w-28 sm:w-32 lg:w-36 pointer-events-none animate-float-slow"
+                  style={{ filter: "drop-shadow(0 10px 20px rgba(40,18,60,0.10))" }}
+                >
+                  <Daffodil x={70} y={70} scale={0.65} rotate={20} opacity={0.85} />
+                  <Daffodil x={110} y={95} scale={0.5} rotate={-8} opacity={0.7} />
+                </svg>
+
+                {/* The dashed placeholder card */}
+                <div className="relative z-10 w-full h-full rounded-3xl border-2 border-dashed border-brand-orange/30 bg-brand-orange/[0.03] flex flex-col items-center justify-center gap-2 px-6 text-center">
                   <span className="text-[10px] tracking-[0.32em] uppercase font-semibold text-brand-orange/55">Placeholder</span>
                   <p className="font-display text-2xl sm:text-3xl text-brand-purple-dark/60 leading-snug">
                     Insert product picture here
                   </p>
+                </div>
+
+                {/* Felicia testimonial card — floats on top, bottom-left */}
+                <div
+                  data-card
+                  className="absolute z-20 left-2 sm:-left-6 lg:-left-10 bottom-8 sm:bottom-10 w-56 sm:w-64 rounded-2xl bg-white/95 backdrop-blur-sm border border-pink-100 px-4 py-3.5 sm:px-5 sm:py-4 fx-tilt"
+                  style={{ boxShadow: "0 24px 50px -22px rgba(40,18,60,0.28), 0 8px 18px -10px rgba(232,98,26,0.18)" }}
+                >
+                  <div className="flex items-start gap-3">
+                    {/* Avatar — gradient orb with F */}
+                    <div
+                      className="shrink-0 w-11 h-11 rounded-full flex items-center justify-center text-white font-display text-lg shadow-md"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, #F2A23C 0%, #E8621A 55%, #6B2D8B 100%)",
+                      }}
+                    >
+                      F
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] tracking-[0.24em] uppercase font-semibold text-brand-orange-dark/75 mb-1">
+                        From Felicia
+                      </p>
+                      <p className="font-display text-brand-purple-dark text-[13px] sm:text-sm leading-snug italic">
+                        &ldquo;Made with my hands, in my hometown, for your skin.&rdquo;
+                      </p>
+                    </div>
+                  </div>
+                  {/* Tiny caret pointing into the placeholder */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute -right-1.5 top-6 w-3 h-3 rotate-45 bg-white border-t border-r border-pink-100"
+                  />
+                </div>
+
+                {/* Tiny review pill — top-right floating accent */}
+                <div
+                  data-card
+                  className="hidden sm:flex absolute z-20 -right-3 lg:-right-6 top-12 lg:top-16 items-center gap-2 rounded-full bg-white/95 backdrop-blur-sm border border-pink-100 px-3 py-1.5 fx-pop"
+                  style={{ boxShadow: "0 18px 36px -18px rgba(40,18,60,0.22)" }}
+                >
+                  <span className="text-amber-400 text-xs">★★★★★</span>
+                  <span className="text-[10px] font-semibold tracking-wider uppercase text-brand-purple-dark/70">
+                    100% natural
+                  </span>
                 </div>
               </div>
             </div>

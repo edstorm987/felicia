@@ -240,6 +240,16 @@ const STORIES_RAIL = [
 export default function VSLSection() {
   const [modalOpen, setModalOpen] = useState(false);
   const [activeStory, setActiveStory] = useState("keira");
+  // Wipe transition: bumps every time activeStory changes so the wipe
+  // overlay re-keys and replays its animation.
+  const [wipeKey, setWipeKey] = useState(0);
+  const selectStory = (id: string) => {
+    if (id === activeStory) return;
+    setWipeKey((k) => k + 1);
+    // Swap the visible video slightly into the wipe so the new content
+    // is revealed as the wipe panel sweeps off-screen.
+    setTimeout(() => setActiveStory(id), 220);
+  };
   const sectionRef = useRef<HTMLDivElement>(null);
   // Static section — render fully revealed instead of scroll-driven progress.
   // Scroll-based motion lives only inside the opt-in animated player now.
@@ -247,7 +257,7 @@ export default function VSLSection() {
   const activeIdx = Math.max(0, STORIES_RAIL.findIndex((s) => s.id === activeStory));
   const cycleStory = (dir: 1 | -1) => {
     const next = (activeIdx + dir + STORIES_RAIL.length) % STORIES_RAIL.length;
-    setActiveStory(STORIES_RAIL[next].id);
+    selectStory(STORIES_RAIL[next].id);
   };
   const scrollToReviews = () => {
     if (typeof window === "undefined") return;
@@ -273,7 +283,7 @@ export default function VSLSection() {
         open={modalOpen}
         activeId={activeStory}
         onClose={() => setModalOpen(false)}
-        onSelect={setActiveStory}
+        onSelect={selectStory}
       />
 
       <div
@@ -287,20 +297,20 @@ export default function VSLSection() {
             100% { transform: rotate(2.5deg); }
           }
           /* Bird flies in from off-left, arcs across, lands on the first
-             outcome card (top-right area), holds ~3s, lifts off and exits right. */
+             outcome card (top-right area), holds ~5s, lifts off and exits right. */
           @keyframes birdFly {
-            0%   { left: -8%;  top: 22%; transform: rotate(-4deg) scaleX(1); }
-            12%  { left: 18%;  top: 14%; transform: rotate(-2deg) scaleX(1); }
-            24%  { left: 38%;  top: 22%; transform: rotate( 0deg) scaleX(1); }
-            36%  { left: 56%;  top: 30%; transform: rotate( 4deg) scaleX(1); }
-            45%  { left: 68%;  top: 36%; transform: rotate( 0deg) scaleX(1); }
-            /* Settles on the card */
-            48%  { left: 70%;  top: 38%; transform: rotate( 0deg) scaleX(1); }
-            /* Hold ~3s (48% → 60% of 25s = 3s sit) */
-            60%  { left: 70%;  top: 38%; transform: rotate( 0deg) scaleX(1); }
+            0%   { left: -8%;  top: 28%; transform: rotate(-4deg) scaleX(1); }
+            10%  { left: 14%;  top: 20%; transform: rotate(-2deg) scaleX(1); }
+            22%  { left: 34%;  top: 26%; transform: rotate( 0deg) scaleX(1); }
+            34%  { left: 54%;  top: 32%; transform: rotate( 4deg) scaleX(1); }
+            42%  { left: 64%;  top: 36%; transform: rotate( 2deg) scaleX(1); }
+            /* Settles on the "Visibly clearer skin" card */
+            48%  { left: 70%;  top: 40%; transform: rotate( 0deg) scaleX(1); }
+            /* Hold for the perch (48% → 72% of 28s ≈ 6.7s sit) */
+            72%  { left: 70%;  top: 40%; transform: rotate( 0deg) scaleX(1); }
             /* Lifts off and exits right */
-            68%  { left: 76%;  top: 30%; transform: rotate(-3deg) scaleX(1); }
-            82%  { left: 92%;  top: 18%; transform: rotate(-2deg) scaleX(1); }
+            80%  { left: 78%;  top: 30%; transform: rotate(-3deg) scaleX(1); }
+            92%  { left: 94%;  top: 18%; transform: rotate(-2deg) scaleX(1); }
             100% { left: 112%; top: 10%; transform: rotate(-1deg) scaleX(1); }
           }
           /* Wing flap — soft scaleY wobble; pauses during the sit phase */
@@ -316,6 +326,13 @@ export default function VSLSection() {
             0%, 100% { transform: translateY(0); }
             50%      { transform: translateY(0.5px); }
           }
+          /* Video swap wipe — sweeps a brand-gradient panel across the player */
+          @keyframes videoWipe {
+            0%   { transform: translateX(-105%) skewX(-8deg); opacity: 0.9; }
+            45%  { transform: translateX(0%)    skewX(-8deg); opacity: 1; }
+            55%  { transform: translateX(0%)    skewX(-8deg); opacity: 1; }
+            100% { transform: translateX(110%)  skewX(-8deg); opacity: 0.9; }
+          }
         `}</style>
 
         {/* Static viewport — no scroll-jack, no sticky pinning. The section
@@ -327,16 +344,16 @@ export default function VSLSection() {
                 outcome card, then exits. Faint, decorative only. ── */}
           <div
             aria-hidden="true"
-            className="hidden sm:block absolute pointer-events-none z-[2]"
+            className="hidden sm:block absolute pointer-events-none z-[40]"
             style={{
-              width: 38,
-              height: 26,
-              opacity: 0.32,
-              filter: "blur(0.4px)",
-              animation: "birdFly 14s ease-in-out infinite",
+              width: 56,
+              height: 38,
+              opacity: 0.85,
+              filter: "drop-shadow(0 6px 10px rgba(40,18,60,0.2))",
+              animation: "birdFly 28s ease-in-out infinite",
             }}
           >
-            <svg viewBox="0 0 60 40" width="38" height="26" style={{ animation: "birdBreathe 2.6s ease-in-out infinite" }}>
+            <svg viewBox="0 0 60 40" width="56" height="38" style={{ animation: "birdBreathe 2.6s ease-in-out infinite" }}>
               {/* Tail */}
               <path d="M3 22 L13 18 L13 24 Z" fill="#6b4226" />
               {/* Body */}
@@ -532,6 +549,22 @@ export default function VSLSection() {
                     <div className="absolute top-5 left-5 border border-white/10 rounded-full px-3.5 py-1.5 bg-white/5 backdrop-blur-sm">
                       <span className="text-white/40 text-[9px] tracking-[0.2em] uppercase font-medium">Coming soon</span>
                     </div>
+
+                    {/* Wipe transition overlay — re-keys on every selectStory()
+                        so the animation replays. Spans wider than the card and
+                        skews so the wipe edge looks angled. */}
+                    <div
+                      key={wipeKey}
+                      aria-hidden="true"
+                      className="absolute inset-y-0 -left-[10%] w-[120%] pointer-events-none z-30"
+                      style={{
+                        background:
+                          "linear-gradient(110deg, rgba(232,98,26,0.0) 0%, rgba(232,98,26,0.92) 25%, rgba(107,45,139,0.95) 55%, rgba(26,10,46,0.92) 80%, rgba(26,10,46,0) 100%)",
+                        transform: "translateX(-105%) skewX(-8deg)",
+                        animation: wipeKey > 0 ? "videoWipe 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards" : "none",
+                        boxShadow: "0 0 60px rgba(232,98,26,0.4)",
+                      }}
+                    />
                   </div>
 
                   {/* Thumbnail rail with chevrons */}
@@ -555,7 +588,7 @@ export default function VSLSection() {
                           <button
                             key={s.id}
                             type="button"
-                            onClick={() => setActiveStory(s.id)}
+                            onClick={() => selectStory(s.id)}
                             aria-pressed={active}
                             className={`group relative shrink-0 w-28 sm:w-32 rounded-xl overflow-hidden text-left transition-all duration-300 ${active ? "ring-2 ring-brand-orange/70 -translate-y-0.5" : "ring-1 ring-gray-200 hover:-translate-y-0.5"}`}
                             style={{ aspectRatio: "16/10", boxShadow: active ? "0 14px 30px -14px rgba(232,98,26,0.35)" : "0 6px 18px -10px rgba(40,18,60,0.15)" }}
