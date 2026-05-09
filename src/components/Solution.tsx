@@ -111,103 +111,234 @@ export default function Solution() {
             }}
           />
 
-          {/* ── Bathtub + rubber ducky in the bottom-left corner ── */}
+          {/* ── Refined claw-foot bathtub + dimensional rubber duck ── */}
           <svg
             aria-hidden="true"
-            viewBox="0 0 240 130"
-            className="absolute -left-4 sm:left-2 bottom-0 w-44 sm:w-56 lg:w-64 opacity-90 pointer-events-none"
+            viewBox="0 0 280 160"
+            className="absolute -left-4 sm:left-2 bottom-0 w-48 sm:w-60 lg:w-72 opacity-95 pointer-events-none"
           >
-            {/* Floor reflection */}
-            <ellipse cx="120" cy="125" rx="100" ry="6" fill="rgba(168,200,212,0.30)" />
-            {/* Tub feet */}
-            <rect x="42" y="92" width="9" height="20" rx="3" fill="#9bb7c4" />
-            <rect x="195" y="92" width="9" height="20" rx="3" fill="#9bb7c4" />
-            <ellipse cx="46.5" cy="113" rx="6" ry="2.5" fill="#86a4b3" />
-            <ellipse cx="199.5" cy="113" rx="6" ry="2.5" fill="#86a4b3" />
-            {/* Tub body — claw-foot shape */}
+            <defs>
+              <linearGradient id="tubBody" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#fdfeff" />
+                <stop offset="60%" stopColor="#f3f9fc" />
+                <stop offset="100%" stopColor="#dde9ef" />
+              </linearGradient>
+              <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#cee8ee" />
+                <stop offset="100%" stopColor="#9fc8d6" />
+              </linearGradient>
+              <radialGradient id="duckBody" cx="35%" cy="28%">
+                <stop offset="0%" stopColor="#fde68a" />
+                <stop offset="55%" stopColor="#fbbf24" />
+                <stop offset="100%" stopColor="#d97706" />
+              </radialGradient>
+              <radialGradient id="duckHead" cx="35%" cy="22%">
+                <stop offset="0%" stopColor="#fde68a" />
+                <stop offset="65%" stopColor="#fbbf24" />
+                <stop offset="100%" stopColor="#d97706" />
+              </radialGradient>
+            </defs>
+
+            {/* Soft floor shadow */}
+            <ellipse cx="140" cy="150" rx="118" ry="5" fill="rgba(40,18,60,0.10)" />
+
+            {/* Claw-foot ball-and-claw feet */}
+            <g>
+              <rect x="51" y="116" width="11" height="22" rx="2.5" fill="#7d9fae" />
+              <ellipse cx="56.5" cy="142" rx="11" ry="6" fill="#7d9fae" />
+              <ellipse cx="56.5" cy="139" rx="9" ry="4" fill="#a8c8d4" />
+              <circle cx="53" cy="141" r="1" fill="#5d7e8c" opacity="0.6" />
+              <rect x="219" y="116" width="11" height="22" rx="2.5" fill="#7d9fae" />
+              <ellipse cx="224.5" cy="142" rx="11" ry="6" fill="#7d9fae" />
+              <ellipse cx="224.5" cy="139" rx="9" ry="4" fill="#a8c8d4" />
+              <circle cx="227" cy="141" r="1" fill="#5d7e8c" opacity="0.6" />
+            </g>
+
+            {/* Tub body — clean curved silhouette with dimensional fill */}
             <path
-              d="M30,46 Q30,98 70,98 L170,98 Q210,98 210,46 Q205,40 195,42 Q200,52 198,62 L42,62 Q40,52 45,42 Q35,40 30,46 Z"
-              fill="#f7fbfd"
-              stroke="#a8c8d4"
+              d="M30,55 C30,52 33,49 39,47 L241,47 C247,49 250,52 250,55 L248,92 C246,108 232,120 215,122 L65,122 C48,120 34,108 32,92 Z"
+              fill="url(#tubBody)"
+              stroke="#9bbecd"
               strokeWidth="1.6"
             />
-            {/* Rim shine */}
-            <path d="M50,45 Q120,38 190,45" stroke="rgba(255,255,255,0.85)" strokeWidth="1.4" fill="none" />
-            {/* Water inside */}
-            <path
-              d="M44,65 Q44,93 70,93 L170,93 Q196,93 196,65 Z"
-              fill="#bfe1ec"
-            />
-            {/* Water surface ripples */}
-            <path d="M48,67 Q70,64 100,67 T160,67 T196,67" stroke="rgba(255,255,255,0.85)" strokeWidth="1" fill="none" />
-            <path d="M58,73 Q90,70 130,73 T188,73" stroke="rgba(255,255,255,0.5)" strokeWidth="0.8" fill="none" />
-            {/* Foam bubbles on water */}
-            <circle cx="70" cy="68" r="3" fill="rgba(255,255,255,0.85)" />
-            <circle cx="78" cy="65" r="2" fill="rgba(255,255,255,0.7)" />
-            <circle cx="160" cy="69" r="2.5" fill="rgba(255,255,255,0.8)" />
-            <circle cx="155" cy="72" r="1.6" fill="rgba(255,255,255,0.6)" />
+            {/* Inner rim shadow */}
+            <path d="M40,62 C40,59 43,57 47,57 L233,57 C237,57 240,59 240,62" stroke="rgba(120,150,165,0.45)" strokeWidth="1" fill="none" />
+            {/* Top rim highlight */}
+            <path d="M48,53 Q140,49 232,53" stroke="rgba(255,255,255,0.95)" strokeWidth="1.4" fill="none" strokeLinecap="round" />
 
-            {/* ── Rubber ducky sitting in the water ── */}
-            <g transform="translate(102, 50)">
+            {/* Water surface (subtle ellipse) */}
+            <ellipse cx="140" cy="74" rx="98" ry="4.5" fill="rgba(159,200,214,0.55)" />
+
+            {/* Water body */}
+            <path d="M44,74 C44,98 58,112 75,114 L205,114 C222,112 236,98 236,74 Z" fill="url(#waterGrad)" />
+
+            {/* Surface ripples */}
+            <path d="M55,73 Q90,70 125,73 T195,73 T230,73" stroke="rgba(255,255,255,0.75)" strokeWidth="0.9" fill="none" strokeLinecap="round" />
+            <path d="M65,80 Q105,77 145,80 T225,80" stroke="rgba(255,255,255,0.4)" strokeWidth="0.7" fill="none" strokeLinecap="round" />
+
+            {/* Foam clusters with depth */}
+            <g>
+              <circle cx="60" cy="73" r="3.6" fill="rgba(255,255,255,0.95)" />
+              <circle cx="58" cy="71" r="1.2" fill="rgba(255,255,255,1)" />
+              <circle cx="66" cy="71" r="2.5" fill="rgba(255,255,255,0.85)" />
+              <circle cx="71" cy="74" r="1.8" fill="rgba(255,255,255,0.7)" />
+            </g>
+            <g>
+              <circle cx="222" cy="74" r="3.2" fill="rgba(255,255,255,0.92)" />
+              <circle cx="220" cy="72" r="1" fill="rgba(255,255,255,1)" />
+              <circle cx="216" cy="76" r="2" fill="rgba(255,255,255,0.7)" />
+            </g>
+            <g>
+              <circle cx="180" cy="73" r="2.4" fill="rgba(255,255,255,0.85)" />
+              <circle cx="174" cy="76" r="1.5" fill="rgba(255,255,255,0.6)" />
+            </g>
+
+            {/* ── Rubber duck — refined, dimensional ── */}
+            <g transform="translate(120, 50)">
+              {/* Cast shadow on water */}
+              <ellipse cx="22" cy="38" rx="24" ry="2.5" fill="rgba(0,0,0,0.10)" />
+
               {/* Body */}
-              <ellipse cx="20" cy="20" rx="20" ry="12" fill="#fbbf24" />
-              <ellipse cx="20" cy="18" rx="18" ry="9" fill="#fcd34d" />
-              {/* Tail tuft */}
-              <path d="M0,18 L-6,12 L-3,20 Z" fill="#fbbf24" />
+              <ellipse cx="22" cy="22" rx="22" ry="13" fill="url(#duckBody)" />
+              {/* Belly highlight */}
+              <ellipse cx="14" cy="17" rx="14" ry="5" fill="rgba(255,255,255,0.55)" />
+
+              {/* Tail feather (curved) */}
+              <path d="M2,18 Q-7,9 -3,22 Q1,25 5,22 Z" fill="#f59e0b" />
+              <path d="M0,18 Q-3,15 -2,21" stroke="rgba(180,90,12,0.5)" strokeWidth="0.5" fill="none" />
+
               {/* Head */}
-              <circle cx="32" cy="8" r="9" fill="#fbbf24" />
-              <circle cx="33" cy="6" r="7" fill="#fcd34d" />
+              <circle cx="34" cy="6" r="10" fill="url(#duckHead)" />
+              {/* Head highlight */}
+              <ellipse cx="32" cy="3" r="5" fill="rgba(255,255,255,0.55)" />
+
               {/* Beak */}
-              <path d="M40,8 Q47,7 47,10 Q47,12 40,11 Z" fill="#f97316" />
-              <path d="M40,9 L47,10" stroke="#c2410c" strokeWidth="0.4" />
-              {/* Eye */}
-              <circle cx="34" cy="6" r="1.5" fill="#1a0a2e" />
-              <circle cx="34.4" cy="5.6" r="0.5" fill="#fff" />
-              {/* Wing */}
-              <path d="M16,16 Q22,12 28,16 Q24,22 18,22 Z" fill="#f59e0b" />
+              <path d="M42,6 Q51,4 52,8 Q51,11 42,9 Z" fill="#f97316" />
+              <path d="M42,7.5 L50,8" stroke="rgba(155,55,8,0.7)" strokeWidth="0.5" />
+              <path d="M48,5 Q50,5 51,7" stroke="rgba(220,110,30,0.6)" strokeWidth="0.4" fill="none" />
+
+              {/* Eye — dimensional */}
+              <circle cx="35" cy="4.2" r="2" fill="#1a0a2e" />
+              <circle cx="35.7" cy="3.5" r="0.85" fill="#fff" />
+              <circle cx="34.5" cy="5" r="0.3" fill="rgba(255,255,255,0.6)" />
+
+              {/* Wing — folded with feather lines */}
+              <path d="M14,16 Q22,8 30,14 Q26,22 18,22 Q14,20 14,16 Z" fill="#f59e0b" />
+              <path d="M16,18 Q22,15 28,17" stroke="rgba(120,60,8,0.45)" strokeWidth="0.5" fill="none" />
+              <path d="M18,20 Q23,18 27,19" stroke="rgba(120,60,8,0.3)" strokeWidth="0.4" fill="none" />
             </g>
           </svg>
 
-          {/* ── Woman in shower cap, top-right ── */}
+          {/* ── Refined woman portrait with shower cap ── */}
           <svg
             aria-hidden="true"
-            viewBox="0 0 110 130"
-            className="absolute right-2 sm:right-6 -top-2 sm:top-2 w-24 sm:w-28 lg:w-32 opacity-90 pointer-events-none"
+            viewBox="0 0 130 160"
+            className="absolute right-2 sm:right-6 -top-2 sm:top-2 w-28 sm:w-32 lg:w-36 opacity-95 pointer-events-none"
           >
-            {/* Steam puffs floating up */}
-            <circle cx="20" cy="20" r="6" fill="rgba(255,255,255,0.6)" />
-            <circle cx="30" cy="10" r="4" fill="rgba(255,255,255,0.5)" />
-            <circle cx="14" cy="34" r="4" fill="rgba(255,255,255,0.45)" />
+            <defs>
+              <radialGradient id="skinGrad" cx="40%" cy="32%">
+                <stop offset="0%" stopColor="#ecc89c" />
+                <stop offset="55%" stopColor="#d8a979" />
+                <stop offset="100%" stopColor="#b08658" />
+              </radialGradient>
+              <linearGradient id="capGrad" x1="0" y1="0" x2="0.3" y2="1">
+                <stop offset="0%" stopColor="#fce7f3" />
+                <stop offset="55%" stopColor="#fbcfe8" />
+                <stop offset="100%" stopColor="#f9a8d4" />
+              </linearGradient>
+              <linearGradient id="towelGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#ffffff" />
+                <stop offset="100%" stopColor="#f1eee4" />
+              </linearGradient>
+            </defs>
 
-            {/* Shower head */}
-            <rect x="80" y="6" width="3" height="14" fill="#9bb7c4" />
-            <ellipse cx="81.5" cy="22" rx="10" ry="4" fill="#bfe1ec" />
-            {[78, 81.5, 85].map((cx, i) => (
-              <line key={i} x1={cx} y1="26" x2={cx + (i-1)*0.5} y2="34" stroke="#bfe1ec" strokeWidth="0.8" />
+            {/* Steam puffs drifting up */}
+            <g opacity="0.6">
+              <circle cx="22" cy="22" r="7" fill="#ffffff" />
+              <circle cx="34" cy="11" r="5" fill="#ffffff" />
+              <circle cx="14" cy="36" r="5" fill="#ffffff" />
+              <circle cx="26" cy="28" r="4" fill="#ffffff" />
+              <circle cx="40" cy="22" r="3" fill="#ffffff" />
+            </g>
+
+            {/* Shower head + drops */}
+            <rect x="92" y="6" width="3" height="13" fill="#9bbecd" rx="0.5" />
+            <ellipse cx="93.5" cy="20.5" rx="11" ry="3.6" fill="#bfdee9" stroke="#9bbecd" strokeWidth="0.8" />
+            <ellipse cx="93.5" cy="19" rx="9" ry="1.5" fill="rgba(255,255,255,0.55)" />
+            <line x1="88" y1="24.5" x2="86" y2="34" stroke="#bfdee9" strokeWidth="0.8" strokeLinecap="round" />
+            <line x1="93" y1="25" x2="93" y2="36" stroke="#bfdee9" strokeWidth="0.8" strokeLinecap="round" />
+            <line x1="98" y1="24.5" x2="100" y2="34" stroke="#bfdee9" strokeWidth="0.8" strokeLinecap="round" />
+
+            {/* Towel wrap below face */}
+            <path d="M30,138 Q65,128 100,138 L100,160 L30,160 Z" fill="url(#towelGrad)" />
+            <path d="M32,140 Q65,131 98,140" stroke="rgba(180,150,110,0.25)" strokeWidth="0.7" fill="none" />
+
+            {/* Neck */}
+            <rect x="56" y="116" width="18" height="14" fill="url(#skinGrad)" />
+            <path d="M56,124 L74,124" stroke="rgba(120,80,50,0.18)" strokeWidth="3" />
+
+            {/* Face — proper oval */}
+            <ellipse cx="65" cy="92" rx="22" ry="26" fill="url(#skinGrad)" />
+            {/* Subsurface cheek bloom */}
+            <ellipse cx="50" cy="100" rx="6" ry="4" fill="rgba(232,98,26,0.22)" />
+            <ellipse cx="80" cy="100" rx="6" ry="4" fill="rgba(232,98,26,0.22)" />
+            {/* Forehead highlight */}
+            <ellipse cx="65" cy="78" rx="14" ry="5" fill="rgba(255,235,200,0.35)" />
+
+            {/* Brows */}
+            <path d="M52,86 Q57,83.5 62,86" stroke="#3a1f0c" strokeWidth="2" fill="none" strokeLinecap="round" />
+            <path d="M68,86 Q73,83.5 78,86" stroke="#3a1f0c" strokeWidth="2" fill="none" strokeLinecap="round" />
+
+            {/* Eyes — almond, peaceful, with lashes */}
+            <path d="M50,93 Q57,90 64,93" stroke="#2a1408" strokeWidth="1.6" fill="none" strokeLinecap="round" />
+            <path d="M66,93 Q73,90 80,93" stroke="#2a1408" strokeWidth="1.6" fill="none" strokeLinecap="round" />
+            {[51, 55, 60, 70, 75, 79].map((x, i) => (
+              <line key={i} x1={x} y1={92 - (i % 3) * 0.2} x2={x - 0.5} y2={88 - (i % 3) * 0.3} stroke="#2a1408" strokeWidth="0.6" strokeLinecap="round" />
             ))}
 
-            {/* Shower-cap (pink with polka dots) */}
-            <path d="M28,68 Q55,38 82,68 Q78,76 55,74 Q32,76 28,68 Z" fill="#fbcfe8" />
-            <path d="M30,66 Q55,42 80,66" stroke="rgba(255,255,255,0.7)" strokeWidth="1" fill="none" />
-            <circle cx="40" cy="60" r="2.3" fill="#f9a8d4" />
-            <circle cx="55" cy="54" r="2.3" fill="#f9a8d4" />
-            <circle cx="70" cy="60" r="2.3" fill="#f9a8d4" />
-            {/* Cap bow */}
-            <path d="M53,46 L57,46 L60,42 L60,50 L57,46 L53,46 L50,50 L50,42 Z" fill="#ec4899" />
+            {/* Nose — bridge shadow + tip catchlight + nostrils */}
+            <path d="M65,96 Q63,103 61,107 Q65,109 69,107 Q67,103 65,96 Z" fill="rgba(80,40,15,0.16)" />
+            <ellipse cx="65" cy="107" rx="2.2" ry="1.2" fill="rgba(255,235,200,0.3)" />
+            <ellipse cx="63" cy="108" rx="0.8" ry="1" fill="rgba(60,30,15,0.35)" />
+            <ellipse cx="67" cy="108" rx="0.8" ry="1" fill="rgba(60,30,15,0.35)" />
 
-            {/* Face */}
-            <ellipse cx="55" cy="86" rx="20" ry="22" fill="#dcae7e" />
-            {/* Cheeks */}
-            <circle cx="42" cy="90" r="3" fill="rgba(232,98,26,0.25)" />
-            <circle cx="68" cy="90" r="3" fill="rgba(232,98,26,0.25)" />
-            {/* Eyes */}
-            <path d="M44,84 Q47,82 50,84" stroke="#3a1f0c" strokeWidth="1.4" fill="none" strokeLinecap="round" />
-            <path d="M60,84 Q63,82 66,84" stroke="#3a1f0c" strokeWidth="1.4" fill="none" strokeLinecap="round" />
-            {/* Smile */}
-            <path d="M48,96 Q55,101 62,96" stroke="#3a1f0c" strokeWidth="1.4" fill="none" strokeLinecap="round" />
-            {/* Neck + shoulders peek */}
-            <rect x="48" y="106" width="14" height="8" fill="#dcae7e" />
-            <path d="M30,116 Q55,108 80,116 L80,130 L30,130 Z" fill="#fff" opacity="0.9" />
+            {/* Mouth — fuller with cupid's bow + highlight */}
+            <path d="M57,113 Q61,111 65,112 Q69,111 73,113 Q68,116.5 65,116.5 Q62,116.5 57,113 Z" fill="#9b4a2a" />
+            <path d="M57,113 Q65,111 73,113" stroke="rgba(0,0,0,0.4)" strokeWidth="0.5" fill="none" />
+            <path d="M61,112 Q63,109.5 65,112 Q67,109.5 69,112" stroke="rgba(155,74,42,0.55)" strokeWidth="0.5" fill="none" />
+            <ellipse cx="65" cy="114.5" rx="3.5" ry="0.7" fill="rgba(255,210,180,0.55)" />
+
+            {/* Shower-cap — refined with ruching + sheen + dots */}
+            <path d="M30,80 Q40,38 65,36 Q90,38 100,80 Q92,84 65,82 Q38,84 30,80 Z" fill="url(#capGrad)" />
+            {/* Pleats / ruching lines */}
+            <path d="M40,72 Q44,52 65,48" stroke="rgba(255,255,255,0.55)" strokeWidth="0.9" fill="none" />
+            <path d="M50,76 Q54,54 65,48" stroke="rgba(255,255,255,0.4)" strokeWidth="0.7" fill="none" />
+            <path d="M90,72 Q86,52 65,48" stroke="rgba(255,255,255,0.55)" strokeWidth="0.9" fill="none" />
+            <path d="M80,76 Q76,54 65,48" stroke="rgba(255,255,255,0.4)" strokeWidth="0.7" fill="none" />
+            {/* Cap top crease */}
+            <ellipse cx="65" cy="80" rx="32" ry="2" fill="rgba(0,0,0,0.05)" />
+            {/* Soft sheen across crown */}
+            <path d="M40,68 Q55,42 80,46" stroke="rgba(255,255,255,0.65)" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.6" />
+            {/* Polka dots scattered */}
+            <circle cx="44" cy="68" r="2.4" fill="#f9a8d4" />
+            <circle cx="58" cy="58" r="2.4" fill="#f9a8d4" />
+            <circle cx="72" cy="58" r="2.4" fill="#f9a8d4" />
+            <circle cx="86" cy="68" r="2.4" fill="#f9a8d4" />
+            <circle cx="50" cy="76" r="1.6" fill="#fbcfe8" />
+            <circle cx="80" cy="76" r="1.6" fill="#fbcfe8" />
+            <circle cx="65" cy="68" r="1.4" fill="#fbcfe8" />
+
+            {/* Bow — front center, more dimensional */}
+            <g transform="translate(65, 44)">
+              <path d="M-7,1 Q-13,-5 -10,3 Q-7,5 -3,3 Z" fill="#ec4899" />
+              <path d="M7,1 Q13,-5 10,3 Q7,5 3,3 Z" fill="#ec4899" />
+              <ellipse cx="0" cy="3" rx="2.5" ry="3" fill="#db2777" />
+              <ellipse cx="0" cy="2" rx="1.5" ry="1.4" fill="rgba(255,255,255,0.4)" />
+            </g>
+
+            {/* Tiny ear peek */}
+            <ellipse cx="44" cy="96" rx="2" ry="3.5" fill="url(#skinGrad)" />
+            <ellipse cx="86" cy="96" rx="2" ry="3.5" fill="url(#skinGrad)" />
           </svg>
 
           {/* Header */}
