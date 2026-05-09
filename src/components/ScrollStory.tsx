@@ -347,22 +347,19 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
 
   const live = animationsOn && !!AnimatedComp;
 
-  // Tiny floating toggle pill — sits just under the navbar, top-right.
-  // The only piece of always-visible chrome related to animations.
-  // Sticky toggle pill — lives INSIDE the section anchor wrapper as a sticky
-  // child at the top. Pinned just under the navbar while the user is within
-  // the animation section; scrolls out once they leave. Right-aligned via
-  // a full-width flex row so we keep `position: sticky` (which can't combine
-  // with `right: ...` on the sticky element itself in a normal flow context).
-  const togglePill = (
+  // Sticky "Turn off immersive experience" pill — only renders when LIVE
+  // and stays sticky-pinned to the top while the user is inside the SVG
+  // section's scroll bounds. Its flow position is just below the gradient
+  // header strip, so it isn't visible until the user reaches the section.
+  const togglePillLive = (
     <div
       className="sticky z-50 flex justify-end pr-4 sm:pr-5 pointer-events-none"
       style={{ top: "calc(var(--nav-h) + 0.5rem)" }}
     >
       <button
         type="button"
-        onClick={() => { if (live) handleDisable(); else void handleAnimate(); }}
-        aria-pressed={live}
+        onClick={handleDisable}
+        aria-label="Turn off immersive experience"
         className="pointer-events-auto inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-[10px] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:-translate-y-0.5"
         style={{
           background: "#FFFFFF",
@@ -370,39 +367,72 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
           boxShadow: "0 10px 28px -10px rgba(40,18,60,0.25), 0 0 0 1px rgba(40,18,60,0.06)",
         }}
       >
-        <span
-          className="inline-flex items-center justify-center w-4 h-4 rounded-full"
-          style={{ background: live ? "#E8621A" : "#9CA3AF" }}
-        >
-          {live ? (
-            <svg width="7" height="7" viewBox="0 0 24 24" fill="#fff"><rect x="6" y="6" width="12" height="12" rx="1.5" /></svg>
-          ) : (
-            <svg width="7" height="7" viewBox="0 0 24 24" fill="#fff" className="ml-[1px]"><path d="M8 5v14l11-7z" /></svg>
-          )}
+        <span className="inline-flex items-center justify-center w-4 h-4 rounded-full" style={{ background: "#E8621A" }}>
+          <svg width="7" height="7" viewBox="0 0 24 24" fill="#fff"><rect x="6" y="6" width="12" height="12" rx="1.5" /></svg>
         </span>
-        <span>{live ? "Turn off animation" : "Turn on animation"}</span>
+        <span>Turn off immersive experience</span>
       </button>
+    </div>
+  );
+
+  // Gradient transition strip — the entry into the SVG section. Always
+  // present so the bg blends from the page above into the dark player bg.
+  // OFF state: tall (48vh) with a centered "Turn on immersive experience"
+  //            button so users can opt back in.
+  // ON state:  short (6rem) — a thin transition before the player begins.
+  const transitionStrip = (
+    <div
+      className="relative w-full overflow-hidden flex items-center justify-center"
+      style={{
+        height: live ? "6rem" : "48vh",
+        background: "linear-gradient(180deg, #ffffff 0%, #f3ecff 35%, #2d1260 78%, #14102b 100%)",
+        transition: "height 600ms ease-out",
+      }}
+    >
+      {!live && (
+        <button
+          type="button"
+          onClick={() => void handleAnimate()}
+          className="group inline-flex items-center gap-3 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm font-semibold tracking-tight transition-all duration-300 hover:scale-[1.04] hover:-translate-y-0.5"
+          style={{
+            background: "#FFFFFF",
+            color: "#4A1D62",
+            boxShadow: "0 18px 40px -16px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.55) inset",
+          }}
+        >
+          <span
+            className="inline-flex items-center justify-center w-7 h-7 rounded-full"
+            style={{ background: "#6B2D8B" }}
+          >
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="#fff" className="ml-[1px]">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+          <span>Turn on immersive experience</span>
+        </button>
+      )}
     </div>
   );
 
   if (useStatic) {
     return (
-      <div ref={sectionRef} data-story-section className="relative w-full">
-        {togglePill}
-      </div>
+      <section ref={sectionRef} data-story-section className="relative w-full">
+        {transitionStrip}
+      </section>
     );
   }
   if (!AnimatedComp) return null;
   const Comp = AnimatedComp;
   return (
-    <div ref={sectionRef} data-story-section className="relative w-full">
-      {togglePill}
+    <section ref={sectionRef} data-story-section className="relative w-full">
+      {transitionStrip}
+      {togglePillLive}
       <Comp
         onDiscount={onDiscount}
         onComplete={() => { /* no-op — animation stays on after completion */ }}
         onExit={handleDisable}
       />
-    </div>
+    </section>
   );
 }
 
