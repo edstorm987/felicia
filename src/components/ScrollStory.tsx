@@ -424,15 +424,20 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
   if (!AnimatedComp) return null;
   const Comp = AnimatedComp;
   return (
-    <section ref={sectionRef} data-story-section className="relative w-full">
-      {transitionStrip}
-      {togglePillLive}
-      <Comp
-        onDiscount={onDiscount}
-        onComplete={() => { /* no-op — animation stays on after completion */ }}
-        onExit={handleDisable}
-      />
-    </section>
+    <>
+      {/* Strip lives outside the player section so the sticky pill below
+          can't pin until the user has actually scrolled past the strip
+          and into the player itself. */}
+      <div className="relative w-full">{transitionStrip}</div>
+      <section ref={sectionRef} data-story-section className="relative w-full">
+        {togglePillLive}
+        <Comp
+          onDiscount={onDiscount}
+          onComplete={() => { /* no-op — animation stays on after completion */ }}
+          onExit={handleDisable}
+        />
+      </section>
+    </>
   );
 }
 
