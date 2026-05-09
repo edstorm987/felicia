@@ -594,9 +594,10 @@ export default function VSLSection() {
                 {/* Right column: outcome cards stacked */}
                 <div className="flex flex-col gap-4">
                   {OUTCOMES.map(({ icon, title, body }) => (
-                    <div key={title} className="flex gap-5 items-start p-6 xl:p-7 rounded-2xl bg-white/70 backdrop-blur-md border border-white/60 hover:border-brand-orange/15 hover:bg-white/85 hover:shadow-xl hover:shadow-brand-orange/5 transition-all duration-500 group"
+                    <div key={title}
+                      className="flex gap-5 items-start p-6 xl:p-7 rounded-2xl bg-white/70 backdrop-blur-md border border-white/60 hover:border-brand-orange/20 hover:bg-white transition-all duration-300 ease-out group cursor-default hover:scale-[1.03] hover:-translate-y-1.5 hover:shadow-[0_22px_40px_-12px_rgba(74,29,98,0.18),0_8px_18px_-8px_rgba(232,98,26,0.10)]"
                       style={{ boxShadow: "0 4px 24px -4px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.02)" }}>
-                      <div className="w-[52px] h-[52px] rounded-2xl bg-gradient-to-br from-brand-orange/10 to-brand-amber/5 border border-brand-orange/10 flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-105 transition-transform duration-500">
+                      <div className="w-[52px] h-[52px] rounded-2xl bg-gradient-to-br from-brand-orange/10 to-brand-amber/5 border border-brand-orange/10 flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-110 group-hover:rotate-[-4deg] transition-transform duration-300">
                         {icon}
                       </div>
                       <div>
