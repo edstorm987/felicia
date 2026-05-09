@@ -1206,7 +1206,7 @@ function SceneJarToProduct({ t }: { t: number }) {
     {/* Product image — fades in as jar fades out */}
     <div className="absolute inset-0 flex items-center justify-center" style={{opacity:morphP,transform:`scale(${0.8+morphP*0.2})`}}>
       <div className="relative w-[40vmin] h-[40vmin] max-w-[350px] max-h-[350px]">
-        <Image src="/black-soap.png" alt="Felicia's African Black Soap" fill sizes="40vmin" className="object-contain drop-shadow-2xl" />
+        <div className="absolute inset-0 flex items-center justify-center rounded-3xl border-2 border-dashed border-amber-300/60 bg-amber-100/10"><span className="text-[10px] tracking-[0.3em] uppercase font-semibold text-amber-200/80 text-center px-3 leading-snug">Insert<br/>product<br/>image</span></div>
       </div>
     </div>
 
@@ -1249,7 +1249,7 @@ function SceneBlueprint({ t }: { t: number }) {
     {/* Central jar/product — smaller */}
     <div className="absolute inset-0 flex items-center justify-center">
       <div className="relative w-[22vmin] h-[22vmin] max-w-[180px] max-h-[180px]" style={{transform:`scale(${jarScale})`}}>
-        <Image src="/black-soap.png" alt="Product" fill sizes="22vmin" className="object-contain" />
+        <div className="absolute inset-0 flex items-center justify-center rounded-2xl border-2 border-dashed border-amber-300/60 bg-amber-100/10"><span className="text-[9px] tracking-[0.3em] uppercase font-semibold text-amber-200/80 text-center px-2 leading-snug">Insert<br/>product<br/>image</span></div>
       </div>
     </div>
 
@@ -1384,7 +1384,7 @@ function SceneZoomIntoProcess({ t }: { t: number }) {
     {productOpacity > 0.01 && <div className="absolute inset-0 flex items-center justify-center z-10"
       style={{opacity:productOpacity, transform:`scale(${productScale})`}}>
       <div className="relative w-[25vmin] h-[25vmin] max-w-[200px] max-h-[200px]">
-        <Image src="/black-soap.png" alt="" fill sizes="25vmin" className="object-contain" />
+        <div className="absolute inset-0 flex items-center justify-center rounded-2xl border-2 border-dashed border-amber-300/60 bg-amber-100/10"><span className="text-[9px] tracking-[0.3em] uppercase font-semibold text-amber-200/80 text-center px-2 leading-snug">Insert<br/>product<br/>image</span></div>
       </div>
     </div>}
 
@@ -1646,7 +1646,7 @@ function ChapterIngredients({ p }: { p: number }) {
       {/* Soap */}
       <div className="relative w-[26cqmin] h-[26cqmin] max-w-[280px] max-h-[280px]"
         style={{ filter: "drop-shadow(0 30px 50px rgba(0,0,0,0.55))" }}>
-        <Image src="/black-soap.png" alt="Odo by Felicia" fill sizes="320px" className="object-contain" />
+        <div className="absolute inset-0 flex items-center justify-center rounded-2xl border-2 border-dashed border-amber-300/60 bg-amber-100/10"><span className="text-[9px] tracking-[0.3em] uppercase font-semibold text-amber-200/80 text-center px-2 leading-snug">Insert<br/>product<br/>image</span></div>
       </div>
       {/* Floor shadow */}
       <div className="absolute left-1/2 -translate-x-1/2 rounded-full pointer-events-none" style={{
@@ -1673,7 +1673,7 @@ function ChapterSolution({ p, onDiscount }: { p: number; onDiscount: () => void 
         <div style={{opacity:phase(p,0,0.2),transform:`translateX(${(1-phase(p,0,0.2))*-40}px) scale(${0.96+phase(p,0,0.2)*0.04})`,filter:`blur(${(1-phase(p,0,0.2))*2}px)`}} className="relative flex items-center justify-center">
           <div className="relative w-full max-w-md aspect-square">
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-brand-amber/12 via-brand-orange/6 to-brand-cream/50" />
-            <div className="relative z-10 w-full h-full p-8 sm:p-10"><div className="relative w-full h-full rounded-2xl overflow-hidden" style={{boxShadow:"0 30px 60px -15px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.03)"}}><Image src="/black-soap.png" alt="Felicia's black soap" fill sizes="(max-width:1024px)80vw,45vw" className="object-contain" /></div></div>
+            <div className="relative z-10 w-full h-full p-8 sm:p-10"><div className="relative w-full h-full rounded-2xl overflow-hidden flex items-center justify-center border-2 border-dashed border-brand-orange/35 bg-brand-orange/5" style={{boxShadow:"0 30px 60px -15px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.03)"}}><span className="text-[10px] tracking-[0.3em] uppercase font-semibold text-brand-orange/70 text-center px-3 leading-snug">Insert<br/>product<br/>image</span></div></div>
             <div className="absolute -top-3 -right-3 z-20 bg-brand-orange text-white rounded-2xl shadow-xl px-4 py-3"><p className="text-xs font-bold tracking-wide">Handcrafted</p><p className="text-[10px] opacity-80">in Accra, Ghana</p></div>
           </div>
         </div>

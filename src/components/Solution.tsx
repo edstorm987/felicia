@@ -39,14 +39,8 @@ export default function Solution() {
             <div className="relative w-full max-w-md aspect-square">
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-brand-amber/15 via-brand-orange/8 to-brand-cream" />
               <div className="relative z-10 w-full h-full p-8">
-                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
-                  <Image
-                    src="/black-soap.png"
-                    alt="Felicia's Ghanaian black soap — the solution"
-                    fill
-                    sizes="(max-width: 1024px) 80vw, 45vw"
-                    className="object-contain"
-                  />
+                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl flex items-center justify-center border-2 border-dashed border-brand-orange/35 bg-brand-orange/5">
+                  <span className="text-[10px] sm:text-xs tracking-[0.3em] uppercase font-semibold text-brand-orange/70 text-center px-3 leading-snug">Insert<br/>product<br/>image</span>
                 </div>
               </div>
               {/* Craft badge */}

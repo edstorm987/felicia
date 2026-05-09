@@ -191,8 +191,8 @@ function StaticStoryLayout({
               <div className="relative w-full max-w-md aspect-square">
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-brand-amber/12 via-brand-orange/6 to-brand-cream/50" />
                 <div className="relative z-10 w-full h-full p-8 sm:p-10">
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden" style={{ boxShadow: "0 30px 60px -15px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.03)" }}>
-                    <Image src="/black-soap.png" alt="Felicia's black soap" fill sizes="(max-width:1024px)80vw,45vw" className="object-contain" />
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden flex items-center justify-center border-2 border-dashed border-brand-orange/35 bg-brand-orange/5" style={{ boxShadow: "0 30px 60px -15px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.03)" }}>
+                    <span className="text-[10px] tracking-[0.3em] uppercase font-semibold text-brand-orange/70 text-center px-3 leading-snug">Insert<br/>product<br/>image</span>
                   </div>
                 </div>
                 <div className="absolute -top-3 -right-3 z-20 bg-brand-orange text-white rounded-2xl shadow-xl px-4 py-3">

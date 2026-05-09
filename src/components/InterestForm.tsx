@@ -48,13 +48,9 @@ export default function InterestForm() {
           <div className="flex flex-col rounded-3xl overflow-hidden border border-gray-200 bg-white shadow-sm">
             {/* Image area */}
             <div className="relative h-64 sm:h-72 bg-gradient-to-br from-brand-amber/10 via-brand-orange/5 to-brand-cream overflow-hidden">
-              <Image
-                src="/black-soap.png"
-                alt="Felicia's Ghanaian black soap"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-contain object-center p-8"
-              />
+              <div className="absolute inset-4 flex items-center justify-center rounded-2xl border-2 border-dashed border-brand-orange/35 bg-brand-orange/5">
+                <span className="text-[9px] sm:text-[10px] tracking-[0.3em] uppercase font-semibold text-brand-orange/70 text-center px-3 leading-snug">Insert<br/>product<br/>image</span>
+              </div>
               <div className="absolute top-4 left-4">
                 <span className="text-[10px] font-bold tracking-[0.2em] uppercase bg-brand-orange text-white px-3 py-1.5 rounded-full">
                   Only product · For now

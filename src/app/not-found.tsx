@@ -62,15 +62,8 @@ export default function NotFound() {
               className="absolute inset-0 -z-10 rounded-full blur-3xl"
               style={{ background: "radial-gradient(circle, rgba(251,191,36,0.45) 0%, transparent 65%)" }}
             />
-            <div className="relative w-32 h-32 sm:w-40 sm:h-40">
-              <Image
-                src="/black-soap.png"
-                alt="Felicia&apos;s black soap"
-                fill
-                priority
-                sizes="160px"
-                className="object-contain drop-shadow-[0_30px_40px_rgba(40,18,60,0.25)]"
-              />
+            <div className="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center rounded-2xl border-2 border-dashed border-brand-orange/40 bg-brand-orange/5">
+              <span className="text-[9px] tracking-[0.3em] uppercase font-semibold text-brand-orange/70 text-center px-2 leading-snug">Insert<br/>product<br/>image</span>
             </div>
           </div>
 
