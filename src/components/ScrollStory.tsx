@@ -422,7 +422,7 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
 
   if (useStatic) {
     return (
-      <section ref={sectionRef} data-story-section className="relative w-full">
+      <section ref={sectionRef} data-story-section className="relative w-full" style={{ marginBottom: -3 }}>
         {transitionStrip}
       </section>
     );
@@ -433,8 +433,9 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
     <>
       {/* Strip lives outside the player section so the sticky pill below
           can't pin until the user has actually scrolled past the strip
-          and into the player itself. */}
-      <div className="relative w-full">{transitionStrip}</div>
+          and into the player itself. Negative bottom margin overlaps the
+          next section by a few px so any anti-aliased seam disappears. */}
+      <div className="relative w-full" style={{ marginBottom: -3 }}>{transitionStrip}</div>
       <section ref={sectionRef} data-story-section className="relative w-full">
         {togglePillLive}
         <Comp
