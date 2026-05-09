@@ -290,65 +290,15 @@ export default function Hero() {
 
             </div>
 
-            {/* ── RIGHT: product scene ── */}
+            {/* ── RIGHT: product scene placeholder ── */}
             <div className="relative flex items-center justify-center order-first lg:order-last">
-              {/* Daffodils — top-right corner */}
-              <DaffodilCluster />
-
-              {/* Scene container */}
-              <div className="relative w-full max-w-lg aspect-[4/4.2] lg:aspect-[4/4.5]">
-
-                {/* Water splash — behind the soap */}
-                <div className="absolute inset-0 flex items-end justify-center pb-8">
-                  <div className="relative w-full h-[62%]">
-                    <WaterSplash />
-                  </div>
+              <div className="relative w-full max-w-lg aspect-[4/4.5] flex items-center justify-center">
+                <div className="w-full h-full rounded-3xl border-2 border-dashed border-brand-orange/30 bg-brand-orange/[0.03] flex flex-col items-center justify-center gap-2 px-6 text-center">
+                  <span className="text-[10px] tracking-[0.32em] uppercase font-semibold text-brand-orange/55">Placeholder</span>
+                  <p className="font-display text-2xl sm:text-3xl text-brand-purple-dark/60 leading-snug">
+                    Insert product picture here
+                  </p>
                 </div>
-
-                {/* Soap — 3D "coming out" treatment */}
-                <div
-                  className="absolute inset-0 flex items-center justify-center"
-                  style={{
-                    transform: "perspective(900px) rotateX(6deg) rotateY(-6deg)",
-                  }}
-                >
-                  <div
-                    className="relative w-[72%] aspect-square"
-                    style={{
-                      filter:
-                        "drop-shadow(0px 48px 80px rgba(0,0,0,0.32)) drop-shadow(0px 16px 32px rgba(0,0,0,0.18)) drop-shadow(0px 4px 12px rgba(0,0,0,0.12))",
-                      transform: "translateY(-5%) scale(1.04)",
-                    }}
-                  >
-                    <Image
-                      src="/black-soap.png"
-                      alt="Felicia's Ghanaian black soap"
-                      fill
-                      sizes="(max-width: 1024px) 60vw, 38vw"
-                      className="object-contain"
-                      priority
-                    />
-                  </div>
-                </div>
-
-                {/* Floating badge — brand name */}
-                <div className="absolute bottom-[26%] left-[4%] z-20">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-100 px-5 py-3">
-                    <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-0.5">by</p>
-                    <p className="font-display font-bold text-brand-purple-dark text-lg leading-tight">Felicia</p>
-                    <p className="text-[10px] text-brand-orange font-semibold tracking-wide">Accra · Ghana</p>
-                  </div>
-                </div>
-
-                {/* Floating badge — purity */}
-                <div className="absolute top-[18%] right-[3%] z-20">
-                  <div className="bg-brand-orange text-white rounded-2xl shadow-xl px-4 py-3 text-center">
-                    <p className="text-2xl font-display font-bold leading-none">6</p>
-                    <p className="text-[10px] font-semibold tracking-wider mt-0.5 opacity-90">INGREDIENTS</p>
-                    <p className="text-[9px] opacity-70 tracking-wide">nothing else</p>
-                  </div>
-                </div>
-
               </div>
             </div>
 
