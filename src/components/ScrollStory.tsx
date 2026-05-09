@@ -384,10 +384,10 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
       className="relative w-full flex items-end justify-center"
       style={{
         height: live ? "3rem" : "5rem",
-        // Grass → media-player purple when SVGs are on (matches stage bg).
-        // Grass → astral night when static (matches Problem section bg).
+        // Grass → media-player purple when SVGs are on (matches stage bg #1b1230).
+        // Grass → astral night when static (matches Problem section bg #0a0618).
         background: live
-          ? "linear-gradient(180deg, #c9e8a8 0%, #6c8e4d 22%, #2d1260 50%, #120a26 80%, #120a26 100%)"
+          ? "linear-gradient(180deg, #c9e8a8 0%, #6c8e4d 22%, #2d1260 50%, #1b1230 80%, #1b1230 100%)"
           : "linear-gradient(180deg, #c9e8a8 0%, #6c8e4d 28%, #0a0618 72%, #0a0618 100%)",
         transition: "height 600ms ease-out, background 600ms ease-out",
         overflow: "visible",
@@ -429,22 +429,25 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
   }
   if (!AnimatedComp) return null;
   const Comp = AnimatedComp;
+  // Strip + pill + player share one section with the player's stage colour
+  // (#1b1230) as the bg. Strip's gradient ends on that same colour, so
+  // there's no white band peeking through between strip and player. The
+  // sticky pill sits on the dark surface from the moment the player begins.
   return (
-    <>
-      {/* Strip lives outside the player section so the sticky pill below
-          can't pin until the user has actually scrolled past the strip
-          and into the player itself. Negative bottom margin overlaps the
-          next section by a few px so any anti-aliased seam disappears. */}
-      <div className="relative w-full" style={{ marginBottom: -3 }}>{transitionStrip}</div>
-      <section ref={sectionRef} data-story-section className="relative w-full">
-        {togglePillLive}
-        <Comp
-          onDiscount={onDiscount}
-          onComplete={() => { /* no-op — animation stays on after completion */ }}
-          onExit={handleDisable}
-        />
-      </section>
-    </>
+    <section
+      ref={sectionRef}
+      data-story-section
+      className="relative w-full"
+      style={{ background: "#1b1230" }}
+    >
+      {transitionStrip}
+      {togglePillLive}
+      <Comp
+        onDiscount={onDiscount}
+        onComplete={() => { /* no-op — animation stays on after completion */ }}
+        onExit={handleDisable}
+      />
+    </section>
   );
 }
 
