@@ -2072,12 +2072,16 @@ export default function ScrollStoryAnimated({ onDiscount, onComplete, onExit }: 
             const distance = Math.abs(activeC - i);
             if (distance > 1) return null;
             return (
+              // absolute inset-0 so the chapter's `absolute inset-0` children
+              // (FactoryScene, etc.) actually have a positioned ancestor with
+              // a real size to fill. `contain: layout paint` was clipping
+              // them to a 0-height box — chapters appeared blank.
               <div
                 key={i}
+                className="absolute inset-0"
                 style={{
                   ...cv(i),
                   contentVisibility: distance === 0 ? "visible" : ("auto" as React.CSSProperties["contentVisibility"]),
-                  contain: "layout paint" as React.CSSProperties["contain"],
                 }}
               >
                 {ch}
