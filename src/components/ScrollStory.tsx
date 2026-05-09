@@ -307,9 +307,9 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
   // Canonical state event — Hero (and anywhere else) syncs to this.
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const live = animationsOn && !!AnimatedComp && !completed;
+    const live = animationsOn && !!AnimatedComp;
     window.dispatchEvent(new CustomEvent("story:state", { detail: { on: live } }));
-  }, [animationsOn, AnimatedComp, completed]);
+  }, [animationsOn, AnimatedComp]);
 
   /** Lazy-load the animated module once. Idempotent — subsequent calls reuse. */
   async function loadAnimated() {
@@ -336,9 +336,12 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
     requestAnimationFrame(() => scrollToSection("smooth"));
   };
 
-  const useStatic = !animationsOn || completed || !AnimatedComp;
+  // Only the explicit toggle flips between animated and static — completion
+  // never auto-switches anymore. Player stays mounted so users can scroll
+  // back through the animation freely until they tap "Turn off animation".
+  const useStatic = !animationsOn || !AnimatedComp;
 
-  const live = animationsOn && !!AnimatedComp && !completed;
+  const live = animationsOn && !!AnimatedComp;
 
   // Tiny floating toggle pill — sits just under the navbar, top-right.
   // The only piece of always-visible chrome related to animations.
@@ -392,7 +395,7 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
       {togglePill}
       <Comp
         onDiscount={onDiscount}
-        onComplete={() => setCompleted(true)}
+        onComplete={() => { /* no-op — animation stays on after completion */ }}
         onExit={handleDisable}
       />
     </div>
