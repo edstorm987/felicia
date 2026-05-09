@@ -387,8 +387,8 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
         // Grass → media-player purple when SVGs are on (matches stage bg).
         // Grass → astral night when static (matches Problem section bg).
         background: live
-          ? "linear-gradient(180deg, #c9e8a8 0%, #6c8e4d 22%, #2d1260 50%, #1b1230 80%, #1b1230 100%)"
-          : "linear-gradient(180deg, #c9e8a8 0%, #6c8e4d 28%, #14102b 70%, #14102b 100%)",
+          ? "linear-gradient(180deg, #c9e8a8 0%, #6c8e4d 22%, #2d1260 50%, #120a26 80%, #120a26 100%)"
+          : "linear-gradient(180deg, #c9e8a8 0%, #6c8e4d 28%, #0a0618 72%, #0a0618 100%)",
         transition: "height 600ms ease-out, background 600ms ease-out",
         overflow: "visible",
       }}
