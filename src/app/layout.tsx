@@ -16,6 +16,7 @@ import PortalEditOverlay from "@/components/PortalEditOverlay";
 import ChatBotLazy from "@/components/ChatBotLazy";
 import AnalyticsResolver from "@/components/AnalyticsResolver";
 import LatherTrail from "@/components/LatherTrail";
+import FxObserver from "@/components/FxObserver";
 
 // Both fonts use `display: "swap"` to avoid FOIT on slow networks, and a
 // system-stack `fallback` so the layout doesn't shift visibly when the
@@ -85,6 +86,7 @@ export default function RootLayout({
           {children}
           {/* Chatbot removed per request */}
           <LatherTrail />
+          <FxObserver />
         </CartProvider>
       </body>
     </html>

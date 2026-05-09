@@ -178,6 +178,7 @@ export default function Hero() {
       />
       <section
         id="hero"
+        data-fx-section
         className="relative w-full min-h-screen flex items-center bg-white overflow-hidden"
         style={{ paddingTop: "var(--navbar-h, 5rem)" }}
       >

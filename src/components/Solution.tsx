@@ -28,7 +28,7 @@ export default function Solution() {
   const ingredientsGrid = useScrollReveal(0.1);
 
   return (
-    <section id="solution" className="w-full pt-20 sm:pt-24 lg:pt-32 pb-6 sm:pb-8 bg-white">
+    <section id="solution" data-fx-section className="w-full pt-20 sm:pt-24 lg:pt-32 pb-6 sm:pb-8 bg-white">
       <div className="w-full max-w-[112rem] mx-auto px-3 sm:px-5 lg:px-6 xl:px-8">
 
         {/* Two-column: image + copy */}

@@ -66,7 +66,7 @@ export default function HomeSections() {
 
       {/* 4. Product */}
       {blackSoap && (
-        <section id="buy" className="py-20 lg:py-28 bg-white border-t border-pink-100 scroll-mt-24 lg:scroll-mt-32">
+        <section id="buy" data-fx-section className="py-20 lg:py-28 bg-white border-t border-pink-100 scroll-mt-24 lg:scroll-mt-32">
           <div className="max-w-[96rem] mx-auto px-4 sm:px-8 lg:px-10 xl:px-14">
             <div className="text-center mb-16">
               <h2 className="font-display font-bold text-brand-purple-dark text-3xl sm:text-4xl lg:text-5xl mb-4">Start your ritual.</h2>

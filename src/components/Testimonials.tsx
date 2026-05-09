@@ -189,7 +189,7 @@ export default function Testimonials() {
   const reviewsReveal = useScrollReveal(0.1);
 
   return (
-    <section id="testimonials" className="w-full py-20 sm:py-24 lg:py-32 2xl:py-40 bg-white overflow-hidden scroll-mt-24 lg:scroll-mt-32">
+    <section id="testimonials" data-fx-section className="w-full py-20 sm:py-24 lg:py-32 2xl:py-40 bg-white overflow-hidden scroll-mt-24 lg:scroll-mt-32">
       <div className="w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
 
         {/* Header */}

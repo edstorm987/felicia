@@ -37,6 +37,7 @@ export default function Problem() {
   return (
     <section
       id="our-philosophy"
+      data-fx-section
       className="relative w-full py-20 sm:py-24 lg:py-32 overflow-hidden"
       style={{ background: "linear-gradient(180deg, #0a0618 0%, #07041a 45%, #04020c 100%)" }}
     >

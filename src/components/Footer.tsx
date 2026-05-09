@@ -61,7 +61,7 @@ export default function Footer() {
   const description = useContent("footer.description", "Pure. Sacred. Alive. Ghanaian heritage skincare for those who demand honesty from everything they put on their skin.");
   const footerReveal = useScrollReveal(0.1);
   return (
-    <footer className="w-full bg-white border-t border-gray-100">
+    <footer data-fx-section className="w-full bg-white border-t border-gray-100">
       <div ref={footerReveal.ref} style={revealStyle(footerReveal.visible)} className="w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 py-14 sm:py-16 lg:py-20">
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 xl:gap-14 mb-14 sm:mb-16">

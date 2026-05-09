@@ -84,6 +84,7 @@ export default function SupportUsSection() {
   return (
     <section
       id="support-us"
+      data-fx-section
       className="w-full py-20 sm:py-32 scroll-mt-24 lg:scroll-mt-32 relative overflow-hidden"
       style={{ background: "#1a0a2e" }}
     >

@@ -278,6 +278,7 @@ export default function VSLSection() {
 
       <div
         ref={sectionRef}
+        data-fx-section
         className="relative w-full"
       >
         <style jsx>{`
