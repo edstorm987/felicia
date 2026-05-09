@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import ProductDetail from "@/components/ProductDetail";
 import { PRODUCTS } from "@/lib/products";
@@ -8,6 +8,9 @@ import SupportUsSection from "@/components/SupportUsSection";
 import ScrollStory from "@/components/ScrollStory";
 import DiscountPopup from "@/components/DiscountPopup";
 import VSLSection from "@/components/VSLSection";
+import Problem from "@/components/Problem";
+import Solution from "@/components/Solution";
+import Opportunities from "@/components/Opportunities";
 
 const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true, loading: () => null });
 
@@ -24,6 +27,19 @@ const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: t
 export default function HomeSections() {
   const blackSoap = PRODUCTS.find((p) => p.id === "black-soap");
   const [popupOpen, setPopupOpen] = useState(false);
+  // Mirror ScrollStory's animation state via the canonical story:state event.
+  // When immersive is OFF, render the full static section set in place of the
+  // SVG player so the page still tells the whole story.
+  const [storyOn, setStoryOn] = useState(true);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onState = (e: Event) => {
+      const detail = (e as CustomEvent<{ on: boolean }>).detail;
+      if (detail) setStoryOn(!!detail.on);
+    };
+    window.addEventListener("story:state", onState);
+    return () => window.removeEventListener("story:state", onState);
+  }, []);
 
   return (
     <>
@@ -32,10 +48,23 @@ export default function HomeSections() {
       {/* 1. Social — Keira's customer-story videos */}
       <VSLSection />
 
-      {/* 2. SVGs — animated player (mounts only when animations are on) */}
+      {/* 2. SVGs — animated player (mounts only when animations are on);
+            renders just the gradient transition strip + "Turn on immersive
+            experience" CTA when off. */}
       <ScrollStory onDiscount={() => setPopupOpen(true)} />
 
-      {/* 3. Product */}
+      {/* 3. Static sections — only when immersive is OFF, so the page still
+            walks the user through Problem → Answer → What's in it for you
+            instead of jumping straight to the product. */}
+      {!storyOn && (
+        <>
+          <Problem />
+          <Solution />
+          <Opportunities />
+        </>
+      )}
+
+      {/* 4. Product */}
       {blackSoap && (
         <section id="buy" className="py-20 lg:py-28 bg-white border-t border-pink-100 scroll-mt-24 lg:scroll-mt-32">
           <div className="max-w-[96rem] mx-auto px-4 sm:px-8 lg:px-10 xl:px-14">
@@ -48,10 +77,10 @@ export default function HomeSections() {
         </section>
       )}
 
-      {/* 4. Reviews */}
+      {/* 5. Reviews */}
       <Testimonials />
 
-      {/* 5. Support Us */}
+      {/* 6. Support Us */}
       <SupportUsSection />
     </>
   );
