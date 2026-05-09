@@ -324,11 +324,15 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
     setCompleted(false);
     await loadAnimated();
     setAnimationsOn(true);
-    // Always rewind to the top so the user re-experiences Hero → VSL → SVGs
-    // in order rather than getting dropped into the SVG section.
-    requestAnimationFrame(() => {
-      if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+    // Rewind to top so the user re-experiences Hero → VSL → SVGs in order.
+    // Use instant scroll (and re-fire after layout settles) so the smooth
+    // animation doesn't get cancelled by the page growing 5000vh underneath.
+    if (typeof window !== "undefined") {
+      const goTop = () => window.scrollTo({ top: 0, behavior: "auto" });
+      requestAnimationFrame(goTop);
+      setTimeout(goTop, 60);
+      setTimeout(goTop, 220);
+    }
   };
 
   const handleDisable = () => {
