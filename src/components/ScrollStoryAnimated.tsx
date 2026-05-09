@@ -1819,68 +1819,34 @@ function easeInOutQuart(t: number) {
 export default function ScrollStoryAnimated({ onDiscount, onComplete, onExit }: { onDiscount: () => void; onComplete: () => void; onExit: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
-  const [stepIdx, setStepIdx] = useState(0);
   // Prelude: first 100vh of scroll fades the player up from 50% to full size.
-  // Animation only starts once preludeFrac reaches 1.
   const [preludeFrac, setPreludeFrac] = useState(0);
-  const stepRef = useRef(0);
   const progressRef = useRef(0);
-  const animRef = useRef({ start: 0, target: STEPS[0], startTime: 0, duration: 620, active: false });
+  // Direct scroll-driven progress target — set on every scroll event,
+  // smoothed via rAF so even fast wheel/trackpad input feels buttery.
+  const targetRef = useRef(0);
 
-  useEffect(() => { stepRef.current = stepIdx; }, [stepIdx]);
-
-  const prevIdxRef = useRef(0);
-  /* Kick off a fresh eased animation whenever stepIdx changes —
-     re-blends from current value if a transition is mid-flight.
-     Duration scales with distance so chapter sweeps play through. */
-  useEffect(() => {
-    const target = STEPS[stepIdx] ?? STEPS[STEPS.length - 1];
-    const start = progressRef.current;
-    const duration = durationFor(prevIdxRef.current, stepIdx, start, target);
-    animRef.current = {
-      start,
-      target,
-      startTime: performance.now(),
-      duration,
-      active: true,
-    };
-    prevIdxRef.current = stepIdx;
-    wakeRef.current(); // kick rAF loop awake
-  }, [stepIdx]);
-
-  // wakeRef: lets the stepIdx effect kick the rAF loop awake when a transition starts
-  const wakeRef = useRef<() => void>(() => {});
-
-  // ── rAF tick: timed cubic-eased progress.
-  //    Only ticks while a transition is active — idles between steps. ──
+  // ── rAF tick: exponential-approach low-pass filter on progress.
+  //    Each frame closes 6% of the remaining distance to target → ~30
+  //    frames (~500ms) to fully settle. Combined with the very tall
+  //    outer (~1% progress per ~100px scroll), each wheel notch nudges
+  //    the camera by ~1% with critically-damped smoothing. ──
   useEffect(() => {
     let raf = 0;
-    let running = false;
+    const SMOOTHING = 0.06;
     const tick = () => {
-      const a = animRef.current;
-      if (!a.active) { running = false; return; }
-      const t = (performance.now() - a.startTime) / a.duration;
-      if (t >= 1) {
-        progressRef.current = a.target;
-        setProgress(a.target);
-        a.active = false;
-        running = false;
-        return;
+      const cur = progressRef.current;
+      const target = targetRef.current;
+      const diff = target - cur;
+      if (Math.abs(diff) > 0.00005) {
+        const next = cur + diff * SMOOTHING;
+        progressRef.current = next;
+        setProgress(next);
       }
-      const v = a.start + (a.target - a.start) * easeInOutQuart(t);
-      progressRef.current = v;
-      setProgress(v);
       raf = requestAnimationFrame(tick);
     };
-    wakeRef.current = () => {
-      if (running) return;
-      running = true;
-      raf = requestAnimationFrame(tick);
-    };
-    // The stepIdx effect runs before this one on mount and may have armed an
-    // initial 0 → STEPS[0] transition. Kick the loop now so it actually plays.
-    if (animRef.current.active) wakeRef.current();
-    return () => { cancelAnimationFrame(raf); };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   // ── Esc / X key exits the animation immediately ──
@@ -1895,36 +1861,27 @@ export default function ScrollStoryAnimated({ onDiscount, onComplete, onExit }: 
     return () => window.removeEventListener("keydown", onKey);
   }, [onExit]);
 
-  // ── Scroll-driven step quantization with hysteresis + completion detection ──
-  // Outer is STEPS.length * 100vh tall; each 100vh of scroll = one step.
-  // Hysteresis: must scroll 60% past current step's center before committing
-  // to next/prev — prevents flicker when user wiggles near boundaries.
-  // Completion fires only when the user has scrolled fully past the outer
-  // (r.bottom <= viewport top), so mid-flow back-scrolling stays animated.
+  // ── Scroll-driven progress: continuous, no step quantization.
+  //    Just maps scroll position directly to a 0-1 target; the rAF tick
+  //    above smoothes the displayed progress toward it for ultra-smooth motion.
+  //    Outer is huge (~6500vh) so each ~100px wheel notch ≈ 1% progress. ──
   useEffect(() => {
     const el = ref.current; if (!el) return;
     let firedComplete = false;
     const onScroll = () => {
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight;
-      const scrolled = -r.top; // px past outer top
-      // Prelude: first 100vh = "scroll to play" — player scales 50% → 100%
+      const scrolled = -r.top;
+      // Prelude: first 100vh of scroll = "scroll to play" — player 50% → 100%
       const pf = clamp(scrolled / vh, 0, 1);
       setPreludeFrac(pf);
-      // Real animation begins after prelude
+      // After prelude, raw progress maps directly from remaining scroll
       const animScrolled = scrolled - vh;
       const animTotal = el.offsetHeight - vh - vh;
       if (animTotal > 0 && animScrolled >= 0) {
-        const rawP = clamp(animScrolled / animTotal);
-        const rawStep = rawP * (STEPS.length - 1);
-        const cur = stepRef.current;
-        let next = cur;
-        if (rawStep > cur + 0.6) next = Math.floor(rawStep + 0.4);
-        else if (rawStep < cur - 0.6) next = Math.ceil(rawStep - 0.4);
-        next = Math.max(0, Math.min(STEPS.length - 1, next));
-        if (next !== cur) setStepIdx(next);
-      } else if (stepRef.current !== 0) {
-        setStepIdx(0);
+        targetRef.current = clamp(animScrolled / animTotal);
+      } else {
+        targetRef.current = 0;
       }
       if (!firedComplete && r.bottom <= 4) {
         firedComplete = true;
@@ -1957,7 +1914,7 @@ export default function ScrollStoryAnimated({ onDiscount, onComplete, onExit }: 
     document.documentElement.style.setProperty("--story-active", String(inStory));
   }, [progress]);
 
-  return (<div ref={ref} style={{ height: `${(STEPS.length + 1) * 100}vh` }} className="relative w-full">
+  return (<div ref={ref} style={{ height: "2000vh" }} className="relative w-full">
     <style jsx>{`@keyframes grassSway{0%{transform:rotate(-2.5deg)}100%{transform:rotate(2.5deg)}}`}</style>
     {/* Sticky stage — sits below the navbar. Holds an ambient backdrop
         (so the page surrounding the player feels intentional) and centers
