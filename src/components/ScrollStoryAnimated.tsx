@@ -1666,31 +1666,75 @@ function ChapterIngredients({ p }: { p: number }) {
 }
 
 function ChapterSolution({ p, onDiscount }: { p: number; onDiscount: () => void }) {
-  return (<div className="absolute inset-0 flex items-center justify-center z-10 px-4 sm:px-8">
-    <div className="absolute inset-0 bg-gradient-to-br from-white via-orange-50/20 to-white" />
+  return (<div className="absolute inset-0 flex items-center justify-center z-10 px-4 sm:px-8 overflow-hidden"
+    style={{ background: "radial-gradient(ellipse at 50% 0%, #14102b 0%, #0c0820 55%, #060414 100%)" }}>
+    {/* Starfield (matches Problem section) */}
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+      {Array.from({ length: 70 }).map((_, i) => {
+        const x = (i * 79) % 100;
+        const y = (i * 53) % 100;
+        const size = i % 5 === 0 ? 2 : i % 3 === 0 ? 1.6 : 1;
+        const dur = 2.5 + ((i * 13) % 25) / 10;
+        const delay = ((i * 7) % 60) / 10;
+        return (
+          <span
+            key={`solstar-${i}`}
+            className="absolute rounded-full bg-white"
+            style={{
+              left: `${x}%`,
+              top: `${y}%`,
+              width: size,
+              height: size,
+              opacity: 0.55,
+              boxShadow: "0 0 4px rgba(255,255,255,0.55)",
+              animation: `prTwinkle ${dur}s ease-in-out ${delay}s infinite`,
+            }}
+          />
+        );
+      })}
+    </div>
+    {/* Two shooting stars on offset cycles */}
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+      <span className="absolute" style={{
+        top: "16%", left: "-10%", width: "120px", height: "1px",
+        background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent)",
+        filter: "drop-shadow(0 0 6px rgba(255,255,255,0.85))",
+        transform: "rotate(-18deg)",
+        animation: "prShoot 12s ease-in 2s infinite",
+        opacity: 0,
+      }} />
+      <span className="absolute" style={{
+        top: "40%", left: "-10%", width: "150px", height: "1px",
+        background: "linear-gradient(90deg, transparent, rgba(255,210,150,0.95), transparent)",
+        filter: "drop-shadow(0 0 8px rgba(255,200,140,0.75))",
+        transform: "rotate(-12deg)",
+        animation: "prShoot 17s ease-in 6s infinite",
+        opacity: 0,
+      }} />
+    </div>
     <div className="relative z-10 w-full max-w-[96rem] mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
         <div style={{opacity:phase(p,0,0.2),transform:`translateX(${(1-phase(p,0,0.2))*-40}px) scale(${0.96+phase(p,0,0.2)*0.04})`,filter:`blur(${(1-phase(p,0,0.2))*2}px)`}} className="relative flex items-center justify-center">
           <div className="relative w-full max-w-md aspect-square">
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-brand-amber/12 via-brand-orange/6 to-brand-cream/50" />
-            <div className="relative z-10 w-full h-full p-8 sm:p-10"><div className="relative w-full h-full rounded-2xl overflow-hidden flex items-center justify-center border-2 border-dashed border-brand-orange/35 bg-brand-orange/5" style={{boxShadow:"0 30px 60px -15px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.03)"}}><span className="text-[10px] tracking-[0.3em] uppercase font-semibold text-brand-orange/70 text-center px-3 leading-snug">Insert<br/>product<br/>image</span></div></div>
+            <div className="relative z-10 w-full h-full p-8 sm:p-10"><div className="relative w-full h-full rounded-2xl overflow-hidden flex items-center justify-center border-2 border-dashed border-amber-300/60 bg-amber-100/[0.04]" style={{boxShadow:"0 30px 60px -15px rgba(0,0,0,0.4)"}}><span className="text-[10px] tracking-[0.3em] uppercase font-semibold text-amber-200/80 text-center px-3 leading-snug">Insert<br/>product<br/>image</span></div></div>
             <div className="absolute -top-3 -right-3 z-20 bg-brand-orange text-white rounded-2xl shadow-xl px-4 py-3"><p className="text-xs font-bold tracking-wide">Handcrafted</p><p className="text-[10px] opacity-80">in Accra, Ghana</p></div>
           </div>
         </div>
         <div style={{opacity:phase(p,0.08,0.2),transform:`translateX(${(1-phase(p,0.08,0.2))*40}px)`,filter:`blur(${(1-phase(p,0.08,0.2))*2}px)`}}>
-          <div className="flex items-center gap-3 mb-5"><div className="w-8 h-px bg-brand-orange/30" /><span className="text-[9px] font-semibold tracking-[0.35em] uppercase text-brand-orange/50">The answer</span></div>
-          <h2 className="font-display font-bold text-brand-purple-dark leading-[1.05] mb-5 text-3xl sm:text-4xl lg:text-5xl max-w-xl" style={{letterSpacing:"-0.02em"}}>
-            A gift carried across{" "}<span style={{background:"linear-gradient(135deg, #E8621A 0%, #F2A23C 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>generations</span>
+          <div className="flex items-center gap-3 mb-5"><div className="w-8 h-px bg-brand-amber/55" /><span className="text-[9px] font-semibold tracking-[0.35em] uppercase text-brand-amber/85">The answer</span></div>
+          <h2 className="font-display font-bold text-white leading-[1.05] mb-5 text-3xl sm:text-4xl lg:text-5xl max-w-xl" style={{letterSpacing:"-0.02em"}}>
+            A gift carried across{" "}<span style={{background:"linear-gradient(135deg, #fbbf24 0%, #F2A23C 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>generations</span>
           </h2>
-          <p className="text-gray-400 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl mb-5">Every ingredient sourced directly from Ghanaian farmers. No middlemen. No shortcuts. No compromises.</p>
+          <p className="text-white/65 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl mb-5">Every ingredient sourced directly from Ghanaian farmers. No middlemen. No shortcuts. No compromises.</p>
           <div className="flex flex-wrap gap-2 mb-8 sm:mb-10">
-            {SOLUTION_TAGS.map((t,i)=><span key={t} style={{opacity:phase(p,0.3+i*0.03,0.1),transform:`translateY(${(1-phase(p,0.3+i*0.03,0.1))*8}px)`}} className="px-3.5 py-1.5 rounded-full text-[11px] font-medium tracking-wide border border-brand-orange/20 text-brand-orange-dark/80 bg-brand-orange/[0.04]">{t}</span>)}
+            {SOLUTION_TAGS.map((t,i)=><span key={t} style={{opacity:phase(p,0.3+i*0.03,0.1),transform:`translateY(${(1-phase(p,0.3+i*0.03,0.1))*8}px)`}} className="px-3.5 py-1.5 rounded-full text-[11px] font-medium tracking-wide border border-brand-amber/40 text-brand-amber/85 bg-brand-amber/[0.06]">{t}</span>)}
           </div>
           <div style={{opacity:phase(p,0.55,0.15),transform:`translateY(${(1-phase(p,0.55,0.15))*15}px)`}}>
             <button onClick={onDiscount} className="inline-flex items-center gap-2.5 px-8 sm:px-10 py-4 rounded-full bg-brand-orange hover:bg-brand-orange-light transition-all duration-300 text-white font-semibold tracking-wide text-sm shadow-2xl shadow-brand-orange/25 hover:-translate-y-0.5">
               Get 10% Off Your First Order<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
             </button>
-            <p className="text-gray-400/60 text-[11px] mt-3 tracking-wide">Limited introductory offer</p>
+            <p className="text-white/40 text-[11px] mt-3 tracking-wide">Limited introductory offer</p>
           </div>
         </div>
       </div>
