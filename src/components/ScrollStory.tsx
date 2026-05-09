@@ -255,7 +255,7 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
   // completed — session-only flag set when the user scrolls past the animated
   //   outer; flips back to static so they're not re-watching on rewind.
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [animationsOn, setAnimationsOn] = useState(false);
+  const [animationsOn, setAnimationsOn] = useState(true);
   const [completed, setCompleted] = useState(false);
   const [hydrated, setHydrated] = useState(false);
 
@@ -275,14 +275,12 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
   useEffect(() => {
     if (typeof window === "undefined") return;
     setHydrated(true);
-    // Defensive cleanup — make sure no prior session left body scroll locked
     document.body.style.overflow = "";
     document.documentElement.style.overflow = "";
-    // Honor saved preference: if user previously turned animations on,
-    // start fetching the chunk now so the next click feels instant.
-    if (window.localStorage.getItem("storyAnimations") === "1") {
-      void loadAnimated().then(() => setAnimationsOn(true));
-    }
+    // Default ON. Only honor an explicit OFF preference from a prior session.
+    const saved = window.localStorage.getItem("storyAnimations");
+    if (saved === "0") setAnimationsOn(false);
+    else void loadAnimated();
   }, []);
 
   useEffect(() => {
@@ -340,110 +338,54 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
 
   const useStatic = !animationsOn || completed || !AnimatedComp;
 
-  // Full-width "animate-website" SECTION — pastel brown when off, deep
-  // flower-purple when on. A purple panel sits inside with a big button
-  // that grows on hover; clicks call handleAnimate / handleDisable.
   const live = animationsOn && !!AnimatedComp && !completed;
-  const band = (
-    <section
-      className="relative w-full transition-colors duration-700 ease-out"
+
+  // Tiny floating toggle pill — sits just under the navbar, top-right.
+  // The only piece of always-visible chrome related to animations.
+  const togglePill = (
+    <button
+      type="button"
+      onClick={() => { if (live) handleDisable(); else void handleAnimate(); }}
+      aria-pressed={live}
+      className="fixed right-4 sm:right-5 z-50 inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-[10px] tracking-[0.2em] uppercase font-semibold transition-all duration-300 hover:-translate-y-0.5"
       style={{
-        background: live ? "#1a0a2e" : "#efe1ce",
-        paddingTop: live ? "0.75rem" : "2.5rem",
-        paddingBottom: live ? "0.75rem" : "2.5rem",
+        top: "calc(var(--nav-h) + 0.5rem)",
+        background: "#FFFFFF",
+        color: "#4A1D62",
+        boxShadow: "0 10px 28px -10px rgba(40,18,60,0.25), 0 0 0 1px rgba(40,18,60,0.06)",
       }}
     >
-      <div className="relative max-w-2xl mx-auto px-4 sm:px-6">
-        <div
-          className="relative rounded-3xl text-center overflow-hidden transition-all duration-500"
-          style={{
-            background: live
-              ? "linear-gradient(135deg, rgba(107,45,139,0.40) 0%, rgba(74,29,98,0.55) 100%)"
-              : "linear-gradient(135deg, #6B2D8B 0%, #4A1D62 100%)",
-            paddingLeft:  live ? "1.25rem" : "2rem",
-            paddingRight: live ? "1.25rem" : "2rem",
-            paddingTop:   live ? "0.75rem" : "2.25rem",
-            paddingBottom:live ? "0.75rem" : "2.25rem",
-            boxShadow: live
-              ? "0 12px 28px -12px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.10) inset"
-              : "0 16px 40px -16px rgba(74,29,98,0.50), 0 0 0 1px rgba(255,255,255,0.08) inset",
-          }}
-        >
-          <div className="pointer-events-none absolute inset-0 rounded-3xl" style={{
-            background: "radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.10) 0%, transparent 55%)",
-          }} />
-          <div className="pointer-events-none absolute inset-x-8 top-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)" }} />
-
-          {/* Eyebrow + headline only show in OFF state — when live we collapse
-              to just the toggle button so the sticky bar stays compact. */}
-          {!live && (
-            <>
-              <p className="relative text-[9px] sm:text-[10px] tracking-[0.42em] uppercase text-white/65 font-semibold mb-2 sm:mb-2.5">
-                Want the full experience?
-              </p>
-              <h2 className="relative font-display font-bold text-white text-xl sm:text-2xl lg:text-3xl mb-4 sm:mb-5 leading-[1.05]" style={{ letterSpacing: "-0.02em" }}>
-                Animate the{" "}<span style={{ background: "linear-gradient(135deg, #fbbf24 0%, #f97316 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>website</span>.
-              </h2>
-            </>
-          )}
-
-          <button
-            type="button"
-            onClick={() => { if (live) handleDisable(); else void handleAnimate(); }}
-            aria-pressed={live}
-            className="relative group inline-flex items-center gap-2.5 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full text-sm font-semibold tracking-tight transition-all duration-300 hover:scale-[1.04] hover:-translate-y-0.5"
-            style={{
-              background: "#FFFFFF",
-              color: "#4A1D62",
-              boxShadow: "0 12px 26px -10px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.55) inset",
-            }}
-          >
-            <span>{live ? "Turn off animation" : "Turn on animation"}</span>
-            <span
-              className="inline-flex items-center justify-center w-6 h-6 rounded-full transition-transform duration-300 group-hover:translate-x-0.5"
-              style={{ background: live ? "#E8621A" : "#6B2D8B", color: "#fff" }}
-            >
-              {live ? (
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="1.5" /></svg>
-              ) : (
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" className="ml-[1px]"><path d="M8 5v14l11-7z" /></svg>
-              )}
-            </span>
-          </button>
-
-        </div>
-      </div>
-    </section>
+      <span
+        className="inline-flex items-center justify-center w-4 h-4 rounded-full"
+        style={{ background: live ? "#E8621A" : "#9CA3AF" }}
+      >
+        {live ? (
+          <svg width="7" height="7" viewBox="0 0 24 24" fill="#fff"><rect x="6" y="6" width="12" height="12" rx="1.5" /></svg>
+        ) : (
+          <svg width="7" height="7" viewBox="0 0 24 24" fill="#fff" className="ml-[1px]"><path d="M8 5v14l11-7z" /></svg>
+        )}
+      </span>
+      <span>{live ? "Turn off animation" : "Turn on animation"}</span>
+    </button>
   );
 
-  // Wrap band + section anchor in a single parent so the band can use
-  // `position: sticky` and stay pinned at top: var(--nav-h) ONLY while the
-  // user is within this parent's bounds. Outside, it scrolls naturally.
   if (useStatic) {
-    return (
-      <div className="relative w-full">
-        <div className="sticky z-30" style={{ top: "var(--nav-h)" }}>
-          {band}
-        </div>
-        <div ref={sectionRef} data-story-section className="relative w-full" />
-      </div>
-    );
+    return (<>
+      {togglePill}
+      <div ref={sectionRef} data-story-section className="relative w-full" />
+    </>);
   }
   if (!AnimatedComp) return null;
   const Comp = AnimatedComp;
-  return (
-    <div className="relative w-full">
-      <div className="sticky z-30" style={{ top: "var(--nav-h)" }}>
-        {band}
-      </div>
-      <div ref={sectionRef} data-story-section className="relative w-full">
-        <Comp
-          onDiscount={onDiscount}
-          onComplete={() => setCompleted(true)}
-          onExit={handleDisable}
-        />
-      </div>
+  return (<>
+    {togglePill}
+    <div ref={sectionRef} data-story-section className="relative w-full">
+      <Comp
+        onDiscount={onDiscount}
+        onComplete={() => setCompleted(true)}
+        onExit={handleDisable}
+      />
     </div>
-  );
+  </>);
 }
 
