@@ -384,8 +384,12 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
       className="relative w-full flex items-end justify-center"
       style={{
         height: live ? "3rem" : "5rem",
-        background: "linear-gradient(180deg, #ffffff 0%, #e8defc 8%, #6b2d8b 28%, #14102b 55%, #14102b 100%)",
-        transition: "height 600ms ease-out",
+        // Grass → media-player purple when SVGs are on (matches stage bg).
+        // Grass → astral night when static (matches Problem section bg).
+        background: live
+          ? "linear-gradient(180deg, #c9e8a8 0%, #6c8e4d 22%, #2d1260 50%, #1b1230 80%, #1b1230 100%)"
+          : "linear-gradient(180deg, #c9e8a8 0%, #6c8e4d 22%, #2d1260 48%, #14102b 78%, #14102b 100%)",
+        transition: "height 600ms ease-out, background 600ms ease-out",
         overflow: "visible",
       }}
     >
