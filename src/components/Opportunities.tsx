@@ -64,7 +64,7 @@ export default function Opportunities() {
   const cards = useScrollReveal(0.1);
 
   return (
-    <section id="opportunities" className="w-full py-20 sm:py-24 lg:py-32 bg-white">
+    <section id="opportunities" className="w-full pt-6 sm:pt-8 pb-20 sm:pb-24 lg:pb-32 bg-white">
       <div className="w-full max-w-[112rem] mx-auto px-3 sm:px-5 lg:px-6 xl:px-8">
 
         {/* Collective panel — wraps both header and cards in one warm pastel
