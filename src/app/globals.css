@@ -171,30 +171,30 @@ body {
   color: #FAF5EE;
 }
 
-/* Custom branded scrollbar — always visible */
+/* Custom branded scrollbar — always visible, brand-orange thumb */
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(107, 45, 139, 0.04);
+  background: rgba(232, 98, 26, 0.05);
   border-left: 1px solid rgba(10, 10, 10, 0.06);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #8B4AAD 0%, #6B2D8B 100%);
+  background: linear-gradient(180deg, #F5874A 0%, #E8621A 100%);
   border: 2px solid transparent;
   background-clip: padding-box;
   border-radius: 8px;
   transition: background 0.2s;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #6B2D8B 0%, #4A1D62 100%);
+  background: linear-gradient(180deg, #E8621A 0%, #C44E0E 100%);
   background-clip: padding-box;
 }
 ::-webkit-scrollbar-corner { background: transparent; }
 html {
   scrollbar-width: auto;
-  scrollbar-color: #6B2D8B rgba(107, 45, 139, 0.04);
+  scrollbar-color: #E8621A rgba(232, 98, 26, 0.05);
 }
 
 /* Navbar morph removed — animation lives inside the player card now,
