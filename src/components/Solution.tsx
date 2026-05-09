@@ -97,33 +97,153 @@ export default function Solution() {
           </div>
         </div>
 
-        {/* Ingredients grid */}
-        <div ref={ingredientsHeader.ref} style={revealStyle(ingredientsHeader.visible)} className="flex flex-col items-center text-center mb-8">
-          <h3 className="font-display font-bold text-brand-purple-dark mb-2 text-2xl sm:text-3xl">
-            Every ingredient has a name, a region, a story
-          </h3>
-          <p className="text-gray-600 text-sm sm:text-base max-w-lg">
-            Nothing is hidden. Nothing is synthetic. Just six pure ingredients.
-          </p>
-        </div>
+        {/* ── Ingredients grid — pastel bathroom mood ── */}
+        <div
+          className="relative overflow-hidden rounded-[32px] px-6 sm:px-10 lg:px-14 py-12 sm:py-16"
+          style={{
+            background:
+              "linear-gradient(135deg, #e8f4f8 0%, #fde4d4 45%, #f4e6f7 100%)",
+            boxShadow: "0 24px 60px -28px rgba(40,18,60,0.12), 0 0 0 1px rgba(255,255,255,0.6) inset",
+          }}
+        >
+          {/* Subtle bath-tile dot pattern in the background */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-[0.07]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, #6B2D8B 1px, transparent 1.5px)",
+              backgroundSize: "26px 26px",
+            }}
+          />
 
-        <div ref={ingredientsGrid.ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {INGREDIENTS.map(({ name, region, benefit }, i) => (
-            <div
-              key={name}
-              style={staggerStyle(ingredientsGrid.visible, i)}
-              className="flex items-start gap-4 p-5 rounded-2xl bg-gray-50 border border-gray-100 hover:border-brand-orange/20 hover:bg-orange-50/20 transition-shadow duration-200"
-            >
-              <div className="w-10 h-10 rounded-xl bg-brand-orange/10 flex items-center justify-center flex-shrink-0">
-                <span className="text-brand-orange-dark text-lg">✦</span>
+          {/* ── Bathtub + rubber ducky in the bottom-left corner ── */}
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 240 130"
+            className="absolute -left-4 sm:left-2 bottom-0 w-44 sm:w-56 lg:w-64 opacity-90 pointer-events-none"
+          >
+            {/* Floor reflection */}
+            <ellipse cx="120" cy="125" rx="100" ry="6" fill="rgba(168,200,212,0.30)" />
+            {/* Tub feet */}
+            <rect x="42" y="92" width="9" height="20" rx="3" fill="#9bb7c4" />
+            <rect x="195" y="92" width="9" height="20" rx="3" fill="#9bb7c4" />
+            <ellipse cx="46.5" cy="113" rx="6" ry="2.5" fill="#86a4b3" />
+            <ellipse cx="199.5" cy="113" rx="6" ry="2.5" fill="#86a4b3" />
+            {/* Tub body — claw-foot shape */}
+            <path
+              d="M30,46 Q30,98 70,98 L170,98 Q210,98 210,46 Q205,40 195,42 Q200,52 198,62 L42,62 Q40,52 45,42 Q35,40 30,46 Z"
+              fill="#f7fbfd"
+              stroke="#a8c8d4"
+              strokeWidth="1.6"
+            />
+            {/* Rim shine */}
+            <path d="M50,45 Q120,38 190,45" stroke="rgba(255,255,255,0.85)" strokeWidth="1.4" fill="none" />
+            {/* Water inside */}
+            <path
+              d="M44,65 Q44,93 70,93 L170,93 Q196,93 196,65 Z"
+              fill="#bfe1ec"
+            />
+            {/* Water surface ripples */}
+            <path d="M48,67 Q70,64 100,67 T160,67 T196,67" stroke="rgba(255,255,255,0.85)" strokeWidth="1" fill="none" />
+            <path d="M58,73 Q90,70 130,73 T188,73" stroke="rgba(255,255,255,0.5)" strokeWidth="0.8" fill="none" />
+            {/* Foam bubbles on water */}
+            <circle cx="70" cy="68" r="3" fill="rgba(255,255,255,0.85)" />
+            <circle cx="78" cy="65" r="2" fill="rgba(255,255,255,0.7)" />
+            <circle cx="160" cy="69" r="2.5" fill="rgba(255,255,255,0.8)" />
+            <circle cx="155" cy="72" r="1.6" fill="rgba(255,255,255,0.6)" />
+
+            {/* ── Rubber ducky sitting in the water ── */}
+            <g transform="translate(102, 50)">
+              {/* Body */}
+              <ellipse cx="20" cy="20" rx="20" ry="12" fill="#fbbf24" />
+              <ellipse cx="20" cy="18" rx="18" ry="9" fill="#fcd34d" />
+              {/* Tail tuft */}
+              <path d="M0,18 L-6,12 L-3,20 Z" fill="#fbbf24" />
+              {/* Head */}
+              <circle cx="32" cy="8" r="9" fill="#fbbf24" />
+              <circle cx="33" cy="6" r="7" fill="#fcd34d" />
+              {/* Beak */}
+              <path d="M40,8 Q47,7 47,10 Q47,12 40,11 Z" fill="#f97316" />
+              <path d="M40,9 L47,10" stroke="#c2410c" strokeWidth="0.4" />
+              {/* Eye */}
+              <circle cx="34" cy="6" r="1.5" fill="#1a0a2e" />
+              <circle cx="34.4" cy="5.6" r="0.5" fill="#fff" />
+              {/* Wing */}
+              <path d="M16,16 Q22,12 28,16 Q24,22 18,22 Z" fill="#f59e0b" />
+            </g>
+          </svg>
+
+          {/* ── Woman in shower cap, top-right ── */}
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 110 130"
+            className="absolute right-2 sm:right-6 -top-2 sm:top-2 w-24 sm:w-28 lg:w-32 opacity-90 pointer-events-none"
+          >
+            {/* Steam puffs floating up */}
+            <circle cx="20" cy="20" r="6" fill="rgba(255,255,255,0.6)" />
+            <circle cx="30" cy="10" r="4" fill="rgba(255,255,255,0.5)" />
+            <circle cx="14" cy="34" r="4" fill="rgba(255,255,255,0.45)" />
+
+            {/* Shower head */}
+            <rect x="80" y="6" width="3" height="14" fill="#9bb7c4" />
+            <ellipse cx="81.5" cy="22" rx="10" ry="4" fill="#bfe1ec" />
+            {[78, 81.5, 85].map((cx, i) => (
+              <line key={i} x1={cx} y1="26" x2={cx + (i-1)*0.5} y2="34" stroke="#bfe1ec" strokeWidth="0.8" />
+            ))}
+
+            {/* Shower-cap (pink with polka dots) */}
+            <path d="M28,68 Q55,38 82,68 Q78,76 55,74 Q32,76 28,68 Z" fill="#fbcfe8" />
+            <path d="M30,66 Q55,42 80,66" stroke="rgba(255,255,255,0.7)" strokeWidth="1" fill="none" />
+            <circle cx="40" cy="60" r="2.3" fill="#f9a8d4" />
+            <circle cx="55" cy="54" r="2.3" fill="#f9a8d4" />
+            <circle cx="70" cy="60" r="2.3" fill="#f9a8d4" />
+            {/* Cap bow */}
+            <path d="M53,46 L57,46 L60,42 L60,50 L57,46 L53,46 L50,50 L50,42 Z" fill="#ec4899" />
+
+            {/* Face */}
+            <ellipse cx="55" cy="86" rx="20" ry="22" fill="#dcae7e" />
+            {/* Cheeks */}
+            <circle cx="42" cy="90" r="3" fill="rgba(232,98,26,0.25)" />
+            <circle cx="68" cy="90" r="3" fill="rgba(232,98,26,0.25)" />
+            {/* Eyes */}
+            <path d="M44,84 Q47,82 50,84" stroke="#3a1f0c" strokeWidth="1.4" fill="none" strokeLinecap="round" />
+            <path d="M60,84 Q63,82 66,84" stroke="#3a1f0c" strokeWidth="1.4" fill="none" strokeLinecap="round" />
+            {/* Smile */}
+            <path d="M48,96 Q55,101 62,96" stroke="#3a1f0c" strokeWidth="1.4" fill="none" strokeLinecap="round" />
+            {/* Neck + shoulders peek */}
+            <rect x="48" y="106" width="14" height="8" fill="#dcae7e" />
+            <path d="M30,116 Q55,108 80,116 L80,130 L30,130 Z" fill="#fff" opacity="0.9" />
+          </svg>
+
+          {/* Header */}
+          <div ref={ingredientsHeader.ref} style={revealStyle(ingredientsHeader.visible)} className="relative flex flex-col items-center text-center mb-10">
+            <h3 className="font-display font-bold text-brand-purple-dark mb-2 text-2xl sm:text-3xl">
+              Every ingredient has a name, a region, a story
+            </h3>
+            <p className="text-gray-600 text-sm sm:text-base max-w-lg">
+              Nothing is hidden. Nothing is synthetic. Just six pure ingredients.
+            </p>
+          </div>
+
+          <div ref={ingredientsGrid.ref} className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {INGREDIENTS.map(({ name, region, benefit }, i) => (
+              <div
+                key={name}
+                className="flex items-start gap-4 p-5 rounded-2xl bg-white/75 backdrop-blur-sm border border-white/70 hover:border-brand-orange/25 hover:bg-white/90 transition-shadow duration-200"
+                style={{ ...staggerStyle(ingredientsGrid.visible, i), boxShadow: "0 6px 20px -10px rgba(40,18,60,0.10)" }}
+              >
+                <div className="w-10 h-10 rounded-xl bg-brand-orange/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-brand-orange-dark text-lg">✦</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-brand-purple-dark text-sm mb-0.5">{name}</p>
+                  <p className="text-[11px] text-brand-orange-dark/70 uppercase tracking-wide mb-1">{region}</p>
+                  <p className="text-xs text-gray-600 leading-relaxed">{benefit}</p>
+                </div>
               </div>
-              <div>
-                <p className="font-semibold text-brand-purple-dark text-sm mb-0.5">{name}</p>
-                <p className="text-[11px] text-brand-orange-dark/70 uppercase tracking-wide mb-1">{region}</p>
-                <p className="text-xs text-gray-600 leading-relaxed">{benefit}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
       </div>
