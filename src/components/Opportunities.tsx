@@ -62,62 +62,72 @@ const OPPORTUNITIES = [
 export default function Opportunities() {
   const header = useScrollReveal(0.2);
   const cards = useScrollReveal(0.1);
-  const quote = useScrollReveal(0.2);
 
   return (
     <section id="opportunities" className="w-full py-20 sm:py-24 lg:py-32 bg-white">
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
+      <div className="w-full max-w-[112rem] mx-auto px-3 sm:px-5 lg:px-6 xl:px-8">
 
-        {/* Header */}
-        <div ref={header.ref} style={revealStyle(header.visible)} className="flex flex-col items-center text-center mb-12 sm:mb-16">
-          <span className="inline-block text-xs font-semibold tracking-[0.28em] uppercase text-brand-orange mb-4">
-            What&apos;s in it for you
-          </span>
-          <h2 className="font-display font-bold text-brand-purple-dark text-3xl sm:text-4xl xl:text-5xl mb-4 max-w-2xl">
-            Why people are choosing{" "}
-            <span style={{
-              background: "linear-gradient(135deg, #E8621A 0%, #F2A23C 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}>Felicia&apos;s soap</span>
-          </h2>
-          <p className="text-gray-600 text-base sm:text-lg max-w-xl leading-relaxed">
-            This isn&apos;t just a soap — it&apos;s a decision to stop accepting less than
-            your skin deserves.
-          </p>
-        </div>
+        {/* Collective panel — wraps both header and cards in one warm pastel
+            field, individual card colours read as variants on a shared base. */}
+        <div
+          className="relative overflow-hidden rounded-[28px] px-4 sm:px-8 lg:px-12 xl:px-16 py-12 sm:py-14 lg:py-16"
+          style={{
+            background:
+              "linear-gradient(135deg, #fff7ed 0%, #fef3c7 35%, #fde4d4 70%, #f3e8ff 100%)",
+            boxShadow: "0 24px 60px -28px rgba(40,18,60,0.10), 0 0 0 1px rgba(255,255,255,0.6) inset",
+          }}
+        >
+          {/* Subtle dot tile pattern, same vocabulary as the ingredients panel */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-[0.06]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, #6B2D8B 1px, transparent 1.5px)",
+              backgroundSize: "26px 26px",
+            }}
+          />
 
-        {/* Cards grid */}
-        <div ref={cards.ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-6 mb-12">
-          {OPPORTUNITIES.map(({ icon, label, title, body, color, border, accent }, i) => (
-            <div
-              key={title}
-              style={staggerStyle(cards.visible, i)}
-              className={`flex flex-col p-6 xl:p-7 rounded-2xl bg-gradient-to-br ${color} border ${border} hover:shadow-md transition-shadow duration-300`}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-xl border border-gray-100">
-                  {icon}
-                </div>
-                <span className="text-[10px] font-bold tracking-[0.2em] uppercase" style={{ color: accent }}>
-                  {label}
-                </span>
-              </div>
-              <h3 className="font-display font-semibold text-brand-purple-dark text-lg mb-2">{title}</h3>
-              <p className="text-brand-purple-dark/80 text-sm leading-relaxed flex-1">{body}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Pull quote */}
-        <div ref={quote.ref} style={revealStyle(quote.visible, 200)} className="max-w-3xl mx-auto text-center">
-          <div className="inline-block bg-white rounded-3xl shadow-sm border border-gray-100 px-8 py-8 sm:px-12">
-            <p className="font-display text-xl sm:text-2xl text-brand-purple-dark leading-relaxed mb-4">
-              &ldquo;I made this soap because I couldn&apos;t find anything clean enough for my own
-              skin. Now I want everyone to have access to the same thing.&rdquo;
+          {/* Header */}
+          <div ref={header.ref} style={revealStyle(header.visible)} className="relative flex flex-col items-center text-center mb-12 sm:mb-14">
+            <span className="inline-block text-xs font-semibold tracking-[0.28em] uppercase text-brand-orange mb-4">
+              What&apos;s in it for you
+            </span>
+            <h2 className="font-display font-bold text-brand-purple-dark text-3xl sm:text-4xl xl:text-5xl mb-4 max-w-2xl">
+              Why people are choosing{" "}
+              <span style={{
+                background: "linear-gradient(135deg, #E8621A 0%, #F2A23C 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}>Felicia&apos;s soap</span>
+            </h2>
+            <p className="text-gray-600 text-base sm:text-lg max-w-xl leading-relaxed">
+              This isn&apos;t just a soap — it&apos;s a decision to stop accepting less than
+              your skin deserves.
             </p>
-            <p className="text-brand-orange font-semibold text-sm tracking-wide">— Felicia</p>
+          </div>
+
+          {/* Cards grid — sit on the collective panel; each keeps its own tint */}
+          <div ref={cards.ref} className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-6">
+            {OPPORTUNITIES.map(({ icon, label, title, body, color, border, accent }, i) => (
+              <div
+                key={title}
+                style={{ ...staggerStyle(cards.visible, i), boxShadow: "0 8px 24px -14px rgba(40,18,60,0.18)" }}
+                className={`flex flex-col p-6 xl:p-7 rounded-2xl bg-gradient-to-br ${color} border ${border} hover:-translate-y-1 hover:shadow-xl transition-all duration-300`}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-xl border border-gray-100">
+                    {icon}
+                  </div>
+                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase" style={{ color: accent }}>
+                    {label}
+                  </span>
+                </div>
+                <h3 className="font-display font-semibold text-brand-purple-dark text-lg mb-2">{title}</h3>
+                <p className="text-brand-purple-dark/80 text-sm leading-relaxed flex-1">{body}</p>
+              </div>
+            ))}
           </div>
         </div>
 
