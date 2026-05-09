@@ -340,81 +340,85 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
 
   const useStatic = !animationsOn || completed || !AnimatedComp;
 
-  // Shared "animate-website" band — sits above the section anchor in both
-  // states. Button always visible; rectangle expands when animations are on
-  // so the player blends out of it.
+  // Full-width "animate-website" SECTION — pastel brown when off, deep
+  // flower-purple when on. A purple panel sits inside with a big button
+  // that grows on hover; clicks call handleAnimate / handleDisable.
   const live = animationsOn && !!AnimatedComp && !completed;
   const band = (
-    <div className="w-full flex flex-col items-center px-4 sm:px-6">
-      <div
-        className="relative w-full mx-auto overflow-hidden transition-all duration-700 ease-out"
-        style={{
-          width: "min(94vw, 1500px)",
-          background: live
-            ? "radial-gradient(ellipse at 50% 100%, #1b1230 0%, #0a0613 70%, #050208 100%)"
-            : "linear-gradient(180deg, rgba(254,243,199,0.55) 0%, rgba(255,255,255,0.85) 100%)",
-          paddingTop: live ? "3.5rem" : "2rem",
-          paddingBottom: live ? "calc(28vh)" : "2rem",
-          borderTopLeftRadius: 28,
-          borderTopRightRadius: 28,
-          borderBottomLeftRadius: live ? 0 : 28,
-          borderBottomRightRadius: live ? 0 : 28,
-          boxShadow: live
-            ? "0 -10px 40px -10px rgba(40,18,60,0.25), 0 0 0 1px rgba(255,255,255,0.06) inset"
-            : "0 12px 36px -18px rgba(40,18,60,0.10), 0 0 0 1px rgba(40,18,60,0.06) inset",
-        }}
-      >
+    <section
+      className="relative w-full transition-colors duration-700 ease-out"
+      style={{
+        background: live ? "#1a0a2e" : "#efe1ce",
+        paddingTop: live ? "4rem" : "5rem",
+        paddingBottom: live ? "calc(24vh)" : "5rem",
+      }}
+    >
+      {/* Subtle ambient orbs only when on, so the bg blends into the player */}
+      {live && (
+        <>
+          <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 30%, rgba(107,45,139,0.35) 0%, transparent 60%)" }} />
+          <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 110%, rgba(232,98,26,0.10) 0%, transparent 60%)" }} />
+        </>
+      )}
+
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6">
         <div
-          className="absolute inset-x-6 top-0 h-px transition-opacity duration-500"
+          className="relative rounded-[36px] px-6 py-12 sm:px-12 sm:py-16 lg:py-20 text-center overflow-hidden transition-all duration-700"
           style={{
             background: live
-              ? "linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent)"
-              : "linear-gradient(90deg, transparent, rgba(40,18,60,0.10), transparent)",
+              ? "linear-gradient(135deg, rgba(107,45,139,0.22) 0%, rgba(74,29,98,0.30) 100%)"
+              : "linear-gradient(135deg, #6B2D8B 0%, #4A1D62 100%)",
+            boxShadow: live
+              ? "0 30px 80px -28px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06) inset"
+              : "0 28px 80px -24px rgba(74,29,98,0.55), 0 0 0 1px rgba(255,255,255,0.08) inset",
           }}
-        />
-        <div className="relative z-10 flex justify-center">
+        >
+          {/* Soft inner glow + flower-tinted highlight ring */}
+          <div className="pointer-events-none absolute inset-0 rounded-[36px]" style={{
+            background: "radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.10) 0%, transparent 55%)",
+          }} />
+          <div className="pointer-events-none absolute inset-x-10 top-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)" }} />
+
+          <p className="relative text-[10px] sm:text-[11px] tracking-[0.45em] uppercase text-white/65 font-semibold mb-4 sm:mb-5">
+            {live ? "Now playing" : "Want the full experience?"}
+          </p>
+          <h2 className="relative font-display font-bold text-white text-3xl sm:text-5xl lg:text-6xl xl:text-7xl mb-8 sm:mb-10 leading-[1.04]" style={{ letterSpacing: "-0.02em" }}>
+            {live
+              ? "Tap to exit"
+              : (<>Animate the{" "}<span style={{ background: "linear-gradient(135deg, #fbbf24 0%, #f97316 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>website</span>.</>)}
+          </h2>
+
           <button
             type="button"
             onClick={() => { if (live) handleDisable(); else void handleAnimate(); }}
             aria-pressed={live}
-            className="group inline-flex items-center gap-3 sm:gap-4 pl-5 pr-2.5 py-2.5 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+            className="relative group inline-flex items-center gap-3 sm:gap-4 px-10 sm:px-14 py-5 sm:py-6 rounded-full text-lg sm:text-xl font-semibold tracking-tight transition-all duration-300 hover:scale-[1.08] hover:-translate-y-1"
             style={{
               background: "#FFFFFF",
-              boxShadow: "0 14px 36px -12px rgba(40,18,60,0.22), 0 0 0 1px rgba(40,18,60,0.08)",
+              color: "#4A1D62",
+              boxShadow: "0 22px 50px -18px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.6) inset",
             }}
           >
-            <span className="flex flex-col items-start leading-none">
-              <span className="text-[8.5px] tracking-[0.32em] uppercase font-semibold text-brand-orange/70">{live ? "Now playing" : "Want the full experience?"}</span>
-              <span className="text-[12px] font-display font-bold text-brand-purple-dark tracking-tight mt-0.5">{live ? "Tap to exit" : "Animate the website"}</span>
-            </span>
-            <span className="flex items-center pl-3 border-l border-brand-purple-dark/10 self-stretch py-0.5">
-              <span
-                className="relative inline-block w-9 h-5 rounded-full transition-colors duration-300"
-                style={{ background: live ? "#E8621A" : "rgba(209,213,219,0.7)" }}
-              >
-                <span
-                  className="absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-md transition-all duration-300"
-                  style={{ left: live ? "calc(100% - 18px)" : "2px" }}
-                />
-              </span>
+            <span>{live ? "Stop the story" : "Start the experience"}</span>
+            <span
+              className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full transition-transform duration-300 group-hover:translate-x-1"
+              style={{ background: live ? "#E8621A" : "#6B2D8B", color: "#fff" }}
+            >
+              {live ? (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="1.5" /></svg>
+              ) : (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="ml-[2px]"><path d="M8 5v14l11-7z" /></svg>
+              )}
             </span>
           </button>
+
+          {/* Scroll-down hint when on */}
+          <p className="relative mt-6 sm:mt-8 text-[9.5px] tracking-[0.4em] uppercase font-semibold text-white/45 transition-opacity duration-500" style={{ opacity: live ? 1 : 0, height: live ? "auto" : 0 }}>
+            Scroll down to play
+          </p>
         </div>
-        <div
-          className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[8.5px] tracking-[0.4em] uppercase font-semibold transition-opacity duration-500 pointer-events-none"
-          style={{ opacity: live ? 0.45 : 0, color: "#FFFFFF" }}
-        >
-          Scroll down to play
-        </div>
-        <div
-          className="absolute inset-x-0 bottom-0 h-1/3 pointer-events-none transition-opacity duration-500"
-          style={{
-            opacity: live ? 1 : 0,
-            background: "radial-gradient(ellipse at 50% 100%, rgba(232,98,26,0.10) 0%, transparent 70%)",
-          }}
-        />
       </div>
-    </div>
+    </section>
   );
 
   if (useStatic) {
