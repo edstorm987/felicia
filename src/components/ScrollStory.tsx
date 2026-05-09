@@ -346,77 +346,13 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
   const live = animationsOn && !!AnimatedComp && !completed;
   const band = (
     <section
-      className="relative w-full overflow-hidden transition-colors duration-700 ease-out"
+      className="relative w-full transition-colors duration-700 ease-out"
       style={{
-        background: live
-          ? "#1a0a2e"
-          : "radial-gradient(ellipse at 50% 0%, #14102b 0%, #0c0820 55%, #060414 100%)",
+        background: live ? "#1a0a2e" : "#efe1ce",
         paddingTop: live ? "2rem" : "2.5rem",
         paddingBottom: live ? "calc(12vh)" : "2.5rem",
       }}
     >
-      {/* ── Starfield (static, always on this section's background) ── */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        {Array.from({ length: 56 }).map((_, i) => {
-          // Deterministic pseudo-random scatter so SSR + client agree
-          const x = ((i * 79) % 100);
-          const y = ((i * 53) % 100);
-          const size = (i % 4 === 0) ? 2 : (i % 3 === 0) ? 1.6 : 1;
-          const dur = 2.5 + ((i * 13) % 25) / 10;
-          const delay = ((i * 7) % 60) / 10;
-          return (
-            <span
-              key={`star-${i}`}
-              className="absolute rounded-full bg-white"
-              style={{
-                left: `${x}%`,
-                top: `${y}%`,
-                width: size,
-                height: size,
-                opacity: 0.55,
-                boxShadow: "0 0 4px rgba(255,255,255,0.55)",
-                animation: `csTwinkle ${dur}s ease-in-out ${delay}s infinite`,
-              }}
-            />
-          );
-        })}
-      </div>
-
-      {/* ── Shooting stars — two on offset cycles ── */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <span className="absolute" style={{
-          top: "12%", left: "-10%", width: "120px", height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent)",
-          filter: "drop-shadow(0 0 6px rgba(255,255,255,0.85))",
-          transform: "rotate(-18deg)",
-          animation: "csShoot 9s ease-in 1.5s infinite",
-          opacity: 0,
-        }} />
-        <span className="absolute" style={{
-          top: "32%", left: "-10%", width: "150px", height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(255,210,150,0.95), transparent)",
-          filter: "drop-shadow(0 0 8px rgba(255,200,140,0.75))",
-          transform: "rotate(-12deg)",
-          animation: "csShoot 14s ease-in 6s infinite",
-          opacity: 0,
-        }} />
-      </div>
-
-      <style jsx>{`
-        @keyframes csTwinkle {
-          0%, 100% { opacity: 0.25; transform: scale(1); }
-          50%      { opacity: 1;    transform: scale(1.25); }
-        }
-        @keyframes csShoot {
-          0%   { transform: translate(0, 0) rotate(-18deg);   opacity: 0; }
-          5%   { opacity: 0; }
-          12%  { opacity: 1; }
-          60%  { opacity: 1; }
-          80%  { opacity: 0; }
-          100% { transform: translate(110vw, 35vh) rotate(-18deg); opacity: 0; }
-        }
-      `}</style>
-
       {live && (
         <>
           <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 30%, rgba(107,45,139,0.35) 0%, transparent 60%)" }} />
