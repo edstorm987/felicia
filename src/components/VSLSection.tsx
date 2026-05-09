@@ -486,12 +486,12 @@ export default function VSLSection() {
             <div className="relative w-full max-w-[96rem] mx-auto px-4 sm:px-8 lg:px-12 xl:px-20 py-20 sm:py-24 lg:py-28">
 
               {/* Section label */}
-              <div className="flex items-center gap-3 mb-16 sm:mb-20 justify-center">
-                <div className="w-12 h-px bg-brand-orange/25" />
-                <span className="text-[10px] font-semibold tracking-[0.35em] uppercase text-brand-orange/50">
+              <div className="flex items-center gap-4 sm:gap-6 mb-16 sm:mb-20 justify-center">
+                <div className="w-16 sm:w-20 h-px bg-brand-orange/25" />
+                <span className="text-[28px] sm:text-[32px] lg:text-[36px] font-semibold tracking-[0.18em] uppercase text-brand-orange/55 leading-tight">
                   How Luv &amp; Ker changed my skin forever
                 </span>
-                <div className="w-12 h-px bg-brand-orange/25" />
+                <div className="w-16 sm:w-20 h-px bg-brand-orange/25" />
               </div>
 
               {/* ── 2-column split: video + thumbnail rail on left, outcome cards on right ── */}
