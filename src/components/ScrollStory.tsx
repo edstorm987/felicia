@@ -349,26 +349,23 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
       className="relative w-full transition-colors duration-700 ease-out"
       style={{
         background: live ? "#1a0a2e" : "#efe1ce",
-        paddingTop: live ? "2rem" : "2.5rem",
-        paddingBottom: live ? "calc(12vh)" : "2.5rem",
+        paddingTop: live ? "0.75rem" : "2.5rem",
+        paddingBottom: live ? "0.75rem" : "2.5rem",
       }}
     >
-      {live && (
-        <>
-          <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 30%, rgba(107,45,139,0.35) 0%, transparent 60%)" }} />
-          <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 110%, rgba(232,98,26,0.10) 0%, transparent 60%)" }} />
-        </>
-      )}
-
       <div className="relative max-w-2xl mx-auto px-4 sm:px-6">
         <div
-          className="relative rounded-3xl px-5 py-7 sm:px-8 sm:py-9 text-center overflow-hidden transition-all duration-700"
+          className="relative rounded-3xl text-center overflow-hidden transition-all duration-500"
           style={{
             background: live
-              ? "linear-gradient(135deg, rgba(107,45,139,0.22) 0%, rgba(74,29,98,0.30) 100%)"
+              ? "linear-gradient(135deg, rgba(107,45,139,0.40) 0%, rgba(74,29,98,0.55) 100%)"
               : "linear-gradient(135deg, #6B2D8B 0%, #4A1D62 100%)",
+            paddingLeft:  live ? "1.25rem" : "2rem",
+            paddingRight: live ? "1.25rem" : "2rem",
+            paddingTop:   live ? "0.75rem" : "2.25rem",
+            paddingBottom:live ? "0.75rem" : "2.25rem",
             boxShadow: live
-              ? "0 18px 40px -16px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06) inset"
+              ? "0 12px 28px -12px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.10) inset"
               : "0 16px 40px -16px rgba(74,29,98,0.50), 0 0 0 1px rgba(255,255,255,0.08) inset",
           }}
         >
@@ -377,14 +374,18 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
           }} />
           <div className="pointer-events-none absolute inset-x-8 top-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)" }} />
 
-          <p className="relative text-[9px] sm:text-[10px] tracking-[0.42em] uppercase text-white/65 font-semibold mb-2 sm:mb-2.5">
-            {live ? "Now playing" : "Want the full experience?"}
-          </p>
-          <h2 className="relative font-display font-bold text-white text-xl sm:text-2xl lg:text-3xl mb-4 sm:mb-5 leading-[1.05]" style={{ letterSpacing: "-0.02em" }}>
-            {live
-              ? "Tap to exit"
-              : (<>Animate the{" "}<span style={{ background: "linear-gradient(135deg, #fbbf24 0%, #f97316 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>website</span>.</>)}
-          </h2>
+          {/* Eyebrow + headline only show in OFF state — when live we collapse
+              to just the toggle button so the sticky bar stays compact. */}
+          {!live && (
+            <>
+              <p className="relative text-[9px] sm:text-[10px] tracking-[0.42em] uppercase text-white/65 font-semibold mb-2 sm:mb-2.5">
+                Want the full experience?
+              </p>
+              <h2 className="relative font-display font-bold text-white text-xl sm:text-2xl lg:text-3xl mb-4 sm:mb-5 leading-[1.05]" style={{ letterSpacing: "-0.02em" }}>
+                Animate the{" "}<span style={{ background: "linear-gradient(135deg, #fbbf24 0%, #f97316 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>website</span>.
+              </h2>
+            </>
+          )}
 
           <button
             type="button"
@@ -397,7 +398,7 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
               boxShadow: "0 12px 26px -10px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.55) inset",
             }}
           >
-            <span>{live ? "Stop the story" : "Start the experience"}</span>
+            <span>{live ? "Turn off animation" : "Turn on animation"}</span>
             <span
               className="inline-flex items-center justify-center w-6 h-6 rounded-full transition-transform duration-300 group-hover:translate-x-0.5"
               style={{ background: live ? "#E8621A" : "#6B2D8B", color: "#fff" }}
@@ -410,34 +411,39 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
             </span>
           </button>
 
-          {live && (
-            <p className="relative mt-3 sm:mt-4 text-[8.5px] tracking-[0.38em] uppercase font-semibold text-white/45">
-              Scroll down to play
-            </p>
-          )}
         </div>
       </div>
     </section>
   );
 
+  // Wrap band + section anchor in a single parent so the band can use
+  // `position: sticky` and stay pinned at top: var(--nav-h) ONLY while the
+  // user is within this parent's bounds. Outside, it scrolls naturally.
   if (useStatic) {
-    return (<>
-      {band}
-      <div ref={sectionRef} data-story-section className="relative w-full" />
-    </>);
+    return (
+      <div className="relative w-full">
+        <div className="sticky z-30" style={{ top: "var(--nav-h)" }}>
+          {band}
+        </div>
+        <div ref={sectionRef} data-story-section className="relative w-full" />
+      </div>
+    );
   }
   if (!AnimatedComp) return null;
   const Comp = AnimatedComp;
-  return (<>
-    {band}
-    <AnimationToggle on={true} onChange={(v) => { if (!v) handleDisable(); }} />
-    <div ref={sectionRef} data-story-section className="relative w-full">
-      <Comp
-        onDiscount={onDiscount}
-        onComplete={() => setCompleted(true)}
-        onExit={handleDisable}
-      />
+  return (
+    <div className="relative w-full">
+      <div className="sticky z-30" style={{ top: "var(--nav-h)" }}>
+        {band}
+      </div>
+      <div ref={sectionRef} data-story-section className="relative w-full">
+        <Comp
+          onDiscount={onDiscount}
+          onComplete={() => setCompleted(true)}
+          onExit={handleDisable}
+        />
+      </div>
     </div>
-  </>);
+  );
 }
 
