@@ -10,7 +10,6 @@ import DiscountPopup from "@/components/DiscountPopup";
 import VSLSection from "@/components/VSLSection";
 import Problem from "@/components/Problem";
 import Solution from "@/components/Solution";
-import HowItWorks from "@/components/HowItWorks";
 import Opportunities from "@/components/Opportunities";
 
 const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true, loading: () => null });
@@ -37,10 +36,7 @@ export default function HomeSections() {
       {/* ── 3. Answer ── */}
       <Solution />
 
-      {/* ── 4. Journey — How it's made ── */}
-      <HowItWorks />
-
-      {/* ── 5. What's in it for you ── */}
+      {/* ── 4. What's in it for you ── */}
       <Opportunities />
 
       {/* ── 7. Product ── */}
