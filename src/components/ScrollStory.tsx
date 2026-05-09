@@ -377,27 +377,29 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
 
   // Gradient transition strip — the entry into the SVG section. Always
   // present so the bg blends from the page above into the dark player bg.
-  // OFF state: tall (48vh) with a centered "Turn on immersive experience"
-  //            button so users can opt back in.
-  // ON state:  short (6rem) — a thin transition before the player begins.
+  // The "Turn on immersive experience" button (off state) sits centered on
+  // the boundary between the strip and the section below, half-in/half-out.
   const transitionStrip = (
     <div
-      className="relative w-full overflow-hidden flex items-center justify-center"
+      className="relative w-full flex items-end justify-center"
       style={{
-        height: live ? "5rem" : "14rem",
+        height: live ? "4rem" : "7rem",
         background: "linear-gradient(180deg, #ffffff 0%, #f3ecff 35%, #2d1260 78%, #14102b 100%)",
         transition: "height 600ms ease-out",
+        overflow: "visible",
       }}
     >
       {!live && (
         <button
           type="button"
           onClick={() => void handleAnimate()}
-          className="group inline-flex items-center gap-3 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm font-semibold tracking-tight transition-all duration-300 hover:scale-[1.04] hover:-translate-y-0.5"
+          className="group inline-flex items-center gap-3 px-7 sm:px-8 py-3 sm:py-3.5 rounded-full text-sm font-semibold tracking-tight transition-all duration-300 hover:scale-[1.04] hover:-translate-y-0.5"
           style={{
             background: "#FFFFFF",
             color: "#4A1D62",
             boxShadow: "0 18px 40px -16px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.55) inset",
+            transform: "translateY(50%)",
+            zIndex: 10,
           }}
         >
           <span
