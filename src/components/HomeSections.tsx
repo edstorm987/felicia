@@ -8,12 +8,19 @@ import SupportUsSection from "@/components/SupportUsSection";
 import ScrollStory from "@/components/ScrollStory";
 import DiscountPopup from "@/components/DiscountPopup";
 import VSLSection from "@/components/VSLSection";
-import Problem from "@/components/Problem";
-import Solution from "@/components/Solution";
-import Opportunities from "@/components/Opportunities";
 
 const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true, loading: () => null });
 
+/**
+ * Page flow:
+ *   Hero (in <Hero />, mounted by app/page.tsx above this)
+ *   ↓
+ *   1. Social proof — Keira's customer-story videos
+ *   2. SVGs — the animated story player (or empty when toggled off)
+ *   3. Product — Start your ritual
+ *   4. Reviews
+ *   5. Support Us
+ */
 export default function HomeSections() {
   const blackSoap = PRODUCTS.find((p) => p.id === "black-soap");
   const [popupOpen, setPopupOpen] = useState(false);
@@ -22,24 +29,13 @@ export default function HomeSections() {
     <>
       <DiscountPopup open={popupOpen} onClose={() => setPopupOpen(false)} />
 
-      {/* ── 1. Transformation — Felicia's customer-story videos ── */}
+      {/* 1. Social — Keira's customer-story videos */}
       <VSLSection />
 
-      {/* ── 2. Animate-website band + (when toggled on) the player.
-            Sits between the videos and the rest of the page so users see the
-            hero + videos first, then choose whether to immerse. ── */}
+      {/* 2. SVGs — animated player (mounts only when animations are on) */}
       <ScrollStory onDiscount={() => setPopupOpen(true)} />
 
-      {/* ── 3. Problem ── */}
-      <Problem />
-
-      {/* ── 3. Answer ── */}
-      <Solution />
-
-      {/* ── 4. What's in it for you ── */}
-      <Opportunities />
-
-      {/* ── 7. Product ── */}
+      {/* 3. Product */}
       {blackSoap && (
         <section id="buy" className="py-20 lg:py-28 bg-white border-t border-pink-100 scroll-mt-24 lg:scroll-mt-32">
           <div className="max-w-[96rem] mx-auto px-4 sm:px-8 lg:px-10 xl:px-14">
@@ -52,10 +48,10 @@ export default function HomeSections() {
         </section>
       )}
 
-      {/* ── 8. Reviews ── */}
+      {/* 4. Reviews */}
       <Testimonials />
 
-      {/* ── 9. Support Us ── */}
+      {/* 5. Support Us */}
       <SupportUsSection />
     </>
   );
