@@ -1693,25 +1693,6 @@ function ChapterSolution({ p, onDiscount }: { p: number; onDiscount: () => void 
         );
       })}
     </div>
-    {/* Two shooting stars on offset cycles */}
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-      <span className="absolute" style={{
-        top: "16%", left: "-10%", width: "120px", height: "1px",
-        background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent)",
-        filter: "drop-shadow(0 0 6px rgba(255,255,255,0.85))",
-        transform: "rotate(-18deg)",
-        animation: "prShoot 12s ease-in 2s infinite",
-        opacity: 0,
-      }} />
-      <span className="absolute" style={{
-        top: "40%", left: "-10%", width: "150px", height: "1px",
-        background: "linear-gradient(90deg, transparent, rgba(255,210,150,0.95), transparent)",
-        filter: "drop-shadow(0 0 8px rgba(255,200,140,0.75))",
-        transform: "rotate(-12deg)",
-        animation: "prShoot 17s ease-in 6s infinite",
-        opacity: 0,
-      }} />
-    </div>
     <div className="relative z-10 w-full max-w-[96rem] mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
         <div style={{opacity:phase(p,0,0.2),transform:`translateX(${(1-phase(p,0,0.2))*-40}px) scale(${0.96+phase(p,0,0.2)*0.04})`,filter:`blur(${(1-phase(p,0,0.2))*2}px)`}} className="relative flex items-center justify-center">

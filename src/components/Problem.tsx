@@ -66,26 +66,6 @@ export default function Problem() {
         })}
       </div>
 
-      {/* ── Shooting stars — two on offset cycles ── */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-        <span className="absolute" style={{
-          top: "14%", left: "-10%", width: "120px", height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent)",
-          filter: "drop-shadow(0 0 6px rgba(255,255,255,0.85))",
-          transform: "rotate(-18deg)",
-          animation: "prShoot 11s ease-in 2s infinite",
-          opacity: 0,
-        }} />
-        <span className="absolute" style={{
-          top: "36%", left: "-10%", width: "150px", height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(255,210,150,0.95), transparent)",
-          filter: "drop-shadow(0 0 8px rgba(255,200,140,0.75))",
-          transform: "rotate(-12deg)",
-          animation: "prShoot 16s ease-in 7s infinite",
-          opacity: 0,
-        }} />
-      </div>
-
 
       <div className="relative z-10 w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
 
