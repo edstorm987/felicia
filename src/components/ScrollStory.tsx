@@ -324,7 +324,11 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
     setCompleted(false);
     await loadAnimated();
     setAnimationsOn(true);
-    requestAnimationFrame(() => scrollToSection("smooth"));
+    // Always rewind to the top so the user re-experiences Hero → VSL → SVGs
+    // in order rather than getting dropped into the SVG section.
+    requestAnimationFrame(() => {
+      if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   };
 
   const handleDisable = () => {
