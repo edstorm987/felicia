@@ -228,7 +228,7 @@ export default function SiteHead() {
         <Script id="plausible" strategy="afterInteractive" src="https://plausible.io/js/script.js" data-domain={plausible} />
       )}
 
-      <CookieBanner />
+      {/* CookieBanner removed per request — no cookie banner mounted. */}
     </>
   );
 }

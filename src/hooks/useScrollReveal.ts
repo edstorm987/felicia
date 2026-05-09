@@ -1,39 +1,29 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useRef } from "react";
 
 /**
- * Bidirectional scroll-reveal — fades in on entry, fades out on exit.
- * Apple-style: elements animate both ways as you scroll up and down.
+ * Static-section reveal — neutralized.
+ *
+ * The pre-existing section components (VSLSection, Problem, Solution,
+ * HowItWorks, Opportunities, etc.) wrap their content in this hook to
+ * fade-up on scroll. The site now puts all its scroll-driven motion inside
+ * the opt-in animated player; the rest of the page is meant to behave like
+ * a normal marketing site.
+ *
+ * The hook now reports visible=true immediately and the style helpers
+ * return the resting (visible) state with no transitions, so existing call
+ * sites render plainly without further edits.
  */
-export function useScrollReveal(threshold = 0.15) {
+export function useScrollReveal(_threshold: number = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [threshold]);
-
-  return { ref, visible };
+  return { ref, visible: true };
 }
 
-/** Style object for a reveal wrapper */
-export function revealStyle(visible: boolean, delay = 0) {
-  return {
-    opacity: visible ? 1 : 0,
-    transform: visible ? "translateY(0)" : "translateY(40px)",
-    transition: `opacity 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
-  } as const;
+export function revealStyle(_visible: boolean, _delay: number = 0) {
+  return { opacity: 1, transform: "none" } as const;
 }
 
-/** Staggered children — each child gets a delay based on index */
-export function staggerStyle(visible: boolean, index: number, baseDelay = 0) {
-  return revealStyle(visible, baseDelay + index * 120);
+export function staggerStyle(_visible: boolean, _index: number, _baseDelay: number = 0) {
+  return { opacity: 1, transform: "none" } as const;
 }

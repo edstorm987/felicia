@@ -15,6 +15,51 @@ interface Story {
 
 const STORIES: Story[] = [
   {
+    id: "keira",
+    tag: "A customer story",
+    title: "How Luv & Ker changed my skin forever",
+    runtime: "4 min",
+    hook: "Keira's story — she wore makeup like armour. Then she put it down.",
+    body: "For years, Keira was told her skin was 'just dry.' Complex, sensitive, unpredictable — she layered foundation every morning not to express herself, but to hide. Gym sessions meant planning around her skin. Seeing friends meant planning around her skin. She discovered Luv & Ker and, slowly, the ritual changed everything. Cleaner skin. Real moisture. The kind of glow that makes her friends ask what she's using. She goes to the gym now, showers, and walks out bright and fresh — no extra steps, no mask. Just her.",
+    gradient: "from-rose-900/70 via-stone-900/90 to-black",
+  },
+  {
+    id: "amara",
+    tag: "A customer story",
+    title: "From hormonal acne to calm",
+    runtime: "3 min",
+    hook: "Amara's story — six weeks in, her skin finally stopped fighting her.",
+    body: "Amara had tried every prescription, every cleanser, every dermatologist trend. Nothing held. After eight weeks of using Luv & Ker, the inflammation that had defined her twenties simply quieted. She still doesn't believe it some mornings — but the mirror does.",
+    gradient: "from-pink-900/70 via-stone-900/90 to-black",
+  },
+  {
+    id: "kojo",
+    tag: "A customer story",
+    title: "The first soap that didn't break me out",
+    runtime: "2 min",
+    hook: "Kojo's story — sensitive skin, finally met a bar it can trust.",
+    body: "Kojo's skin reacted to fragrance, sulphates, even some \"clean\" brands. He stopped trying. A friend gifted him Luv & Ker. The same skin that hated everything now thrives on six ingredients.",
+    gradient: "from-amber-900/70 via-stone-900/90 to-black",
+  },
+  {
+    id: "yaa",
+    tag: "A customer story",
+    title: "Even tone after a lifetime of irritation",
+    runtime: "3 min",
+    hook: "Yaa's story — her routine got shorter and her glow got louder.",
+    body: "Yaa cut her routine from eleven products to three. Two months in, her tone is the most even it's ever been. The compliments started. The compliments haven't stopped.",
+    gradient: "from-emerald-900/70 via-stone-900/90 to-black",
+  },
+  {
+    id: "mensah",
+    tag: "A customer story",
+    title: "Why I'll never go back to mass-market beauty",
+    runtime: "2 min",
+    hook: "Mensah's story — what's actually inside the things you put on your skin.",
+    body: "Mensah read the labels. Then he read the data. Now he reads Luv & Ker's ingredient list — and sleeps fine.",
+    gradient: "from-purple-900/70 via-stone-900/90 to-black",
+  },
+  {
     id: "origin",
     tag: "The product story",
     title: "Why Felicia made this",
@@ -22,15 +67,6 @@ const STORIES: Story[] = [
     hook: "The soap the market ignored — until now.",
     body: "Every ingredient in mass skincare is chosen for shelf life and margin, not for your skin. Felicia didn't create Odo for herself — she created it for you. For those who demand genuinely clean ingredients and real results without compromise. It's for people who aspire to a true transformation and the freedom to choose what goes on their skin, rooted in centuries of Ghanaian ancestral wisdom. Six ingredients. Nothing hidden. The best bar in the market, hiding in plain sight.",
     gradient: "from-amber-900/80 via-stone-900/90 to-black",
-  },
-  {
-    id: "keira",
-    tag: "A customer story",
-    title: "Keira's story",
-    runtime: "4 min",
-    hook: "She wore makeup like armour. Then she put it down.",
-    body: "For years, Keira was told her skin was 'just dry.' Complex, sensitive, unpredictable — she layered foundation every morning not to express herself, but to hide. Gym sessions meant planning around her skin. Seeing friends meant planning around her skin. She discovered Luv & Ker and, slowly, the ritual changed everything. Cleaner skin. Real moisture. The kind of glow that makes her friends ask what she's using. She goes to the gym now, showers, and walks out bright and fresh — no extra steps, no mask. Just her.",
-    gradient: "from-rose-900/70 via-stone-900/90 to-black",
   },
 ];
 

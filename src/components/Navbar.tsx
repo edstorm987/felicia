@@ -79,10 +79,11 @@ export default function Navbar() {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl 2xl:max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 h-16 sm:h-18 lg:h-20 2xl:h-24 flex items-center justify-between gap-4">
+
+        <div className="relative z-10 max-w-7xl 2xl:max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 h-16 sm:h-18 lg:h-20 2xl:h-24 flex items-center justify-between gap-4">
 
           {/* Logo */}
-          <Link href="/#story" scroll={true} className="flex flex-col leading-none shrink-0">
+          <Link href="/" scroll={true} onClick={() => { if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" }); }} className="flex flex-col leading-none shrink-0">
             <span className="font-display text-lg sm:text-xl 2xl:text-2xl font-bold tracking-wide text-brand-purple-dark">
               {wordmark1} <span className="text-brand-orange">&amp;</span> {wordmark2}
             </span>

@@ -167,7 +167,6 @@ export default function Hero() {
   const [modalOpen, setModalOpen]   = useState(false);
   const [activeStory, setActiveStory] = useState("origin");
   const [popupOpen, setPopupOpen]   = useState(false);
-
   return (
     <>
       <DiscountPopup open={popupOpen} onClose={() => setPopupOpen(false)} />
@@ -288,6 +287,7 @@ export default function Hero() {
                 ))}
               </div>
 
+
             </div>
 
             {/* ── RIGHT: product scene ── */}
@@ -353,6 +353,7 @@ export default function Hero() {
             </div>
 
           </div>
+
         </div>
 
         {/* Bottom fade into next section */}

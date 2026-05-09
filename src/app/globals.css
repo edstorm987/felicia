@@ -90,7 +90,10 @@
 */
 
 html {
-  scroll-behavior: smooth;
+  /* No scroll-behavior: smooth — let the browser handle native momentum
+     scrolling without any JS/CSS smoothing layer. Anchor jumps stay native. */
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -168,23 +171,62 @@ body {
   color: #FAF5EE;
 }
 
-/* Custom Scrollbar */
+/* Custom branded scrollbar — always visible */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
-  border-left: 1px solid rgba(10, 10, 10, 0.15); /* Black margin line */
+  background: rgba(107, 45, 139, 0.04);
+  border-left: 1px solid rgba(10, 10, 10, 0.06);
 }
 ::-webkit-scrollbar-thumb {
-  background: #6B2D8B; /* Brand purple */
-  border-radius: 5px;
+  background: linear-gradient(180deg, #8B4AAD 0%, #6B2D8B 100%);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 8px;
+  transition: background 0.2s;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #4A1D62; /* Brand purple dark */
+  background: linear-gradient(180deg, #6B2D8B 0%, #4A1D62 100%);
+  background-clip: padding-box;
 }
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #6B2D8B transparent;
+::-webkit-scrollbar-corner { background: transparent; }
+html {
+  scrollbar-width: auto;
+  scrollbar-color: #6B2D8B rgba(107, 45, 139, 0.04);
+}
+
+/* Navbar morph removed — animation lives inside the player card now,
+   so the navbar stays Luv & Ker brand colors at all times. */
+
+/* ── Navbar height tokens (matches Navbar.tsx h-16 sm:h-18 lg:h-20 2xl:h-24) ── */
+:root { --nav-h: 64px; }
+@media (min-width: 640px)  { :root { --nav-h: 72px; } }
+@media (min-width: 1024px) { :root { --nav-h: 80px; } }
+@media (min-width: 1536px) { :root { --nav-h: 96px; } }
+
+/* The sticky story container is itself shifted below the navbar
+   (top: var(--nav-h); height: calc(100vh - var(--nav-h))) — so all
+   chapter coordinates (top: 50%, inset-0, etc.) are relative to that
+   already-clipped band. No further padding needed; just cap content
+   SVGs/images to that band so they never overflow. */
+[data-scroll-story] [class*="items-center"][class*="justify-center"] svg {
+  max-height: calc(100vh - var(--nav-h) - 4rem);
+  max-width:  calc(100vw - 2rem);
+}
+[data-scroll-story] [class*="items-center"][class*="justify-center"] svg.absolute,
+[data-scroll-story] [class*="items-center"][class*="justify-center"] svg[class*="inset-0"] {
+  max-height: none;
+  max-width: none;
+}
+[data-scroll-story] [class*="items-center"][class*="justify-center"] img {
+  max-height: calc(100vh - var(--nav-h) - 4rem);
+}
+
+/* Lite static layout — let the browser skip painting off-screen sections.
+   Each section is text + at most a few images, so the size hint is loose. */
+[data-lite-story] > section {
+  content-visibility: auto;
+  contain-intrinsic-size: 100vw 800px;
 }

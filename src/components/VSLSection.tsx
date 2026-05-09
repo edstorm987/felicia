@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import VideoModal from "@/components/VideoModal";
 
 const OUTCOMES = [
@@ -227,25 +227,34 @@ function GrassLandscape({ grassGrow, walkPhase }: { grassGrow: number; walkPhase
   );
 }
 
+/* Customer testimonial stories — the row of mini-players below the hero video.
+   IDs match entries in VideoModal's STORIES so the modal renders the right one. */
+const STORIES_RAIL = [
+  { id: "keira",  name: "Keira",  blurb: "How Luv & Ker changed my skin forever",      runtime: "4 min", colour: "from-rose-500/30 to-rose-700/40" },
+  { id: "amara",  name: "Amara",  blurb: "From hormonal acne to calm",                  runtime: "3 min", colour: "from-pink-500/30 to-fuchsia-700/40" },
+  { id: "kojo",   name: "Kojo",   blurb: "The first soap that didn't break me out",     runtime: "2 min", colour: "from-amber-500/30 to-orange-700/40" },
+  { id: "yaa",    name: "Yaa",    blurb: "Even tone after a lifetime of irritation",    runtime: "3 min", colour: "from-emerald-500/30 to-teal-700/40" },
+  { id: "mensah", name: "Mensah", blurb: "Why I'll never go back to mass-market beauty",runtime: "2 min", colour: "from-violet-500/30 to-purple-700/40" },
+];
+
 export default function VSLSection() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [activeStory, setActiveStory] = useState("origin");
+  const [activeStory, setActiveStory] = useState("keira");
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const onScroll = () => {
-      const rect = el.getBoundingClientRect();
-      const totalHeight = el.offsetHeight - window.innerHeight;
-      if (totalHeight <= 0) return;
-      setProgress(clamp(-rect.top / totalHeight));
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  // Static section — render fully revealed instead of scroll-driven progress.
+  // Scroll-based motion lives only inside the opt-in animated player now.
+  const progress = 1;
+  const activeIdx = Math.max(0, STORIES_RAIL.findIndex((s) => s.id === activeStory));
+  const cycleStory = (dir: 1 | -1) => {
+    const next = (activeIdx + dir + STORIES_RAIL.length) % STORIES_RAIL.length;
+    setActiveStory(STORIES_RAIL[next].id);
+  };
+  const scrollToReviews = () => {
+    if (typeof window === "undefined") return;
+    const el = document.getElementById("testimonials");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  const activeRail = STORIES_RAIL[activeIdx];
 
   /* ── Timeline — all reverses on scroll-up ── */
   const titleIn = phase(progress, 0, 0.12);
@@ -253,7 +262,6 @@ export default function VSLSection() {
   const grassGrow = ease(clamp(progress / 0.3));
   const walkPhase = clamp((progress - 0.05) / 0.42);
   const contentIn = phase(progress, 0.5, 0.2);
-  const outcomeBase = (progress - 0.6) / 0.28;
 
   // Words
   const words = ["See", "what", "happens", "when", "you", "go"];
@@ -270,7 +278,6 @@ export default function VSLSection() {
 
       <div
         ref={sectionRef}
-        style={{ height: "450vh" }}
         className="relative w-full"
       >
         <style jsx>{`
@@ -278,10 +285,79 @@ export default function VSLSection() {
             0% { transform: rotate(-2.5deg); }
             100% { transform: rotate(2.5deg); }
           }
+          /* Bird flies in from off-left, arcs across, lands on the first
+             outcome card (top-right area), holds ~3s, lifts off and exits right. */
+          @keyframes birdFly {
+            0%   { left: -8%;  top: 22%; transform: rotate(-4deg) scaleX(1); }
+            12%  { left: 18%;  top: 14%; transform: rotate(-2deg) scaleX(1); }
+            24%  { left: 38%;  top: 22%; transform: rotate( 0deg) scaleX(1); }
+            36%  { left: 56%;  top: 30%; transform: rotate( 4deg) scaleX(1); }
+            45%  { left: 68%;  top: 36%; transform: rotate( 0deg) scaleX(1); }
+            /* Settles on the card */
+            48%  { left: 70%;  top: 38%; transform: rotate( 0deg) scaleX(1); }
+            /* Hold ~3s (48% → 60% of 25s = 3s sit) */
+            60%  { left: 70%;  top: 38%; transform: rotate( 0deg) scaleX(1); }
+            /* Lifts off and exits right */
+            68%  { left: 76%;  top: 30%; transform: rotate(-3deg) scaleX(1); }
+            82%  { left: 92%;  top: 18%; transform: rotate(-2deg) scaleX(1); }
+            100% { left: 112%; top: 10%; transform: rotate(-1deg) scaleX(1); }
+          }
+          /* Wing flap — soft scaleY wobble; pauses during the sit phase */
+          @keyframes wingFlap {
+            0%, 100% { transform: scaleY(1); }
+            50%      { transform: scaleY(0.55); }
+          }
+          @keyframes wingHold {
+            0%, 100% { transform: scaleY(1); }
+          }
+          /* Tiny vertical bob while sitting (chest breath) */
+          @keyframes birdBreathe {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(0.5px); }
+          }
         `}</style>
 
-        {/* Sticky viewport */}
-        <div className="sticky top-0 h-screen overflow-hidden">
+        {/* Static viewport — no scroll-jack, no sticky pinning. The section
+            renders at its resting state (progress = 1) inline like any
+            normal page section. */}
+        <div className="relative min-h-screen overflow-hidden">
+
+          {/* ── Ambient robin — flies across, lands briefly on the first
+                outcome card, then exits. Faint, decorative only. ── */}
+          <div
+            aria-hidden="true"
+            className="hidden sm:block absolute pointer-events-none z-[2]"
+            style={{
+              width: 38,
+              height: 26,
+              opacity: 0.32,
+              filter: "blur(0.4px)",
+              animation: "birdFly 14s ease-in-out infinite",
+            }}
+          >
+            <svg viewBox="0 0 60 40" width="38" height="26" style={{ animation: "birdBreathe 2.6s ease-in-out infinite" }}>
+              {/* Tail */}
+              <path d="M3 22 L13 18 L13 24 Z" fill="#6b4226" />
+              {/* Body */}
+              <ellipse cx="22" cy="22" rx="13" ry="9" fill="#7a5236" />
+              {/* Red breast */}
+              <ellipse cx="29" cy="24" rx="8" ry="6" fill="#c54f37" />
+              {/* Head */}
+              <circle cx="40" cy="17" r="6.5" fill="#7a5236" />
+              {/* Beak */}
+              <path d="M45 17 L52 18 L45 19 Z" fill="#3a2410" />
+              {/* Eye */}
+              <circle cx="42.5" cy="15.5" r="0.9" fill="#000" />
+              {/* Wing — flaps continuously */}
+              <g style={{ transformOrigin: "22px 18px", animation: "wingFlap 0.22s ease-in-out infinite" }}>
+                <path d="M14 14 Q22 4 30 12 Q24 20 16 20 Z" fill="#5d3a23" />
+              </g>
+              {/* Foot — only really visible at sit pose, but tiny + faint */}
+              <line x1="20" y1="31" x2="20" y2="33" stroke="#3a2410" strokeWidth="0.6" strokeLinecap="round" />
+              <line x1="26" y1="31" x2="26" y2="33" stroke="#3a2410" strokeWidth="0.6" strokeLinecap="round" />
+            </svg>
+          </div>
+
 
           {/* Background — warm cream that deepens */}
           <div className="absolute inset-0" style={{
@@ -291,6 +367,36 @@ export default function VSLSection() {
               rgba(240,253,244,${grassGrow * 0.4}) 60%,
               rgba(220,252,231,${grassGrow * 0.3}) 100%)`,
           }} />
+
+          {/* ── Faint sunrise — barely-perceptible warm glow rising from
+                the horizon below the section. Sits behind everything else. ── */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 bottom-0 pointer-events-none"
+            style={{
+              height: "55%",
+              background:
+                "radial-gradient(ellipse 80% 100% at 50% 110%, rgba(255,210,150,0.28) 0%, rgba(255,170,100,0.14) 28%, rgba(232,98,26,0.06) 55%, transparent 80%)",
+              filter: "blur(2px)",
+            }}
+          />
+          {/* Sun disc — very faint, just below horizon */}
+          <div
+            aria-hidden="true"
+            className="absolute pointer-events-none"
+            style={{
+              left: "50%",
+              bottom: "-6%",
+              transform: "translateX(-50%)",
+              width: "26vmin",
+              height: "26vmin",
+              borderRadius: "50%",
+              background:
+                "radial-gradient(circle, rgba(255,210,140,0.42) 0%, rgba(255,180,110,0.20) 35%, rgba(255,150,80,0.06) 65%, transparent 80%)",
+              filter: "blur(6px)",
+              opacity: 0.55,
+            }}
+          />
 
           {/* Ambient orbs */}
           <div className="absolute top-[10%] left-[8%] w-[600px] h-[600px] rounded-full pointer-events-none"
@@ -377,86 +483,144 @@ export default function VSLSection() {
               }}
             />
 
-            <div className="relative w-full max-w-[96rem] mx-auto px-4 sm:px-8 lg:px-10 xl:px-14 py-12">
+            <div className="relative w-full max-w-[96rem] mx-auto px-4 sm:px-8 lg:px-12 xl:px-20 py-20 sm:py-24 lg:py-28">
 
               {/* Section label */}
-              <div className="flex items-center gap-3 mb-12 justify-center"
-                style={{
-                  opacity: phase(progress, 0.55, 0.12),
-                  transform: `translateY(${(1 - phase(progress, 0.55, 0.12)) * 20}px)`,
-                }}>
+              <div className="flex items-center gap-3 mb-16 sm:mb-20 justify-center">
                 <div className="w-12 h-px bg-brand-orange/25" />
                 <span className="text-[10px] font-semibold tracking-[0.35em] uppercase text-brand-orange/50">
-                  What changes for you
+                  How Luv &amp; Ker changed my skin forever
                 </span>
                 <div className="w-12 h-px bg-brand-orange/25" />
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-16 items-center">
+              {/* ── 2-column split: video + thumbnail rail on left, outcome cards on right ── */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 xl:gap-24 items-start mb-20 sm:mb-24">
 
-                {/* Video */}
-                <div style={{
-                  opacity: phase(progress, 0.52, 0.18),
-                  transform: `translateY(${(1 - phase(progress, 0.52, 0.18)) * 50}px) scale(${0.96 + phase(progress, 0.52, 0.18) * 0.04})`,
-                  filter: `blur(${(1 - phase(progress, 0.52, 0.18)) * 3}px)`,
-                }}>
+                {/* Left column: hero video + thumbnail rail */}
+                <div>
                   <div
-                    className="relative aspect-video rounded-3xl overflow-hidden cursor-pointer group"
-                    style={{ boxShadow: "0 40px 80px -20px rgba(26,10,46,0.18), 0 20px 40px -10px rgba(232,98,26,0.08), 0 0 0 1px rgba(0,0,0,0.04)" }}
-                    onClick={() => { setActiveStory("origin"); setModalOpen(true); }}
+                    className={`relative aspect-video rounded-3xl overflow-hidden cursor-pointer group bg-gradient-to-br ${activeRail.colour} mb-7 sm:mb-8`}
+                    style={{ boxShadow: "0 40px 80px -20px rgba(26,10,46,0.22), 0 20px 40px -10px rgba(232,98,26,0.08), 0 0 0 1px rgba(0,0,0,0.05)" }}
+                    onClick={() => setModalOpen(true)}
                     role="button"
-                    tabIndex={contentIn > 0.5 ? 0 : -1}
-                    onKeyDown={(e) => e.key === "Enter" && (setActiveStory("origin"), setModalOpen(true))}
-                    aria-label="Play video"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === "Enter" && setModalOpen(true)}
+                    aria-label={`Play ${activeRail.name}'s story`}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#1a0a2e] via-[#2d1260]/90 to-[#1a0a2e]" />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/8 via-transparent to-brand-purple/8" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#1a0a2e]/90 via-[#2d1260]/80 to-[#1a0a2e]/90" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/10 via-transparent to-brand-purple/10" />
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <div className="w-80 h-80 rounded-full border border-white/[0.04]" />
-                      <div className="absolute w-56 h-56 rounded-full border border-white/[0.06]" />
-                      <div className="absolute w-36 h-36 rounded-full border border-white/[0.08]" />
+                      <div className="w-80 h-80 rounded-full border border-white/[0.05]" />
+                      <div className="absolute w-56 h-56 rounded-full border border-white/[0.07]" />
+                      <div className="absolute w-36 h-36 rounded-full border border-white/[0.09]" />
                     </div>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <div className="w-20 h-20 rounded-full bg-white/8 backdrop-blur-md border border-white/15 flex items-center justify-center group-hover:bg-white/15 group-hover:scale-110 transition-all duration-500">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white" className="ml-1 opacity-80">
+                      <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-white/20 group-hover:scale-110 transition-all duration-500">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white" className="ml-1 opacity-90">
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       </div>
-                      <p className="text-white/35 text-xs mt-5 tracking-[0.2em] uppercase font-medium">
-                        Felicia&apos;s story · 3 min
+                      <p className="text-white/85 font-display text-lg sm:text-xl mt-5 max-w-md text-center px-6 leading-tight">
+                        {activeRail.blurb}
+                      </p>
+                      <p className="text-white/45 text-xs mt-3 tracking-[0.32em] uppercase font-medium">
+                        {activeRail.name}&apos;s story · {activeRail.runtime}
                       </p>
                     </div>
-                    <div className="absolute top-5 left-5 border border-white/8 rounded-full px-3.5 py-1.5 bg-white/5 backdrop-blur-sm">
-                      <span className="text-white/30 text-[9px] tracking-[0.2em] uppercase font-medium">Coming soon</span>
+                    <div className="absolute top-5 left-5 border border-white/10 rounded-full px-3.5 py-1.5 bg-white/5 backdrop-blur-sm">
+                      <span className="text-white/40 text-[9px] tracking-[0.2em] uppercase font-medium">Coming soon</span>
                     </div>
+                  </div>
+
+                  {/* Thumbnail rail with chevrons */}
+                  <div className="flex items-center gap-2.5 sm:gap-3">
+                    <button
+                      type="button"
+                      onClick={() => cycleStory(-1)}
+                      aria-label="Previous story"
+                      className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white border border-gray-200 hover:border-brand-orange/40 hover:-translate-y-0.5 transition-all flex items-center justify-center"
+                      style={{ boxShadow: "0 8px 22px -10px rgba(40,18,60,0.20)" }}
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-brand-purple-dark/70">
+                        <path d="M15 18l-6-6 6-6" />
+                      </svg>
+                    </button>
+
+                    <div className="flex-1 flex gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar">
+                      {STORIES_RAIL.map((s, i) => {
+                        const active = i === activeIdx;
+                        return (
+                          <button
+                            key={s.id}
+                            type="button"
+                            onClick={() => setActiveStory(s.id)}
+                            aria-pressed={active}
+                            className={`group relative shrink-0 w-28 sm:w-32 rounded-xl overflow-hidden text-left transition-all duration-300 ${active ? "ring-2 ring-brand-orange/70 -translate-y-0.5" : "ring-1 ring-gray-200 hover:-translate-y-0.5"}`}
+                            style={{ aspectRatio: "16/10", boxShadow: active ? "0 14px 30px -14px rgba(232,98,26,0.35)" : "0 6px 18px -10px rgba(40,18,60,0.15)" }}
+                          >
+                            <div className={`absolute inset-0 bg-gradient-to-br ${s.colour}`} />
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#1a0a2e]/85 via-[#2d1260]/75 to-[#1a0a2e]/85" />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <div className={`w-8 h-8 rounded-full border border-white/30 flex items-center justify-center transition-all ${active ? "bg-white/20" : "bg-white/8 group-hover:bg-white/15"}`}>
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="white" className="ml-[1px] opacity-90">
+                                  <path d="M8 5v14l11-7z" />
+                                </svg>
+                              </div>
+                            </div>
+                            <div className="absolute inset-x-0 bottom-0 px-2.5 py-1.5 bg-gradient-to-t from-black/75 to-transparent">
+                              <p className="text-white text-[10.5px] sm:text-[11px] font-semibold tracking-tight leading-tight">{s.name}&apos;s story</p>
+                              <p className="text-white/55 text-[8px] tracking-[0.18em] uppercase font-medium mt-0.5">{s.runtime}</p>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => cycleStory(1)}
+                      aria-label="Next story"
+                      className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white border border-gray-200 hover:border-brand-orange/40 hover:-translate-y-0.5 transition-all flex items-center justify-center"
+                      style={{ boxShadow: "0 8px 22px -10px rgba(40,18,60,0.20)" }}
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-brand-purple-dark/70">
+                        <path d="M9 6l6 6-6 6" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
 
-                {/* Outcomes */}
+                {/* Right column: outcome cards stacked */}
                 <div className="flex flex-col gap-4">
-                  {OUTCOMES.map(({ icon, title, body }, i) => {
-                    const cp = ease(clamp((outcomeBase - i * 0.22) / 0.35));
-                    return (
-                      <div key={title} style={{
-                        opacity: cp,
-                        transform: `translateY(${(1 - cp) * 40}px)`,
-                        filter: `blur(${(1 - cp) * 2}px)`,
-                      }}>
-                        <div className="flex gap-5 items-start p-6 xl:p-7 rounded-2xl bg-white/70 backdrop-blur-md border border-white/60 hover:border-brand-orange/15 hover:bg-white/85 hover:shadow-xl hover:shadow-brand-orange/5 transition-all duration-500 group"
-                          style={{ boxShadow: "0 4px 24px -4px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.02)" }}>
-                          <div className="w-13 h-13 w-[52px] h-[52px] rounded-2xl bg-gradient-to-br from-brand-orange/10 to-brand-amber/5 border border-brand-orange/10 flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-105 transition-transform duration-500">
-                            {icon}
-                          </div>
-                          <div>
-                            <h3 className="font-display font-semibold text-brand-purple-dark text-lg mb-1.5">{title}</h3>
-                            <p className="text-gray-500 text-sm leading-relaxed">{body}</p>
-                          </div>
-                        </div>
+                  {OUTCOMES.map(({ icon, title, body }) => (
+                    <div key={title} className="flex gap-5 items-start p-6 xl:p-7 rounded-2xl bg-white/70 backdrop-blur-md border border-white/60 hover:border-brand-orange/15 hover:bg-white/85 hover:shadow-xl hover:shadow-brand-orange/5 transition-all duration-500 group"
+                      style={{ boxShadow: "0 4px 24px -4px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.02)" }}>
+                      <div className="w-[52px] h-[52px] rounded-2xl bg-gradient-to-br from-brand-orange/10 to-brand-amber/5 border border-brand-orange/10 flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-105 transition-transform duration-500">
+                        {icon}
                       </div>
-                    );
-                  })}
+                      <div>
+                        <h3 className="font-display font-semibold text-brand-purple-dark text-lg mb-1.5">{title}</h3>
+                        <p className="text-gray-500 text-sm leading-relaxed">{body}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
+              </div>
 
+              {/* ── "Don't just take our word — read reviews" CTA ── */}
+              <div className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={scrollToReviews}
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-brand-purple-dark hover:bg-brand-purple text-white font-semibold tracking-wide text-sm transition-all duration-300 hover:-translate-y-0.5"
+                  style={{ boxShadow: "0 18px 40px -16px rgba(74,29,98,0.45), 0 0 0 1px rgba(0,0,0,0.04)" }}
+                >
+                  Don&apos;t just take our word — read reviews
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M12 5v14M5 12l7 7 7-7" />
+                  </svg>
+                </button>
               </div>
             </div>
           </div>

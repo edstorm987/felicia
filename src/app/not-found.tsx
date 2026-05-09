@@ -1,83 +1,182 @@
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Page Not Found — Luv & Ker",
-  description: "This page doesn't exist, but the earth's purest soap does.",
+  title: "Lost the trail — Luv & Ker",
+  description: "This page slipped through the soap. Let's get you back.",
 };
 
 export default function NotFound() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
-        {/* Decorative adinkra-style circle */}
-        <div className="relative mb-10 flex items-center justify-center">
-          <div className="w-48 h-48 rounded-full border border-brand-orange/20 flex items-center justify-center">
-            <div className="w-36 h-36 rounded-full border border-brand-orange/30 flex items-center justify-center">
-              <div className="w-24 h-24 rounded-full bg-brand-orange/10 border border-brand-orange/40 flex items-center justify-center">
-                <span className="font-display text-5xl text-brand-orange select-none">4</span>
-              </div>
+      <main
+        className="relative min-h-screen overflow-hidden"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 25%, #fef3c7 0%, #FAF5EE 45%, #F0E8DC 100%)",
+        }}
+      >
+        {/* Soft ambient orbs */}
+        <div
+          className="pointer-events-none absolute -top-40 -left-32 w-[480px] h-[480px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(232,98,26,0.18) 0%, transparent 70%)" }}
+        />
+        <div
+          className="pointer-events-none absolute -bottom-40 -right-32 w-[520px] h-[520px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(107,45,139,0.14) 0%, transparent 70%)" }}
+        />
+        {/* Faint concentric ring backdrop */}
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 800 800"
+          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[110vmin] h-[110vmin] opacity-40"
+        >
+          <defs>
+            <radialGradient id="ringFade" cx="50%" cy="50%">
+              <stop offset="0%" stopColor="#E8621A" stopOpacity="0.0" />
+              <stop offset="60%" stopColor="#E8621A" stopOpacity="0.18" />
+              <stop offset="100%" stopColor="#E8621A" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          {[120, 180, 240, 300, 360].map((r) => (
+            <circle
+              key={r}
+              cx="400"
+              cy="400"
+              r={r}
+              fill="none"
+              stroke="url(#ringFade)"
+              strokeWidth="0.8"
+              strokeDasharray={r % 2 === 0 ? "1.5 4" : "1 5"}
+            />
+          ))}
+        </svg>
+
+        <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 text-center">
+          {/* Floating soap above the 4·0·4 */}
+          <div className="relative mb-10 flex items-center justify-center">
+            <div
+              className="absolute inset-0 -z-10 rounded-full blur-3xl"
+              style={{ background: "radial-gradient(circle, rgba(251,191,36,0.45) 0%, transparent 65%)" }}
+            />
+            <div className="relative w-32 h-32 sm:w-40 sm:h-40">
+              <Image
+                src="/black-soap.png"
+                alt="Felicia&apos;s black soap"
+                fill
+                priority
+                sizes="160px"
+                className="object-contain drop-shadow-[0_30px_40px_rgba(40,18,60,0.25)]"
+              />
             </div>
           </div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
-            {/* Orbiting dots */}
-            {[0, 90, 180, 270].map((deg) => (
-              <span
-                key={deg}
-                className="absolute w-2 h-2 rounded-full bg-brand-orange/50"
-                style={{
-                  top: `${50 - 46 * Math.cos((deg * Math.PI) / 180)}%`,
-                  left: `${50 + 46 * Math.sin((deg * Math.PI) / 180)}%`,
-                  transform: "translate(-50%,-50%)",
-                }}
-              />
+
+          {/* 404 wordmark — kerned big numerals with soap as the 0 */}
+          <div className="flex items-baseline justify-center gap-4 sm:gap-6 mb-7 select-none">
+            <span
+              className="font-display font-bold text-7xl sm:text-8xl lg:text-9xl text-brand-purple-dark"
+              style={{ letterSpacing: "-0.04em" }}
+            >
+              4
+            </span>
+            <span
+              className="font-display font-bold text-7xl sm:text-8xl lg:text-9xl"
+              style={{
+                letterSpacing: "-0.04em",
+                background: "linear-gradient(135deg, #fbbf24 0%, #E8621A 50%, #8B4AAD 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              0
+            </span>
+            <span
+              className="font-display font-bold text-7xl sm:text-8xl lg:text-9xl text-brand-purple-dark"
+              style={{ letterSpacing: "-0.04em" }}
+            >
+              4
+            </span>
+          </div>
+
+          <p className="text-[10px] sm:text-[11px] tracking-[0.45em] uppercase text-brand-orange/65 mb-4">
+            Lost the trail
+          </p>
+          <h1
+            className="font-display font-bold text-brand-purple-dark text-3xl sm:text-4xl lg:text-5xl mb-5 max-w-2xl leading-[1.05]"
+            style={{ letterSpacing: "-0.02em" }}
+          >
+            This page slipped through the{" "}
+            <span
+              style={{
+                background: "linear-gradient(135deg, #E8621A 0%, #fbbf24 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              soap
+            </span>
+            .
+          </h1>
+          <p className="max-w-md text-brand-purple-dark/55 text-sm sm:text-base leading-relaxed mb-10">
+            The link you followed may have moved on, or may never have existed
+            in the first place. Either way — we&apos;ve got you.
+          </p>
+
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-14">
+            <Link
+              href="/"
+              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-brand-orange hover:bg-brand-orange-light transition-all duration-300 text-white font-semibold tracking-wide text-sm shadow-2xl shadow-brand-orange/25 hover:-translate-y-0.5"
+            >
+              Take me home
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+            <Link
+              href="/products"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full border border-brand-purple-dark/15 text-brand-purple-dark/75 hover:text-brand-purple-dark hover:border-brand-purple-dark/30 font-semibold tracking-wide text-sm transition-all"
+            >
+              Shop the collection
+            </Link>
+          </div>
+
+          {/* Quick links rail */}
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 max-w-xl">
+            {[
+              { label: "Our story", href: "/our-story" },
+              { label: "Ingredients", href: "/ingredients" },
+              { label: "FAQ", href: "/faq" },
+              { label: "Reviews", href: "/reviews" },
+              { label: "Contact", href: "/contact" },
+            ].map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="text-[10px] tracking-[0.25em] uppercase text-brand-purple-dark/50 hover:text-brand-orange transition-colors"
+              >
+                {l.label}
+              </Link>
             ))}
           </div>
-        </div>
 
-        <p className="text-xs tracking-[0.3em] uppercase text-brand-orange mb-3">
-          404 — Lost in the earth
-        </p>
-        <h1 className="font-display text-4xl sm:text-6xl text-brand-purple-dark mb-4 leading-tight">
-          This page doesn&apos;t<br className="hidden sm:block" /> exist yet
-        </h1>
-        <p className="max-w-md text-brand-purple-dark/80 text-base mb-10 leading-relaxed">
-          Like an undiscovered ingredient, some things take time to surface.
-          The page you&apos;re looking for may have moved, or perhaps it never existed.
-        </p>
-
-        <div className="flex flex-wrap gap-3 justify-center">
-          <Link
-            href="/"
-            className="px-6 py-3 rounded-full bg-brand-orange text-white font-semibold text-sm hover:bg-brand-orange-dark transition-colors"
-          >
-            Back to home
-          </Link>
-          <Link
-            href="/products"
-            className="px-6 py-3 rounded-full border border-brand-orange/30 text-brand-purple-dark/80 text-sm hover:border-brand-orange/60 hover:text-brand-purple-dark transition-colors"
-          >
-            Shop the collection
-          </Link>
-          <Link
-            href="/our-story"
-            className="px-6 py-3 rounded-full border border-pink-200 text-brand-purple-dark/80 text-sm hover:border-pink-300 hover:text-brand-purple-dark/80 transition-colors"
-          >
-            Our story
-          </Link>
-        </div>
-
-        {/* Subtle divider + tagline */}
-        <div className="mt-20 flex items-center gap-4 text-brand-purple-dark/80">
-          <div className="w-16 h-px bg-brand-cream/20" />
-          <span className="text-xs tracking-widest uppercase">Luv &amp; Ker</span>
-          <div className="w-16 h-px bg-brand-cream/20" />
-        </div>
-        <p className="mt-3 text-xs text-brand-purple-dark/80 italic">
-          Pure, natural, hormone-safe — from Ghanaian ancestral wisdom
-        </p>
+          {/* Felicia signature */}
+          <div className="mt-16 flex items-center gap-4 text-brand-purple-dark/45">
+            <div className="w-12 h-px bg-brand-purple-dark/15" />
+            <span className="text-[10px] tracking-[0.4em] uppercase font-semibold">
+              Luv &amp; Ker
+            </span>
+            <div className="w-12 h-px bg-brand-purple-dark/15" />
+          </div>
+          <p className="mt-2 text-[11px] text-brand-purple-dark/50 italic">
+            Handcrafted in Accra · Carried to you
+          </p>
+        </section>
       </main>
       <Footer />
     </>

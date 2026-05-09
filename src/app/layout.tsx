@@ -83,7 +83,7 @@ export default function RootLayout({
           <SiteHead />
           <AnalyticsResolver />
           {children}
-          <FeatureGate flag="chatbot"><ChatBotLazy /></FeatureGate>
+          {/* Chatbot removed per request */}
           <LatherTrail />
         </CartProvider>
       </body>
