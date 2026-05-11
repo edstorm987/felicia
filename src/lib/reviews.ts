@@ -13,7 +13,7 @@ export const REVIEWS: Review[] = [
     name: "Abena K.",
     location: "London, UK",
     stars: 5,
-    product: "Odo Body",
+    product: "Original Black Soap",
   },
   {
     quote:
@@ -21,7 +21,7 @@ export const REVIEWS: Review[] = [
     name: "Akosua M.",
     location: "Accra, Ghana",
     stars: 5,
-    product: "Odo Hands",
+    product: "Original Black Soap",
   },
   {
     quote:
@@ -29,7 +29,7 @@ export const REVIEWS: Review[] = [
     name: "Dr. Sarah T.",
     location: "Birmingham, UK",
     stars: 5,
-    product: "Odo Face",
+    product: "Original Black Soap",
   },
   {
     quote:
@@ -37,7 +37,7 @@ export const REVIEWS: Review[] = [
     name: "Priya R.",
     location: "Manchester, UK",
     stars: 5,
-    product: "Odo Body",
+    product: "Original Black Soap",
   },
   {
     quote:
@@ -45,7 +45,7 @@ export const REVIEWS: Review[] = [
     name: "Hannah L.",
     location: "Bristol, UK",
     stars: 5,
-    product: "Odo Face",
+    product: "Original Black Soap",
   },
   {
     quote:
@@ -53,7 +53,7 @@ export const REVIEWS: Review[] = [
     name: "Nana A.",
     location: "Accra, Ghana",
     stars: 5,
-    product: "The Ritual Set",
+    product: "Original Black Soap",
   },
   {
     quote:
@@ -61,7 +61,7 @@ export const REVIEWS: Review[] = [
     name: "Marie D.",
     location: "Edinburgh, UK",
     stars: 5,
-    product: "Odo Body",
+    product: "Original Black Soap",
   },
   {
     quote:
@@ -69,7 +69,7 @@ export const REVIEWS: Review[] = [
     name: "James O.",
     location: "Leeds, UK",
     stars: 5,
-    product: "Odo Hands",
+    product: "Original Black Soap",
   },
   {
     quote:
@@ -77,7 +77,7 @@ export const REVIEWS: Review[] = [
     name: "Kofi B.",
     location: "London, UK",
     stars: 5,
-    product: "The Ritual Set",
+    product: "Original Black Soap",
   },
   {
     quote:
@@ -85,7 +85,7 @@ export const REVIEWS: Review[] = [
     name: "Yaa S.",
     location: "Kumasi, Ghana",
     stars: 5,
-    product: "Odo Pumice",
+    product: "Original Black Soap",
   },
   {
     quote:
@@ -93,7 +93,7 @@ export const REVIEWS: Review[] = [
     name: "Fatima D.",
     location: "Paris, France",
     stars: 5,
-    product: "Odo Face",
+    product: "Original Black Soap",
   },
   {
     quote:
@@ -101,35 +101,19 @@ export const REVIEWS: Review[] = [
     name: "Sena A.",
     location: "Accra, Ghana",
     stars: 5,
-    product: "The Ritual Set",
+    product: "Original Black Soap",
   },
 ];
 
 export const PRODUCTS = [
   "All Products",
-  "Odo Hands",
-  "Odo Face",
-  "Odo Body",
-  "Odo Pumice",
-  "The Ritual Set",
-  "Nkrabea Face",
-  "Nkrabea Body",
-  "Nkrabea Shave",
-  "The Nkrabea Set",
+  "Original Black Soap",
 ] as const;
 
 export type ProductFilter = (typeof PRODUCTS)[number];
 
 const SLUG_TO_PRODUCT: Record<string, string> = {
-  "odo-hands":        "Odo Hands",
-  "odo-face":         "Odo Face",
-  "odo-body":         "Odo Body",
-  "odo-pumice":       "Odo Pumice",
-  "odo-ritual-set":   "The Ritual Set",
-  "nkrabea-face":     "Nkrabea Face",
-  "nkrabea-body":     "Nkrabea Body",
-  "nkrabea-shave":    "Nkrabea Shave",
-  "nkrabea-ritual-set": "The Nkrabea Set",
+  "black-soap": "Original Black Soap",
 };
 
 export function getProductReviews(slug: string): Review[] {
