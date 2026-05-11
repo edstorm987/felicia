@@ -726,12 +726,15 @@ export default function Hero() {
                       // Scroll to the VSL customer-stories section and
                       // play the founder's story (first entry in the
                       // rail) via the customer-stories:play event.
+                      // Feature Felicia's story in the VSL rail then
+                      // smooth-scroll there. No modal pop — the user
+                      // can press play once they arrive.
+                      window.dispatchEvent(
+                        new CustomEvent("customer-stories:select", { detail: { id: "origin" } })
+                      );
                       document
                         .getElementById("customer-stories")
                         ?.scrollIntoView({ behavior: "smooth", block: "start" });
-                      window.dispatchEvent(
-                        new CustomEvent("customer-stories:play", { detail: { id: "origin" } })
-                      );
                     }}
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-gray-200 text-gray-600 hover:border-brand-orange/30 hover:text-brand-orange transition-all duration-200 text-sm tracking-wide"
                   >

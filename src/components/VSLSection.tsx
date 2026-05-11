@@ -283,17 +283,30 @@ export default function VSLSection() {
   const [modalOpen, setModalOpen] = useState(false);
   // Founder's story is the default featured slot — customers follow.
   const [activeStory, setActiveStory] = useState("origin");
-  // Hero's "Watch the story" button dispatches customer-stories:play
-  // so we open the modal on the requested entry after the smooth-scroll.
+  // External triggers from elsewhere on the page:
+  //   customer-stories:select — just feature the requested story in
+  //   the rail (no modal). Used by Hero's "Watch the story" button
+  //   so the user lands on the section with Felicia featured but
+  //   isn't ambushed by a popup.
+  //   customer-stories:play   — feature + open the modal. Reserved
+  //   for explicit play actions.
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const handler = (e: Event) => {
+    const onSelect = (e: Event) => {
+      const detail = (e as CustomEvent<{ id?: string }>).detail;
+      if (detail?.id) setActiveStory(detail.id);
+    };
+    const onPlay = (e: Event) => {
       const detail = (e as CustomEvent<{ id?: string }>).detail;
       if (detail?.id) setActiveStory(detail.id);
       setModalOpen(true);
     };
-    window.addEventListener("customer-stories:play", handler);
-    return () => window.removeEventListener("customer-stories:play", handler);
+    window.addEventListener("customer-stories:select", onSelect);
+    window.addEventListener("customer-stories:play", onPlay);
+    return () => {
+      window.removeEventListener("customer-stories:select", onSelect);
+      window.removeEventListener("customer-stories:play", onPlay);
+    };
   }, []);
   // Wipe transition: bumps every time activeStory changes so the wipe
   // overlay re-keys and replays its animation.
