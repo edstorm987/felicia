@@ -9,7 +9,6 @@ import { getProductReviews } from "@/lib/reviews";
 import { getReviewsForProduct } from "@/lib/admin/reviews";
 import DiscountPopup from "@/components/DiscountPopup";
 import GiftCardPurchaseForm from "@/components/GiftCardPurchaseForm";
-import ReviewsBoard from "@/components/ReviewsBoard";
 
 interface DisplayReview {
   name: string;
@@ -649,25 +648,6 @@ export default function ProductDetail({ product, compact = false }: { product: P
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Verified reviews board — same component the /reviews page uses,
-          so the wider verified feed is browsable inline under this
-          product's own inline review section. */}
-      <section className="w-full bg-pink-50">
-        <div className="w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 py-16 sm:py-20">
-          <div className="flex flex-col items-center text-center mb-10">
-            <span className="text-xs tracking-[0.28em] uppercase text-brand-amber">Verified reviews</span>
-            <h2 className="font-display font-bold text-brand-purple-dark text-3xl xl:text-4xl mt-3 mb-3">
-              From across the range
-            </h2>
-            <p className="text-brand-purple-dark/70 text-sm sm:text-base max-w-xl">
-              Real customers across every Luv &amp; Ker product. Filter by
-              product or rating below.
-            </p>
-          </div>
-          <ReviewsBoard />
         </div>
       </section>
 

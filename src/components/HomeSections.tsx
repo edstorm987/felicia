@@ -11,6 +11,7 @@ import VSLSection from "@/components/VSLSection";
 import Problem from "@/components/Problem";
 import Solution from "@/components/Solution";
 import Opportunities from "@/components/Opportunities";
+import ReviewsBoard from "@/components/ReviewsBoard";
 
 const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true, loading: () => null });
 
@@ -77,7 +78,25 @@ export default function HomeSections() {
         </section>
       )}
 
-      {/* 5. Reviews */}
+      {/* 5. Verified reviews board — same filter chips + grid as
+            /reviews, embedded directly on the homepage between the
+            product store and the scrolling testimonials. */}
+      <section className="w-full bg-pink-50 py-16 sm:py-20 lg:py-24 border-t border-pink-100">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
+          <div className="flex flex-col items-center text-center mb-10 sm:mb-12">
+            <span className="text-xs tracking-[0.28em] uppercase text-brand-amber mb-3">Verified reviews</span>
+            <h2 className="font-display font-bold text-brand-purple-dark text-3xl sm:text-4xl lg:text-5xl mb-3">
+              What people are <span className="gradient-text">actually saying</span>
+            </h2>
+            <p className="text-brand-purple-dark/70 text-sm sm:text-base max-w-2xl">
+              Real customers, real results. Filter by product or rating.
+            </p>
+          </div>
+          <ReviewsBoard />
+        </div>
+      </section>
+
+      {/* 6. Testimonials — scrolling marquee */}
       <Testimonials />
 
       {/* 6. Support Us */}
