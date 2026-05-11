@@ -270,6 +270,8 @@ function GrassLandscape({ grassGrow, walkPhase }: { grassGrow: number; walkPhase
 /* Customer testimonial stories — the row of mini-players below the hero video.
    IDs match entries in VideoModal's STORIES so the modal renders the right one. */
 const STORIES_RAIL = [
+  // First entry is the founder — everything else is customer stories.
+  { id: "origin", name: "Felicia", blurb: "Why I made this — the founder's story",     runtime: "3 min", colour: "from-amber-500/30 to-orange-700/40" },
   { id: "keira",  name: "Keira",  blurb: "How Luv & Ker changed my skin forever",      runtime: "4 min", colour: "from-rose-500/30 to-rose-700/40" },
   { id: "amara",  name: "Amara",  blurb: "From hormonal acne to calm",                  runtime: "3 min", colour: "from-pink-500/30 to-fuchsia-700/40" },
   { id: "kojo",   name: "Kojo",   blurb: "The first soap that didn't break me out",     runtime: "2 min", colour: "from-amber-500/30 to-orange-700/40" },
@@ -279,7 +281,20 @@ const STORIES_RAIL = [
 
 export default function VSLSection() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [activeStory, setActiveStory] = useState("keira");
+  // Founder's story is the default featured slot — customers follow.
+  const [activeStory, setActiveStory] = useState("origin");
+  // Hero's "Watch the story" button dispatches customer-stories:play
+  // so we open the modal on the requested entry after the smooth-scroll.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ id?: string }>).detail;
+      if (detail?.id) setActiveStory(detail.id);
+      setModalOpen(true);
+    };
+    window.addEventListener("customer-stories:play", handler);
+    return () => window.removeEventListener("customer-stories:play", handler);
+  }, []);
   // Wipe transition: bumps every time activeStory changes so the wipe
   // overlay re-keys and replays its animation.
   const [wipeKey, setWipeKey] = useState(0);

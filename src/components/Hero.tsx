@@ -731,7 +731,17 @@ export default function Hero() {
                     </svg>
                   </button>
                   <button
-                    onClick={() => { setActiveStory("origin"); setModalOpen(true); }}
+                    onClick={() => {
+                      // Scroll to the VSL customer-stories section and
+                      // play the founder's story (first entry in the
+                      // rail) via the customer-stories:play event.
+                      document
+                        .getElementById("customer-stories")
+                        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      window.dispatchEvent(
+                        new CustomEvent("customer-stories:play", { detail: { id: "origin" } })
+                      );
+                    }}
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-gray-200 text-gray-600 hover:border-brand-orange/30 hover:text-brand-orange transition-all duration-200 text-sm tracking-wide"
                   >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-brand-orange">
