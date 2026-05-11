@@ -1945,7 +1945,18 @@ export default function ScrollStoryAnimated({ onDiscount, onComplete, onExit }: 
     document.documentElement.style.setProperty("--story-darkness", darkness.toFixed(3));
     const inStory = progress > 0.02 && progress < 0.96 ? 1 : 0;
     document.documentElement.style.setProperty("--story-active", String(inStory));
+    // Mirror the CSS variable as a real HTML attribute so the global
+    // scrollbar styles can react to it via an attribute selector.
+    if (inStory) document.documentElement.setAttribute("data-story-active", "1");
+    else document.documentElement.removeAttribute("data-story-active");
   }, [progress]);
+
+  // Unmount safety — always strip the data attribute so the scrollbar
+  // is restored if the user navigates away or toggles immersive off
+  // while still inside the story window.
+  useEffect(() => {
+    return () => { document.documentElement.removeAttribute("data-story-active"); };
+  }, []);
 
   return (<div ref={ref} style={{ height: "5000vh" }} className="relative w-full">
     <style jsx>{`@keyframes grassSway{0%{transform:rotate(-2.5deg)}100%{transform:rotate(2.5deg)}}`}</style>

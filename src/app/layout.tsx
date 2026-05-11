@@ -102,6 +102,23 @@ export default function RootLayout({
             background-clip: padding-box !important;
           }
           html { scrollbar-width: auto !important; scrollbar-color: #E8621A rgba(232, 98, 26, 0.05) !important; }
+
+          /* While the user is INSIDE the immersive story window
+             (ScrollStoryAnimated sets data-story-active="1" between
+             ~2% and 96% of the player's scroll range), hide the
+             scrollbar so it doesn't distract from the animation. As
+             soon as the player exits — i.e. the page scrolls into
+             the static sections above or below — the attribute is
+             removed and the orange scrollbar reappears. */
+          html[data-story-active="1"]::-webkit-scrollbar,
+          html[data-story-active="1"] body::-webkit-scrollbar {
+            width: 0 !important;
+            height: 0 !important;
+            display: none !important;
+          }
+          html[data-story-active="1"] {
+            scrollbar-width: none !important;
+          }
         `}</style>
       </head>
       <body className="min-h-screen bg-white text-brand-purple-dark font-body antialiased">
