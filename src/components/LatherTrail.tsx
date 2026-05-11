@@ -156,11 +156,13 @@ export default function LatherTrail() {
         className="pointer-events-none fixed inset-0 z-[9998]"
       />
 
-      {/* Custom SVG pointer — white body, warm brown stroke */}
+      {/* Custom SVG pointer — white body, warm brown stroke. Sits at
+          z-[10100] so it stays above modals/popups (DiscountPopup is
+          at z-10000) and the user can still see the cursor on them. */}
       <div
         ref={cursorRef}
         aria-hidden="true"
-        className="pointer-events-none fixed z-[9999] select-none"
+        className="pointer-events-none fixed z-[10100] select-none"
         style={{
           opacity: visible ? 1 : 0,
           transition: "opacity 0.25s",
