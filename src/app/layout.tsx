@@ -69,9 +69,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${outfit.variable} h-full`}
+      className={`${cormorant.variable} ${outfit.variable}`}
     >
-      <body className="min-h-full bg-white text-brand-purple-dark font-body antialiased">
+      <body className="min-h-screen bg-white text-brand-purple-dark font-body antialiased">
         <CartProvider>
           <SiteResolver />
           <SiteUX />

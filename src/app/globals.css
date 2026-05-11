@@ -171,10 +171,17 @@ body {
   color: #FAF5EE;
 }
 
-/* Custom branded scrollbar — always visible, brand-orange thumb */
+/* Custom branded scrollbar — always visible, brand-orange thumb. The
+   width is explicit so macOS doesn't default to its auto-hiding overlay
+   scrollbar treatment. */
+html, body {
+  -webkit-overflow-scrolling: touch;
+}
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
+  -webkit-appearance: none;
+  appearance: none;
 }
 ::-webkit-scrollbar-track {
   background: rgba(232, 98, 26, 0.05);
