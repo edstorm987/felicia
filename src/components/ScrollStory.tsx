@@ -335,6 +335,27 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
     }
   };
 
+  // Auto-disable when the user scrolls past the end of the player.
+  // Unlike handleDisable, we DON'T scroll back to the top of the
+  // section — instead we land just after the (now-collapsed) section
+  // on whatever static content sits below, so the user can keep
+  // reading without being yanked anywhere.
+  const handleComplete = () => {
+    setAnimationsOn(false);
+    setCompleted(true);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("story:disable"));
+    }
+    // After the 5000vh player unmounts, the page collapses by
+    // thousands of pixels. Park the scroll at the start of whatever
+    // section comes next (#buy is the product store) so the user
+    // resumes there.
+    requestAnimationFrame(() => {
+      const next = document.getElementById("buy");
+      if (next) next.scrollIntoView({ behavior: "auto", block: "start" });
+    });
+  };
+
   const handleDisable = () => {
     setAnimationsOn(false);
     setCompleted(false);
@@ -448,7 +469,7 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
       {togglePillLive}
       <Comp
         onDiscount={onDiscount}
-        onComplete={handleDisable}
+        onComplete={handleComplete}
         onExit={handleDisable}
       />
     </section>
