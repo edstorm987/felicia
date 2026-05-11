@@ -13,8 +13,10 @@ const EXPLORE_LINKS = [
 ];
 
 const ACCOUNT_LINKS = [
-  { label: "Portal Login", href: "/aqua/felicia" },
+  { label: "Login", href: "/aqua/felicia" },
   { label: "Shopping Cart", href: "/cart" },
+  { label: "Affiliates", href: "/refer" },
+  { label: "My Data", href: "/cookies" },
 ];
 
 const SUPPORT_LINKS = [
