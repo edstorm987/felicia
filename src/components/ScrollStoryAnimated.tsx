@@ -907,13 +907,14 @@ function ChapterFactory({ p }: { p: number }) {
 
 /* ── Ch1: Earth + "Rethinking care" + cards 3&4 → zooms into Africa ── */
 function ChapterEarth({ p }: { p: number }) {
-  // 0-0.4: earth appears + text, 0.4-0.7: cards, 0.7-1.0: zoom into Africa
-  const earthScale = 0.4 + phase(p, 0, 0.25) * 0.6;
-  const zoomToAfrica = phase(p, 0.72, 0.28);
-  const finalScale = earthScale * (1 + zoomToAfrica * 12);
-  // Pan toward West Africa (offset left and down)
-  const panX = zoomToAfrica * -15;
-  const panY = zoomToAfrica * 8;
+  // 0-0.25 earth comes in close, 0.25-0.55 text + cards hold, 0.55-1.0
+  // earth recedes (zoom-OUT) into deep space — naturally hands off to
+  // the orbiting-ingredients chapter that follows.
+  const earthIn   = phase(p, 0,    0.18);
+  const startScale = 1.25;   // close-up
+  const endScale   = 0.18;   // tiny dot, just before it hands off
+  const zoomOut    = phase(p, 0.55, 0.42);
+  const finalScale = (startScale + (endScale - startScale) * zoomOut) * earthIn;
   const contentFade = 1 - phase(p, 0.68, 0.1);
 
   return (<div className="absolute inset-0 z-10">
@@ -924,9 +925,9 @@ function ChapterEarth({ p }: { p: number }) {
         left:`${(i*31+17)%100}%`,top:`${(i*19+11)%100}%`,width:i%7===0?2:1,height:i%7===0?2:1,opacity:(0.15+Math.sin(i*1.3)*0.1)*(1-zoomToAfrica),
       }} />)}
     </div>
-    {/* Earth — improved with real Africa */}
+    {/* Earth — pulls back into space across the chapter */}
     <div className="absolute inset-0 flex items-center justify-center" style={{
-      transform:`scale(${finalScale}) translate(${panX}%, ${panY}%)`,
+      transform:`scale(${finalScale})`,
       opacity:phase(p,0.05,0.15),
     }}>
       <div className="w-[50vmin] h-[50vmin] max-w-[450px] max-h-[450px]">
@@ -941,7 +942,7 @@ function ChapterEarth({ p }: { p: number }) {
       return sunVis > 0.01 ? (<>
         {/* Warm light washing over the earth from the edge */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[6]" style={{
-          transform: `scale(${finalScale}) translate(${panX}%, ${panY}%)`,
+          transform: `scale(${finalScale})`,
         }}>
           <div className="relative w-[50vmin] h-[50vmin] max-w-[450px] max-h-[450px]">
             {/* Sunrise glow — arc behind planet */}
@@ -978,11 +979,7 @@ function ChapterEarth({ p }: { p: number }) {
         }} />
       </>) : null;
     })()}
-    {/* Ghana pin glow — appears during zoom */}
-    {zoomToAfrica > 0.3 && <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10" style={{opacity:phase(p,0.85,0.15)}}>
-      <div className="w-3 h-3 rounded-full bg-brand-orange animate-ping" style={{marginLeft:"-5%",marginTop:"3%"}} />
-      <div className="absolute w-2 h-2 rounded-full bg-brand-orange" style={{marginLeft:"-5%",marginTop:"3%"}} />
-    </div>}
+    {/* (Ghana pin removed — we're zooming OUT now, not in) */}
     {/* Text content — fades during zoom */}
     <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-6" style={{opacity:contentFade}}>
       <h2 className="font-display font-bold text-white/90 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.05] text-center max-w-3xl mb-5 sm:mb-6"
@@ -1005,9 +1002,10 @@ function ChapterEarth({ p }: { p: number }) {
         );})}
       </div>
     </div>
-    {/* "Zooming into Ghana…" label */}
-    <div className="absolute bottom-[12%] inset-x-0 flex justify-center z-30" style={{opacity:phase(p,0.8,0.1)*(1-phase(p,0.95,0.05))}}>
-      <span className="text-[9px] tracking-[0.3em] uppercase text-white/30 font-medium">Accra, Ghana</span>
+    {/* "Zoom out" hint as the chapter recedes — primes the user for
+        the orbiting-ingredients chapter that follows. */}
+    <div className="absolute bottom-[12%] inset-x-0 flex justify-center z-30" style={{opacity:phase(p,0.7,0.12)*(1-phase(p,0.95,0.05))}}>
+      <span className="text-[9px] tracking-[0.3em] uppercase text-white/30 font-medium">Pulling back…</span>
     </div>
   </div>);
 }
@@ -1776,7 +1774,7 @@ const CHAPTERS=[
   {s:0.50, e:0.60}, // Ch5  Solution
   {s:0.60, e:1.00}, // Ch6  Why Choose — extends to end so the last frame holds
 ];
-const CH_NAMES=["The Promise","The Problem","The World","The Journey","Ingredients","The Answer","Why Choose Us"];
+const CH_NAMES=["The Promise","The Problem","The World","Ingredients","The Journey","The Answer","Why Choose Us"];
 
 /* ── 30 scroll-to beats across the 7 chapters ──
    Each scroll lands on a hand-curated frame. Within-chapter beats keep
@@ -2065,8 +2063,8 @@ export default function ScrollStoryAnimated({ onDiscount, onComplete, onExit }: 
             <ChapterPromise       key="0" p={cp(0)} />,
             <ChapterFactory       key="1" p={cp(1)} />,
             <ChapterEarth         key="2" p={cp(2)} />,
-            <ChapterJourney       key="3" p={cp(3)} />,
-            <ChapterIngredients   key="4" p={cp(4)} />,
+            <ChapterIngredients   key="3" p={cp(3)} />,
+            <ChapterJourney       key="4" p={cp(4)} />,
             <ChapterSolution      key="5" p={cp(5)} onDiscount={onDiscount} />,
             <ChapterOpportunities key="6" p={cp(6)} />,
           ]).map((ch, i) => {
