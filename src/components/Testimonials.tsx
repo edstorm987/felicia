@@ -165,13 +165,23 @@ export default function Testimonials() {
   const [forcedProduct, setForcedProduct] = useState<ProductFilter | undefined>(undefined);
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const handler = (e: Event) => {
+    const onFilter = (e: Event) => {
       const detail = (e as CustomEvent<{ product?: string }>).detail;
       setMode("board");
       if (detail?.product) setForcedProduct(detail.product as ProductFilter);
     };
-    window.addEventListener("reviews:filter", handler);
-    return () => window.removeEventListener("reviews:filter", handler);
+    // VSL section's "See all our reviews" sends this so we can land
+    // on the marquee variant rather than whatever the user last viewed.
+    const onMode = (e: Event) => {
+      const detail = (e as CustomEvent<{ mode?: "marquee" | "board" }>).detail;
+      if (detail?.mode) setMode(detail.mode);
+    };
+    window.addEventListener("reviews:filter", onFilter);
+    window.addEventListener("reviews:mode", onMode);
+    return () => {
+      window.removeEventListener("reviews:filter", onFilter);
+      window.removeEventListener("reviews:mode", onMode);
+    };
   }, []);
   const eyebrow   = useContent("home.testimonials.eyebrow",   "Stories");
   const headline1 = useContent("home.testimonials.headline1", "What people are");

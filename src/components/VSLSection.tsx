@@ -314,8 +314,15 @@ export default function VSLSection() {
   };
   const scrollToReviews = () => {
     if (typeof window === "undefined") return;
-    const el = document.getElementById("testimonials");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Reset the combined section to marquee mode so the user lands on
+    // the scrolling testimonials variant, then scroll to its sub-header.
+    window.dispatchEvent(new CustomEvent("reviews:mode", { detail: { mode: "marquee" } }));
+    setTimeout(() => {
+      const el =
+        document.getElementById("verified-reviews-subheader") ??
+        document.getElementById("verified-reviews");
+      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 30);
   };
   const activeRail = STORIES_RAIL[activeIdx];
 
@@ -669,7 +676,8 @@ export default function VSLSection() {
                 </div>
               </div>
 
-              {/* ── "Don't just take our word — read reviews" CTA ── */}
+              {/* ── "See all our reviews" CTA — drops into the marquee
+                    mode of the combined Testimonials section ── */}
               <div className="flex justify-center">
                 <button
                   type="button"
@@ -677,7 +685,7 @@ export default function VSLSection() {
                   className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-brand-purple-dark hover:bg-brand-purple text-white font-semibold tracking-wide text-sm transition-all duration-300 hover:-translate-y-0.5"
                   style={{ boxShadow: "0 18px 40px -16px rgba(74,29,98,0.45), 0 0 0 1px rgba(0,0,0,0.04)" }}
                 >
-                  Don&apos;t just take our word — read reviews
+                  See all our reviews
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M12 5v14M5 12l7 7 7-7" />
                   </svg>
