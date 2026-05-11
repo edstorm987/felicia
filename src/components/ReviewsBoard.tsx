@@ -17,6 +17,11 @@ export default function ReviewsBoard({
 }) {
   const PAGE_SIZE = 6;
   const [productFilter, setProductFilter] = useState<ProductFilter>(initialProduct ?? "All Products");
+  // If the parent passes a new initialProduct after mount (e.g. the
+  // product rating row dispatched reviews:filter), pick it up.
+  useEffect(() => {
+    if (initialProduct) setProductFilter(initialProduct);
+  }, [initialProduct]);
   const [starFilter, setStarFilter] = useState<number | null>(null);
   const [sortBy, setSortBy] = useState<"recent" | "rating">("recent");
   const [adminReviews, setAdminReviews] = useState<Review[]>([]);

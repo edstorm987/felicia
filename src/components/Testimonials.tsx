@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useScrollReveal, revealStyle } from "@/hooks/useScrollReveal";
-import { REVIEWS, type Review } from "@/lib/reviews";
+import { REVIEWS, type Review, type ProductFilter } from "@/lib/reviews";
 import { getGlobalReviews, onReviewsChange } from "@/lib/admin/reviews";
 import { useContent } from "@/lib/useContent";
 import ReviewsBoard from "@/components/ReviewsBoard";
@@ -159,6 +159,20 @@ export default function Testimonials() {
   // reviews board. The header + stats stay visible in both modes so
   // the section morphs in place rather than collapsing.
   const [mode, setMode] = useState<"marquee" | "board">("marquee");
+  // When the product card's rating row is clicked, it dispatches a
+  // reviews:filter event with { product } — we switch to board mode
+  // and forward the product name as the initial filter.
+  const [forcedProduct, setForcedProduct] = useState<ProductFilter | undefined>(undefined);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ product?: string }>).detail;
+      setMode("board");
+      if (detail?.product) setForcedProduct(detail.product as ProductFilter);
+    };
+    window.addEventListener("reviews:filter", handler);
+    return () => window.removeEventListener("reviews:filter", handler);
+  }, []);
   const eyebrow   = useContent("home.testimonials.eyebrow",   "Stories");
   const headline1 = useContent("home.testimonials.headline1", "What people are");
   const headline2 = useContent("home.testimonials.headline2", "actually saying");
@@ -270,7 +284,7 @@ export default function Testimonials() {
           </>
         ) : (
           <>
-            <ReviewsBoard />
+            <ReviewsBoard initialProduct={forcedProduct} />
             <div className="flex justify-center mt-12 sm:mt-14">
               <button
                 type="button"

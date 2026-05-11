@@ -243,18 +243,27 @@ export default function ProductDetail({ product, compact = false }: { product: P
               </h1>
               <p className="text-[11px] tracking-[0.22em] uppercase text-brand-purple-dark/80 mb-5">{activeContent.tagline}</p>
 
-              {/* Rating — clicking scrolls to the verified-reviews board
-                  on the homepage when this card is embedded there, or
-                  to the inline product-reviews section on the standalone
-                  product page. */}
+              {/* Rating — dispatches reviews:filter so the Testimonials
+                  section switches to its board mode pre-filtered to
+                  this product, then scrolls to that section. Falls
+                  back to the inline #product-reviews on the standalone
+                  product page where verified-reviews doesn't exist. */}
               <button
                 type="button"
                 onClick={() => {
                   if (typeof window === "undefined") return;
-                  const target =
-                    document.getElementById("verified-reviews") ??
-                    document.getElementById("product-reviews");
-                  target?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  window.dispatchEvent(
+                    new CustomEvent("reviews:filter", { detail: { product: product.name } })
+                  );
+                  // Give React a tick to apply mode/filter state before
+                  // jumping so the smooth scroll lands on the morphed
+                  // board view rather than the marquee.
+                  setTimeout(() => {
+                    const target =
+                      document.getElementById("verified-reviews") ??
+                      document.getElementById("product-reviews");
+                    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }, 30);
                 }}
                 aria-label={`Jump to ${product.reviewCount} reviews`}
                 className="flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity cursor-pointer"
