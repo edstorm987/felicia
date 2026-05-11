@@ -40,6 +40,9 @@ function ShopContent() {
   const activeProducts = products.filter(p => !p.archived && !p.hidden);
 
   const allRanges = ["all", ...collections.map(c => c.slug)];
+  // Default tab is the hero "all" view unless the URL pins a specific
+  // range (?range=odo, ?range=nkrabea, etc.) that actually exists.
+  const initialTab = rangeParam && allRanges.includes(rangeParam) ? rangeParam : "all";
   const [activeTab, setActiveTab] = useState(initialTab);
   const [allSelector, setAllSelector] = useState<string>(
     tabParam === "gift-cards" || tabParam === "clothing" || tabParam === "accessories" ? tabParam : "all"
