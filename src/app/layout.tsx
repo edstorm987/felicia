@@ -71,6 +71,39 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${outfit.variable}`}
     >
+      <head>
+        {/* Belt-and-braces scrollbar rule, injected directly into the
+            document head so it can't be lost in CSS layer cascade,
+            Tailwind 4 preflight, or Turbopack HMR caching. Forces an
+            always-visible 14px brand-orange scrollbar across every
+            browser/OS we care about. */}
+        <style>{`
+          html { overflow-y: scroll !important; }
+          html::-webkit-scrollbar, body::-webkit-scrollbar {
+            width: 14px !important;
+            height: 14px !important;
+            -webkit-appearance: none !important;
+            appearance: none !important;
+            display: block !important;
+            background: rgba(232, 98, 26, 0.06) !important;
+          }
+          html::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
+            background: rgba(232, 98, 26, 0.06) !important;
+          }
+          html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #F5874A 0%, #E8621A 100%) !important;
+            border-radius: 8px !important;
+            min-height: 40px !important;
+            border: 2px solid rgba(232, 98, 26, 0.06) !important;
+            background-clip: padding-box !important;
+          }
+          html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #E8621A 0%, #C44E0E 100%) !important;
+            background-clip: padding-box !important;
+          }
+          html { scrollbar-width: auto !important; scrollbar-color: #E8621A rgba(232, 98, 26, 0.05) !important; }
+        `}</style>
+      </head>
       <body className="min-h-screen bg-white text-brand-purple-dark font-body antialiased">
         <CartProvider>
           <SiteResolver />
