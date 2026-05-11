@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useScrollReveal, revealStyle } from "@/hooks/useScrollReveal";
 import { REVIEWS, type Review } from "@/lib/reviews";
 import { getGlobalReviews, onReviewsChange } from "@/lib/admin/reviews";
 import { useContent } from "@/lib/useContent";
+import ReviewsBoard from "@/components/ReviewsBoard";
 
 interface IgStory {
   type: "story";
@@ -155,6 +155,10 @@ const SKYLINE: { tile: Tile; width: string; height: string; rotate: string; offs
 
 export default function Testimonials() {
   const [extraReviews, setExtraReviews] = useState<Review[]>([]);
+  // "marquee" = scrolling testimonials (default), "board" = filterable
+  // reviews board. The header + stats stay visible in both modes so
+  // the section morphs in place rather than collapsing.
+  const [mode, setMode] = useState<"marquee" | "board">("marquee");
   const eyebrow   = useContent("home.testimonials.eyebrow",   "Stories");
   const headline1 = useContent("home.testimonials.headline1", "What people are");
   const headline2 = useContent("home.testimonials.headline2", "actually saying");
@@ -189,7 +193,7 @@ export default function Testimonials() {
   const reviewsReveal = useScrollReveal(0.1);
 
   return (
-    <section id="testimonials" data-fx-section className="w-full py-20 sm:py-24 lg:py-32 2xl:py-40 bg-white overflow-hidden scroll-mt-24 lg:scroll-mt-32">
+    <section id="verified-reviews" data-fx-section className="w-full py-20 sm:py-24 lg:py-32 2xl:py-40 bg-white overflow-hidden scroll-mt-24 lg:scroll-mt-32">
       <div className="w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
 
         {/* Header */}
@@ -224,40 +228,60 @@ export default function Testimonials() {
           ))}
         </div>
 
-        {/* Verified review cards — two auto-scrolling rows in opposite directions */}
+        {/* Sub-header for the active mode */}
         <div ref={reviewsReveal.ref} style={revealStyle(reviewsReveal.visible, 200)} className="flex flex-col items-center text-center mb-8 sm:mb-10">
           <span className="text-xs tracking-[0.28em] uppercase text-brand-orange mb-3">Verified reviews</span>
           <h3 className="font-display font-bold text-brand-purple-dark text-2xl sm:text-3xl xl:text-4xl">
-            Felt by those who know
+            {mode === "marquee" ? "Felt by those who know" : "Browse every review"}
           </h3>
-          <p className="text-[11px] tracking-widest uppercase text-gray-400 mt-3">Hover any card to pause</p>
-        </div>
-
-        {/* Break out of the max-width container so the marquee runs the full viewport width */}
-        <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] space-y-5 xl:space-y-6">
-          <ReviewMarquee
-            reviews={[...allReviews.slice(0, Math.ceil(allReviews.length / 2)), ...allReviews.slice(Math.ceil(allReviews.length / 2))]}
-            direction="left"
-          />
-          <ReviewMarquee
-            reviews={[...allReviews.slice(Math.floor(allReviews.length / 2)), ...allReviews.slice(0, Math.floor(allReviews.length / 2))]}
-            direction="right"
-          />
-        </div>
-
-        {/* Read all reviews CTA */}
-        <div className="flex flex-col items-center mt-12 sm:mt-14">
-          <Link
-            href="/reviews"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-gray-200 bg-gray-50 text-brand-orange text-sm sm:text-base font-medium tracking-wide hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 group"
-          >
-            Read all {allReviews.length} reviews
-            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-          </Link>
-          <p className="text-gray-400 text-xs mt-3 tracking-wide">
-            Unfiltered. Unsponsored. All verified.
+          <p className="text-[11px] tracking-widest uppercase text-gray-400 mt-3">
+            {mode === "marquee" ? "Hover any card to pause" : "Filter by product, rating, or sort"}
           </p>
         </div>
+
+        {mode === "marquee" ? (
+          <>
+            {/* Two auto-scrolling rows in opposite directions, breaking
+                out of the max-width container so they run full-width. */}
+            <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] space-y-5 xl:space-y-6">
+              <ReviewMarquee
+                reviews={[...allReviews.slice(0, Math.ceil(allReviews.length / 2)), ...allReviews.slice(Math.ceil(allReviews.length / 2))]}
+                direction="left"
+              />
+              <ReviewMarquee
+                reviews={[...allReviews.slice(Math.floor(allReviews.length / 2)), ...allReviews.slice(0, Math.floor(allReviews.length / 2))]}
+                direction="right"
+              />
+            </div>
+
+            <div className="flex flex-col items-center mt-12 sm:mt-14">
+              <button
+                type="button"
+                onClick={() => setMode("board")}
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-gray-200 bg-gray-50 text-brand-orange text-sm sm:text-base font-medium tracking-wide hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 group"
+              >
+                See all {allReviews.length} reviews
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </button>
+              <p className="text-gray-400 text-xs mt-3 tracking-wide">
+                Unfiltered. Unsponsored. All verified.
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            <ReviewsBoard />
+            <div className="flex justify-center mt-12 sm:mt-14">
+              <button
+                type="button"
+                onClick={() => setMode("marquee")}
+                className="inline-flex items-center gap-2 text-brand-purple-dark/75 hover:text-brand-orange text-sm tracking-wide transition-colors"
+              >
+                ← Back to stories
+              </button>
+            </div>
+          </>
+        )}
 
       </div>
     </section>

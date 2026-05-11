@@ -15,10 +15,17 @@ export default function ReviewsBoard({
   initialProduct?: ProductFilter;
   showHeader?: boolean;
 }) {
+  const PAGE_SIZE = 6;
   const [productFilter, setProductFilter] = useState<ProductFilter>(initialProduct ?? "All Products");
   const [starFilter, setStarFilter] = useState<number | null>(null);
   const [sortBy, setSortBy] = useState<"recent" | "rating">("recent");
   const [adminReviews, setAdminReviews] = useState<Review[]>([]);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  // Reset pagination back to the first page whenever the active
+  // filters change — otherwise switching from "All" to a narrow filter
+  // would leave a stale page count.
+  useEffect(() => { setVisibleCount(PAGE_SIZE); }, [productFilter, starFilter, sortBy]);
 
   useEffect(() => {
     function load() {
@@ -105,7 +112,7 @@ export default function ReviewsBoard({
 
       {showHeader && (
         <p className="text-brand-purple-dark/80 text-sm mb-8">
-          Showing <span className="text-brand-purple-dark font-medium">{filtered.length}</span> of {allReviews.length} reviews
+          Showing <span className="text-brand-purple-dark font-medium">{Math.min(visibleCount, filtered.length)}</span> of {filtered.length} reviews
         </p>
       )}
 
@@ -121,7 +128,7 @@ export default function ReviewsBoard({
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-6">
-          {filtered.map((review, i) => (
+          {filtered.slice(0, visibleCount).map((review, i) => (
             <div
               key={`${review.name}-${i}`}
               className="flex flex-col p-7 rounded-2xl bg-white border border-pink-200/50 hover:border-brand-purple/30 transition-colors"
@@ -150,6 +157,22 @@ export default function ReviewsBoard({
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {filtered.length > visibleCount && (
+        <div className="flex flex-col items-center mt-10 sm:mt-12">
+          <button
+            type="button"
+            onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}
+            className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full border border-brand-purple-dark/15 bg-white text-brand-purple-dark text-sm font-semibold tracking-wide hover:border-brand-orange/35 hover:text-brand-orange transition-all hover:-translate-y-0.5"
+          >
+            View {Math.min(PAGE_SIZE, filtered.length - visibleCount)} more
+            <span aria-hidden>↓</span>
+          </button>
+          <p className="text-brand-purple-dark/55 text-[11px] tracking-wide mt-2">
+            {filtered.length - visibleCount} review{filtered.length - visibleCount === 1 ? "" : "s"} remaining
+          </p>
         </div>
       )}
     </div>
