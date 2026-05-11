@@ -291,6 +291,19 @@ export default function VSLSection() {
     setTimeout(() => setActiveStory(id), 220);
   };
   const sectionRef = useRef<HTMLDivElement>(null);
+  // Mirror ScrollStory's "immersive mode" state — the ambient bird
+  // only flies while the immersive experience is on. ScrollStory
+  // dispatches story:state whenever the user toggles it.
+  const [immersive, setImmersive] = useState(true);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ on: boolean }>).detail;
+      if (detail) setImmersive(!!detail.on);
+    };
+    window.addEventListener("story:state", handler);
+    return () => window.removeEventListener("story:state", handler);
+  }, []);
   // Static section — render fully revealed instead of scroll-driven progress.
   // Scroll-based motion lives only inside the opt-in animated player now.
   const progress = 1;
@@ -370,7 +383,9 @@ export default function VSLSection() {
         <div className="relative min-h-screen overflow-hidden">
 
           {/* ── Ambient bird — flies straight across the background
-                from left to right, once every 30s. Pure decoration. ── */}
+                from left to right, once every 30s. Only rendered when
+                immersive mode is on. ── */}
+          {immersive && (
           <div
             aria-hidden="true"
             className="hidden sm:block absolute pointer-events-none z-[1]"
@@ -384,6 +399,7 @@ export default function VSLSection() {
           >
             <BirdSprite />
           </div>
+          )}
 
 
           {/* Background — warm cream that deepens */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import VideoModal from "@/components/VideoModal";
 import DiscountPopup from "@/components/DiscountPopup";
 
@@ -520,6 +520,19 @@ export default function Hero() {
   const [modalOpen, setModalOpen]   = useState(false);
   const [activeStory, setActiveStory] = useState("origin");
   const [popupOpen, setPopupOpen]   = useState(false);
+  // Mirror ScrollStory's "immersive mode" state — the bee couple only
+  // animates while the immersive experience is on. The story:state
+  // event is dispatched by ScrollStory whenever the user toggles it.
+  const [immersive, setImmersive] = useState(true);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ on: boolean }>).detail;
+      if (detail) setImmersive(!!detail.on);
+    };
+    window.addEventListener("story:state", handler);
+    return () => window.removeEventListener("story:state", handler);
+  }, []);
   return (
     <>
       <DiscountPopup open={popupOpen} onClose={() => setPopupOpen(false)} />
@@ -607,37 +620,42 @@ export default function Hero() {
           }
         `}</style>
 
-        {/* Bee 1 — the leader. */}
-        <div
-          aria-hidden="true"
-          className="hidden sm:block absolute pointer-events-none z-[3]"
-          style={{
-            width: 26,
-            height: 22,
-            opacity: 0.5,
-            filter: "blur(0.3px)",
-            // Same duration and no delay as the companion so the two
-            // bees travel as a synced pair.
-            animation: "heroBeeFly1 40s linear infinite",
-          }}
-        >
-          <BeeSvg />
-        </div>
+        {/* Bee couple — only mounted while immersive mode is on. */}
+        {immersive && (
+          <>
+            {/* Bee 1 — the leader. */}
+            <div
+              aria-hidden="true"
+              className="hidden sm:block absolute pointer-events-none z-[3]"
+              style={{
+                width: 26,
+                height: 22,
+                opacity: 0.5,
+                filter: "blur(0.3px)",
+                // Same duration and no delay as the companion so the two
+                // bees travel as a synced pair.
+                animation: "heroBeeFly1 40s linear infinite",
+              }}
+            >
+              <BeeSvg />
+            </div>
 
-        {/* Bee 2 — the companion, flying alongside. */}
-        <div
-          aria-hidden="true"
-          className="hidden sm:block absolute pointer-events-none z-[3]"
-          style={{
-            width: 22,
-            height: 18,
-            opacity: 0.45,
-            filter: "blur(0.4px)",
-            animation: "heroBeeFly2 40s linear infinite",
-          }}
-        >
-          <BeeSvg />
-        </div>
+            {/* Bee 2 — the companion, flying alongside. */}
+            <div
+              aria-hidden="true"
+              className="hidden sm:block absolute pointer-events-none z-[3]"
+              style={{
+                width: 22,
+                height: 18,
+                opacity: 0.45,
+                filter: "blur(0.4px)",
+                animation: "heroBeeFly2 40s linear infinite",
+              }}
+            >
+              <BeeSvg />
+            </div>
+          </>
+        )}
 
         <div className="relative z-10 w-full max-w-[96rem] mx-auto px-4 sm:px-8 lg:px-10 xl:px-14 py-20 lg:py-28">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 xl:gap-20 items-center">

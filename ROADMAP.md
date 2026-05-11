@@ -23,11 +23,10 @@ images into the placeholder slots throughout (`Hero`, `ProductDetail`,
 
 ## Immersive — next phase
 
-8. When immersive mode is **OFF**, the ambient fauna should disappear:
-   - **Hero bees** — both `<div>`s that run `heroBeeFly1` / `heroBeeFly2`
-   - **VSL bird** — the `<div>` that runs `birdAcross`
-   Right now they animate unconditionally. Gate them on the same
-   `story:state` event that `HomeSections.tsx` already listens to.
+8. ~~Gate the ambient fauna on immersive mode.~~ **Done 2026-05-11.**
+   Both `Hero.tsx` (bees) and `VSLSection.tsx` (bird) now listen to
+   `story:state` events and only mount their animated `<div>`s when
+   immersive is on.
 9. **Product page — review interaction.** Today the rating row
    (★★★★★ · X reviews) smooth-scrolls to `#product-reviews`. Ed wants
    to swap that for an **inline expand**: clicking the rating row
