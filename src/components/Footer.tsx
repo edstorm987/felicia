@@ -15,7 +15,7 @@ const EXPLORE_LINKS = [
 const ACCOUNT_LINKS = [
   { label: "Login", href: "/aqua/felicia" },
   { label: "Shopping Cart", href: "/cart" },
-  { label: "Affiliates", href: "/refer" },
+  { label: "Referrals", href: "/refer" },
   { label: "My Data", href: "/cookies" },
 ];
 
