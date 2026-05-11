@@ -746,19 +746,20 @@ export const PRODUCTS: Product[] = [
       "This is the soap Felicia is known for. Simple. Honest. Unbeatable.",
     ],
     note: "The one that started it all",
-    formats: ["bar", "jar", "bundle"],
+    formats: ["bar", "dispenser", "jar"],
     sizes: [{ label: "100g", price: 12.0 }],
     formatSizes: {
       bar: [
         { label: "100g", price: 12.0 },
         { label: "200g", price: 22.0 },
       ],
+      dispenser: [
+        { label: "250ml", price: 18.0 },
+        { label: "500ml", price: 32.0 },
+      ],
       jar: [
         { label: "250ml", price: 24.0 },
         { label: "500ml", price: 42.0 },
-      ],
-      bundle: [
-        { label: "Ritual Set", price: 55.0 },
       ],
     },
     formatContent: {
@@ -766,13 +767,13 @@ export const PRODUCTS: Product[] = [
         tagline: "Black Soap · Solid Bar",
         description: ["The classic. Cut from a hand-poured batch, wrapped in kraft paper. Works on face, body, and hands."],
       },
-      jar: {
-        tagline: "Black Soap · Liquid Jar",
-        description: ["The original formula in a pourable liquid form. Same ingredients, same effect — perfect for the shower or bathroom sink."],
+      dispenser: {
+        tagline: "Black Soap · Pump Bottle",
+        description: ["The original formula in a pump dispenser — same ingredients, same effect, made for the shower or sink countertop. One press, ready to lather."],
       },
-      bundle: {
-        tagline: "Black Soap · Ritual Set",
-        description: ["The complete Black Soap experience. Includes the Bar, the Jar, and arrives beautifully nestled in a handwoven pouch made by women artisans in Bolgatanga, northern Ghana."],
+      jar: {
+        tagline: "Black Soap · Whipped Jar",
+        description: ["The original formula whipped into a soft jar — same ingredients, same effect, with a creamier texture that scoops easily."],
       },
     },
     fragrances: ["Unscented", "Wild Orange", "Lavender", "Frankincense"],

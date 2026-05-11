@@ -702,20 +702,34 @@ export default function Hero() {
                 <span className="underline decoration-brand-orange/40 decoration-2 underline-offset-4">Hand crafted and infused with care</span>. The ritual your skin has been craving for.
               </p>
 
-              {/* Packaging strip */}
+              {/* Packaging strip — clicking a format dispatches a
+                  product:select-format event so ProductDetail in the
+                  #buy section switches to it, then smooth-scrolls
+                  there. */}
               <div className="flex flex-col gap-4 mb-8">
                 <p className="text-xs text-gray-400 uppercase tracking-widest font-semibold">Comes in 3 packaging types</p>
                 <div className="flex flex-wrap items-center gap-6">
                   {[
-                    { icon: "🧼", label: "Classic Bar" },
-                    { icon: "🧴", label: "Pump Bottle" },
-                    { icon: "🏺", label: "Whipped Jar" },
-                    { icon: "📦", label: "Bundle Box" },
-                  ].map(({ icon, label }) => (
-                    <a href="/products" key={label} className="flex items-center gap-2 hover:opacity-75 transition-opacity cursor-pointer group">
+                    { icon: "🧼", label: "Classic Bar",  format: "bar" },
+                    { icon: "🧴", label: "Pump Bottle",  format: "dispenser" },
+                    { icon: "🏺", label: "Whipped Jar",  format: "jar" },
+                  ].map(({ icon, label, format }) => (
+                    <button
+                      type="button"
+                      key={label}
+                      onClick={() => {
+                        window.dispatchEvent(
+                          new CustomEvent("product:select-format", { detail: { format } })
+                        );
+                        document
+                          .getElementById("buy")
+                          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }}
+                      className="flex items-center gap-2 hover:opacity-75 transition-opacity cursor-pointer group"
+                    >
                       <span className="text-lg grayscale group-hover:grayscale-0 transition-all">{icon}</span>
                       <span className="text-xs font-medium text-gray-500 group-hover:text-brand-orange transition-colors tracking-wide">{label}</span>
-                    </a>
+                    </button>
                   ))}
                 </div>
               </div>

@@ -44,6 +44,20 @@ export default function ProductDetail({ product, compact = false }: { product: P
     setGiftNote("");
   }, [product]);
 
+  // Allow external surfaces (Hero packaging strip) to switch the
+  // active format on this card via a CustomEvent. We only honour
+  // formats this product actually supports.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<{ format?: string }>).detail;
+      const f = detail?.format as ProductFormat | undefined;
+      if (f && product.formats?.includes(f)) setFormat(f);
+    };
+    window.addEventListener("product:select-format", handler);
+    return () => window.removeEventListener("product:select-format", handler);
+  }, [product]);
+
   const activeSizes = product.formatSizes?.[format] ?? product.sizes;
 
   // Reset size when format changes
