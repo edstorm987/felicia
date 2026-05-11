@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import VideoModal from "@/components/VideoModal";
 import DiscountPopup from "@/components/DiscountPopup";
 
 /* ─── SVG Rose ──
@@ -517,8 +516,6 @@ function BeeSvg() {
 
 /* ─── Hero ─────────────────────────────────────────────────── */
 export default function Hero() {
-  const [modalOpen, setModalOpen]   = useState(false);
-  const [activeStory, setActiveStory] = useState("origin");
   const [popupOpen, setPopupOpen]   = useState(false);
   // Mirror ScrollStory's "immersive mode" state — the bee couple only
   // animates while the immersive experience is on. The story:state
@@ -536,12 +533,6 @@ export default function Hero() {
   return (
     <>
       <DiscountPopup open={popupOpen} onClose={() => setPopupOpen(false)} />
-      <VideoModal
-        open={modalOpen}
-        activeId={activeStory}
-        onClose={() => setModalOpen(false)}
-        onSelect={setActiveStory}
-      />
       <section
         id="hero"
         data-fx-section
