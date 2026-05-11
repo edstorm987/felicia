@@ -907,14 +907,13 @@ function ChapterFactory({ p }: { p: number }) {
 
 /* ── Ch1: Earth + "Rethinking care" + cards 3&4 → zooms into Africa ── */
 function ChapterEarth({ p }: { p: number }) {
-  // 0-0.25 earth comes in close, 0.25-0.55 text + cards hold, 0.55-1.0
-  // earth recedes (zoom-OUT) into deep space — naturally hands off to
-  // the orbiting-ingredients chapter that follows.
-  const earthIn   = phase(p, 0,    0.18);
-  const startScale = 1.25;   // close-up
-  const endScale   = 0.18;   // tiny dot, just before it hands off
-  const zoomOut    = phase(p, 0.55, 0.42);
-  const finalScale = (startScale + (endScale - startScale) * zoomOut) * earthIn;
+  // 0-0.4: earth appears + text, 0.4-0.7: cards, 0.7-1.0: zoom into Africa
+  const earthScale = 0.4 + phase(p, 0, 0.25) * 0.6;
+  const zoomToAfrica = phase(p, 0.72, 0.28);
+  const finalScale = earthScale * (1 + zoomToAfrica * 12);
+  // Pan toward West Africa (offset left and down)
+  const panX = zoomToAfrica * -15;
+  const panY = zoomToAfrica * 8;
   const contentFade = 1 - phase(p, 0.68, 0.1);
 
   return (<div className="absolute inset-0 z-10">
@@ -925,9 +924,9 @@ function ChapterEarth({ p }: { p: number }) {
         left:`${(i*31+17)%100}%`,top:`${(i*19+11)%100}%`,width:i%7===0?2:1,height:i%7===0?2:1,opacity:(0.15+Math.sin(i*1.3)*0.1)*(1-zoomToAfrica),
       }} />)}
     </div>
-    {/* Earth — pulls back into space across the chapter */}
+    {/* Earth — improved with real Africa */}
     <div className="absolute inset-0 flex items-center justify-center" style={{
-      transform:`scale(${finalScale})`,
+      transform:`scale(${finalScale}) translate(${panX}%, ${panY}%)`,
       opacity:phase(p,0.05,0.15),
     }}>
       <div className="w-[50vmin] h-[50vmin] max-w-[450px] max-h-[450px]">
@@ -942,7 +941,7 @@ function ChapterEarth({ p }: { p: number }) {
       return sunVis > 0.01 ? (<>
         {/* Warm light washing over the earth from the edge */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[6]" style={{
-          transform: `scale(${finalScale})`,
+          transform: `scale(${finalScale}) translate(${panX}%, ${panY}%)`,
         }}>
           <div className="relative w-[50vmin] h-[50vmin] max-w-[450px] max-h-[450px]">
             {/* Sunrise glow — arc behind planet */}
@@ -979,7 +978,11 @@ function ChapterEarth({ p }: { p: number }) {
         }} />
       </>) : null;
     })()}
-    {/* (Ghana pin removed — we're zooming OUT now, not in) */}
+    {/* Ghana pin glow — appears during zoom */}
+    {zoomToAfrica > 0.3 && <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10" style={{opacity:phase(p,0.85,0.15)}}>
+      <div className="w-3 h-3 rounded-full bg-brand-orange animate-ping" style={{marginLeft:"-5%",marginTop:"3%"}} />
+      <div className="absolute w-2 h-2 rounded-full bg-brand-orange" style={{marginLeft:"-5%",marginTop:"3%"}} />
+    </div>}
     {/* Text content — fades during zoom */}
     <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-6" style={{opacity:contentFade}}>
       <h2 className="font-display font-bold text-white/90 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.05] text-center max-w-3xl mb-5 sm:mb-6"
@@ -1002,10 +1005,9 @@ function ChapterEarth({ p }: { p: number }) {
         );})}
       </div>
     </div>
-    {/* "Zoom out" hint as the chapter recedes — primes the user for
-        the orbiting-ingredients chapter that follows. */}
-    <div className="absolute bottom-[12%] inset-x-0 flex justify-center z-30" style={{opacity:phase(p,0.7,0.12)*(1-phase(p,0.95,0.05))}}>
-      <span className="text-[9px] tracking-[0.3em] uppercase text-white/30 font-medium">Pulling back…</span>
+    {/* "Zooming into Ghana…" label */}
+    <div className="absolute bottom-[12%] inset-x-0 flex justify-center z-30" style={{opacity:phase(p,0.8,0.1)*(1-phase(p,0.95,0.05))}}>
+      <span className="text-[9px] tracking-[0.3em] uppercase text-white/30 font-medium">Accra, Ghana</span>
     </div>
   </div>);
 }
@@ -1084,7 +1086,7 @@ function SceneSunset({ t }: { t: number }) {
 /* ── Sunset Captured Into Jar ── */
 function SceneCaptureJar({ t }: { t: number }) {
   // t: 0-0.3 sunset still visible, light streams toward center
-  // t: 0.3-0.7 light condenses into jar shape
+  // t: 0.3-0.7 light condenses into the Luv & Ker logo seal
   // t: 0.7-1.0 jar solidifies, glow settles
   const streamP = easeOut(clamp(t / 0.4));
   const condenseP = easeOut(clamp((t - 0.3) / 0.4));
@@ -1129,23 +1131,71 @@ function SceneCaptureJar({ t }: { t: number }) {
     {/* Jar glow */}
     <circle cx="500" cy="310" r="100" fill="url(#jarGlow)" />
 
-    {/* ── The Jar ── */}
+    {/* ── The Luv & Ker logo seal ──
+        Captures the sunset inside the brand mark instead of a jar.
+        Outer ring + inner halo + wordmark, with the gold light
+        condensing inside the seal as solidP rises. */}
     <g style={{opacity:jarOpacity}} transform="translate(500, 300)">
-      {/* Jar body — rounded rectangle */}
-      <rect x="-45" y="-50" width="90" height="100" rx="15" fill="url(#jarBody)" stroke="rgba(255,220,150,0.25)" strokeWidth="1.5" />
-      {/* Jar neck */}
-      <rect x="-25" y="-70" width="50" height="25" rx="5" fill="url(#jarBody)" stroke="rgba(255,220,150,0.2)" strokeWidth="1" />
-      {/* Lid */}
-      <rect x="-30" y="-78" width="60" height="12" rx="4" fill="rgba(200,160,80,0.2)" stroke="rgba(255,220,150,0.3)" strokeWidth="1" />
-      {/* Inner glow — the captured sunset */}
-      <ellipse cx="0" cy="0" rx={35 * solidP} ry={30 * solidP} fill="#fbbf24" opacity={0.15 + solidP * 0.15} />
-      <ellipse cx="0" cy="5" rx={25 * solidP} ry={20 * solidP} fill="#f97316" opacity={0.1 + solidP * 0.1} />
-      {/* Glass reflection */}
-      <path d="M-35,-40 Q-30,-45 -25,-35" stroke="rgba(255,255,255,0.15)" strokeWidth="2" fill="none" strokeLinecap="round" />
+      {/* Outer decorative ring */}
+      <circle cx="0" cy="0" r="80"
+        fill="rgba(255,235,200,0.08)"
+        stroke="rgba(255,220,150,0.55)" strokeWidth="2.5" />
+      <circle cx="0" cy="0" r="80"
+        fill="none"
+        stroke="rgba(255,220,150,0.20)" strokeWidth="0.8"
+        strokeDasharray="2 5" />
+      {/* Inner ring */}
+      <circle cx="0" cy="0" r="68"
+        fill="none"
+        stroke="rgba(255,200,120,0.40)" strokeWidth="1" />
+      {/* Captured sunset glow */}
+      <circle cx="0" cy="2" r={50 * solidP}
+        fill="#fbbf24" opacity={0.20 + solidP * 0.25} />
+      <circle cx="0" cy="6" r={32 * solidP}
+        fill="#f97316" opacity={0.16 + solidP * 0.18} />
+      {/* Wordmark — "LUV & KER" with "ODO BY FELICIA" subtext */}
+      <text x="0" y="-6" textAnchor="middle"
+        fontFamily="var(--font-playfair), Georgia, serif"
+        fontWeight="700"
+        fontSize="22"
+        fill="#FEF3C7"
+        opacity={0.85 + solidP * 0.15}
+        style={{ letterSpacing: "0.04em" }}>
+        LUV &amp; KER
+      </text>
+      <text x="0" y="6" textAnchor="middle"
+        fontFamily="var(--font-playfair), Georgia, serif"
+        fontWeight="400"
+        fontStyle="italic"
+        fontSize="9"
+        fill="#FDE68A"
+        opacity={0.70 * solidP}
+        style={{ letterSpacing: "0.18em" }}>
+        ODO BY FELICIA
+      </text>
+      {/* Decorative serifs above/below */}
+      <line x1="-26" y1="22" x2="26" y2="22" stroke="rgba(255,210,140,0.55)" strokeWidth="0.8" opacity={solidP} />
+      <text x="0" y="36" textAnchor="middle"
+        fontFamily="var(--font-dm-sans), system-ui, sans-serif"
+        fontWeight="600"
+        fontSize="6"
+        fill="rgba(255,225,160,0.85)"
+        opacity={solidP}
+        style={{ letterSpacing: "0.42em" }}>
+        ACCRA · GHANA
+      </text>
+      {/* Soft inner sheen */}
+      <path d="M-50 -40 Q -30 -65, 0 -68 Q 30 -65, 50 -40"
+        fill="none"
+        stroke="rgba(255,255,255,0.18)" strokeWidth="2" strokeLinecap="round" />
       {/* Sparkles inside */}
-      {solidP > 0.3 && Array.from({length:5}).map((_,i)=>(
-        <circle key={i} cx={Math.sin(t*8+i*1.5)*25} cy={-10+Math.cos(t*6+i*2)*20} r={1+Math.sin(t*10+i)*0.5}
-          fill="#fef3c7" opacity={0.3+Math.sin(t*12+i)*0.2} />
+      {solidP > 0.3 && Array.from({length:6}).map((_,i)=>(
+        <circle key={i}
+          cx={Math.sin(t*8+i*1.5)*40}
+          cy={-15+Math.cos(t*6+i*2)*32}
+          r={1+Math.sin(t*10+i)*0.5}
+          fill="#fef3c7"
+          opacity={0.35+Math.sin(t*12+i)*0.2} />
       ))}
     </g>
 
@@ -1159,7 +1209,7 @@ function SceneCaptureJar({ t }: { t: number }) {
   </svg>);
 }
 
-/* ── Jar Gets Labelled → Morphs to Product ── */
+/* ── Logo seal → Morphs to Product ── */
 function SceneJarToProduct({ t }: { t: number }) {
   const wrapP = easeOut(clamp(t / 0.3));
   const labelP = easeOut(clamp((t - 0.25) / 0.25));
@@ -1282,7 +1332,7 @@ function SceneBlueprint({ t }: { t: number }) {
   </div>);
 }
 
-/* ── Zoom Into Jar → Process (card + text layout) ── */
+/* ── Zoom Into Logo → Process (card + text layout) ── */
 const PROCESS_STEPS = [
   { icon: "🌴", title: "Harvest", sub: "Volta Region · Northern Ghana", desc: "A farmer climbs to pick fresh coconuts at dawn. Shea nuts are gathered by hand from wild-growing trees across Northern Ghana.", bg: "from-emerald-950 to-green-950" },
   { icon: "🫧", title: "Prepare", sub: "Accra Workshop", desc: "Plantain peels and cocoa pods are sun-dried for weeks, then burned to a fine ash — the traditional alkali base of black soap.", bg: "from-amber-950 to-orange-950" },
@@ -1482,10 +1532,10 @@ function SceneZoomIntoProcess({ t }: { t: number }) {
    Sub-phases within this chapter:
    0.00–0.08  "See what happens…" title
    0.08–0.20  African plains sunset
-   0.20–0.32  Sunset captured into jar
+   0.20–0.32  Sunset captured into logo
    0.32–0.44  Jar labelled → morphs to product
    0.44–0.58  Ingredients blueprint
-   0.58–0.72  Zoom into jar
+   0.58–0.72  Zoom into logo
    0.72–1.00  How it's made (5 process scenes)
 */
 function ChapterJourney({ p }: { p: number }) {
@@ -1544,15 +1594,20 @@ function ChapterJourney({ p }: { p: number }) {
    ══════════════════════════════════════════════════════════════ */
 
 function ChapterIngredients({ p }: { p: number }) {
-  // Ingredients orbit around the Odo soap bar in a tilted ellipse.
-  // Scroll rotates the orbit; ingredients in front are large + sharp,
-  // ingredients in back fade and defocus. The product breathes in the center.
+  // Ingredients orbit around a glowing core in a tilted ellipse. Across
+  // the last ~15% of the chapter the orbit collapses inward — the four
+  // ingredients spiral into the core and merge into the Earth, handing
+  // off cleanly to ChapterEarth which renders next.
   const N = INGREDIENTS_VISUAL.length;
   const baseRot   = p * Math.PI * 2.2; // ~1.1 full rotations
-  const headlineP = phase(p, 0,    0.18);
+  const headlineP = phase(p, 0,    0.18) * (1 - phase(p, 0.78, 0.10));
   const productP  = phase(p, 0.06, 0.20);
-  const captionP  = phase(p, 0.18, 0.12);
+  const captionP  = phase(p, 0.18, 0.12) * (1 - phase(p, 0.78, 0.10));
   const bob       = Math.sin(p * Math.PI * 5) * 6;
+  // End-of-chapter merge → Earth
+  const merge     = phase(p, 0.85, 0.15);   // 0 → 1 across the collapse
+  const radiusK   = 1 - merge;              // shrinks orbits to 0
+  const earthP    = phase(p, 0.92, 0.08);   // blue-green sphere takes over
 
   return (<div className="absolute inset-0 z-10 overflow-hidden">
     {/* Deep BG */}
@@ -1584,15 +1639,15 @@ function ChapterIngredients({ p }: { p: number }) {
       <ellipse cx="0" cy="0" rx="95" ry="36" fill="none" stroke="rgba(255,200,140,0.10)" strokeWidth="0.25" />
     </svg>
 
-    {/* Ingredient orbit */}
+    {/* Ingredient orbit — radius shrinks to zero across the merge */}
     {INGREDIENTS_VISUAL.map((ing, i) => {
       const a = baseRot + (i / N) * Math.PI * 2;
-      const xPct = Math.cos(a) * 22;            // tighter radius — orbit fits the band
-      const yPct = Math.sin(a) * 8;             // flatter ellipse for perspective
+      const xPct = Math.cos(a) * 22 * radiusK;  // collapse inward
+      const yPct = Math.sin(a) * 8  * radiusK;
       const depth = (Math.sin(a) + 1) / 2;      // 0=back, 1=front
-      const scale = 0.5 + depth * 0.7;
-      const alpha = 0.32 + depth * 0.68;
-      const blur = (1 - depth) * 4;
+      const scale = (0.5 + depth * 0.7) * (1 - merge * 0.6);
+      const alpha = (0.32 + depth * 0.68) * (1 - merge);
+      const blur = (1 - depth) * 4 + merge * 3;
       const introP = phase(p, 0.04 + i*0.04, 0.20);
       return (
         <div key={`ing${i}`} className="absolute pointer-events-none"
@@ -1628,12 +1683,13 @@ function ChapterIngredients({ p }: { p: number }) {
       );
     })}
 
-    {/* Center product — Odo soap */}
+    {/* Center product — Odo soap. Fades out across the merge as the
+        ingredients spiral in and the Earth sphere takes its place. */}
     <div className="absolute z-20 pointer-events-none"
       style={{
         left: "50%", top: "50%",
-        transform: `translate(-50%, calc(-50% + ${bob}px)) scale(${0.92 + productP*0.08})`,
-        opacity: productP,
+        transform: `translate(-50%, calc(-50% + ${bob}px)) scale(${(0.92 + productP*0.08) * (1 - merge * 0.85)})`,
+        opacity: productP * (1 - merge),
       }}>
       {/* Aura behind */}
       <div className="absolute left-1/2 top-1/2 rounded-full pointer-events-none" style={{
@@ -1660,6 +1716,50 @@ function ChapterIngredients({ p }: { p: number }) {
       <p className="text-[9px] tracking-[0.45em] uppercase text-brand-amber/65 mb-1.5">Odo by Felicia</p>
       <p className="text-white/40 text-xs sm:text-sm">Four ingredients. One bar. No compromises.</p>
     </div>
+
+    {/* ── Merge → Earth sphere ──
+        Ingredients collapse into the centre and form a blue-green
+        planet that grows as the chapter ends. Hands off to
+        ChapterEarth which renders directly after. */}
+    {merge > 0.001 && (
+      <div className="absolute z-25 pointer-events-none"
+        style={{
+          left: "50%", top: "50%",
+          transform: `translate(-50%, -50%) scale(${0.2 + earthP * 0.8})`,
+          opacity: merge,
+        }}>
+        {/* Outer atmospheric halo */}
+        <div className="absolute left-1/2 top-1/2 rounded-full pointer-events-none" style={{
+          width: "36vmin", height: "36vmin", maxWidth: "360px", maxHeight: "360px",
+          transform: "translate(-50%,-50%)",
+          background: "radial-gradient(circle, rgba(120,170,230,0.45) 0%, rgba(40,80,140,0.15) 40%, transparent 70%)",
+          filter: `blur(${10 - earthP * 6}px)`,
+        }} />
+        {/* Planet body */}
+        <div className="relative w-[22cqmin] h-[22cqmin] max-w-[260px] max-h-[260px] rounded-full overflow-hidden"
+          style={{
+            background:
+              "radial-gradient(circle at 35% 30%, #5DA8E8 0%, #2C72C0 35%, #14406F 80%, #08203C 100%)",
+            boxShadow:
+              "inset -8px -10px 24px rgba(0,0,0,0.6), inset 6px 8px 20px rgba(180,210,255,0.25), 0 0 60px rgba(80,160,230,0.5)",
+          }}
+        >
+          {/* Land masses — abstract green continents */}
+          <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full" style={{ opacity: 0.78 }}>
+            <path d="M 18 38 Q 28 28, 42 32 Q 50 38, 46 52 Q 36 58, 26 54 Q 16 48, 18 38 Z" fill="#3A8A52" />
+            <path d="M 58 22 Q 72 20, 80 30 Q 78 42, 66 44 Q 56 36, 58 22 Z" fill="#42924B" />
+            <path d="M 52 60 Q 64 58, 72 68 Q 68 80, 56 78 Q 48 70, 52 60 Z" fill="#36874A" />
+            <path d="M 24 68 Q 32 66, 38 74 Q 34 82, 26 80 Q 20 74, 24 68 Z" fill="#2F7A42" />
+          </svg>
+          {/* Cloud wisp */}
+          <div className="absolute inset-0 rounded-full pointer-events-none" style={{
+            background:
+              "radial-gradient(ellipse 60% 25% at 50% 35%, rgba(255,255,255,0.35) 0%, transparent 60%), radial-gradient(ellipse 40% 18% at 65% 65%, rgba(255,255,255,0.25) 0%, transparent 60%)",
+            mixBlendMode: "screen",
+          }} />
+        </div>
+      </div>
+    )}
   </div>);
 }
 
@@ -1774,7 +1874,7 @@ const CHAPTERS=[
   {s:0.50, e:0.60}, // Ch5  Solution
   {s:0.60, e:1.00}, // Ch6  Why Choose — extends to end so the last frame holds
 ];
-const CH_NAMES=["The Promise","The Problem","The World","Ingredients","The Journey","The Answer","Why Choose Us"];
+const CH_NAMES=["The Promise","The Problem","Ingredients","The World","The Journey","The Answer","Why Choose Us"];
 
 /* ── 30 scroll-to beats across the 7 chapters ──
    Each scroll lands on a hand-curated frame. Within-chapter beats keep
@@ -1798,8 +1898,8 @@ const STEPS = [
   0.33,  // 11 Ghana close
   // Journey — 8 beats (longest sequence)
   0.36,  // 12 sunset
-  0.40,  // 13 capture into jar
-  0.43,  // 14 jar gets labelled
+  0.40,  // 13 capture into logo
+  0.43,  // 14 logo seal forms
   0.46,  // 15 morphs to product
   0.49,  // 16 ingredient blueprint
   0.52,  // 17 harvest scene
@@ -2062,8 +2162,8 @@ export default function ScrollStoryAnimated({ onDiscount, onComplete, onExit }: 
           {([
             <ChapterPromise       key="0" p={cp(0)} />,
             <ChapterFactory       key="1" p={cp(1)} />,
-            <ChapterEarth         key="2" p={cp(2)} />,
-            <ChapterIngredients   key="3" p={cp(3)} />,
+            <ChapterIngredients   key="2" p={cp(2)} />,
+            <ChapterEarth         key="3" p={cp(3)} />,
             <ChapterJourney       key="4" p={cp(4)} />,
             <ChapterSolution      key="5" p={cp(5)} onDiscount={onDiscount} />,
             <ChapterOpportunities key="6" p={cp(6)} />,
