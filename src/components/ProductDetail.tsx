@@ -243,8 +243,18 @@ export default function ProductDetail({ product, compact = false }: { product: P
               </h1>
               <p className="text-[11px] tracking-[0.22em] uppercase text-brand-purple-dark/80 mb-5">{activeContent.tagline}</p>
 
-              {/* Rating */}
-              <div className="flex items-center gap-3 mb-6">
+              {/* Rating — clicking scrolls to the product reviews section */}
+              <button
+                type="button"
+                onClick={() => {
+                  if (typeof window === "undefined") return;
+                  document
+                    .getElementById("product-reviews")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                aria-label={`Jump to ${product.reviewCount} reviews`}
+                className="flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity cursor-pointer"
+              >
                 <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <span
@@ -255,10 +265,10 @@ export default function ProductDetail({ product, compact = false }: { product: P
                     </span>
                   ))}
                 </div>
-                <span className="text-sm text-brand-purple-dark/80">
+                <span className="text-sm text-brand-purple-dark/80 underline decoration-brand-purple-dark/20 decoration-1 underline-offset-4 hover:decoration-brand-orange/60">
                   {product.rating.toFixed(2)} · {product.reviewCount} reviews
                 </span>
-              </div>
+              </button>
 
               {/* Price */}
               <div className="flex items-baseline gap-3 mb-2">
@@ -581,7 +591,7 @@ export default function ProductDetail({ product, compact = false }: { product: P
       </section>
 
       {/* Reviews */}
-      <section className="w-full bg-pink-50">
+      <section id="product-reviews" className="w-full bg-pink-50 scroll-mt-24 lg:scroll-mt-32">
         <div className="w-full max-w-7xl xl:max-w-screen-xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 py-16 sm:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             <div className="lg:col-span-1">

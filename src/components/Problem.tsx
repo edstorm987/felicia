@@ -24,8 +24,8 @@ const CARDS = [
   {
     type: "align",
     icon: "✨",
-    title: "We choose alignment, not war",
-    body: "We're not here to shame what came before us. We're here to show what's possible when ancient wisdom, clean science, and radical honesty sit at the same table. A rising tide lifts all skin.",
+    title: "The standard rises for everyone",
+    body: "We're not here to drag any brand down. We're here to show what skincare looks like when it returns to source — plant, hand, story — and to celebrate every label walking the same direction. Cleaner skin shouldn't be a competition. It should be the new floor.",
   },
 ];
 
@@ -75,8 +75,7 @@ export default function Problem() {
           <span className="inline-block text-xs font-semibold tracking-[0.28em] uppercase text-brand-amber/80 mb-4">
             The industry standard
           </span>
-          <h2 className="font-display font-bold text-white leading-[1.05] mb-6
-            text-3xl sm:text-4xl xl:text-5xl max-w-2xl mx-auto drop-shadow-sm">
+          <h2 className="font-display font-bold text-white leading-[1.05] mb-6 text-3xl sm:text-4xl xl:text-5xl max-w-2xl mx-auto drop-shadow-sm">
             Rethinking what we call{" "}
             <span
               className="italic"
@@ -131,10 +130,7 @@ export default function Problem() {
           </p>
           <a
             href="#solution"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full
-              bg-white text-brand-purple-dark font-semibold text-sm
-              hover:bg-pink-50 transition-all duration-300
-              shadow-xl shadow-black/30 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-brand-purple-dark font-semibold text-sm hover:bg-pink-50 transition-all duration-300 shadow-xl shadow-black/30 hover:-translate-y-0.5"
           >
             See the solution
             <span>→</span>

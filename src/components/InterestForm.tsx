@@ -135,8 +135,7 @@ export default function InterestForm() {
                         placeholder="e.g. Amara"
                         value={form.name}
                         onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-brand-purple-dark text-sm placeholder:text-gray-500
-                          focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-colors bg-gray-50"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-brand-purple-dark text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-colors bg-gray-50"
                       />
                     </div>
 
@@ -150,8 +149,7 @@ export default function InterestForm() {
                         placeholder="you@example.com"
                         value={form.email}
                         onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-brand-purple-dark text-sm placeholder:text-gray-500
-                          focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-colors bg-gray-50"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-brand-purple-dark text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-colors bg-gray-50"
                       />
                     </div>
 
@@ -164,17 +162,14 @@ export default function InterestForm() {
                         placeholder="e.g. dry and sensitive, prone to breakouts..."
                         value={form.message}
                         onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-brand-purple-dark text-sm placeholder:text-gray-500
-                          focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-colors bg-gray-50 resize-none"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-brand-purple-dark text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-colors bg-gray-50 resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="w-full py-4 rounded-xl bg-brand-orange hover:bg-brand-orange-light disabled:opacity-60
-                        transition-all duration-200 text-white font-semibold text-sm tracking-wide
-                        shadow-lg shadow-brand-orange/25 hover:-translate-y-0.5 disabled:hover:translate-y-0"
+                      className="w-full py-4 rounded-xl bg-brand-orange hover:bg-brand-orange-light disabled:opacity-60 transition-all duration-200 text-white font-semibold text-sm tracking-wide shadow-lg shadow-brand-orange/25 hover:-translate-y-0.5 disabled:hover:translate-y-0"
                     >
                       {status === "loading" ? "Sending…" : "Send my interest →"}
                     </button>

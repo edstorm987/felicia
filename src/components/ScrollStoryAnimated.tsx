@@ -13,7 +13,7 @@ const PROBLEM_CARDS_1 = [
 ];
 const PROBLEM_CARDS_2 = [
   { icon: "🌱", label: "Transparency", title: "The industry is shifting", body: "More brands than ever are reformulating towards shorter ingredient lists and traceable sourcing." },
-  { icon: "✨", label: "Alignment", title: "We choose alignment, not war", body: "Ancient wisdom, clean science, and radical honesty sitting at the same table." },
+  { icon: "✨", label: "Alignment", title: "The standard rises for everyone", body: "We're not here to drag anyone down — we're here to show what cleaner skincare looks like, and celebrate every brand walking the same direction." },
 ];
 const INGREDIENTS_VISUAL = [
   { name: "Raw Shea Butter", origin: "Northern Ghana", image: "/shea_nuts.png", colour: "text-amber-300", glow: "rgba(251,191,36,0.15)", note: "Hand-pressed by women's cooperatives." },
@@ -1736,7 +1736,7 @@ function ChapterOpportunities({ p }: { p: number }) {
       <div className="text-center mb-10 sm:mb-14" style={{opacity:phase(p,0,0.15),transform:`translateY(${(1-phase(p,0,0.15))*30}px)`}}>
         <div className="flex items-center gap-3 justify-center mb-5"><div className="w-8 h-px bg-brand-orange/25" /><span className="text-[9px] font-semibold tracking-[0.35em] uppercase text-brand-orange">What&apos;s in it for you</span><div className="w-8 h-px bg-brand-orange/25" /></div>
         <h2 className="font-display font-bold text-brand-purple-dark text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-4 max-w-2xl mx-auto leading-[1.05]" style={{letterSpacing:"-0.02em"}}>
-          Why people are choosing{" "}<span style={{background:"linear-gradient(135deg, #E8621A 0%, #F2A23C 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>Felicia&apos;s soap</span>
+          Why people align with{" "}<span style={{background:"linear-gradient(135deg, #E8621A 0%, #F2A23C 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>Luv &amp; Ker</span>
         </h2>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 xl:gap-4">

@@ -55,7 +55,19 @@ export default function NotFound() {
           ))}
         </svg>
 
-        <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 text-center">
+        <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 py-16 text-center">
+          {/* Glass card wrapping the whole 404 content */}
+          <div
+            className="relative w-full max-w-2xl mx-auto rounded-3xl px-6 sm:px-10 lg:px-14 py-12 sm:py-14 flex flex-col items-center text-center"
+            style={{
+              background: "rgba(255, 255, 255, 0.55)",
+              backdropFilter: "blur(18px) saturate(140%)",
+              WebkitBackdropFilter: "blur(18px) saturate(140%)",
+              border: "1px solid rgba(255, 255, 255, 0.6)",
+              boxShadow:
+                "0 24px 60px -20px rgba(40,18,60,0.18), 0 0 0 1px rgba(255,255,255,0.4) inset",
+            }}
+          >
           {/* Floating soap above the 4·0·4 */}
           <div className="relative mb-10 flex items-center justify-center">
             <div
@@ -169,6 +181,7 @@ export default function NotFound() {
           <p className="mt-2 text-[11px] text-brand-purple-dark/50 italic">
             Handcrafted in Accra · Carried to you
           </p>
+          </div>
         </section>
       </main>
       <Footer />

@@ -225,7 +225,7 @@ function StaticStoryLayout({
           <div className="text-center mb-12 sm:mb-14">
             <div className="flex items-center gap-3 justify-center mb-5"><div className="w-8 h-px bg-brand-orange/25" /><span className="text-[9px] font-semibold tracking-[0.35em] uppercase text-brand-orange/45">What&apos;s in it for you</span><div className="w-8 h-px bg-brand-orange/25" /></div>
             <h2 className="font-display font-bold text-brand-purple-dark text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mb-4 max-w-2xl mx-auto leading-[1.05]" style={{ letterSpacing: "-0.02em" }}>
-              Why people are choosing{" "}<span style={{ background: "linear-gradient(135deg, #E8621A 0%, #F2A23C 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Felicia&apos;s soap</span>
+              Why people align with{" "}<span style={{ background: "linear-gradient(135deg, #E8621A 0%, #F2A23C 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Luv &amp; Ker</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 xl:gap-4 mb-10">
@@ -433,10 +433,11 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
   }
   if (!AnimatedComp) return null;
   const Comp = AnimatedComp;
-  // Strip + pill + player share one section with the player's stage colour
-  // (#1b1230) as the bg. Strip's gradient ends on that same colour, so
-  // there's no white band peeking through between strip and player. The
-  // sticky pill sits on the dark surface from the moment the player begins.
+  // When immersive is ON, the gradient transition strip is removed —
+  // the player owns the section and the "Turn off" pill lives inside
+  // the player itself rather than sitting on a separate dark band
+  // above it. The OFF-state strip (with "Turn back on" centred on its
+  // gradient) is kept unchanged via the useStatic branch above.
   return (
     <section
       ref={sectionRef}
@@ -444,7 +445,6 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
       className="relative w-full"
       style={{ background: "#1b1230" }}
     >
-      {transitionStrip}
       {togglePillLive}
       <Comp
         onDiscount={onDiscount}

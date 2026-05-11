@@ -741,7 +741,7 @@ export const PRODUCTS: Product[] = [
       "Suitable for all skin types including sensitive and acne-prone",
     ],
     description: [
-      "Before Odo. Before Nkrabea. There was this. Felicia's original black soap — the formula she gave to neighbours, sold at markets, and perfected over years of listening to what skin actually needs.",
+      "Felicia's original black soap — the formula she gave to neighbours, sold at markets, and perfected over years of listening to what skin actually needs.",
       "Made from plantain ash, raw shea butter, palm kernel oil, and cocoa pod ash, sourced from farms across Ghana. It lathers gently, cleanses deeply, and leaves skin soft without stripping it. Use it everywhere. Face, body, hands — it does it all.",
       "This is the soap Felicia is known for. Simple. Honest. Unbeatable.",
     ],

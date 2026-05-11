@@ -94,13 +94,13 @@ export default function Opportunities() {
               What&apos;s in it for you
             </span>
             <h2 className="font-display font-bold text-brand-purple-dark text-3xl sm:text-4xl xl:text-5xl mb-4 max-w-2xl">
-              Why people are choosing{" "}
+              Why people align with{" "}
               <span style={{
                 background: "linear-gradient(135deg, #E8621A 0%, #F2A23C 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
-              }}>Felicia&apos;s soap</span>
+              }}>Luv &amp; Ker</span>
             </h2>
             <p className="text-gray-600 text-base sm:text-lg max-w-xl leading-relaxed">
               This isn&apos;t just a soap — it&apos;s a decision to stop accepting less than

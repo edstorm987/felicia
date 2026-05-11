@@ -33,30 +33,8 @@ function tagSection(section: HTMLElement, io: IntersectionObserver) {
   let staggerIdx = 0;
   const seen = new WeakSet<HTMLElement>();
 
-  els.forEach((el) => {
-    if (seen.has(el)) return;
-    if (el.hasAttribute("data-reveal")) {
-      io.observe(el);
-      el.setAttribute("data-reveal-state", "pre");
-      return;
-    }
-    // Skip if any ancestor between el and section already animates —
-    // prevents nested double-fades (e.g. <a> inside an animating <li>).
-    let p: HTMLElement | null = el.parentElement;
-    let nested = false;
-    while (p && p !== section) {
-      if (p.hasAttribute("data-reveal")) { nested = true; break; }
-      p = p.parentElement;
-    }
-    if (nested) return;
-
-    el.setAttribute("data-reveal", "up");
-    el.setAttribute("data-reveal-state", "pre");
-    el.style.setProperty("--d", `${Math.min(staggerIdx * 35, 380)}ms`);
-    staggerIdx += 1;
-    io.observe(el);
-    seen.add(el);
-  });
+  // Entry/exit reveal animations disabled — only hover utilities remain.
+  void els; void staggerIdx; void seen; void io;
 
   // Hover rules
   HOVER_RULES.forEach(([sel, cls]) => {

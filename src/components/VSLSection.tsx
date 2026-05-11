@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import VideoModal from "@/components/VideoModal";
 
 const OUTCOMES = [
@@ -28,17 +28,50 @@ function phase(progress: number, start: number, duration: number) {
   return ease(clamp((progress - start) / duration));
 }
 
+/* ── Robin sprite — single right-facing bird, wings flap continuously.
+   No perch logic, no sprite swaps, no per-part timelines. Used as a
+   simple decorative element that drifts across the section. */
+function BirdSprite() {
+  return (
+    <svg
+      viewBox="0 0 60 40"
+      width="56"
+      height="38"
+      style={{ display: "block" }}
+    >
+      {/* Tail */}
+      <path d="M3 22 L13 18 L13 24 Z" fill="#6b4226" />
+      {/* Body */}
+      <ellipse cx="22" cy="22" rx="13" ry="9" fill="#7a5236" />
+      {/* Red breast */}
+      <ellipse cx="29" cy="24" rx="8" ry="6" fill="#c54f37" />
+      {/* Head + beak + eye */}
+      <circle cx="40" cy="17" r="6.5" fill="#7a5236" />
+      <path d="M45 17 L52 18 L45 19 Z" fill="#3a2410" />
+      <circle cx="42.5" cy="15.5" r="0.9" fill="#000" />
+      {/* Wing — flap continuously */}
+      <g style={{
+        transformOrigin: "22px 18px",
+        animation: "wingFlap 0.22s ease-in-out infinite",
+      }}>
+        <path d="M14 14 Q22 4 30 12 Q24 20 16 20 Z" fill="#5d3a23" />
+      </g>
+    </svg>
+  );
+}
+
 /* ── Grass blade ── */
 function GrassBlade({ x, h, delay, sway, colour }: { x: number; h: number; delay: number; sway: number; colour: string }) {
+  const r = (n: number) => Math.round(n * 1000) / 1000;
   return (
     <line
-      x1={x} y1={600} x2={x + sway} y2={600 - h}
+      x1={r(x)} y1={600} x2={r(x + sway)} y2={r(600 - h)}
       stroke={colour}
       strokeWidth={2.2}
       strokeLinecap="round"
       style={{
-        transformOrigin: `${x}px 600px`,
-        animation: `grassSway ${2.8 + (delay % 8) * 0.3}s ease-in-out ${(delay % 6) * 0.15}s infinite alternate`,
+        transformOrigin: `${r(x)}px 600px`,
+        animation: `grassSway ${r(2.8 + (delay % 8) * 0.3)}s ease-in-out ${r((delay % 6) * 0.15)}s infinite alternate`,
       }}
     />
   );
@@ -87,6 +120,13 @@ function WalkingPerson({ walkProgress }: { walkProgress: number }) {
 
 /* ── Full-width grass landscape SVG ── */
 function GrassLandscape({ grassGrow, walkPhase }: { grassGrow: number; walkPhase: number }) {
+  // Grass/flowers/butterflies use Math.sin/cos with float results that
+  // can serialise off-by-one-ulp between Node SSR and the browser, causing
+  // hydration mismatches. Render only after mount — the landscape is
+  // purely decorative.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  if (!mounted) return null;
   return (
     <svg
       viewBox="0 0 1400 600"
@@ -296,22 +336,11 @@ export default function VSLSection() {
             0% { transform: rotate(-2.5deg); }
             100% { transform: rotate(2.5deg); }
           }
-          /* Bird flies in from off-left, arcs across, lands on the first
-             outcome card (top-right area), holds ~5s, lifts off and exits right. */
-          @keyframes birdFly {
-            0%   { left: -8%;  top: 28%; transform: rotate(-4deg) scaleX(1); }
-            10%  { left: 14%;  top: 20%; transform: rotate(-2deg) scaleX(1); }
-            22%  { left: 34%;  top: 26%; transform: rotate( 0deg) scaleX(1); }
-            34%  { left: 54%;  top: 32%; transform: rotate( 4deg) scaleX(1); }
-            42%  { left: 64%;  top: 36%; transform: rotate( 2deg) scaleX(1); }
-            /* Settles on the "Visibly clearer skin" card */
-            48%  { left: 70%;  top: 40%; transform: rotate( 0deg) scaleX(1); }
-            /* Hold for the perch (48% → 72% of 28s ≈ 6.7s sit) */
-            72%  { left: 70%;  top: 40%; transform: rotate( 0deg) scaleX(1); }
-            /* Lifts off and exits right */
-            80%  { left: 78%;  top: 30%; transform: rotate(-3deg) scaleX(1); }
-            92%  { left: 94%;  top: 18%; transform: rotate(-2deg) scaleX(1); }
-            100% { left: 112%; top: 10%; transform: rotate(-1deg) scaleX(1); }
+          /* Bird flies from off-left to off-right across the section,
+             once every 30 seconds. Pure ambient decoration. */
+          @keyframes birdAcross {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(calc(100vw + 120px)); }
           }
           /* Wing flap — soft scaleY wobble; pauses during the sit phase */
           @keyframes wingFlap {
@@ -340,40 +369,20 @@ export default function VSLSection() {
             normal page section. */}
         <div className="relative min-h-screen overflow-hidden">
 
-          {/* ── Ambient robin — flies across, lands briefly on the first
-                outcome card, then exits. Faint, decorative only. ── */}
+          {/* ── Ambient bird — flies straight across the background
+                from left to right, once every 30s. Pure decoration. ── */}
           <div
             aria-hidden="true"
-            className="hidden sm:block absolute pointer-events-none z-[40]"
+            className="hidden sm:block absolute pointer-events-none z-[1]"
             style={{
-              width: 56,
-              height: 38,
-              opacity: 0.85,
-              filter: "drop-shadow(0 6px 10px rgba(40,18,60,0.2))",
-              animation: "birdFly 28s ease-in-out infinite",
+              left: "-80px",
+              top: "18%",
+              opacity: 0.7,
+              filter: "drop-shadow(0 4px 8px rgba(40,18,60,0.15))",
+              animation: "birdAcross 30s linear infinite",
             }}
           >
-            <svg viewBox="0 0 60 40" width="56" height="38" style={{ animation: "birdBreathe 2.6s ease-in-out infinite" }}>
-              {/* Tail */}
-              <path d="M3 22 L13 18 L13 24 Z" fill="#6b4226" />
-              {/* Body */}
-              <ellipse cx="22" cy="22" rx="13" ry="9" fill="#7a5236" />
-              {/* Red breast */}
-              <ellipse cx="29" cy="24" rx="8" ry="6" fill="#c54f37" />
-              {/* Head */}
-              <circle cx="40" cy="17" r="6.5" fill="#7a5236" />
-              {/* Beak */}
-              <path d="M45 17 L52 18 L45 19 Z" fill="#3a2410" />
-              {/* Eye */}
-              <circle cx="42.5" cy="15.5" r="0.9" fill="#000" />
-              {/* Wing — flaps continuously */}
-              <g style={{ transformOrigin: "22px 18px", animation: "wingFlap 0.22s ease-in-out infinite" }}>
-                <path d="M14 14 Q22 4 30 12 Q24 20 16 20 Z" fill="#5d3a23" />
-              </g>
-              {/* Foot — only really visible at sit pose, but tiny + faint */}
-              <line x1="20" y1="31" x2="20" y2="33" stroke="#3a2410" strokeWidth="0.6" strokeLinecap="round" />
-              <line x1="26" y1="31" x2="26" y2="33" stroke="#3a2410" strokeWidth="0.6" strokeLinecap="round" />
-            </svg>
+            <BirdSprite />
           </div>
 
 

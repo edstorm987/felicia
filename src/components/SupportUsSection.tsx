@@ -1,24 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useContent } from "@/lib/useContent";
 
 /* ── Scroll-aware fade-up ── */
-function useReveal(threshold = 0.15) {
+function useReveal(_threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); io.disconnect(); } },
-      { threshold }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [threshold]);
-  return { ref, visible };
+  return { ref, visible: true };
 }
 
 /* ── Icons ── */
@@ -108,7 +97,74 @@ export default function SupportUsSection() {
           <Card key={i} index={i} {...card} />
         ))}
       </div>
+
+      {/* Mailing list — sits inside the dark support-us section, under the cards */}
+      <MailingList />
     </section>
+  );
+}
+
+function MailingList() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email) return;
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/portal/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source: "support-us" }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || "subscribe-failed");
+      setStatus("ok");
+      setMessage("You're on the list — welcome to the family.");
+      setEmail("");
+    } catch {
+      setStatus("error");
+      setMessage("Something went wrong. Please try again.");
+    }
+  }
+
+  return (
+    <div id="mailing-list" className="max-w-[96rem] mx-auto px-4 sm:px-8 lg:px-10 xl:px-14 mt-16 sm:mt-20 relative scroll-mt-24 lg:scroll-mt-32">
+      <div className="mx-auto max-w-3xl rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-md p-8 sm:p-10 text-center">
+        <p className="text-xs tracking-[0.3em] uppercase text-brand-amber/80 mb-4">Join the mailing list</p>
+        <h3 className="font-display font-bold text-white text-2xl sm:text-3xl mb-3 leading-tight">
+          Promotional offers, discounts &amp; trusted health information.
+        </h3>
+        <p className="text-white/50 text-sm sm:text-base leading-relaxed mb-7">
+          Get the latest on your health, our newest drops, and members-only discounts — straight to your inbox.
+        </p>
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="you@example.com"
+            disabled={status === "loading"}
+            className="flex-1 px-5 py-3.5 rounded-full bg-white/[0.06] border border-white/15 text-white placeholder-white/40 text-sm focus:outline-none focus:border-brand-amber/60 transition-colors disabled:opacity-60"
+          />
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="px-7 py-3.5 rounded-full bg-brand-amber text-brand-purple-dark font-semibold text-sm tracking-wide hover:bg-brand-amber/90 transition-colors disabled:opacity-60"
+          >
+            {status === "loading" ? "Subscribing…" : "Subscribe"}
+          </button>
+        </form>
+        {message && (
+          <p className={`mt-5 text-sm ${status === "ok" ? "text-emerald-300/90" : "text-rose-300/90"}`}>
+            {message}
+          </p>
+        )}
+      </div>
+    </div>
   );
 }
 

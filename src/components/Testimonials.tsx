@@ -199,8 +199,7 @@ export default function Testimonials() {
             <span className="text-xs tracking-[0.28em] uppercase text-brand-purple-light">{eyebrow}</span>
             <div className="adinkra-line w-8 sm:w-10" />
           </div>
-          <h2 className="font-display font-bold text-brand-purple-dark leading-tight mb-5
-            text-4xl sm:text-5xl xl:text-6xl 2xl:text-7xl">
+          <h2 className="font-display font-bold text-brand-purple-dark leading-tight mb-5 text-4xl sm:text-5xl xl:text-6xl 2xl:text-7xl">
             {headline1} <span className="gradient-text">{headline2}</span>
           </h2>
           <p className="text-gray-600 text-base sm:text-lg xl:text-xl leading-relaxed max-w-2xl">
