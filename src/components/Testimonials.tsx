@@ -243,7 +243,7 @@ export default function Testimonials() {
         </div>
 
         {/* Sub-header for the active mode */}
-        <div ref={reviewsReveal.ref} style={revealStyle(reviewsReveal.visible, 200)} className="flex flex-col items-center text-center mb-8 sm:mb-10">
+        <div id="verified-reviews-subheader" ref={reviewsReveal.ref} style={revealStyle(reviewsReveal.visible, 200)} className="flex flex-col items-center text-center mb-8 sm:mb-10 scroll-mt-24 lg:scroll-mt-32">
           <span className="text-xs tracking-[0.28em] uppercase text-brand-orange mb-3">Verified reviews</span>
           <h3 className="font-display font-bold text-brand-purple-dark text-2xl sm:text-3xl xl:text-4xl">
             {mode === "marquee" ? "Felt by those who know" : "Browse every review"}
@@ -275,7 +275,7 @@ export default function Testimonials() {
                   setMode("board");
                   setTimeout(() => {
                     document
-                      .getElementById("verified-reviews")
+                      .getElementById("verified-reviews-subheader")
                       ?.scrollIntoView({ behavior: "smooth", block: "start" });
                   }, 30);
                 }}
@@ -299,7 +299,7 @@ export default function Testimonials() {
                   setMode("marquee");
                   setTimeout(() => {
                     document
-                      .getElementById("verified-reviews")
+                      .getElementById("verified-reviews-subheader")
                       ?.scrollIntoView({ behavior: "smooth", block: "start" });
                   }, 30);
                 }}
