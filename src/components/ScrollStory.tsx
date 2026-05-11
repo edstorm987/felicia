@@ -448,7 +448,7 @@ export default function ScrollStory({ onDiscount }: { onDiscount: () => void }) 
       {togglePillLive}
       <Comp
         onDiscount={onDiscount}
-        onComplete={() => { /* no-op — animation stays on after completion */ }}
+        onComplete={handleDisable}
         onExit={handleDisable}
       />
     </section>
