@@ -86,24 +86,109 @@ export default function HeroProductCard() {
           <ellipse cx="60" cy="44" rx="3.5" ry="9" fill="#9FB58A" transform="rotate(-12 60 44)" opacity="0.7" />
         </svg>
 
-        {/* ── 6 INGREDIENTS wax-seal stamp (top-right) ─────────── */}
-        <div className="absolute top-5 right-5 sm:top-6 sm:right-6 z-10">
-          <div
-            className="relative flex flex-col items-center justify-center rounded-full text-white"
-            style={{
-              width: 84,
-              height: 84,
-              background:
-                "radial-gradient(circle at 30% 30%, #F2A23C 0%, #E8621A 60%, #C44E0E 100%)",
-              boxShadow:
-                "0 12px 24px -10px rgba(196,78,14,0.55), 0 0 0 1px rgba(255,255,255,0.18) inset, 0 0 0 4px rgba(255,255,255,0.45)",
-            }}
-          >
-            <span className="font-display text-3xl font-bold leading-none">6</span>
-            <span className="text-[8px] font-semibold tracking-[0.18em] mt-0.5 opacity-95">INGREDIENTS</span>
-            <span className="text-[7px] tracking-wide opacity-75 mt-0.5">nothing else</span>
-          </div>
-        </div>
+        {/* ── Small floral clusters tucked into the corners ──
+            Tiny stylized 5-petal blooms in coral/blush + a sprinkle
+            of leaves. Sits alongside the sage sprigs so the corners
+            read as restrained mini-arrangements, not bouquets. */}
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 120 120"
+          className="absolute top-2 left-2 w-24 sm:w-28 pointer-events-none"
+        >
+          {/* Coral bloom */}
+          {[0, 72, 144, 216, 288].map((a) => (
+            <ellipse
+              key={`fa${a}`}
+              cx="55"
+              cy="40"
+              rx="3.2"
+              ry="6"
+              fill="#F2A07C"
+              transform={`rotate(${a} 55 47)`}
+              opacity="0.9"
+            />
+          ))}
+          <circle cx="55" cy="47" r="2.2" fill="#C44E0E" />
+
+          {/* Blush bloom (smaller, behind) */}
+          {[0, 72, 144, 216, 288].map((a) => (
+            <ellipse
+              key={`fb${a}`}
+              cx="78"
+              cy="58"
+              rx="2.4"
+              ry="4.8"
+              fill="#F4C9C0"
+              transform={`rotate(${a} 78 63)`}
+              opacity="0.85"
+            />
+          ))}
+          <circle cx="78" cy="63" r="1.6" fill="#E89B6B" />
+
+          {/* Bud */}
+          <ellipse cx="42" cy="62" rx="2.5" ry="4" fill="#E89B6B" opacity="0.8" />
+        </svg>
+
+        {/* Mirrored floral cluster — bottom right */}
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 120 120"
+          className="absolute bottom-2 right-2 w-24 sm:w-28 pointer-events-none -scale-100"
+        >
+          {[0, 72, 144, 216, 288].map((a) => (
+            <ellipse
+              key={`fc${a}`}
+              cx="55"
+              cy="40"
+              rx="3"
+              ry="5.5"
+              fill="#F2A07C"
+              transform={`rotate(${a} 55 47)`}
+              opacity="0.85"
+            />
+          ))}
+          <circle cx="55" cy="47" r="2" fill="#C44E0E" />
+
+          {[0, 72, 144, 216, 288].map((a) => (
+            <ellipse
+              key={`fd${a}`}
+              cx="78"
+              cy="58"
+              rx="2.2"
+              ry="4.4"
+              fill="#F4C9C0"
+              transform={`rotate(${a} 78 63)`}
+              opacity="0.8"
+            />
+          ))}
+          <circle cx="78" cy="63" r="1.5" fill="#E89B6B" />
+        </svg>
+
+        {/* ── Soft blue water-ripple pool beneath the product ──
+            Subtle blue base that makes the product appear to sit on
+            a calm pool — replaces the old cartoon water splash. */}
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 400 100"
+          preserveAspectRatio="none"
+          className="absolute left-1/2 bottom-[16%] -translate-x-1/2 w-[78%] h-[14%] pointer-events-none"
+        >
+          <defs>
+            <radialGradient id="hpcPool" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#BAE6FD" stopOpacity="0.7" />
+              <stop offset="60%" stopColor="#93C5FD" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="#60A5FA" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <ellipse cx="200" cy="55" rx="190" ry="38" fill="url(#hpcPool)" />
+          <ellipse cx="200" cy="48" rx="140" ry="22" fill="rgba(224,242,254,0.55)" />
+          <ellipse cx="180" cy="42" rx="80" ry="10" fill="rgba(240,249,255,0.65)" />
+          {/* Two tiny droplets on the sides */}
+          <circle cx="55" cy="40" r="3" fill="rgba(56,189,248,0.5)" />
+          <circle cx="345" cy="40" r="3" fill="rgba(56,189,248,0.5)" />
+          <circle cx="70" cy="28" r="1.8" fill="rgba(56,189,248,0.4)" />
+          <circle cx="330" cy="28" r="1.8" fill="rgba(56,189,248,0.4)" />
+        </svg>
 
         {/* ── Product image area ───────────────────────────────── */}
         <div className="absolute inset-0 flex items-center justify-center px-8 sm:px-10 py-10 sm:py-12">
