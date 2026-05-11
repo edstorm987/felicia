@@ -10,7 +10,7 @@ import { listPublishedNavPages, onPagesChange, type CustomPage } from "@/lib/adm
 const TOP_LINKS = [
   { label: "Shop",             href: "/#buy" },
   { label: "About",            href: "/our-story" },
-  { label: "Customer Stories", href: "/#testimonials" },
+  { label: "Customer Stories", href: "/#customer-stories" },
   { label: "Blog",             href: "/blog" },
   { label: "Support Us",       href: "/#support-us" },
 ];

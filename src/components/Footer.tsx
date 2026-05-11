@@ -7,7 +7,7 @@ import { useScrollReveal, revealStyle } from "@/hooks/useScrollReveal";
 const EXPLORE_LINKS = [
   { label: "Shop",             href: "/#buy",             colour: "text-brand-orange" },
   { label: "About",            href: "/our-story",        colour: "text-brand-purple-dark/80" },
-  { label: "Customer Stories", href: "/#testimonials",    colour: "text-brand-purple-dark/80" },
+  { label: "Customer Stories", href: "/#customer-stories", colour: "text-brand-purple-dark/80" },
   { label: "Blog",             href: "/blog",             colour: "text-brand-purple-dark/80" },
   { label: "Support Us",       href: "/#support-us",      colour: "text-brand-purple-dark/80" },
 ];

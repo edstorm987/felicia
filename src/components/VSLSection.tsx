@@ -341,8 +341,9 @@ export default function VSLSection() {
 
       <div
         ref={sectionRef}
+        id="customer-stories"
         data-fx-section
-        className="relative w-full"
+        className="relative w-full scroll-mt-24 lg:scroll-mt-32"
       >
         <style jsx>{`
           @keyframes grassSway {
