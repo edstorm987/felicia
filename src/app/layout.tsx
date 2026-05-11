@@ -135,7 +135,7 @@ export default function RootLayout({
           <SiteHead />
           <AnalyticsResolver />
           {children}
-          {/* Chatbot removed per request */}
+          <ChatBotLazy />
           <LatherTrail />
           <FxObserver />
           <CookieConsentBar />
