@@ -517,6 +517,17 @@ function BeeSvg() {
 /* ─── Hero ─────────────────────────────────────────────────── */
 export default function Hero() {
   const [popupOpen, setPopupOpen]   = useState(false);
+  // Tracks whether the visitor has already claimed the 10% off code
+  // via the DiscountPopup. Hydrated from localStorage on mount and
+  // updated live via the "discount:claimed" event the popup emits.
+  const [claimed, setClaimed] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setClaimed(window.localStorage.getItem("ck.discount.claimed") === "1");
+    const onClaim = () => setClaimed(true);
+    window.addEventListener("discount:claimed", onClaim);
+    return () => window.removeEventListener("discount:claimed", onClaim);
+  }, []);
   // Mirror ScrollStory's "immersive mode" state — the bee couple only
   // animates while the immersive experience is on. The story:state
   // event is dispatched by ScrollStory whenever the user toggles it.
@@ -713,13 +724,32 @@ export default function Hero() {
               <div className="flex flex-col gap-4 w-full sm:w-auto">
                 <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                   <button
-                    onClick={() => setPopupOpen(true)}
+                    onClick={() => {
+                      if (claimed) {
+                        document
+                          .getElementById("buy")
+                          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      } else {
+                        setPopupOpen(true);
+                      }
+                    }}
                     className="inline-flex items-center justify-center gap-2.5 px-9 py-4 rounded-full bg-brand-orange hover:bg-brand-orange-light transition-all duration-200 text-white font-semibold tracking-wide text-sm shadow-2xl shadow-brand-orange/30 hover:-translate-y-0.5 hover:shadow-brand-orange/40"
                   >
-                    10% Introductory Offer
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
+                    {claimed ? (
+                      <>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="-ml-0.5">
+                          <path d="M20 6 9 17l-5-5" />
+                        </svg>
+                        Claimed — buy now
+                      </>
+                    ) : (
+                      <>
+                        10% Introductory Offer
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </>
+                    )}
                   </button>
                   <button
                     onClick={() => {

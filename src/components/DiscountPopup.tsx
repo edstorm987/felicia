@@ -148,6 +148,16 @@ export default function DiscountPopup({ open, onClose }: Props) {
     if (open) { setEmail(""); setStep("email"); setSubmitting(false); setCopied(false); }
   }, [open]);
 
+  // When the user reaches the "done" step they've claimed the code.
+  // Persist that fact and notify the rest of the page so the hero CTA
+  // can morph from "10% Introductory Offer" to "Claimed — buy now".
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (step !== "done") return;
+    window.localStorage.setItem("ck.discount.claimed", "1");
+    window.dispatchEvent(new CustomEvent("discount:claimed"));
+  }, [step]);
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", handler);
