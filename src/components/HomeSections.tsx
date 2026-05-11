@@ -81,7 +81,7 @@ export default function HomeSections() {
       {/* 5. Verified reviews board — same filter chips + grid as
             /reviews, embedded directly on the homepage between the
             product store and the scrolling testimonials. */}
-      <section className="w-full bg-pink-50 py-16 sm:py-20 lg:py-24 border-t border-pink-100">
+      <section id="verified-reviews" className="w-full bg-pink-50 py-16 sm:py-20 lg:py-24 border-t border-pink-100 scroll-mt-24 lg:scroll-mt-32">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 xl:px-16">
           <div className="flex flex-col items-center text-center mb-10 sm:mb-12">
             <span className="text-xs tracking-[0.28em] uppercase text-brand-amber mb-3">Verified reviews</span>

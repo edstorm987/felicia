@@ -243,14 +243,18 @@ export default function ProductDetail({ product, compact = false }: { product: P
               </h1>
               <p className="text-[11px] tracking-[0.22em] uppercase text-brand-purple-dark/80 mb-5">{activeContent.tagline}</p>
 
-              {/* Rating — clicking scrolls to the product reviews section */}
+              {/* Rating — clicking scrolls to the verified-reviews board
+                  on the homepage when this card is embedded there, or
+                  to the inline product-reviews section on the standalone
+                  product page. */}
               <button
                 type="button"
                 onClick={() => {
                   if (typeof window === "undefined") return;
-                  document
-                    .getElementById("product-reviews")
-                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  const target =
+                    document.getElementById("verified-reviews") ??
+                    document.getElementById("product-reviews");
+                  target?.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
                 aria-label={`Jump to ${product.reviewCount} reviews`}
                 className="flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity cursor-pointer"
