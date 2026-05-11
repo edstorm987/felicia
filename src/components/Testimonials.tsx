@@ -271,10 +271,17 @@ export default function Testimonials() {
             <div className="flex flex-col items-center mt-12 sm:mt-14">
               <button
                 type="button"
-                onClick={() => setMode("board")}
+                onClick={() => {
+                  setMode("board");
+                  setTimeout(() => {
+                    document
+                      .getElementById("verified-reviews")
+                      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }, 30);
+                }}
                 className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-gray-200 bg-gray-50 text-brand-orange text-sm sm:text-base font-medium tracking-wide hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300 group"
               >
-                See all {allReviews.length} reviews
+                Read all our reviews
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
               </button>
               <p className="text-gray-400 text-xs mt-3 tracking-wide">
@@ -288,7 +295,14 @@ export default function Testimonials() {
             <div className="flex justify-center mt-12 sm:mt-14">
               <button
                 type="button"
-                onClick={() => setMode("marquee")}
+                onClick={() => {
+                  setMode("marquee");
+                  setTimeout(() => {
+                    document
+                      .getElementById("verified-reviews")
+                      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }, 30);
+                }}
                 className="inline-flex items-center gap-2 text-brand-purple-dark/75 hover:text-brand-orange text-sm tracking-wide transition-colors"
               >
                 ← Back to stories
