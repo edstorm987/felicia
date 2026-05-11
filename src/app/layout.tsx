@@ -17,6 +17,7 @@ import ChatBotLazy from "@/components/ChatBotLazy";
 import AnalyticsResolver from "@/components/AnalyticsResolver";
 import LatherTrail from "@/components/LatherTrail";
 import FxObserver from "@/components/FxObserver";
+import CookieConsentBar from "@/components/CookieConsentBar";
 
 // Both fonts use `display: "swap"` to avoid FOIT on slow networks, and a
 // system-stack `fallback` so the layout doesn't shift visibly when the
@@ -87,6 +88,7 @@ export default function RootLayout({
           {/* Chatbot removed per request */}
           <LatherTrail />
           <FxObserver />
+          <CookieConsentBar />
         </CartProvider>
       </body>
     </html>
