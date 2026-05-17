@@ -8,7 +8,7 @@
 //   table shipping_rates (id text pk, zone_id text, label text, price numeric,
 //     min_days int, max_days int, free_threshold numeric, sort int);
 
-const STORAGE_KEY = "lk_admin_shipping_v1";
+const STORAGE_KEY = "lk_admin_shipping_v2";
 const CHANGE_EVENT = "lk-admin-shipping-change";
 
 export interface ShippingRate {
@@ -48,10 +48,10 @@ export interface ShippingConfig {
 const SEED: ShippingConfig = {
   zones: [
     {
-      id: "z_uk", name: "United Kingdom", countries: ["GB"], freeThreshold: 30,
+      id: "z_uk", name: "United Kingdom", countries: ["GB"], freeThreshold: 0,
       rates: [
-        { id: "r_uk_std", label: "Standard tracked",   price: 4.99, minDays: 2, maxDays: 4 },
-        { id: "r_uk_exp", label: "Express next-day",    price: 7.90, minDays: 1, maxDays: 1 },
+        { id: "r_uk_std", label: "Standard tracked — free", price: 0,    minDays: 2, maxDays: 4 },
+        { id: "r_uk_exp", label: "Express next-day",         price: 7.90, minDays: 1, maxDays: 1 },
       ],
     },
     {

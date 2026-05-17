@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import DiscountPopup from "@/components/DiscountPopup";
-import HeroProductCard from "@/components/HeroProductCard";
 
 /* ─── Ambient bee ──
    Migrated here from the Solution section — the bees now live in the
@@ -68,7 +67,7 @@ export default function Hero() {
       <section
         id="hero"
         data-fx-section
-        className="relative w-full min-h-screen flex items-center bg-white overflow-hidden"
+        className="relative w-full min-h-screen flex flex-col bg-white overflow-hidden"
         style={{ paddingTop: "var(--navbar-h, 5rem)" }}
       >
         {/* ── A pair of bees in love. Tight commute between the
@@ -180,14 +179,14 @@ export default function Hero() {
           </>
         )}
 
-        <div className="relative z-10 w-full max-w-[96rem] mx-auto px-4 sm:px-8 lg:px-10 xl:px-14 py-20 lg:py-28">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 xl:gap-20 items-center">
+        <div className="relative z-10 flex-1 flex flex-col w-full max-w-[96rem] mx-auto px-4 sm:px-8 lg:px-10 xl:px-14 py-8 lg:py-10">
+          <div className="flex-1 flex flex-col justify-center pb-16 lg:pb-24">
 
-            {/* ── LEFT: copy ── */}
+            {/* ── Copy stack ── */}
             <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
 
               {/* Brand wordmark */}
-              <div className="flex items-center gap-2.5 mb-8">
+              <div className="flex items-center gap-2.5 mb-3">
                 <div className="w-6 h-[2px] bg-brand-orange" />
                 <span className="text-[11px] tracking-[0.3em] uppercase font-semibold text-gray-500">
                   Luv &amp; Ker · Odo by Felicia
@@ -195,9 +194,10 @@ export default function Hero() {
               </div>
 
               {/* Hook */}
-              <h1 className="font-display font-bold text-brand-purple-dark leading-[1.08] mb-5 text-4xl sm:text-5xl xl:text-6xl 2xl:text-[4.25rem]">
-                This is what
+              <h1 className="font-display font-bold text-brand-purple-dark leading-[1.05] mb-3 text-4xl sm:text-5xl xl:text-6xl 2xl:text-[4.25rem]">
+                After 25 years searching,
                 <br />
+                this is what{" "}
                 <span
                   style={{
                     background:
@@ -207,56 +207,18 @@ export default function Hero() {
                     backgroundClip: "text",
                   }}
                 >
-                  clean
+                  clear skin
                 </span>{" "}
                 feels like.
               </h1>
 
               {/* Sub-hook */}
-              <p className="text-brand-purple-dark/80 text-base sm:text-lg xl:text-xl leading-relaxed mb-3 max-w-md">
+              <p className="text-brand-purple-dark/80 text-base sm:text-lg xl:text-xl leading-relaxed mb-4 max-w-md">
                 Nature&apos;s own gift: 6 ingredients you can actually name.
               </p>
-              <p className="font-display font-bold text-brand-purple-dark text-lg sm:text-xl xl:text-2xl mb-3">
-                African Black Soap
-              </p>
-              <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-10 max-w-sm">
-                <span className="underline decoration-brand-orange/40 decoration-2 underline-offset-4">Hand crafted and infused with care</span>. The ritual your skin has been craving for.
-              </p>
-
-              {/* Packaging strip — clicking a format dispatches a
-                  product:select-format event so ProductDetail in the
-                  #buy section switches to it, then smooth-scrolls
-                  there. */}
-              <div className="flex flex-col gap-4 mb-8">
-                <p className="text-xs text-gray-400 uppercase tracking-widest font-semibold">Comes in 3 packaging types</p>
-                <div className="flex flex-wrap items-center gap-6">
-                  {[
-                    { icon: "🧼", label: "Classic Bar",  format: "bar" },
-                    { icon: "🧴", label: "Pump Bottle",  format: "dispenser" },
-                    { icon: "🏺", label: "Whipped Jar",  format: "jar" },
-                  ].map(({ icon, label, format }) => (
-                    <button
-                      type="button"
-                      key={label}
-                      onClick={() => {
-                        window.dispatchEvent(
-                          new CustomEvent("product:select-format", { detail: { format } })
-                        );
-                        document
-                          .getElementById("buy")
-                          ?.scrollIntoView({ behavior: "smooth", block: "start" });
-                      }}
-                      className="flex items-center gap-2 hover:opacity-75 transition-opacity cursor-pointer group"
-                    >
-                      <span className="text-lg grayscale group-hover:grayscale-0 transition-all">{icon}</span>
-                      <span className="text-xs font-medium text-gray-500 group-hover:text-brand-orange transition-colors tracking-wide">{label}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
 
               {/* CTAs */}
-              <div className="flex flex-col gap-4 w-full sm:w-auto">
+              <div className="flex flex-col gap-3 w-full sm:w-auto">
                 <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                   <button
                     onClick={() => {
@@ -306,35 +268,67 @@ export default function Hero() {
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-brand-orange">
                       <path d="M8 5v14l11-7z" />
                     </svg>
-                    Watch the story
+                    See before and after
                   </button>
                 </div>
               </div>
 
-              {/* Trust strip */}
-              <div className="flex flex-wrap items-center gap-6 mt-12 pt-8 border-t border-gray-100">
-                {[
-                  { icon: "🌿", label: "100% Natural" },
-                  { icon: "🇬🇭", label: "Made in Ghana" },
-                  { icon: "✦", label: "Zero synthetics" },
-                ].map(({ icon, label }) => (
-                  <div key={label} className="flex items-center gap-2">
-                    <span className="text-base">{icon}</span>
-                    <span className="text-xs font-medium text-gray-600 tracking-wide">{label}</span>
-                  </div>
-                ))}
+              {/* Packaging strip — clicking a format dispatches a
+                  product:select-format event so ProductDetail in the
+                  #buy section switches to it, then smooth-scrolls
+                  there. */}
+              <div className="flex flex-col gap-2 mt-4 w-full">
+                <p className="text-xs text-gray-400 uppercase tracking-widest font-semibold">Comes in 3 packaging types</p>
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6">
+                  {[
+                    { icon: "🧼", label: "Classic Bar",  format: "bar" },
+                    { icon: "🧴", label: "Pump Bottle",  format: "dispenser" },
+                    { icon: "🏺", label: "Whipped Jar",  format: "jar" },
+                  ].map(({ icon, label, format }) => (
+                    <button
+                      type="button"
+                      key={label}
+                      onClick={() => {
+                        window.dispatchEvent(
+                          new CustomEvent("product:select-format", { detail: { format } })
+                        );
+                        document
+                          .getElementById("buy")
+                          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }}
+                      className="flex items-center gap-2 hover:opacity-75 transition-opacity cursor-pointer group"
+                    >
+                      <span className="text-lg grayscale group-hover:grayscale-0 transition-all">{icon}</span>
+                      <span className="text-xs font-medium text-gray-500 group-hover:text-brand-orange transition-colors tracking-wide">{label}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
 
-
-            </div>
-
-            {/* ── RIGHT: product scene — single cohesive card with
-                  integrated badges (HeroProductCard component). ── */}
-            <div className="relative flex items-center justify-center order-first lg:order-last">
-              <HeroProductCard />
             </div>
 
           </div>
+
+          {/* Trust strip — sits centered, just above the handcrafted
+              tagline that anchors the bottom of the hero. */}
+          <div className="relative z-10 flex flex-wrap items-center justify-center gap-6 pt-6 pb-2">
+            {[
+              { icon: "🌿", label: "100% Natural" },
+              { icon: "🇬🇭", label: "Made in Ghana" },
+              { icon: "✦", label: "Zero synthetics" },
+            ].map(({ icon, label }) => (
+              <div key={label} className="flex items-center gap-2">
+                <span className="text-base">{icon}</span>
+                <span className="text-xs font-medium text-gray-600 tracking-wide">{label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Handcrafted tagline — anchors the bottom of the hero,
+              centered below the trust strip. */}
+          <p className="relative z-10 text-center text-gray-500 text-sm sm:text-base leading-relaxed pt-3 pb-1 max-w-xl mx-auto">
+            <span className="underline decoration-brand-orange/40 decoration-2 underline-offset-4">Hand crafted and infused with care</span>. The ritual your skin has been craving for.
+          </p>
 
         </div>
 

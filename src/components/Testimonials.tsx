@@ -307,7 +307,7 @@ export default function Testimonials() {
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="-ml-1 text-brand-orange group-hover:text-white transition-colors">
                     <path d="M8 5v14l11-7z" />
                   </svg>
-                  Watch from our customers
+                  See before and after
                 </button>
               </div>
               <p className="text-gray-400 text-xs mt-4 tracking-wide">

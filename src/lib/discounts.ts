@@ -32,6 +32,7 @@ interface PromoEntry {
 // ─── Add new codes here ───────────────────────────────────────────────────────
 const PROMO_CODES: Record<string, PromoEntry> = {
   ODO10:   { type: "promo",   label: "10% off — first order",  percent: 10 },
+  LUV20:   { type: "promo",   label: "Luv Points — 20% off",   percent: 20 },
   STAFF20: { type: "staff",   label: "Staff discount (20%)",   percent: 20 },
   STAFF50: { type: "staff",   label: "Staff discount (50%)",   percent: 50 },
   // Creator / affiliate codes — add per campaign:

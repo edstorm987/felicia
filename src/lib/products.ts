@@ -747,9 +747,13 @@ export const PRODUCTS: Product[] = [
     ],
     note: "The one that started it all",
     formats: ["bar", "dispenser", "jar"],
-    sizes: [{ label: "100g", price: 12.0 }],
+    sizes: [
+      { label: "20g Tester", price: 5.0 },
+      { label: "100g", price: 12.0 },
+    ],
     formatSizes: {
       bar: [
+        { label: "20g Tester", price: 5.0 },
         { label: "100g", price: 12.0 },
         { label: "200g", price: 22.0 },
       ],

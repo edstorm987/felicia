@@ -2,30 +2,26 @@
 
 import { useScrollReveal, revealStyle, staggerStyle } from "@/hooks/useScrollReveal";
 
-const CARDS = [
+const CARE_PAIRS: { problem: string; solution: string }[] = [
   {
-    type: "truth",
-    icon: "⚗️",
-    title: "Hidden complexity",
-    body: "Many everyday formulas rely on artificial additives—like parabens and phthalates—that can quietly disrupt the hormonal balance your body works hard to maintain. You deserve to know what you're absorbing.",
+    problem:  "Most skincare brands hide behind unpronounceable ingredients.",
+    solution: "We list every ingredient by name. Six things you can actually pronounce — that's it.",
   },
   {
-    type: "truth",
-    icon: "🏷️",
-    title: "The 'fragrance' loophole",
-    body: "A single word on a label can legally hide hundreds of undisclosed compounds. This isn't an attack on any brand—it's a structural gap in regulation we think every consumer should understand.",
+    problem:  "Customer support is a bot, a ticket number, and a 5-day wait.",
+    solution: "Email Felicia and she replies — personally, usually within a working day.",
   },
   {
-    type: "align",
-    icon: "🌱",
-    title: "The industry is shifting",
-    body: "More brands than ever are reformulating towards transparency, shorter ingredient lists, and traceable sourcing. We celebrate that. Real change happens when an entire industry raises its standards together.",
+    problem:  "Shipping fees punish UK customers for small orders.",
+    solution: "UK standard tracked shipping is free. No minimum, no fine print.",
   },
   {
-    type: "align",
-    icon: "✨",
-    title: "The standard rises for everyone",
-    body: "We're not here to drag any brand down. We're here to show what skincare looks like when it returns to source — plant, hand, story — and to celebrate every label walking the same direction. Cleaner skin shouldn't be a competition. It should be the new floor.",
+    problem:  "Returns processes are designed to make you give up.",
+    solution: "30 days to send anything back. Damaged in transit? Photo us and we replace it.",
+  },
+  {
+    problem:  "Your data gets sold to ad networks the moment you check out.",
+    solution: "We never sell or rent your data. Marketing cookies are off until you say otherwise.",
   },
 ];
 
@@ -94,32 +90,38 @@ export default function Problem() {
           </p>
         </div>
 
-        {/* Cards */}
-        <div ref={cards.ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 xl:gap-6 mb-12">
-          {CARDS.map(({ type, icon, title, body }, i) => (
-            <div
-              key={title}
-              className={`flex flex-col items-center text-center p-7 xl:p-8 rounded-2xl transition-shadow duration-300 ${
-                type === "truth"
-                  ? "bg-white/[0.04] backdrop-blur-sm border border-white/10 hover:bg-white/[0.07] hover:border-white/20"
-                  : "bg-gradient-to-br from-brand-purple/20 to-brand-purple-dark/30 border border-brand-purple/30 hover:border-brand-purple/50"
-              }`}
-              style={{ ...staggerStyle(cards.visible, i), boxShadow: "0 18px 40px -16px rgba(0,0,0,0.45)" }}
-            >
-              <div className="text-3xl sm:text-4xl mb-4">{icon}</div>
-              <h3 className={`font-display text-lg font-semibold mb-3 ${
-                type === "truth" ? "text-white/90" : "text-brand-amber"
-              }`}>
-                {title}
-              </h3>
-              <p className="text-sm text-white/55 leading-relaxed">{body}</p>
-              {type === "align" && (
-                <span className="mt-4 inline-block text-[10px] tracking-[0.2em] uppercase font-semibold text-brand-amber/75 border border-brand-amber/30 rounded-full px-3 py-1">
-                  Our commitment
-                </span>
-              )}
-            </div>
-          ))}
+        {/* Problem → Solution pairs */}
+        <div ref={cards.ref} className="mb-12">
+          {/* Column headers */}
+          <div className="hidden lg:grid grid-cols-2 gap-x-6 mb-4">
+            <p className="text-[10px] tracking-[0.28em] uppercase text-red-300 font-semibold">The problem</p>
+            <p className="text-[10px] tracking-[0.28em] uppercase text-emerald-300 font-semibold">How we solve it</p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3">
+            {CARE_PAIRS.map((row, i) => (
+              <div key={`pair-${i}`} className="contents">
+                <div
+                  className="flex items-start gap-3 rounded-2xl bg-red-500/[0.08] backdrop-blur-sm border border-red-400/30 p-4 sm:p-5"
+                  style={{ ...staggerStyle(cards.visible, i), boxShadow: "0 18px 40px -16px rgba(0,0,0,0.45)" }}
+                >
+                  <span className="shrink-0 h-7 w-7 rounded-full bg-red-500/25 text-red-200 text-xs font-semibold flex items-center justify-center border border-red-400/40">
+                    {i + 1}
+                  </span>
+                  <p className="text-sm sm:text-base text-red-100/90 leading-relaxed">{row.problem}</p>
+                </div>
+                <div
+                  className="flex items-start gap-3 rounded-2xl bg-emerald-500/[0.10] backdrop-blur-sm border border-emerald-400/35 p-4 sm:p-5"
+                  style={{ ...staggerStyle(cards.visible, i), boxShadow: "0 18px 40px -16px rgba(0,0,0,0.45)" }}
+                >
+                  <span className="shrink-0 h-7 w-7 rounded-full bg-emerald-400 text-emerald-950 text-xs font-bold flex items-center justify-center">
+                    ✓
+                  </span>
+                  <p className="text-sm sm:text-base text-emerald-50 leading-relaxed font-medium">{row.solution}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* CTA */}

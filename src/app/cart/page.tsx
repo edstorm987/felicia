@@ -5,9 +5,31 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useCart } from "@/context/CartContext";
 import { listSources, onSourcesChange, readAttribution, findSourceBySlug, type OrderSource } from "@/lib/admin/marketing";
+import PointsBar from "@/components/PointsBar";
+import YouMayAlsoLike from "@/components/YouMayAlsoLike";
+import { addPoints, pointsFromSubtotal, clearClaims, getClaims, resetBalance, REWARDS } from "@/lib/points";
+import { getProducts } from "@/lib/products";
+
+function sizesForItem(itemId: string): { label: string; price: number }[] | null {
+  if (itemId.startsWith("reward:")) return null;
+  const product = getProducts({ includeHidden: true }).find(p => p.id === itemId || p.slug === itemId);
+  if (!product) return null;
+  return product.sizes && product.sizes.length > 1 ? product.sizes : null;
+}
+
+function fragrancesForItem(itemId: string): string[] | null {
+  // Reward items (e.g. "reward:free_tester") use the REWARDS table.
+  if (itemId.startsWith("reward:")) {
+    const r = REWARDS.find(x => x.item?.id === itemId);
+    return r?.fragrances && r.fragrances.length > 1 ? r.fragrances : null;
+  }
+  const product = getProducts({ includeHidden: true }).find(p => p.id === itemId || p.slug === itemId);
+  if (!product) return null;
+  return product.fragrances && product.fragrances.length > 1 ? product.fragrances : null;
+}
 
 export default function CartPage() {
-  const { items, count, subtotal, total, discounts, applyDiscount, removeDiscount, updateQty, removeItem } = useCart();
+  const { items, count, subtotal, total, discounts, applyDiscount, removeDiscount, updateQty, updateVariant, updateSize, removeItem } = useCart();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [discountCode, setDiscountCode] = useState("");
   const [discountError, setDiscountError] = useState<string | null>(null);
@@ -79,6 +101,13 @@ export default function CartPage() {
         sourceDetail: sourceDetail.trim() || undefined,
       });
       localStorage.setItem("odo_has_purchased", "true");
+      const earned = pointsFromSubtotal(subtotal);
+      const claimedRewards = getClaims();
+      const giftSetClaimed = claimedRewards.some(c => c.rewardId === "free_set");
+      if (earned > 0) addPoints(earned, `order:${Date.now()}`);
+      // Top-tier reward consumes the whole cycle — start fresh at 0.
+      if (giftSetClaimed) resetBalance(`cycle-reset:${Date.now()}`);
+      clearClaims();
       window.location.href = data.url;
     } catch (error) {
       console.error("Checkout error:", error);
@@ -95,6 +124,8 @@ export default function CartPage() {
           <h1 className="font-display text-4xl sm:text-5xl text-brand-purple-dark mb-2">Your Bag</h1>
           <p className="text-brand-purple-dark/80 text-sm mb-8">{count} {count === 1 ? "item" : "items"}</p>
 
+          <PointsBar subtotal={subtotal} />
+
           {items.length === 0 ? (
             <div className="rounded-2xl border border-pink-200 bg-white p-12 text-center">
               <p className="text-brand-purple-dark/80">Your bag is empty.</p>
@@ -102,12 +133,49 @@ export default function CartPage() {
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2 space-y-4">
-                {items.map((item) => (
+                {items.map((item) => {
+                  const fragrances = fragrancesForItem(item.id);
+                  const sizes = sizesForItem(item.id);
+                  return (
                   <div key={item.id} className="flex gap-4 p-4 rounded-xl bg-white border border-pink-200/50">
-                    <div className="w-16 h-16 rounded-lg bg-brand-purple-muted" />
-                    <div className="flex-1">
+                    <div className="w-16 h-16 rounded-lg bg-brand-purple-muted shrink-0 overflow-hidden">
+                      {item.image && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
                       <h3 className="text-brand-purple-dark">{item.name}</h3>
-                      {item.variant && <p className="text-xs text-brand-purple-dark/80">{item.variant}</p>}
+                      {item.variant && !fragrances && <p className="text-xs text-brand-purple-dark/80">{item.variant}</p>}
+                      <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                        {fragrances && (
+                          <div className="flex items-center gap-1.5">
+                            <label className="text-[9px] tracking-widest uppercase text-brand-purple-dark/60">Scent</label>
+                            <select
+                              value={item.variant && fragrances.includes(item.variant) ? item.variant : fragrances[0]}
+                              onChange={(e) => updateVariant(item.id, e.target.value)}
+                              className="bg-pink-50 border border-pink-200 rounded-md px-2 py-1 text-xs text-brand-purple-dark focus:outline-none focus:border-brand-amber/50"
+                            >
+                              {fragrances.map(f => <option key={f} value={f}>{f}</option>)}
+                            </select>
+                          </div>
+                        )}
+                        {sizes && (
+                          <div className="flex items-center gap-1.5">
+                            <label className="text-[9px] tracking-widest uppercase text-brand-purple-dark/60">Size</label>
+                            <select
+                              value={item.size && sizes.some(s => s.label === item.size) ? item.size : sizes[0].label}
+                              onChange={(e) => {
+                                const picked = sizes.find(s => s.label === e.target.value);
+                                if (picked) updateSize(item.id, picked.label, picked.price);
+                              }}
+                              className="bg-pink-50 border border-pink-200 rounded-md px-2 py-1 text-xs text-brand-purple-dark focus:outline-none focus:border-brand-amber/50"
+                            >
+                              {sizes.map(s => <option key={s.label} value={s.label}>{s.label} — £{s.price.toFixed(2)}</option>)}
+                            </select>
+                          </div>
+                        )}
+                      </div>
                       <p className="text-brand-orange mt-1">£{(item.price * item.quantity).toFixed(2)}</p>
                     </div>
                     <div className="flex flex-col items-end gap-2">
@@ -119,7 +187,8 @@ export default function CartPage() {
                       </div>
                     </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
 
               <aside className="rounded-2xl border border-pink-200 bg-white p-5 h-fit space-y-4">
@@ -193,6 +262,8 @@ export default function CartPage() {
               </aside>
             </div>
           )}
+
+          <YouMayAlsoLike />
         </section>
       </main>
       <Footer />

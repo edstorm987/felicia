@@ -22,6 +22,7 @@ export interface CartItem {
   variantId?: string;
   image?: string;
   customHex?: string;    // when the customer picked a colour-wheel hex
+  size?: string;         // selected size label (e.g. "100g", "250ml")
 }
 
 interface CartContextValue {
@@ -35,6 +36,8 @@ interface CartContextValue {
   addItem: (item: Omit<CartItem, "quantity">) => void;
   removeItem: (id: string) => void;
   updateQty: (id: string, qty: number) => void;
+  updateVariant: (id: string, variant: string) => void;
+  updateSize: (id: string, size: string, price: number) => void;
   clearCart: () => void;
   isOpen: boolean;
   openCart: () => void;
@@ -128,6 +131,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setItems((prev) => prev.filter((i) => i.id !== id));
   }, []);
 
+  const updateVariant = useCallback((id: string, variant: string) => {
+    setItems((prev) => prev.map((i) => (i.id === id ? { ...i, variant } : i)));
+  }, []);
+
+  const updateSize = useCallback((id: string, size: string, price: number) => {
+    setItems((prev) => prev.map((i) => (i.id === id ? { ...i, size, price } : i)));
+  }, []);
+
   const updateQty = useCallback((id: string, qty: number) => {
     if (qty <= 0) {
       setItems((prev) => prev.filter((i) => i.id !== id));
@@ -191,6 +202,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         addItem,
         removeItem,
         updateQty,
+        updateVariant,
+        updateSize,
         clearCart,
         isOpen,
         openCart: () => setIsOpen(true),

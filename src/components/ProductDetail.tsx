@@ -50,9 +50,19 @@ export default function ProductDetail({ product, compact = false }: { product: P
   useEffect(() => {
     if (typeof window === "undefined") return;
     const handler = (e: Event) => {
-      const detail = (e as CustomEvent<{ format?: string }>).detail;
+      const detail = (e as CustomEvent<{ format?: string; size?: string }>).detail;
       const f = detail?.format as ProductFormat | undefined;
       if (f && product.formats?.includes(f)) setFormat(f);
+      // Optional: also pre-select a size. We defer slightly so the format
+      // change settles (setSize lives below in scope below).
+      if (detail?.size) {
+        const targetSize = detail.size;
+        setTimeout(() => {
+          const sizes = product.formatSizes?.[(f ?? product.formats[0]) as ProductFormat] ?? product.sizes;
+          const match = sizes.find(s => s.label === targetSize);
+          if (match) setSize(match);
+        }, 0);
+      }
     };
     window.addEventListener("product:select-format", handler);
     return () => window.removeEventListener("product:select-format", handler);

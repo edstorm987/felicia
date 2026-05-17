@@ -11,8 +11,7 @@ const TOP_LINKS = [
   { label: "Shop",             href: "/#buy" },
   { label: "About",            href: "/our-story" },
   { label: "Customer Stories", href: "/#customer-stories" },
-  { label: "Blog",             href: "/blog" },
-  { label: "Support Us",       href: "/#support-us" },
+  { label: "Customer Care",    href: "/customer-care" },
 ];
 
 export default function Navbar() {
@@ -99,15 +98,13 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`text-sm 2xl:text-base tracking-wide transition-colors duration-200 whitespace-nowrap ${
-                  link.label === "Support Us"
-                    ? "text-brand-amber hover:text-brand-orange"
-                    : "text-brand-purple-dark/80 hover:text-brand-purple-dark"
-                }`}
+                className="text-sm 2xl:text-base tracking-wide transition-colors duration-200 whitespace-nowrap text-brand-purple-dark/80 hover:text-brand-purple-dark"
               >
                 {link.label}
               </Link>
             ))}
+
+
             {navPages.map(page => (
               <Link
                 key={page.id}
@@ -191,9 +188,7 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`text-sm tracking-wide py-3 px-1 ${
-                  link.label === "Support Us" ? "text-brand-amber" : "text-brand-purple-dark/80 hover:text-brand-purple-dark"
-                }`}
+                className="text-sm tracking-wide py-3 px-1 text-brand-purple-dark/80 hover:text-brand-purple-dark"
               >
                 {link.label}
               </Link>
